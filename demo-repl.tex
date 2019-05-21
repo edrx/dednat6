@@ -1,0 +1,19 @@
+% demo-repl.tex: a test for the REPL of Dednat6.
+%
+\documentclass{article}
+\begin{document}
+  \catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+  \directlua{dofile "dednat6load.lua"}  % (find-dednat6 "dednat6load.lua")
+
+  \directlua{luarepl()}
+
+\end{document}
+
+ (eepitch-shell)
+ (eepitch-kill)
+ (eepitch-shell)
+lualatex demo-repl.tex
+  for i,v in pairs (tex.hashtokens()) do
+    print(v, token.get_meaning(v))
+  end
+  os.exit()

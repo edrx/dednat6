@@ -1,0 +1,120 @@
+% A minimal test file for Dednat6.
+% This file: http://angg.twu.net/dednat6/demo-minimal.tex.html
+%            http://angg.twu.net/dednat6/demo-minimal.tex
+%                         (find-dednat6 "demo-minimal.tex")
+%    Output: http://angg.twu.net/dednat6/demo-minimal.pdf
+%
+%       See: http://angg.twu.net/dednat6.html
+%            http://angg.twu.net/dednat6.html#quick-start
+%
+%
+% To compile (i.e., tex) this file, do this:
+%
+%   lualatex 2018dednat6-no-lua.tex
+%
+% this makes TeX and Lua process this file "in parallel", or sort of.
+% Lua processes the trees and diagrams in 2D ascii art in comments
+% that are in the lines that start with "%:" or "%D", converts them to
+% TeX code, and sends that code to TeX.
+%
+% The section 3 ("3. Semi-preprocessors") of the TUGBoat article about
+% dednat6 explains what this "in parallel (or sort of)" means. The PDF
+% for the article is here:
+%
+%   http://angg.twu.net/dednat6/2018tugboat-rev1.pdf
+% 
+% Section 3 ends with this paragraph:
+%
+%   `\pu' means "process until" - or, more precisely, _make dednat6
+%   process everything until this point that it hasn't processed yet_.
+%   The first \pu [in the example] processes the lines 1--26 of
+%   foo.tex, and "outputs" - i.e., sends to TeX - the first
+%   \defded{my-tree}; the second \pu processes the lines 28--34 of
+%   foo.tex, and `outputs' the second \defded{my-tree}. Thus, it is
+%   not technically true that TeX and dednat6 process foo.tex in
+%   parallel; dednat6 goes later, and each \pu is a synchronization
+%   point.
+%
+%
+% This comment block contains some emacs/eev-isms.
+% You don't need to understand them.
+% See: (find-eev-quick-intro "7.4. Commands with very short names")
+%      http://angg.twu.net/eev-intros/find-eev-quick-intro.html#7.4
+%
+% (defun c () (interactive) (find-dednat6sh "lualatex -record demo-minimal.tex"))
+% (defun d () (interactive) (find-xpdfpage "~/dednat6/demo-minimal.pdf"))
+% (defun e () (interactive) (find-dednat6 "demo-minimal.tex"))
+% (defun u () (interactive) (find-latex-upload-links "demo-minimal"))
+%   (find-pdf-page "~/dednat6/demo-minimal.pdf")
+% http://angg.twu.net/dednat6/demo-minimal.pdf
+%
+\documentclass[oneside]{article}
+  \usepackage{proof}   % For derivation trees ("%:" lines)
+  \input diagxy        % For 2D diagrams ("%D" lines)
+  \xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\begin{document}
+  \catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+  \directlua{dofile "dednat6load.lua"}  % (find-dednat6 "dednat6load.lua")
+
+
+\title{Dednat6: a minimal test file}
+\author{Eduardo Ochs}
+\maketitle
+
+Some trees:
+%
+%L addabbrevs("->", "\\to ")
+%
+%:  [x]^1  f     [a]^1  a->b                                 H
+%:  --------     -----------                                ...
+%:     f(x)   g       b       b->c      A  B  C   E  F      \Pi
+%:     --------       ------------      =======r  ::::\phi  ...
+%:     g(f(x))             c               D       G         I
+%:   ----------1         ----1             -------------------
+%:   λx.g(f(x))          a->c                      J
+%:
+%:   ^x.g(f(x))          ^x.g(f(x)).t              ^bars
+%:
+\pu
+$$\ded{x.g(f(x))} \qquad \ded{x.g(f(x)).t} \qquad \ded{bars}$$
+
+
+
+
+\def\catA{\mathbf{A}}
+\def\catB{\mathbf{B}}
+
+A diagram:
+%
+%D diagram adj
+%D 2Dx     100     +25     +25   +25
+%D 2D  100 LA <--| A
+%D 2D      |       |
+%D 2D      |  <->  |
+%D 2D      v       v
+%D 2D  +25 B |--> RB       C --> D
+%D 2D
+%D 2D  +15 \catB \catA
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D    LA RB harrownodes nil 20 nil <->
+%D    \catB \catA <- sl^ .plabel= a L
+%D    \catB \catA -> sl_ .plabel= b R
+%D
+%D    C D -> .curve= ^10pt .plabel= a a
+%D    C D -> .curve= _10pt .plabel= b b
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{adj}
+$$
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

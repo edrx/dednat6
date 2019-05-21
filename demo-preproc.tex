@@ -1,0 +1,105 @@
+% A demo of how to run dednat6load.lua as a "real preprocessor".
+% This file:
+%   http://angg.twu.net/dednat6/demo-preproc.tex.html
+%   http://angg.twu.net/dednat6/demo-preproc.tex
+%                (find-dednat6 "demo-preproc.tex")
+%
+% See the comments in dednat6load.lua for details:
+%   http://angg.twu.net/dednat6/dednat6load.lua.html
+%                (find-dednat6 "dednat6load.lua")
+% and, of course, the home page of dednat6 and the TUGBoat article:
+%   http://angg.twu.net/dednat6.html
+%   http://angg.twu.net/dednat6/tugboat-rev2.pdf
+%
+% Note: this is an _experimental feature_ that I implemented in a
+% hurry in may/2019 when I had to prepare an extended abstract using
+% the "compositionality" class, that was very incompatible with
+% lualatex... it uses the command-line option "-t" of dednat6load.lua,
+% that is very low-level, and requires me to run "output(preamble1)"
+% and "write_dnt_file()".
+%
+% Eduardo Ochs, 2019may15.
+%
+% Commands to compile this (using emacs and eev-isms):
+%   (find-dednat6sh0 "rm -v                demo-preproc.dnt")
+%   (find-dednat6sh  "./dednat6load.lua -4 demo-preproc.tex")
+%   (find-dednat6sh  "pdflatex             demo-preproc.tex")
+%   (find-dednat6            "demo-preproc.tex")
+%   (find-dednat6            "demo-preproc.dnt")
+%   (find-pdf-page "~/dednat6/demo-preproc.pdf")
+
+\documentclass[oneside]{book}
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\begin{document}
+
+
+This is a demo of how to run {\tt dednat6load.lua} as a standalone
+preprocessor outside of Lua\LaTeX! --- to generate a {\tt .dnt} file.
+This PDF was generated with:
+
+\begin{verbatim}
+rm -v                demo-preproc.dnt
+./dednat6load.lua -t demo-preproc.tex
+pdflatex             demo-preproc.tex
+\end{verbatim}
+
+\bigskip
+\bigskip
+
+
+\input\jobname.dnt
+
+A tree:
+%
+%L addabbrevs("->", "\\to ")
+%
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^comp
+%:
+$$\ded{comp}$$
+
+
+
+\def\catA{\mathbf{A}}
+\def\catB{\mathbf{B}}
+
+A diagram:
+%
+%D diagram adj
+%D 2Dx     100     +25
+%D 2D  100 LA <--| A
+%D 2D      |       |
+%D 2D      |  <->  |
+%D 2D      v       v
+%D 2D  +25 B |--> RB  
+%D 2D
+%D 2D  +15 \catB \catA
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D    LA RB harrownodes nil 20 nil <->
+%D    \catB \catA <- sl^ .plabel= a L
+%D    \catB \catA -> sl_ .plabel= b R
+%D ))
+%D enddiagram
+%D
+$$\diag{adj}
+$$
+
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

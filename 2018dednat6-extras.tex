@@ -1,0 +1,1466 @@
+% (find-angg "dednat6/2018dednat6-extras.tex")
+% (defun c () (interactive) (find-dednat6sh "lualatex -record 2018dednat6-extras.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/2018dednat6-extras.pdf"))
+% (defun e () (interactive) (find-dednat6 "2018dednat6-extras.tex"))
+% (defun l () (interactive) (find-dednat6 "myverbatim.lua"))
+% (defun u () (interactive) (find-latex-upload-links "2018dednat6-extras"))
+% (find-pdf-page   "~/dednat6/2018dednat6-extras.pdf")
+% (find-sh0 "cp -v  ~/dednat6/2018dednat6-extras.pdf /tmp/")
+% (find-sh0 "cp -v  ~/dednat6/2018dednat6-extras.pdf /tmp/pen/")
+%   file:///home/edrx/dednat6/2018dednat6-extras.pdf
+%                 file:///tmp/2018dednat6-extras.pdf
+%             file:///tmp/pen/2018dednat6-extras.pdf
+% http://angg.twu.net/dednat6/2018dednat6-extras.pdf
+
+% «.verbatim»		(to "verbatim")
+%
+% «.title»		(to "title")
+% «.what-is-this»	(to "what-is-this")
+% «.downloading»	(to "downloading")
+%   «.dednat6.zip-test»	  (to "dednat6.zip-test")
+% «.preamble»		(to "preamble")
+% «.tree-bars»		(to "tree-bars")
+% «.tree-hacks»		(to "tree-hacks")
+% «.abbrevs»		(to "abbrevs")
+% «.renaming»		(to "renaming")
+% «.arrow-modifiers»	(to "arrow-modifiers")
+% «.strange-modules»	(to "strange-modules")
+% «.barr»		(to "barr")
+% «.a-few-samples»	(to "a-few-samples")
+% «.repl»		(to "repl")
+% «.other-back-ends»	(to "other-back-ends")
+
+\documentclass[oneside]{article}
+\usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pict2e}
+\usepackage{color}                % (find-dednat6 "edrx15.sty" "colors")
+\usepackage{colorweb}             % (find-es "tex" "colorweb")
+\usepackage{graphicx}    % <- temporary?
+%\usepackage{tikz}
+%
+% (find-dn6 "preamble6.lua" "preamble0")
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+\directlua{dofile "dednat6load.lua"}  % (find-dednat6 "dednat6load.lua")
+\def\expr#1{\directlua{output(tostring(#1))}}
+\def\eval#1{\directlua{#1}}
+%
+%\usepackage{edrx15}               % (find-angg "dednat6/edrx15.sty")
+%\input edrx15defs.tex         % (find-LATEX "edrx15defs.tex")
+%\input edrxaccents.tex            % (find-angg "dednat6/edrxaccents.tex")
+%\input edrxchars.tex              % (find-dednat6 "edrxchars.tex")
+%\input edrxheadfoot.tex           % (find-dn4ex "edrxheadfoot.tex")
+%\input edrxgac2.tex               % (find-dednat6 "edrxgac2.tex")
+\def\bsk{\bigskip}
+\def\msk{\medskip}
+\def\ssk{\smallskip}
+\def\orange#1{{\color{orange}#1}}
+\def\yellow#1{{\color{yellow}#1}}
+\def\smashedvrule#1#2#3{\vrule width#1 height#2 depth#3 \kern-#1}
+\def\bicolorhbox#1{{%
+  \setbox0\hbox{#1}%
+  \yellow{\smashedvrule{\wd0}{\ht0}{0pt}}%
+  \orange{\smashedvrule{\wd0}{0pt}{\dp0}}%
+  \box0%
+  }}
+\def\bhbox{\bicolorhbox}
+\def\cded #1{\begin{matrix}\ded {#1}\end{matrix}}
+%
+\begin{document}
+
+\catcode`\^^J=10
+%\directlua{dofile "edrxtikz.lua"} % (find-dednat6 "edrxtikz.lua")
+%\directlua{dofile "edrxpict.lua"} % (find-dednat6 "edrxpict.lua")
+% %L V.__tostring = function (v) return format("(%.3f,%.3f)", v[1], v[2]) end
+
+
+\def\ASCII{ASCII}
+
+% \co: a low-level way to typeset code; a poor man's "\verb"
+\def\co#1{{%
+  \def\%{\char37}%
+  \def\\{\char92}%
+  \def\^{\char94}%
+  \def\~{\char126}%
+  \tt#1%
+  }}
+\def\qco#1{`\co{#1}'}
+\def\qqco#1{``\co{#1}''}
+
+
+% «verbatim» (to ".verbatim")
+% (find-dednat6 "2018tug-dednat6.tex" "verbatim")
+\directlua{dofile "myverbatim.lua"} % (find-dednat6 "myverbatim.lua")
+\def\myhbox#1#2#3{\setbox0=\hbox{#3}\ht0=#1\dp0=#2\box0}
+\def\verbahbox#1{\myhbox{7pt}{2pt}{{\tt#1}}}
+\def\bgbox#1{\bgcolorhbox{YellowOrangeLight}{#1}}
+\def\bgcolorhbox#1#2{{%
+  \setbox0\hbox{#2}%
+  \setbox0\vbox{\vskip\fboxsep\box0\vskip\fboxsep}%
+  \setbox0\hbox{\kern\fboxsep\box0\kern\fboxsep}%
+  {\color{#1}{\smashedvrule{\wd0}{\ht0}{\dp0}}}%
+  \box0%
+  }}
+%
+\long\def\ColorRed   #1{{\color{Red}#1}}
+\long\def\ColorViolet#1{{\color{MagentaVioletLight}#1}}
+\long\def\ColorGreen #1{{\color{SpringDarkHard}#1}}
+\long\def\ColorGreen #1{{\color{SpringGreenDark}#1}}
+\long\def\ColorGray  #1{{\color{GrayLight}#1}}
+%
+\catcode`𝐚=13 \def𝐚{\color{SpringGreenDark}}
+\catcode`𝐛=13 \def𝐛{\color{black}}
+\catcode`𝐠=13 \def𝐠{\color{SpringGreenDark}}
+\catcode`𝐫=13 \def𝐫{\color{Red}}
+\catcode`𝐧=13 \def𝐧{\color{blue}}
+\catcode`𝐮=13 \def𝐮{\color{blue}}
+\catcode`𝐜=13 \def𝐜{\color{pink}}
+\catcode`𝐰=13 \def𝐰{\color{YellowOrangeLight}}
+
+% (find-dednat6 "edrxchars.tex")
+\catcode`Ω=13 \defΩ{\Omega}
+\catcode`Γ=13 \defΓ{\Gamma}
+\catcode`⊢=13 \def⊢{\vdash}
+\catcode`∨=13 \def∨{\lor}
+\catcode`→=13 \def→{\to}
+
+
+\def\myvcenter#1{\begin{matrix}#1\end{matrix}}
+\catcode`\^^O=13 \def{{\color{red}*}}
+
+
+
+
+
+%  _____ _ _   _
+% |_   _(_) |_| | ___
+%   | | | | __| |/ _ \
+%   | | | | |_| |  __/
+%   |_| |_|\__|_|\___|
+%
+% «title» (to ".title")
+% (find-es "tex" "title")
+% (dnep 1)
+
+\title{Dednat6: Some Extra Features}
+
+\author{Eduardo Ochs}
+
+\maketitle
+
+% $$\bfig
+%   \morphism(2400,0)|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/<-1200,2800>[A`B;ab]
+%   \morphism(0,0)|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/<400,200>[C`D;cd]
+%   \morphism(0,0)|l|/{@{>}@`{c,(1000,0),(600,200),p}}/<400,200>[C`D;cd]
+%   \efig
+% $$
+% 
+% \end{document}
+
+% __        ___           _     _       _   _     _
+% \ \      / / |__   __ _| |_  (_)___  | |_| |__ (_)___
+%  \ \ /\ / /| '_ \ / _` | __| | / __| | __| '_ \| / __|
+%   \ V  V / | | | | (_| | |_  | \__ \ | |_| | | | \__ \
+%    \_/\_/  |_| |_|\__,_|\__| |_|___/  \__|_| |_|_|___/
+%
+% «what-is-this» (to ".what-is-this")
+% \section{What this document is}
+
+At this moment the documentation of Dednat6 consists of:
+
+\begin{itemize}
+
+\item An article about Dednat6 for TUGBoat, called ``Dednat6: An
+  extensible (semi-)preprocessor for Lua\LaTeX\ that understands
+  diagrams in \ASCII\ art'', that explains all the main concepts and
+  how they are implemented. Link:
+
+  \url{http://angg.twu.net/LATEX/2018tugboat-rev1.pdf}
+
+\item The slides for a presentation with the same title (on the
+  TUG2018 conference). Link:
+
+  \url{http://angg.twu.net/LATEX/2018tug-dednat6.pdf}
+
+\item {\sl This document}, that complements the article and the slides
+  --- with installation instructions, plus lots of details and
+  technicalities. Link:
+
+  \url{http://angg.twu.net/LATEX/2018dednat6-extras.pdf} \\
+
+\end{itemize}
+
+See also:
+
+  % (find-TH "math-b" "tug-2018")
+  \url{http://angg.twu.net/dednat6.html}
+
+  \url{http://angg.twu.net/math-b.html\#tug-2018}
+
+
+
+\section{Hey!}
+
+The slides for the TUG talk end with this call for feedback:
+
+\msk
+
+I've stopped trying to document Dednat6 because
+
+1) I don't have a mental image of who I am writing for,
+
+2) I get {\sl far too little feedback},
+
+3) all of the feedback that I got came from people who felt that I was
+not writing for them --- my approach, tone and choice of
+pre-requisites were all wrong.
+
+If you would like to try Dednat6, get in touch, {\bf let's chat} ---
+{\sl please}!
+
+{\sl 
+Maybe I can typeset in 20 minutes a diagram that took you
+
+a day, maybe I can implement an extension that you need...
+}
+
+\msk
+
+This still holds! I'm \co{eduardoochs@gmail.com}, get in touch!
+
+
+
+Index of sections:
+
+{\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\@starttoc{toc}
+}
+
+
+
+
+%  ____                      _                 _ _
+% |  _ \  _____      ___ __ | | ___   __ _  __| (_)_ __   __ _
+% | | | |/ _ \ \ /\ / / '_ \| |/ _ \ / _` |/ _` | | '_ \ / _` |
+% | |_| | (_) \ V  V /| | | | | (_) | (_| | (_| | | | | | (_| |
+% |____/ \___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|_|_| |_|\__, |
+%                                                        |___/
+% «downloading» (to ".downloading")
+\section{Downloading}
+
+You can download the current version of dednat6 from
+\url{http://angg.twu.net/dednat6.html}, or from here:
+\url{http://angg.twu.net/dednat6.zip}. The .zip file contains
+documentation in PDF and source form. To download it, delete the PDFs
+and recompile them, do this:
+
+% «dednat6.zip-test» (to ".dednat6.zip-test")
+% (find-es "dednat" "dednat6.zip-test")
+
+%V rm -Rfv /tmp/dn6-test/
+%V mkdir   /tmp/dn6-test/
+%V cd      /tmp/dn6-test/
+%V wget http://angg.twu.net/dednat6.zip
+%V unzip dednat6.zip
+%V rm -v *.pdf
+%V lualatex 2018tugboat-rev1.tex
+%V lualatex 2018tugboat-rev1.tex
+%V lualatex 2018tug-dednat6.tex
+%V lualatex 2018tug-dednat6.tex
+%V lualatex 2018dednat6-extras.tex
+%V lualatex 2018dednat6-extras.tex
+%V lualatex 2018dednat6-minimal.tex
+%V lualatex 2018dednat6-no-lua.tex
+%V mkdir no-lua/
+%V cd    no-lua/
+%V cp -v ../2018dednat6-no-lua.tex ../2018dednat6-no-lua.dnt .
+%V pdflatex 2018dednat6-no-lua.tex
+%
+%L verbdef "foo"
+%
+$\pu\foo$
+
+Dednat6 itself consists of just the contents of the \co{dednat6/}
+directory plus the file \co{dednat6load.lua}. You can run the code
+below to check that that's what is needed to compile
+\co{2018dednat6-minimal.tex}:
+
+%V rm -Rfv /tmp/dn6-test-min/
+%V mkdir   /tmp/dn6-test-min/
+%V cd      /tmp/dn6-test-min/
+%V wget http://angg.twu.net/dednat6.zip
+%V unzip dednat6.zip "dednat6/**" dednat6load.lua 2018dednat6-minimal.tex
+%V lualatex 2018dednat6-minimal.tex
+%
+%L verbdef "foo"
+%
+$\pu\footnotesize\foo$
+
+
+
+
+
+%V lualatex 2018dednat6-minimal.tex
+
+
+%  ____                           _     _
+% |  _ \ _ __ ___  __ _ _ __ ___ | |__ | | ___
+% | |_) | '__/ _ \/ _` | '_ ` _ \| '_ \| |/ _ \
+% |  __/| | |  __/ (_| | | | | | | |_) | |  __/
+% |_|   |_|  \___|\__,_|_| |_| |_|_.__/|_|\___|
+%
+% «preamble» (to ".preamble")
+
+\section{The preamble}
+
+It {\sl should} be possible to load Dednat6 from a .tex file with a
+single command, like this:
+
+\msk
+
+%V \documentclass{article}
+%V   \directlua{dofile "dednat6load.lua"}
+%V \begin{document}
+%V (...)
+%V \end{document}
+%
+%L verbdef "foo"
+%
+$\pu\foo$
+
+\msk
+
+\noindent but due to some quirks this is not possible at this moment,
+and we have to do this (the indented lines):
+
+\msk
+
+%V \documentclass{article}
+%V   \usepackage{proof}
+%V   \input diagxy
+%V   \xyoption{curve}
+%V \begin{document}
+%V   \catcode`\^^J=10
+%V   \directlua{dofile "dednat6load.lua"}
+%V (...)
+%V \end{document}
+%
+%L verbdef "foo"
+%
+$\pu\foo$
+
+\msk
+
+% (find-es "luatex" "spurious-omega")
+
+The `\co{\\catcode}' is needed to make the newlines in the \TeX{} code
+generated by dednat6 be interpreted as newlines and not as `$Ω$'s (the
+``spurious omega problem''); `\co{\\usepackage\{proof\}}' loads a
+package for typesetting proof trees, `\co{\\input diagxy}' loads \Xy
+Pic and the \co{diagxy} extension (sec.\ref{diagxy}), and
+\co{\\xyoption{curve}} loads an extension for \co{diagxy} that allows
+drawing curved arrows.
+
+% (find-dn6 "preamble6.lua" "preamble1")
+
+One of the things that \co{\\directlua\{dofile "dednat6load.lua"\}}
+does is that it runs this from Lua:
+%
+$$\co{output(preamble1)}$$
+%
+\co{preamble1} is a chunk of \TeX{} code defined in the file
+\co{dednat6/preamble.lua}, that contains material like this:
+
+\msk
+
+%V \def\defdiag#1#2{\expandafter\def\csname diag-#1\endcsname{\bfig#2\efig}}
+%V \def\ifdiagundefined#1{\expandafter\ifx\csname diag-#1\endcsname\relax}
+%V \def\diag#1{\ifdiagundefined{#1}
+%V     \errmessage{UNDEFINED DIAGRAM: #1}
+%V   \else
+%V     \csname diag-#1\endcsname
+%V   \fi
+%V }
+%V %
+%V \def\expr#1{\directlua{output(tostring(#1))}}
+%V \def\eval#1{\directlua{#1}}
+%V \def\pu{\directlua{pu()}}
+%
+%L verbdef "foo"
+%
+$\pu\footnotesize\foo$
+
+The file \co{dednat6/preamble.lua} also defines a `\co{preamble0}'
+with the \qco{\\usepackage}s and \qco{\\input}s that would have to be
+run before the \qco{\\begin\{document\}}, and it explains in comments
+why this currently doesn't work. See the source.
+
+
+
+%  _   _         _                
+% | \ | | ___   | |   _   _  __ _ 
+% |  \| |/ _ \  | |  | | | |/ _` |
+% | |\  | (_) | | |__| |_| | (_| |
+% |_| \_|\___/  |_____\__,_|\__,_|
+%                                 
+% «no-lua» (to ".no-lua")
+
+\section{Producing a .tex/.dnt pair that doesn't need Lua\LaTeX}
+
+Here is a trick for dealing with situations in which we need to
+generate code that compiles with just \co{pdflatex}, without
+\co{lualatex} --- for example, when we need to produce \LaTeX{} code
+acceptable by Arxiv. The file \co{2018dednat6-no-lua.tex} in the .zip
+package is an example of that trick. To prepare a version of it that
+only needs \co{pdflatex}, do this:
+
+\msk
+
+%V rm -Rfv /tmp/dn6-test-no-lua/
+%V mkdir   /tmp/dn6-test-no-lua/
+%V cd      /tmp/dn6-test-no-lua/
+%V wget http://angg.twu.net/dednat6.zip
+%V unzip dednat6.zip "dednat6/**" dednat6load.lua 2018dednat6-no-lua.tex
+%V lualatex 2018dednat6-no-lua.tex
+%V mkdir no-lua/
+%V cd    no-lua/
+%V cp -v ../2018dednat6-no-lua.tex ../2018dednat6-no-lua.dnt .
+%V pdflatex 2018dednat6-no-lua.tex
+%V xpdf     2018dednat6-no-lua.pdf
+%
+%L verbdef "foo"
+%
+$\pu\footnotesize\foo$
+
+\msk
+
+The line \qqco{lualatex 2018dednat6-no-lua.tex} generates a \co{.dnt}
+file; the commands after that create a directory with just the
+\co{.tex} and the \co{.dnt}, and compiles the \co{.tex} with
+\co{pdflatex}.
+
+A \co{.tex} file that supports being compiled in this was has this
+structure:
+
+\msk
+
+%V \documentclass[oneside]{book}
+%V \usepackage{ifluatex}
+%V \usepackage{proof}
+%V \input diagxy
+%V \xyoption{curve}
+%V \begin{document}
+%V 
+%V \ifluatex
+%V   \catcode`\^^J=10
+%V   \directlua{dofile "dednat6load.lua"}
+%V \else
+%V   \input\jobname.dnt
+%V   \def\pu{}
+%V \fi
+%V 
+%V (...)
+%V 
+%V %L write_dnt_file()
+%V \pu
+%V 
+%V \end{document}
+%
+%L verbdef "foo"
+%
+{\pu\foo}
+
+\msk
+
+Note the \qqco{\\usepackage\{ifluatex\}}, the \co{\\ifluatex} /
+\co{\\else} / \co{\\fi} block, and the \qqco{\%L write\_dnt\_file()}
+followed by a \co{\\pu}.
+
+
+
+
+
+
+%  _____                _                    
+% |_   _| __ ___  ___  | |__   __ _ _ __ ___ 
+%   | || '__/ _ \/ _ \ | '_ \ / _` | '__/ __|
+%   | || | |  __/  __/ | |_) | (_| | |  \__ \
+%   |_||_|  \___|\___| |_.__/ \__,_|_|  |___/
+%                                            
+% «tree-bars» (to ".tree-bars")
+
+\section{Other inference bars}
+
+% (find-es "tex" "proof")
+% (find-LATEXfile "2010hyps.tex" "\\DeduceSym")
+
+All the examples of deduction trees in the TUGBoat article use
+`\co{-}'s for the inference bars in the ASCII art representation. If
+we use `\co{=}'s instead of `\co{-}'s we get double bars, and if we
+use `\co{:}'s we get a line of vertical dots instead of a bar:
+%:
+%:                  Γ    Γ  [P]^1  Γ\;\;[Q]^1
+%:                  :    ::::::::  ::::::::::
+%:  Γ,P⊢R  Γ,Q⊢R    P∨Q    R           R
+%:  ============    --------------------1
+%:    Γ,P∨Q⊢R               R
+%:
+%:    ^or-1                 ^or-2
+%:
+$$\pu \ded{or-1} \quad\Longrightarrow\quad \ded{or-2}$$
+
+You can change the number of vertical dots by redefining the macro
+`\co{\\DeduceSym}'. For example:
+
+\msk
+
+%V \makeatletter
+%V % Original with 4 dots (from proof.sty):
+%V % \def\DeduceSym{\vtop{\baselineskip4\p@ \lineskiplimit\z@
+%V %     \vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}}
+%V % New, with 3 dots:
+%V \def\DeduceSym{\vtop{\baselineskip4\p@ \lineskiplimit\z@
+%V     \vbox{\hbox{.}\hbox{.}}\hbox{.}}}
+%V \makeatother
+%
+%L verbdef "foo"
+%
+$\pu\foo$
+
+
+
+
+%  _____                _                _        
+% |_   _| __ ___  ___  | |__   __ _  ___| | _____ 
+%   | || '__/ _ \/ _ \ | '_ \ / _` |/ __| |/ / __|
+%   | || | |  __/  __/ | | | | (_| | (__|   <\__ \
+%   |_||_|  \___|\___| |_| |_|\__,_|\___|_|\_\___/
+%                                                 
+% «tree-hacks» (to ".tree-hacks")
+\section{Changing how tree nodes are \LaTeX'ed}
+
+The trees below were produced by changing {\sl temporarily} the
+function that converts each tree node from ascii to \TeX{} code. TO
+DO: explain this; for the moment look at the source code of this
+section.
+
+% The functions that generate \TeX{} code for deduction trees are in
+% the file \co{dednat6/treetex.lua}. Dednat6 uses Makoto Tatsuta's
+% \co{proof.sty} by default, and the functions that generate code
+% using \co{proof.sty}'s macros are \co{TeX\_subtree\_tatsuta} and
+% \co{TeX\_deftree\_tatsuta}. They call \co{unabbrev\_tatsuta} to
+% generate \TeX{} code for each node,
+
+% (find-dn6 "treetex.lua" "unabbrev_tatsuta")
+
+%L unabbrev_syntree = function (str)
+%L     if str:match"^<.*>$"
+%L     then return "\\langle\\text{"..str:sub(2, -2).."}\\rangle"
+%L     else return "\\co{"..str:gsub("[\\]", "\\%1").."}"
+%L     end
+%L   end
+%L unabbrev_tatsuta = unabbrev_syntree
+%L -- To deactivate the hack do:
+%L -- unabbrev_tatsuta = unabbrev
+
+
+% \POS(1500,1000)*+
+% !!<0ex,.75ex>
+% {T_{n-1}}\ar@{-}|!{(1000,500);(1500,500)}\hole(1167,334)
+% \POS(1167,334)\ar|!{(1000,500);(1000,0)}\hole_<>(.6){h_{n-1}}
+%  (500,0)*+!!<0ex,.75ex>{S_n}
+
+%:                                              
+%:                                              
+%:                                              
+%:                                              
+%:      1500       1000                         
+%:    --------   --------                       
+%:  ( <factor> , <factor> )      +    <empty>   
+%:  -----------------------   ------- ------    
+%:      <vector>              <addop> <size>    
+%:      -------               ---------------   
+%:      <coord>                 <modifier>      <object1>
+%:      -------   --------------------------------------
+%:        <pos> * <object>
+%:        ----------------
+%:   \POS <coord>
+%:   ------------
+%:    <command>
+%:
+%:    ^command
+%:
+%:
+%:                0ex      .75ex    
+%:              -------   -------   
+%:            < <dimen> , <dimen> > 
+%:            --------------------- 
+%:         !      <vector>          
+%:         ---------------          
+%:      !       <modifier>  <object2>
+%:  ----------  ------------------- 
+%:  <modifier>      <object>        
+%:  ------------------------
+%:       <object1>
+%:
+%:       ^object1
+%:
+%:
+%:
+%:
+%:
+%:  -----------------
+%:       <object2>
+%:
+%:       ^object2
+%:
+\pu
+$$\ded{command}$$
+$$\ded{object1}$$
+
+%-- Revert:
+%L unabbrev_tatsuta = unabbrev
+
+
+
+
+
+
+%     _    _     _
+%    / \  | |__ | |__  _ __ _____   _____
+%   / _ \ | '_ \| '_ \| '__/ _ \ \ / / __|
+%  / ___ \| |_) | |_) | | |  __/\ V /\__ \
+% /_/   \_\_.__/|_.__/|_|  \___| \_/ |___/
+%
+% «abbrevs» (to ".abbrevs")
+% (find-dn6file "dednat6.lua" "abbrevs")
+% (find-dn6 "abbrevs.lua")
+
+\section{Abbrevs}
+
+The first Dednats did not support UTF-8, and the way to write a tree
+node that would display as `$a→b$' was to write it as `\co{a->b}'
+after running \co{addabbrevs("->", "\\to ")}. The module
+\co{abbrevs.lua} implements this, and \co{unabbrev(str)} parses
+\co{str} from left to right, at each point looking for the longest
+string starting at that point that is an abbrev and replacing it by
+its expansion, or leaving that character untouched if it doesn't have
+an expansion. Here is an example:
+
+%V %L addabbrevs("->", "\\to ")
+%V %:
+%V %:  [a]^1  a->b
+%V %:  -----------
+%V %:       b       b->c
+%V %:       ------------
+%V %:            c
+%V %:          ----1
+%V %:          a->c
+%V %:
+%V %:          ^a->c
+%V %:
+%V $$\pu \ded{a->c}$$
+%L
+%L verbdef "abbrevcode"
+
+%L addabbrevs("->", "\\to ")
+%:
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^a->c
+%:
+%$$\pu \ded{a->c}$$
+
+$$\pu
+  \myvcenter{\abbrevcode}
+  %\abbrevcode
+  \qquad
+  \to
+  \qquad
+  \cded{a->c}
+$$
+
+% (turp 2)
+
+Abbrevs are also used in 2D diagrams, in a more complex way. Section
+2.2 of the TUGBoat article explains how the grid words create a table
+\co{nodes}, but it doesn't explain how the fields \co{.tex} and
+\co{.TeX} in a node affect how it is displayed. The code below creates
+nodes whose {\sl tags} are \co{"A"}, \co{"B"}, \co{"C"}, \co{"D"}, and
+then changes the fields \co{.tex} and \co{.TeX} in some of these
+nodes. The \TeX{} code for each node is calculated by the function
+\co{node\_to\_TeX}, that expects a node (a table) and returns a
+string. If \co{node\_to\_TeX} receives a node that has a \co{.TeX}
+field then it returns that field unchanged, surrounded by
+`\co{\{\}}'s; if it doesn't have a \co{.TeX} field but it has a
+\co{.tex} field then it returns the result of running \co{unabbrev} on
+that field and surrounding it with `\co{\{\}}'s; otherwise it returns
+the result of running \co{unabbrev} on the tag surrounding it with
+`\co{\{\}}'s. For example:
+
+%V %D diagram nodes-and-abbrevs
+%V %D 2Dx     100 +40
+%V %D 2D  100 A -> B
+%V %D 2D      |    |
+%V %D 2D      v    v
+%V %D 2D  +30 C -> D
+%V %D 2D
+%V %D (( B .tex= (a->b)
+%V %D    C              .TeX= (a->b)
+%V %D    D .tex= (a->b) .TeX= (a->b)
+%V %L print("nodes:"); print(nodes)
+%V %L print("A:", node_to_TeX(nodes["A"]))
+%V %L print("B:", node_to_TeX(nodes["B"]))
+%V %L print("C:", node_to_TeX(nodes["C"]))
+%V %L print("D:", node_to_TeX(nodes["D"]))
+%V %D    A B -> A C -> B D -> C D ->
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "abbrevdiag"
+
+%D diagram nodes-and-abbrevs
+%D 2Dx     100  +40
+%D 2D  100 A -> B
+%D 2D      |    |
+%D 2D      v    v
+%D 2D  +30 C -> D
+%D 2D
+%D (( B .tex= (a->b)
+%D    C              .TeX= (a->b)
+%D    D .tex= (a->b) .TeX= (a->b)
+%L print("nodes:"); print(nodes)
+%L print("A:", node_to_TeX(nodes["A"]))
+%L print("B:", node_to_TeX(nodes["B"]))
+%L print("C:", node_to_TeX(nodes["C"]))
+%L print("D:", node_to_TeX(nodes["D"]))
+%D    A B -> A C -> B D -> C D ->
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\abbrevdiag}
+  \quad
+  \to
+  \quad
+  \diag{nodes-and-abbrevs}
+$$
+
+The output of the \co{print()}s is:
+
+{\footnotesize
+\begin{verbatim}
+nodes:
+{   1={"noden"=1, "tag"="A", "x"=100, "y"=100},
+    2={"noden"=2, "tag"="B", "x"=140, "y"=100, "tex"="(a->b)"},
+    3={"noden"=3, "tag"="C", "x"=100, "y"=130,                 "TeX"="(a->b)"},
+    4={"noden"=4, "tag"="D", "x"=140, "y"=130, "tex"="(a->b)", "TeX"="(a->b)"},
+  "A"={"noden"=1, "tag"="A", "x"=100, "y"=100},
+  "B"={"noden"=2, "tag"="B", "x"=140, "y"=100, "tex"="(a->b)"},
+  "C"={"noden"=3, "tag"="C", "x"=100, "y"=130,                 "TeX"="(a->b)"},
+  "D"={"noden"=4, "tag"="D", "x"=140, "y"=130, "tex"="(a->b)", "TeX"="(a->b)"}
+}
+A:      {A}
+B:      {(a\to b)}
+C:      {(a->b)}
+D:      {(a->b)}
+\end{verbatim}
+}
+
+
+%  ____                            _
+% |  _ \ ___ _ __   __ _ _ __ ___ (_)_ __   __ _
+% | |_) / _ \ '_ \ / _` | '_ ` _ \| | '_ \ / _` |
+% |  _ <  __/ | | | (_| | | | | | | | | | | (_| |
+% |_| \_\___|_| |_|\__,_|_| |_| |_|_|_| |_|\__, |
+%                                          |___/
+% «renaming» (to ".renaming")
+% (find-dn6 "diagforth.lua" "dxyren")
+\section{Renaming}
+
+The word \co{ren} in the language for 2D diagrams eats the rest of the
+line, splits it at the `\co{==>}', and splits the material before the
+`\co{==>}' into a list of {\sl tags}, $A_1, \ldots, A_n$, and the
+material after `\co{==>}' into a list of {\sl texs}, $B_1, \ldots,
+B_n$; these two lists must have the same length, and then \co{ren}
+runs \co{nodes[$A_i$].tex = $B_i$} for each $i$ in $1,\ldots,n$. For
+example:
+
+%V %D diagram ren
+%V %D 2Dx     100    +30
+%V %D 2D  100 A1 <-| A2
+%V %D 2D      |       |
+%V %D 2D      v       v
+%V %D 2D  +30 A3 |-> A4
+%V %D 2D
+%V %D ren A1 A2 ==> A{\times}B A
+%V %D ren A3 A4 ==> C B{\to}C
+%V %D
+%V %D (( A1 A2 <-| .plabel= a ({\times}B)
+%V %D    A1 A3 -> A2 A4 ->
+%V %D    A3 A4 |-> .plabel= b (B{\to})
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "diagren"
+
+%D diagram ren
+%D 2Dx     100    +30
+%D 2D  100 A1 <-| A2
+%D 2D      |       |
+%D 2D      v       v
+%D 2D  +30 A3 |-> A4
+%D 2D
+%D ren A1 A2 ==> A{\times}B A
+%D ren A3 A4 ==> C B{\to}C
+%D
+%D (( A1 A2 <-| .plabel= a ({\times}B)
+%D    A1 A3 -> A2 A4 ->
+%D    A3 A4 |-> .plabel= b (B{\to})
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\diagren}
+  \quad
+  \to
+  \quad
+  \diag{ren}
+$$
+
+
+
+%                        _       
+%    _ __ ___   ___   __| |_____ 
+%   | '_ ` _ \ / _ \ / _` |_____|
+%  _| | | | | | (_) | (_| |_____|
+% (_)_| |_| |_|\___/ \__,_|      
+%                                
+% «arrow-modifiers» (to ".arrow-modifiers")
+\section{Arrow modifiers}
+
+% (find-es "diagxy" "shape")
+% (find-dn6 "diagtex.lua" "arrow_to_TeX")
+% (find-dn6 "diagtex.lua" "arrow_to_TeX" "arrow_to_TeX_pshL =")
+
+The language for 2D diagrams in dednat6 has some words for curving and
+sliding arrows:
+%
+%V %D diagram curve-slide
+%V %D 2Dx     100 +40
+%V %D 2D  100 A   B
+%V %D 2D
+%V %D 2D  +40 D   C
+%V %D 2D
+%V %D (( A B ->               .plabel= b \text{one}
+%V %D    A B -> .slide=  5pt  .plabel= a \text{two}
+%V %D    A B -> .slide= 20pt  .plabel= a \text{three}
+%V %D    B C -> .curve= _10pt .plabel= l \text{four}
+%V %D    B C -> .curve=  ^5pt .plabel= r \text{five}
+%V %D    C D ->
+%V %D    C D -> .curve=  _5pt
+%V %D    C D -> .curve=  _5pt .slide= -5pt
+%V %D           .plabel= a \text{six}
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "curveslide"
+%
+%D diagram curve-slide
+%D 2Dx     100 +40
+%D 2D  100 A   B
+%D 2D
+%D 2D  +40 D   C
+%D 2D
+%D (( A B ->               .plabel= b \text{one}
+%D    A B -> .slide=  5pt  .plabel= a \text{two}
+%D    A B -> .slide= 20pt  .plabel= a \text{three}
+%D    B C -> .curve= _10pt .plabel= l \text{four}
+%D    B C -> .curve=  ^5pt .plabel= r \text{five}
+%D    C D ->
+%D    C D -> .curve=  _5pt
+%D    C D -> .curve=  _5pt .slide= -5pt
+%D           .plabel= a \text{six}
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\footnotesize\curveslide}
+  \quad
+  \to
+  \quad
+  \diag{curve-slide}
+$$
+
+% (find-dn6 "diagforth.lua" "arrows")
+% (find-dn6 "diagforth.lua" "arrows" "sl^^")
+
+The words \qco{sl\^\^}, \qco{sl\^}, \qco{sl\_}, and \qco{sl\_\_} are
+abbreviations for \qqco{.slide= 5pt}, \qqco{.slide= 2.5pt},
+\qqco{.slide= -2.5pt}, \qqco{.slide= -5pt} respectively.
+
+%L forths[".mod="] = function ()
+%L     ds:pick(0).modifier = getword() or error()
+%L   end
+
+% %D diagram ??
+% %D 2Dx     100 +40
+% %D 2D  100 A   B
+% %D 2D
+% %D 2D  +40 D   C
+% %D 2D
+% %D (( A B -> .plabel= a 1 .mod= @<-5pt>@/_5pt/
+% %D
+% %D ))
+% %D enddiagram
+% %D
+% $$\pu
+%   \diag{??}
+% $$
+
+
+
+
+
+%  ____  _                                          _       _
+% / ___|| |_ _ __ _ __   __ _   _ __ ___   ___   __| |_   _| | ___  ___
+% \___ \| __| '__| '_ \ / _` | | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+%  ___) | |_| |  | | | | (_| | | | | | | | (_) | (_| | |_| | |  __/\__ \
+% |____/ \__|_|  |_| |_|\__, | |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+%                       |___/
+%
+% «strange-modules» (to ".strange-modules")
+\section{Strange modules}
+
+% (find-dn6 "dednat6.lua")
+% (find-dn6 "dednat6.lua" "requires" "picture")
+% (find-dn6 "picture.lua")
+% (find-dn6 "zhas.lua")
+% (find-dn6 "zhas.lua" "MixedPicture")
+
+The code of Dednat6 --- inside the directory \co{dednat6/} --- is made
+of several \co{.lua} files that are {\sl all} loaded by
+\co{dednat6.lua}; there is no provision yet for loading only the
+modules that are used in a given \co{.tex} file. This means that some
+modules that are only useful to the author of Dednat6 (Eduardo Ochs,
+a.k.a. ``me'') are always loaded.
+
+Most of these extra modules were written to handle the objects
+described in my series of papers about ``Planar Heyting Algebras'',
+at:
+
+\url{http://angg.twu.net/math-b.html#zhas-for-children-2}
+
+\msk
+
+% (find-LATEX "2017planar-has-defs.tex" "defzha-and-deftcg")
+\def\defzha#1#2{\expandafter\def\csname zha-#1\endcsname{#2}}
+\def\ifzhaundefined#1{\expandafter\ifx\csname zha-#1\endcsname\relax}
+\def\zha#1{\ifzhaundefined{#1}
+    \errmessage{UNDEFINED ZHA: #1}
+  \else
+    \csname zha-#1\endcsname
+  \fi
+}
+\def\deftcg#1#2{\expandafter\def\csname tcg-#1\endcsname{#2}}
+\def\iftcgundefined#1{\expandafter\ifx\csname tcg-#1\endcsname\relax}
+\def\tcg#1{\iftcgundefined{#1}
+    \errmessage{UNDEFINED TCG: #1}
+  \else
+    \csname tcg-#1\endcsname
+  \fi
+}
+
+% (find-LATEXfile "2019ebl-five-appls.tex" "A strange J-operator")
+%
+%L tdims = TCGDims {qrh=5, q=15, crh=12, h=60, v=25, crv=7}   -- with v arrows
+%L tspec_PA  = TCGSpec.new("46; 11 22 34 45, 25")
+%L tspec_PAQ = TCGSpec.new("46; 11 22 34 45, 25", ".???", "???.?.")
+%L tspec_PA :mp  ({zdef="O_A(P)"})  :addlrs():print()            :output()
+%L tspec_PAQ:mp  ({zdef="O_A(P),J"}):addlrs():print()            :output()
+%L tspec_PA :tcgq({tdef="(P,A)",   meta="1pt p"}, "lr q h v ap") :output()
+%L tspec_PAQ:tcgq({tdef="(P,A),Q", meta="1pt p"}, "lr q h v ap") :output()
+%L
+%L tspec_PAC = TCGSpec.new("46; 11 22 34 45, 25", "?...", "???...")
+%L tspec_PAC:mp  ({zdef="closed-op"}) :addlrs():print()            :output()
+%L tspec_PAC:tcgq({tdef="closed-op", meta="1pt p"}, "lr q h v ap") :output()
+%L 
+\pu
+
+
+
+\def\squigbij{\;\; \diagxyto/<~>/<300> \;\;}
+
+Here's an example of what they produce:
+
+$%\resizebox{!}{60pt}{$
+   \tcg{(P,A),Q} \squigbij \zha{O_A(P),J}
+ % $}
+$
+
+\bsk
+
+Even though these modules are not useful to other people some {\sl
+  ideas} in them may be. (TO DO: give examples!)
+
+
+
+
+
+%  ____
+% | __ )  __ _ _ __ _ __
+% |  _ \ / _` | '__| '__|
+% | |_) | (_| | |  | |
+% |____/ \__,_|_|  |_|
+%
+% «barr» (to ".barr")
+\section{Versions of diagxy}
+\label{diagxy}
+
+Diagxy comes in two versions: the original one, \co{diagxy.tex}, that
+is loaded with \co{\\input diagxy}, and another one, \co{xybarr.tex},
+that is a module of xypic and is loaded with
+\co{\\usepackage[barr,pdf]\{xy\}}. If you have a recent texlive,
+installed with, say,
+
+\url{https://www.tug.org/texlive/quickinstall.html}
+
+\noindent then you should have these .tex files and their
+documentation files at places like these:
+
+% (find-angg ".emacs" "diagxy" "2018:")
+% (find-tl2018sh "find * | sort | grep xy | grep barr")
+% (find-tl2018sh "find * | sort | grep xy | grep dia")
+
+\begin{verbatim}
+/usr/local/texlive/2018/texmf-dist/tex/generic/barr/diagxy.tex
+/usr/local/texlive/2018/texmf-dist/doc/generic/barr/diaxydoc.pdf
+/usr/local/texlive/2018/texmf-dist/tex/generic/xypic/xybarr.tex
+/usr/local/texlive/2018/texmf-dist/doc/generic/xypic/barrdoc.pdf
+\end{verbatim}
+
+You can access their docs online at these URLs:
+
+{\footnotesize
+
+\url{http://www.math.mcgill.ca/barr/papers/diaxydoc.pdf}
+
+\url{http://tug.ctan.org/tex-archive/macros/latex/contrib/xypic/doc/barrdoc.pdf}
+
+}
+
+\msk
+
+It seems that loading diagxy with \co{\\usepackage[barr,pdf]\{xy\}} is
+incompatible with lualatex, and thus with Dednat6. Until we get that
+fixed please use \co{\\input diagxy} instead.
+
+
+
+%     _       __                                           _           
+%    / \     / _| _____      __  ___  __ _ _ __ ___  _ __ | | ___  ___ 
+%   / _ \   | |_ / _ \ \ /\ / / / __|/ _` | '_ ` _ \| '_ \| |/ _ \/ __|
+%  / ___ \  |  _|  __/\ V  V /  \__ \ (_| | | | | | | |_) | |  __/\__ \
+% /_/   \_\ |_|  \___| \_/\_/   |___/\__,_|_| |_| |_| .__/|_|\___||___/
+%                                                   |_|                
+%
+% «a-few-samples» (to ".a-few-samples")
+\section{``A few samples''}
+
+The file \co{barrdoc.pdf} has a section called ``A few samples''
+(5.9), that shows how to produce a certain big diagram in two ways;
+one, that we will not discuss, using \qco{\\morphism}, and another
+one, that we will call ``Barr's diagram'', that uses \qco{\\node} and
+\qco{\\arrow} instead. In the next two pages we will compare Barr's
+diagram to an approximate translation of it to Dednat6.
+
+Note: I don't quite understand Barr's code for the two outermost
+curved arrows --- it {\sl seems} that he resorts to low-level \Xy Pic
+code in the ``modifier'' part of the shape parameter to create splined
+arrows, but I couldn't figure out the exact meaning of
+\qqco{@`\{c,(3000,0),(2700,2800),p\}} in the \Xy Pic reference
+manual...
+
+\newpage
+
+%V % Source code for Barr's diagram:
+%V %
+%V $$\bfig
+%V   \def\f{\bar f}
+%V   \def\g{\bar g}
+%V   \def\h{\bar h}
+%V   \let\t\tau
+%V   \node A11(0,2800)[(\h(\g\f))\t_A]
+%V   \node A13(1200,2800)[((\h\g)\f)\t_A]
+%V   \node A21(0,2400)[\h((\g\f)\t_A)]
+%V   \node A22(600,2400)[\h(\g\f\t_A)]
+%V   \node A23(1200,2400)[(\h\g(\f\t_A))]
+%V   \node A32(600,2000)[\h(\g(\t_Bf))]
+%V   \node A33(1200,2000)[(\h\g)(\t_Bf)]
+%V   \node A34(1800,2000)[((\h\g)\t_B)f]
+%V   \node A42(600,1600)[\h((\g\t_B)f)]
+%V   \node A44(1800,1600)[(\h(\g\t_B))f]
+%V   \node A52(600,1200)[\h((\t_C)g)f]
+%V   \node A54(1800,1200)[(\h(\t_Cg))f]
+%V   \node A62(600,800)[\h(\t_C(gf))]
+%V   \node A63(1200,800)[(\h\t_C)(gf)]
+%V   \node A64(1800,800)[\h(\t_C(gf))]
+%V   \node A73(1200,400)[(\t_Dh)(gf)]
+%V   \node A74(1800,400)[((\t_D)h)g]
+%V   \node A75(2400,400)[(\t_D(hg))f]
+%V   \node A83(1200,0)[\t_D(h(gf))]
+%V   \node A85(2400,0)[\t_D((hg)f)]
+%V   \arrow[A11`A13;]
+%V   \arrow[A21`A11;]
+%V   \arrow[A21`A22;]
+%V   \arrow[A22`A23;]
+%V   \arrow[A23`A13;]
+%V   \arrow[A32`A22;\h(\g\t_f)]
+%V   \arrow[A32`A33;]
+%V   \arrow[A33`A23;(\h\g)\t_f]
+%V   \arrow[A33`A34;]
+%V   \arrow[A42`A44;]
+%V   \arrow[A42`A32;]
+%V   \arrow[A44`A34;]
+%V   \arrow[A52`A42;\h(\t_gf)]
+%V   \arrow[A52`A54;]
+%V   \arrow[A54`A44;(\h\t_g)f]
+%V   \arrow[A62`A52;]
+%V   \arrow[A62`A63;]
+%V   \arrow[A63`A64;]
+%V   \arrow[A73`A63;\t_h(gf)]
+%V   \arrow[A73`A74;]
+%V   \arrow[A74`A64;\t_{(hg)f}]
+%V   \arrow[A74`A75;]
+%V   \arrow[A83`A73;]
+%V   \arrow[A83`A85;]
+%V   \arrow[A85`A75;]
+%V   \arrow|r|/{@{>}@/_15pt/}/[A75`A34;\t_{hg}f]
+%V   \arrow|l|/{@{>}@/^15pt/}/[A62`A21;\h(\t_C(gf))]
+%V   \arrow|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/[A85`A13;\t_{hg}f]
+%V   \arrow|r|/{@{>}@`{c,(-300,0),(-600,2400),p}}/[A83`A11;\t_{h(fg)}]
+%V   \efig
+%V $$
+%L
+%L verbdef "barrorig"
+
+
+%V % Source code for its translation to Dednat6:
+%V %
+%V %D diagram barr-dednat6
+%V %D 2Dx     100    +40    +40    +40    +40
+%V %D 2D  100 A11 --------> A13
+%V %D 2D       ^             ^
+%V %D 2D       |             |
+%V %D 2D  +27 A21 -> A22 -> A23
+%V %D 2D       ^      ^      ^
+%V %D 2D       |      |      |
+%V %D 2D  +27  |     A32 -> A33 -> A34
+%V %D 2D       |      ^             ^  ^
+%V %D 2D       |      |             |   \
+%V %D 2D  +27  |     A42 --------> A44   \
+%V %D 2D       |      ^             ^     \
+%V %D 2D        \     |             |      |
+%V %D 2D  +27    \   A52 --------> A54     |
+%V %D 2D          \   ^                    |
+%V %D 2D           \  |                    |
+%V %D 2D  +27        A62 -> A63 -> A64     |
+%V %D 2D                     ^      ^      |
+%V %D 2D                     |      |      |
+%V %D 2D  +27               A73 -> A74 -> A75
+%V %D 2D                     ^             ^
+%V %D 2D                     |             |
+%V %D 2D  +27               A83 --------> A85
+%V %D 2D
+%V %D ren A11     A13   ==>   (\h(\g\f))\t_A              ((\h\g)\f)\t_A
+%V %D ren A21 A22 A23   ==>   \h((\g\f)\t_A) \h(\g\f\t_A) (\h\g(\f\t_A))
+%V %D ren     A32 A33 A34     ==>            \h(\g(\t_Bf)) (\h\g)(\t_Bf) ((\h\g)\t_B)f
+%V %D ren     A42     A44     ==>            \h((\g\t_B)f)               (\h(\g\t_B))f
+%V %D ren     A52     A54     ==>            \h((\t_C)g)f                (\h(\t_Cg))f
+%V %D ren     A62 A63 A64     ==>            \h(\t_C(gf)) (\h\t_C)(gf) \h(\t_C(gf))
+%V %D ren         A73 A74 A75 ==>                          (\t_Dh)(gf) ((\t_D)h)g (\t_D(hg))f
+%V %D ren         A83     A85 ==>                          \t_D(h(gf))            \t_D((hg)f)
+%V %D
+%V %D (( # Horizontal arrows:
+%V %D    A11 A13 ->
+%V %D    A21 A22 -> A22 A23 ->
+%V %D    A32 A33 -> A33 A34 ->
+%V %D    A42 A44 ->
+%V %D    A52 A54 ->
+%V %D    A62 A63 -> A63 A64 ->
+%V %D    A73 A74 -> A74 A75 ->
+%V %D    A83 A85 ->
+%V %D
+%V %D    # Simple vertical arrows:
+%V %D    A11 A21 <-                       A13 A23 <-
+%V %D    A22 A32 <- .plabel= r \h(\g\t_f) A23 A33 <- .plabel= r (\h\g)\t_f
+%V %D    A32 A42 <-                       A34 A44 <-
+%V %D    A42 A52 <- .plabel= r \h(\t_gf)  A44 A54 <- .plabel= r (\h\t_g)f
+%V %D    A52 A62 <-
+%V %D    A63 A73 <- .plabel= r \t_h(gf)   A64 A74 <- .plabel= r \t_{(hg)f}
+%V %D    A73 A83 <- A75 A85 <-
+%V %D
+%V %D    # Curved vertical arrows:
+%V %D    A75 A34 -> .curve= _15pt .plabel= r \t_{hg}f
+%V %D    A62 A21 -> .curve= ^15pt .plabel= l \h(\t_C(gf))
+%V %D    A83 A11 -> .mod= @`{c,(-300,-2835),(-800,-100),p} .plabel= r \t_{h(fg)}
+%V %D    A85 A13 -> .mod= @`{c,(3000,-2000),(2700,-500),p} .plabel= l \t_{hg}f
+%V %D
+%V %D ))
+%V %D enddiagram
+%V %D
+%V $$\pu
+%V   \def\f{\bar f}
+%V   \def\g{\bar g}
+%V   \def\h{\bar h}
+%V   \let\t\tau
+%V   \diag{barr-dednat6}
+%V $$
+%L
+%L verbdef "barrdednatsix"
+
+{
+\pu
+\def\B#1{\resizebox{!}{6in}{#1}}
+\hskip-8em
+\B{\barrorig}
+\;\;
+\B{\barrdednatsix}
+}
+
+\newpage
+
+% (find-es "diagxy" "shape")
+% (find-barrdocpage 33 "5.9   A few samples")
+% (find-barrdoctext 33 "5.9   A few samples")
+
+
+
+% (find-angg ".emacs.papers" "xypic")
+% (find-xyreferpage 12 "Figure 3: hobjectis")
+% (find-xyrefertext 12 "Figure 3: hobjectis")
+% (find-xyreferpage 22 "show control points")
+% (find-xyrefertext 22 "show control points")
+% (find-xyreferpage 39 "Figure 14: hpathis")
+% (find-xyrefertext 39 "Figure 14: hpathis")
+% (find-xyreferpage 21 "control points")
+% (find-xyrefertext 21 "control points")
+
+Barr's diagram:
+
+\msk
+
+\resizebox{!}{1.5in}{
+$\bfig
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \node A11(0,2800)[(\h(\g\f))\t_A]
+  \node A13(1200,2800)[((\h\g)\f)\t_A]
+  \node A21(0,2400)[\h((\g\f)\t_A)]
+  \node A22(600,2400)[\h(\g\f\t_A)]
+  \node A23(1200,2400)[(\h\g(\f\t_A))]
+  \node A32(600,2000)[\h(\g(\t_Bf))]
+  \node A33(1200,2000)[(\h\g)(\t_Bf)]
+  \node A34(1800,2000)[((\h\g)\t_B)f]
+  \node A42(600,1600)[\h((\g\t_B)f)]
+  \node A44(1800,1600)[(\h(\g\t_B))f]
+  \node A52(600,1200)[\h((\t_C)g)f]
+  \node A54(1800,1200)[(\h(\t_Cg))f]
+  \node A62(600,800)[\h(\t_C(gf))]
+  \node A63(1200,800)[(\h\t_C)(gf)]
+  \node A64(1800,800)[\h(\t_C(gf))]
+  \node A73(1200,400)[(\t_Dh)(gf)]
+  \node A74(1800,400)[((\t_D)h)g]
+  \node A75(2400,400)[(\t_D(hg))f]
+  \node A83(1200,0)[\t_D(h(gf))]
+  \node A85(2400,0)[\t_D((hg)f)]
+  \arrow[A11`A13;]
+  \arrow[A21`A11;]
+  \arrow[A21`A22;]
+  \arrow[A22`A23;]
+  \arrow[A23`A13;]
+  \arrow[A32`A22;\h(\g\t_f)]
+  \arrow[A32`A33;]
+  \arrow[A33`A23;(\h\g)\t_f]
+  \arrow[A33`A34;]
+  \arrow[A42`A44;]
+  \arrow[A42`A32;]
+  \arrow[A44`A34;]
+  \arrow[A52`A42;\h(\t_gf)]
+  \arrow[A52`A54;]
+  \arrow[A54`A44;(\h\t_g)f]
+  \arrow[A62`A52;]
+  \arrow[A62`A63;]
+  \arrow[A63`A64;]
+  \arrow[A73`A63;\t_h(gf)]
+  \arrow[A73`A74;]
+  \arrow[A74`A64;\t_{(hg)f}]
+  \arrow[A74`A75;]
+  \arrow[A83`A73;]
+  \arrow[A83`A85;]
+  \arrow[A85`A75;]
+  \arrow|r|/{@{>}@/_15pt/}/[A75`A34;\t_{hg}f]
+  \arrow|l|/{@{>}@/^15pt/}/[A62`A21;\h(\t_C(gf))]
+  \arrow|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/[A85`A13;\t_{hg}f]
+  \arrow|r|/{@{>}@`{c,(-300,0),(-600,2400),p}}/[A83`A11;\t_{h(fg)}]
+  \efig
+$}
+
+
+\bsk
+\bsk
+
+%D diagram barr-dednat6
+%D 2Dx     100    +40    +40    +40    +40
+%D 2D  100 A11 --------> A13
+%D 2D       ^             ^
+%D 2D       |             |
+%D 2D  +27 A21 -> A22 -> A23
+%D 2D       ^      ^      ^
+%D 2D       |      |      |
+%D 2D  +27  |     A32 -> A33 -> A34
+%D 2D       |      ^             ^  ^
+%D 2D       |      |             |   \
+%D 2D  +27  |     A42 --------> A44   \
+%D 2D       |      ^             ^     \
+%D 2D        \     |             |      |
+%D 2D  +27    \   A52 --------> A54     |
+%D 2D          \   ^                    |
+%D 2D           \  |                    |
+%D 2D  +27        A62 -> A63 -> A64     |
+%D 2D                     ^      ^      |
+%D 2D                     |      |      |
+%D 2D  +27               A73 -> A74 -> A75
+%D 2D                     ^             ^
+%D 2D                     |             |
+%D 2D  +27               A83 --------> A85
+%D 2D
+%D ren A11     A13   ==>   (\h(\g\f))\t_A              ((\h\g)\f)\t_A
+%D ren A21 A22 A23   ==>   \h((\g\f)\t_A) \h(\g\f\t_A) (\h\g(\f\t_A))
+%D ren     A32 A33 A34     ==>            \h(\g(\t_Bf)) (\h\g)(\t_Bf) ((\h\g)\t_B)f
+%D ren     A42     A44     ==>            \h((\g\t_B)f)               (\h(\g\t_B))f
+%D ren     A52     A54     ==>            \h((\t_C)g)f                (\h(\t_Cg))f
+%D ren     A62 A63 A64     ==>            \h(\t_C(gf)) (\h\t_C)(gf) \h(\t_C(gf))
+%D ren         A73 A74 A75 ==>                          (\t_Dh)(gf) ((\t_D)h)g (\t_D(hg))f
+%D ren         A83     A85 ==>                          \t_D(h(gf))            \t_D((hg)f)
+%D
+%D (( # Horizontal arrows:
+%D    A11 A13 ->
+%D    A21 A22 -> A22 A23 ->
+%D    A32 A33 -> A33 A34 ->
+%D    A42 A44 ->
+%D    A52 A54 ->
+%D    A62 A63 -> A63 A64 ->
+%D    A73 A74 -> A74 A75 ->
+%D    A83 A85 ->
+%D
+%D    # Simple vertical arrows:
+%D    A11 A21 <-                       A13 A23 <-
+%D    A22 A32 <- .plabel= r \h(\g\t_f) A23 A33 <- .plabel= r (\h\g)\t_f
+%D    A32 A42 <-                       A34 A44 <-
+%D    A42 A52 <- .plabel= r \h(\t_gf)  A44 A54 <- .plabel= r (\h\t_g)f
+%D    A52 A62 <-
+%D    A63 A73 <- .plabel= r \t_h(gf)   A64 A74 <- .plabel= r \t_{(hg)f}
+%D    A73 A83 <- A75 A85 <-
+%D
+%D    # Curved vertical arrows:
+%D    A75 A34 -> .curve= _15pt .plabel= r \t_{hg}f
+%D    A62 A21 -> .curve= ^15pt .plabel= l \h(\t_C(gf))
+%D    A83 A11 -> .mod= @`{c,(-300,-2835),(-800,-100),p} .plabel= r \t_{h(fg)}
+%D    A85 A13 -> .mod= @`{c,(3000,-2000),(2700,-500),p} .plabel= l \t_{hg}f
+%D
+%D ))
+%D enddiagram
+%D
+
+My approximate translation of it to dednat6:
+
+\msk
+
+\resizebox{!}{1.5in}{
+$\pu
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \diag{barr-dednat6}
+$
+}
+
+
+\newpage
+
+%  ____            _ 
+% |  _ \ ___ _ __ | |
+% | |_) / _ \ '_ \| |
+% |  _ <  __/ |_) | |
+% |_| \_\___| .__/|_|
+%           |_|      
+%
+% «repl» (to ".repl")
+\section{The REPL}
+% (turp 5)
+
+Section 5 of the TUGBoat article --- called ``A read-eval-print-loop
+(REPL)'' --- describes a way to start a Lua REPL in the middle of the
+compilation of a \co{.tex} file. The .zip file for dednat6 includes a
+file \co{2018dednat6-repl.tex} that lets you play with the REPL by
+running just this:
+%
+$$\text{\co{lualatex 2018dednat6-repl.tex}}$$
+
+The REPL can be used to inspect \qco{\\def}s, among other things. See
+the ongoing discussing here:
+%
+$$\text{\url{http://tug.org/pipermail/luatex/2019-January/007034.html}}$$
+
+
+
+%  ____             _                        _     
+% | __ )  __ _  ___| | __      ___ _ __   __| |___ 
+% |  _ \ / _` |/ __| |/ /____ / _ \ '_ \ / _` / __|
+% | |_) | (_| | (__|   <_____|  __/ | | | (_| \__ \
+% |____/ \__,_|\___|_|\_\     \___|_| |_|\__,_|___/
+%                                                  
+% «other-back-ends» (to ".other-back-ends")
+\section{Other back-ends}
+
+Dednat6 can be seen as a front-end for \co{proof.sty} and for (the
+\qco{\\morphism} flavor of) \co{diagxy.tex}. It shouldn't be hard to
+make it generate, say, code for Tikz instead of for diagxy, and code
+for Sam Buss's \co{bussproofs.sty} instead of for \co{proof.sty}. If
+you are interested in this, and you know Tikz/bussproofs/whatever
+enough to give me examples of how the output should look, get in
+touch!
+
+{\sl Update:} of all other possible back-ends for 2D diagrams the
+easiest one to implement seems to be the \qco{\\node}s and
+\qco{\\arrow}s flavor of diagxy --- I guess it would be just a few
+hours of work. If you think that this would be useful to you, drop me
+a line!
+
+
+
+
+
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

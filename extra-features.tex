@@ -1,0 +1,439 @@
+% (find-angg "dednat6/extra-features.tex")
+% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-features.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/extra-features.pdf"))
+% (defun e () (interactive) (find-dednat6 "extra-features.tex"))
+% (defun u () (interactive) (find-latex-upload-links "extra-features"))
+% (find-pdf-page "~/dednat6/extra-features.pdf")
+% (find-sh0 "cp -v  ~/dednat6/extra-features.pdf /tmp/")
+% (find-sh0 "cp -v  ~/dednat6/extra-features.pdf /tmp/pen/")
+%   file:///home/edrx/dednat6/extra-features.pdf
+%               file:///tmp/extra-features.pdf
+%           file:///tmp/pen/extra-features.pdf
+% http://angg.twu.net/dednat6/extra-features.pdf
+\documentclass[oneside]{article}
+\usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pict2e}
+\usepackage[x11names,svgnames]{xcolor} % (find-es "tex" "xcolor")
+\usepackage{color}                % (find-dednat6 "edrx15.sty" "colors")
+\usepackage{colorweb}             % (find-es "tex" "colorweb")
+%\usepackage{tikz}
+%
+% (find-dn6 "preamble6.lua" "preamble0")
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+%
+\begin{document}
+
+\catcode`\^^J=10
+\directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
+
+% \co: a low-level way to typeset code; a poor man's "\verb"
+\def\co#1{{%
+  \def\%{\char37}%
+  \def\\{\char92}%
+  \def\^{\char94}%
+  \def\~{\char126}%
+  \tt#1%
+  }}
+\def\qco#1{`\co{#1}'}
+\def\qqco#1{``\co{#1}''}
+
+\directlua{dofile "myverbatim.lua"} % (find-dednat6 "myverbatim.lua")
+\def\myhbox#1#2#3{\setbox0=\hbox{#3}\ht0=#1\dp0=#2\box0}
+\def\verbahbox#1{\hbox{\tt#1}}
+\def\verbahbox#1{\myhbox{7pt}{2pt}{{\tt#1}}}
+\def\bgbox#1{\bgcolorhbox{YellowOrangeLight}{#1}}
+\def\bgcolorhbox#1#2{{%
+  \setbox0\hbox{#2}%
+  \setbox0\vbox{\vskip\fboxsep\box0\vskip\fboxsep}%
+  \setbox0\hbox{\kern\fboxsep\box0\kern\fboxsep}%
+  {\color{#1}{\smashedvrule{\wd0}{\ht0}{\dp0}}}%
+  \box0%
+  }}
+
+\def\bsk{\bigskip}
+\def\msk{\medskip}
+\def\ssk{\smallskip}
+\def\orange#1{{\color{orange}#1}}
+\def\yellow#1{{\color{yellow}#1}}
+\def\smashedvrule#1#2#3{\vrule width#1 height#2 depth#3 \kern-#1}
+\def\bicolorhbox#1{{%
+  \setbox0\hbox{#1}%
+  \yellow{\smashedvrule{\wd0}{\ht0}{0pt}}%
+  \orange{\smashedvrule{\wd0}{0pt}{\dp0}}%
+  \box0%
+  }}
+\def\bhbox{\bicolorhbox}
+\def\cded #1{\begin{matrix}\ded {#1}\end{matrix}}
+
+\def\myvcenter#1{\begin{matrix}#1\end{matrix}}
+\catcode`\^^O=13 \def{{\color{red}*}}
+
+
+
+
+%  _____                _                    
+% |_   _| __ ___  ___  | |__   __ _ _ __ ___ 
+%   | || '__/ _ \/ _ \ | '_ \ / _` | '__/ __|
+%   | || | |  __/  __/ | |_) | (_| | |  \__ \
+%   |_||_|  \___|\___| |_.__/ \__,_|_|  |___/
+%                                            
+% «tree-bars» (to ".tree-bars")
+
+\section{Other inference bars}
+
+% (find-es "tex" "proof")
+% (find-LATEXfile "2010hyps.tex" "\\DeduceSym")
+
+All the examples of deduction trees in the TUGBoat article use
+`\co{-}'s for the inference bars in the ASCII art representation. If
+we use `\co{=}'s instead of `\co{-}'s we get double bars, and if we
+use `\co{:}'s we get a line of vertical dots instead of a bar:
+%:
+%:                  Γ    Γ  [P]^1  Γ\;\;[Q]^1
+%:                  :    ::::::::  ::::::::::
+%:  Γ,P⊢R  Γ,Q⊢R    P∨Q    R           R
+%:  ============    --------------------1
+%:    Γ,P∨Q⊢R               R
+%:
+%:    ^or-1                 ^or-2
+%:
+$$\pu \ded{or-1} \quad\Longrightarrow\quad \ded{or-2}$$
+
+You can change the number of vertical dots by redefining the macro
+`\co{\\DeduceSym}'. For example:
+
+\msk
+
+%V \makeatletter
+%V % Original with 4 dots (from proof.sty):
+%V % \def\DeduceSym{\vtop{\baselineskip4\p@ \lineskiplimit\z@
+%V %     \vbox{\hbox{.}\hbox{.}\hbox{.}}\hbox{.}}}
+%V % New, with 3 dots:
+%V \def\DeduceSym{\vtop{\baselineskip4\p@ \lineskiplimit\z@
+%V     \vbox{\hbox{.}\hbox{.}}\hbox{.}}}
+%V \makeatother
+%
+%L verbdef "foo"
+%
+$\pu\foo$
+
+
+
+
+
+%     _    _     _
+%    / \  | |__ | |__  _ __ _____   _____
+%   / _ \ | '_ \| '_ \| '__/ _ \ \ / / __|
+%  / ___ \| |_) | |_) | | |  __/\ V /\__ \
+% /_/   \_\_.__/|_.__/|_|  \___| \_/ |___/
+%
+% «abbrevs» (to ".abbrevs")
+% (find-dn6file "dednat6.lua" "abbrevs")
+% (find-dn6 "abbrevs.lua")
+
+\section{Abbrevs}
+
+The first Dednats did not support UTF-8, and the way to write a tree
+node that would display as `$a→b$' was to write it as `\co{a->b}'
+after running \co{addabbrevs("->", "\\to ")}. The module
+\co{abbrevs.lua} implements this, and \co{unabbrev(str)} parses
+\co{str} from left to right, at each point looking for the longest
+string starting at that point that is an abbrev and replacing it by
+its expansion, or leaving that character untouched if it doesn't have
+an expansion. Here is an example:
+
+%V %L addabbrevs("->", "\\to ")
+%V %:
+%V %:  [a]^1  a->b
+%V %:  -----------
+%V %:       b       b->c
+%V %:       ------------
+%V %:            c
+%V %:          ----1
+%V %:          a->c
+%V %:
+%V %:          ^a->c
+%V %:
+%V $$\pu \ded{a->c}$$
+%L
+%L verbdef "abbrevcode"
+
+%L addabbrevs("->", "\\to ")
+%:
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^a->c
+%:
+%$$\pu \ded{a->c}$$
+
+$$\pu
+  \myvcenter{\abbrevcode}
+  %\abbrevcode
+  \qquad
+  \to
+  \qquad
+  \cded{a->c}
+$$
+
+% (turp 2)
+
+Abbrevs are also used in 2D diagrams, in a more complex way. Section
+2.2 of the TUGBoat article explains how the grid words create a table
+\co{nodes}, but it doesn't explain how the fields \co{.tex} and
+\co{.TeX} in a node affect how it is displayed. The code below creates
+nodes whose {\sl tags} are \co{"A"}, \co{"B"}, \co{"C"}, \co{"D"}, and
+then changes the fields \co{.tex} and \co{.TeX} in some of these
+nodes. The \TeX{} code for each node is calculated by the function
+\co{node\_to\_TeX}, that expects a node (a table) and returns a
+string. If \co{node\_to\_TeX} receives a node that has a \co{.TeX}
+field then it returns that field unchanged, surrounded by
+`\co{\{\}}'s; if it doesn't have a \co{.TeX} field but it has a
+\co{.tex} field then it returns the result of running \co{unabbrev} on
+that field and surrounding it with `\co{\{\}}'s; otherwise it returns
+the result of running \co{unabbrev} on the tag surrounding it with
+`\co{\{\}}'s. For example:
+
+%V %D diagram nodes-and-abbrevs
+%V %D 2Dx     100 +40
+%V %D 2D  100 A -> B
+%V %D 2D      |    |
+%V %D 2D      v    v
+%V %D 2D  +30 C -> D
+%V %D 2D
+%V %D (( B .tex= (a->b)
+%V %D    C              .TeX= (a->b)
+%V %D    D .tex= (a->b) .TeX= (a->b)
+%V %L print("nodes:"); print(nodes)
+%V %L print("A:", node_to_TeX(nodes["A"]))
+%V %L print("B:", node_to_TeX(nodes["B"]))
+%V %L print("C:", node_to_TeX(nodes["C"]))
+%V %L print("D:", node_to_TeX(nodes["D"]))
+%V %D    A B -> A C -> B D -> C D ->
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "abbrevdiag"
+
+%D diagram nodes-and-abbrevs
+%D 2Dx     100  +40
+%D 2D  100 A -> B
+%D 2D      |    |
+%D 2D      v    v
+%D 2D  +30 C -> D
+%D 2D
+%D (( B .tex= (a->b)
+%D    C              .TeX= (a->b)
+%D    D .tex= (a->b) .TeX= (a->b)
+%L print("nodes:"); print(nodes)
+%L print("A:", node_to_TeX(nodes["A"]))
+%L print("B:", node_to_TeX(nodes["B"]))
+%L print("C:", node_to_TeX(nodes["C"]))
+%L print("D:", node_to_TeX(nodes["D"]))
+%D    A B -> A C -> B D -> C D ->
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\abbrevdiag}
+  \quad
+  \to
+  \quad
+  \diag{nodes-and-abbrevs}
+$$
+
+The output of the \co{print()}s is:
+
+{\footnotesize
+\begin{verbatim}
+nodes:
+{   1={"noden"=1, "tag"="A", "x"=100, "y"=100},
+    2={"noden"=2, "tag"="B", "x"=140, "y"=100, "tex"="(a->b)"},
+    3={"noden"=3, "tag"="C", "x"=100, "y"=130,                 "TeX"="(a->b)"},
+    4={"noden"=4, "tag"="D", "x"=140, "y"=130, "tex"="(a->b)", "TeX"="(a->b)"},
+  "A"={"noden"=1, "tag"="A", "x"=100, "y"=100},
+  "B"={"noden"=2, "tag"="B", "x"=140, "y"=100, "tex"="(a->b)"},
+  "C"={"noden"=3, "tag"="C", "x"=100, "y"=130,                 "TeX"="(a->b)"},
+  "D"={"noden"=4, "tag"="D", "x"=140, "y"=130, "tex"="(a->b)", "TeX"="(a->b)"}
+}
+A:      {A}
+B:      {(a\to b)}
+C:      {(a->b)}
+D:      {(a->b)}
+\end{verbatim}
+}
+
+
+%  ____                            _
+% |  _ \ ___ _ __   __ _ _ __ ___ (_)_ __   __ _
+% | |_) / _ \ '_ \ / _` | '_ ` _ \| | '_ \ / _` |
+% |  _ <  __/ | | | (_| | | | | | | | | | | (_| |
+% |_| \_\___|_| |_|\__,_|_| |_| |_|_|_| |_|\__, |
+%                                          |___/
+% «renaming» (to ".renaming")
+% (find-dn6 "diagforth.lua" "dxyren")
+\section{Renaming}
+
+The word \co{ren} in the language for 2D diagrams eats the rest of the
+line, splits it at the `\co{==>}', and splits the material before the
+`\co{==>}' into a list of {\sl tags}, $A_1, \ldots, A_n$, and the
+material after `\co{==>}' into a list of {\sl texs}, $B_1, \ldots,
+B_n$; these two lists must have the same length, and then \co{ren}
+runs \co{nodes[$A_i$].tex = $B_i$} for each $i$ in $1,\ldots,n$. For
+example:
+
+%V %D diagram ren
+%V %D 2Dx     100    +30
+%V %D 2D  100 A1 <-| A2
+%V %D 2D      |       |
+%V %D 2D      v       v
+%V %D 2D  +30 A3 |-> A4
+%V %D 2D
+%V %D ren A1 A2 ==> A{\times}B A
+%V %D ren A3 A4 ==> C B{\to}C
+%V %D
+%V %D (( A1 A2 <-| .plabel= a ({\times}B)
+%V %D    A1 A3 -> A2 A4 ->
+%V %D    A3 A4 |-> .plabel= b (B{\to})
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "diagren"
+
+%D diagram ren
+%D 2Dx     100    +30
+%D 2D  100 A1 <-| A2
+%D 2D      |       |
+%D 2D      v       v
+%D 2D  +30 A3 |-> A4
+%D 2D
+%D ren A1 A2 ==> A{\times}B A
+%D ren A3 A4 ==> C B{\to}C
+%D
+%D (( A1 A2 <-| .plabel= a ({\times}B)
+%D    A1 A3 -> A2 A4 ->
+%D    A3 A4 |-> .plabel= b (B{\to})
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\diagren}
+  \quad
+  \to
+  \quad
+  \diag{ren}
+$$
+
+
+
+%                        _       
+%    _ __ ___   ___   __| |_____ 
+%   | '_ ` _ \ / _ \ / _` |_____|
+%  _| | | | | | (_) | (_| |_____|
+% (_)_| |_| |_|\___/ \__,_|      
+%                                
+% «arrow-modifiers» (to ".arrow-modifiers")
+\section{Arrow modifiers}
+
+% (find-es "diagxy" "shape")
+% (find-dn6 "diagtex.lua" "arrow_to_TeX")
+% (find-dn6 "diagtex.lua" "arrow_to_TeX" "arrow_to_TeX_pshL =")
+
+The language for 2D diagrams in dednat6 has some words for curving and
+sliding arrows:
+%
+%V %D diagram curve-slide
+%V %D 2Dx     100 +40
+%V %D 2D  100 A   B
+%V %D 2D
+%V %D 2D  +40 D   C
+%V %D 2D
+%V %D (( A B ->               .plabel= b \text{one}
+%V %D    A B -> .slide=  5pt  .plabel= a \text{two}
+%V %D    A B -> .slide= 20pt  .plabel= a \text{three}
+%V %D    B C -> .curve= _10pt .plabel= l \text{four}
+%V %D    B C -> .curve=  ^5pt .plabel= r \text{five}
+%V %D    C D ->
+%V %D    C D -> .curve=  _5pt
+%V %D    C D -> .curve=  _5pt .slide= -5pt
+%V %D           .plabel= a \text{six}
+%V %D ))
+%V %D enddiagram
+%L
+%L verbdef "curveslide"
+%
+%D diagram curve-slide
+%D 2Dx     100 +40
+%D 2D  100 A   B
+%D 2D
+%D 2D  +40 D   C
+%D 2D
+%D (( A B ->               .plabel= b \text{one}
+%D    A B -> .slide=  5pt  .plabel= a \text{two}
+%D    A B -> .slide= 20pt  .plabel= a \text{three}
+%D    B C -> .curve= _10pt .plabel= l \text{four}
+%D    B C -> .curve=  ^5pt .plabel= r \text{five}
+%D    C D ->
+%D    C D -> .curve=  _5pt
+%D    C D -> .curve=  _5pt .slide= -5pt
+%D           .plabel= a \text{six}
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \myvcenter{\footnotesize\curveslide}
+  \quad
+  \to
+  \quad
+  \diag{curve-slide}
+$$
+
+% (find-dn6 "diagforth.lua" "arrows")
+% (find-dn6 "diagforth.lua" "arrows" "sl^^")
+
+The words \qco{sl\^\^}, \qco{sl\^}, \qco{sl\_}, and \qco{sl\_\_} are
+abbreviations for \qqco{.slide= 5pt}, \qqco{.slide= 2.5pt},
+\qqco{.slide= -2.5pt}, \qqco{.slide= -5pt} respectively.
+
+%L forths[".mod="] = function ()
+%L     ds:pick(0).modifier = getword() or error()
+%L   end
+
+% %D diagram ??
+% %D 2Dx     100 +40
+% %D 2D  100 A   B
+% %D 2D
+% %D 2D  +40 D   C
+% %D 2D
+% %D (( A B -> .plabel= a 1 .mod= @<-5pt>@/_5pt/
+% %D
+% %D ))
+% %D enddiagram
+% %D
+% $$\pu
+%   \diag{??}
+% $$
+
+
+
+
+
+
+
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

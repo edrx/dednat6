@@ -1,0 +1,173 @@
+% (find-angg "dednat6/extra-modules.tex")
+% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-modules.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/extra-modules.pdf"))
+% (defun e () (interactive) (find-dednat6 "extra-modules.tex"))
+% (defun u () (interactive) (find-latex-upload-links "extra-modules"))
+% (find-pdf-page "~/dednat6/extra-modules.pdf")
+% (find-sh0 "cp -v  ~/dednat6/extra-modules.pdf /tmp/")
+% (find-sh0 "cp -v  ~/dednat6/extra-modules.pdf /tmp/pen/")
+%   file:///home/edrx/dednat6/extra-modules.pdf
+%               file:///tmp/extra-modules.pdf
+%           file:///tmp/pen/extra-modules.pdf
+% http://angg.twu.net/dednat6/extra-modules.pdf
+\documentclass[oneside]{article}
+\usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pict2e}
+\usepackage[x11names,svgnames]{xcolor} % (find-es "tex" "xcolor")
+%
+% (find-dn6 "preamble6.lua" "preamble0")
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+%
+\begin{document}
+
+\catcode`\^^J=10
+\directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
+
+% \co: a low-level way to typeset code; a poor man's "\verb"
+\def\co#1{{%
+  \def\%{\char37}%
+  \def\\{\char92}%
+  \def\^{\char94}%
+  \def\~{\char126}%
+  \tt#1%
+  }}
+\def\qco#1{`\co{#1}'}
+\def\qqco#1{``\co{#1}''}
+
+\def\bsk{\bigskip}
+\def\msk{\medskip}
+\def\ssk{\smallskip}
+
+% (find-LATEX "2017planar-has-defs.tex" "defzha-and-deftcg")
+\def\defzha#1#2{\expandafter\def\csname zha-#1\endcsname{#2}}
+\def\ifzhaundefined#1{\expandafter\ifx\csname zha-#1\endcsname\relax}
+\def\zha#1{\ifzhaundefined{#1}
+    \errmessage{UNDEFINED ZHA: #1}
+  \else
+    \csname zha-#1\endcsname
+  \fi
+}
+\def\deftcg#1#2{\expandafter\def\csname tcg-#1\endcsname{#2}}
+\def\iftcgundefined#1{\expandafter\ifx\csname tcg-#1\endcsname\relax}
+\def\tcg#1{\iftcgundefined{#1}
+    \errmessage{UNDEFINED TCG: #1}
+  \else
+    \csname tcg-#1\endcsname
+  \fi
+}
+\def\defub#1#2{\expandafter\def\csname ub-#1\endcsname{#2}}
+\def\ifubundefined#1{\expandafter\ifx\csname ub-#1\endcsname\relax}
+\def\ub#1{\ifubundefined{#1}
+    \errmessage{UNDEFINED UB: #1}
+  \else
+    \csname ub-#1\endcsname
+  \fi
+}
+\def\und#1#2{\underbrace{#1}_{#2}}
+
+
+
+
+\title{Dednat6: extra modules}
+
+\author{Eduardo Ochs}
+
+\maketitle
+
+
+
+
+
+% (find-dn6 "dednat6.lua")
+% (find-dn6 "dednat6.lua" "requires" "picture")
+% (find-dn6 "picture.lua")
+% (find-dn6 "zhas.lua")
+% (find-dn6 "zhas.lua" "MixedPicture")
+
+The code of Dednat6 --- inside the directory \co{dednat6/} --- is made
+of several \co{.lua} files that are {\sl all} loaded by
+\co{dednat6.lua}; there is no provision yet for loading only the
+modules that are used in a given \co{.tex} file. This means that some
+modules that are only useful to the author of Dednat6 (Eduardo Ochs,
+a.k.a. ``me'') are always loaded.
+
+Most of these extra modules were written to handle the objects
+described in my series of papers about ``Planar Heyting Algebras'',
+at:
+
+\url{http://angg.twu.net/math-b.html#zhas-for-children-2}
+
+\msk
+
+\section{Picture, zhas, zhaspecs, tcgs}
+
+
+% (find-LATEXfile "2019ebl-five-appls.tex" "A strange J-operator")
+%
+%L tdims = TCGDims {qrh=5, q=15, crh=12, h=60, v=25, crv=7}   -- with v arrows
+%L tspec_PA  = TCGSpec.new("46; 11 22 34 45, 25")
+%L tspec_PAQ = TCGSpec.new("46; 11 22 34 45, 25", ".???", "???.?.")
+%L tspec_PA :mp  ({zdef="O_A(P)"})  :addlrs():print()            :output()
+%L tspec_PAQ:mp  ({zdef="O_A(P),J"}):addlrs():print()            :output()
+%L tspec_PA :tcgq({tdef="(P,A)",   meta="1pt p"}, "lr q h v ap") :output()
+%L tspec_PAQ:tcgq({tdef="(P,A),Q", meta="1pt p"}, "lr q h v ap") :output()
+%L
+%L tspec_PAC = TCGSpec.new("46; 11 22 34 45, 25", "?...", "???...")
+%L tspec_PAC:mp  ({zdef="closed-op"}) :addlrs():print()            :output()
+%L tspec_PAC:tcgq({tdef="closed-op", meta="1pt p"}, "lr q h v ap") :output()
+%L 
+\pu
+
+
+
+\def\squigbij{\;\; \diagxyto/<~>/<300> \;\;}
+
+Here's an example of what they produce:
+
+$%\resizebox{!}{60pt}{$
+   \tcg{(P,A),Q} \squigbij \zha{O_A(P),J}
+ % $}
+$
+
+\bsk
+
+Even though these modules are not useful to other people some {\sl
+  ideas} in them may be. (TO DO: give examples!)
+
+
+
+\section{Underbrace2d}
+
+
+%UB  P \lor Q \to P \lor Q
+%UB  -      -     -      -
+%UB  0      1     0      1
+%UB  --------     --------
+%UB      1            0
+%UB  ---------------------
+%UB            0
+%L
+%L defub "PvQ -> PaQ"
+$$\pu \ub{PvQ -> PaQ}
+$$
+
+
+
+\section{Luarects}
+
+% (find-dn6 "luarects.lua")
+
+
+
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

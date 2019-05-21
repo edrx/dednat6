@@ -1,0 +1,121 @@
+% A demo of a way to use dednat6 to generate code that does not need lualatex.
+% This file:
+%   http://angg.twu.net/dednat6/demo-write-dnt.tex.html
+%   http://angg.twu.net/dednat6/demo-write-dnt.tex
+%                (find-dednat6 "demo-write-dnt.tex")
+% See: http://angg.twu.net/dednat6.html#no-lua
+%
+%
+% This file can be texed in the usual way, i.e., with:
+%
+%   lualatex demo-write-dnt.tex
+%
+% and every time you do that it will create (or overwrite) a file
+% "demo-write-dnt.dnt" on the disk - due to the call to
+% "write_dnt_file()" at the end. Once you have that .dnt file you can
+% compile it with pdflatex instead of with lualatex, like this:
+%
+%   pdflatex demo-write-dnt.tex
+%
+% the "\ifluatex" block below will recognize that you don't have Lua
+% and will load the "\defdiag"s and "\defded"s from .dnt file and make
+% all calls to "\pu" no-ops.
+%
+% Note that to compile this with "lualatex demo-write-dnt.tex" we
+% need these files:
+%
+%   demo-write-dnt.tex
+%   dednat6load.lua
+%   dednat6/*             (<- lots of Lua files)
+%
+% and to compile it with "pdflatex demo-write-dnt.tex" we only
+% need these ones:
+%
+%   demo-write-dnt.tex
+%   demo-write-dnt.dnt
+%
+%
+% Some emacs/eev-isms. You don't need to understand this.
+% See: (find-eev-quick-intro "7.4. Commands with very short names")
+%      http://angg.twu.net/eev-intros/find-eev-quick-intro.html#7.4
+% (defun c () (interactive) (find-dednat6sh "lualatex -record demo-write-dnt.tex"))
+% (defun c () (interactive) (find-dednat6sh "pdflatex         demo-write-dnt.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/demo-write-dnt.pdf"))
+% (defun e () (interactive) (find-dednat6 "demo-write-dnt.tex"))
+% (defun u () (interactive) (find-latex-upload-links "demo-write-dnt"))
+%   (find-pdf-page "~/dednat6/demo-write-dnt.pdf")
+% http://angg.twu.net/dednat6/demo-write-dnt.pdf
+%
+%
+\documentclass[oneside]{book}
+\usepackage{ifluatex}
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\begin{document}
+
+\ifluatex
+  \catcode`\^^J=10
+  \directlua{dofile "dednat6load.lua"}
+\else
+  \input\jobname.dnt
+  \def\pu{}
+\fi
+
+A tree:
+%
+%L addabbrevs("->", "\\to ")
+%
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^comp
+%:
+\pu
+$$\ded{comp}$$
+
+
+
+\def\catA{\mathbf{A}}
+\def\catB{\mathbf{B}}
+
+A diagram:
+%
+%D diagram adj
+%D 2Dx     100     +25
+%D 2D  100 LA <--| A
+%D 2D      |       |
+%D 2D      |  <->  |
+%D 2D      v       v
+%D 2D  +25 B |--> RB  
+%D 2D
+%D 2D  +15 \catB \catA
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D    LA RB harrownodes nil 20 nil <->
+%D    \catB \catA <- sl^ .plabel= a L
+%D    \catB \catA -> sl_ .plabel= b R
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{adj}
+$$
+
+
+%L write_dnt_file()
+\pu
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

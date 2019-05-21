@@ -1,0 +1,38 @@
+% (find-angg "dednat6/extra-comparisons.tex")
+% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-comparisons.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/extra-comparisons.pdf"))
+% (defun e () (interactive) (find-dednat6 "extra-comparisons.tex"))
+% (defun u () (interactive) (find-latex-upload-links "extra-comparisons"))
+% (find-pdf-page "~/dednat6/extra-comparisons.pdf")
+% (find-sh0 "cp -v  ~/dednat6/extra-comparisons.pdf /tmp/")
+% (find-sh0 "cp -v  ~/dednat6/extra-comparisons.pdf /tmp/pen/")
+%   file:///home/edrx/dednat6/extra-comparisons.pdf
+%               file:///tmp/extra-comparisons.pdf
+%           file:///tmp/pen/extra-comparisons.pdf
+% http://angg.twu.net/dednat6/extra-comparisons.pdf
+\documentclass[oneside]{book}
+\usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{pict2e}
+\usepackage[x11names,svgnames]{xcolor} % (find-es "tex" "xcolor")
+%\usepackage{tikz}
+%
+% (find-dn6 "preamble6.lua" "preamble0")
+%\usepackage{proof}   % For derivation trees ("%:" lines)
+%\input diagxy        % For 2D diagrams ("%D" lines)
+%\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+%
+\begin{document}
+
+\catcode`\^^J=10
+\directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
+
+Hello
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

@@ -1,0 +1,939 @@
+% (find-dednat6 "tugboat-rev2.tex")
+% (defun c () (interactive) (find-dednat6sh "lualatex -record tugboat-rev2.tex" 1 ee-end))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/tugboat-rev2.pdf"))
+% (defun e () (interactive) (find-dednat6            "tugboat-rev2.tex"))
+% (defun u () (interactive) (find-latex-upload-links "tugboat-rev2"))
+% (find-pdf-page "~/LATEX/tugboat-rev2.pdf")
+% (find-pdf-text "~/LATEX/tugboat-rev2.pdf")
+% (find-sh0 "cp -v  ~/LATEX/tugboat-rev2.pdf /tmp/")
+% (find-sh0 "cp -v  ~/LATEX/tugboat-rev2.pdf /tmp/pen/")
+%   file:///home/edrx/LATEX/tugboat-rev2.pdf
+%               file:///tmp/tugboat-rev2.pdf
+%           file:///tmp/pen/tugboat-rev2.pdf
+% http://angg.twu.net/LATEX/tugboat-rev2.pdf
+
+% This is an article about Dednat6 for TUGBoat, called:
+%
+%   Dednat6: An extensible (semi-)preprocessor for LuaLaTeX
+%     that understands diagrams in ASCII art
+%
+% This revised version incorporates the changes that Karl Berry made
+% to the article to get rid of bad line breaks, but it says
+% "preliminary version" and the page numbers are placeholder-ish.
+
+% «.title»			(to "title")
+% «.prehistory»			(to "prehistory")
+% «.dednat.icn»			(to "dednat.icn")
+% «.dednat.lua»			(to "dednat.lua")
+% «.2D-low-level»		(to "2D-low-level")
+% «.2D-code»			(to "2D-code")
+% «.semi-preprocessors»		(to "semi-preprocessors")
+%   «.heads-and-blocks»		(to "heads-and-blocks")
+%   «.implementation-of-pu»	(to "implementation-of-pu")
+% «.creating-new-heads»		(to "creating-new-heads")
+% «.REPL»			(to "REPL")
+% «.availability»		(to "availability")
+% «.references»			(to "references")
+
+%\documentclass[final]{ltugboat}
+\documentclass{ltugboat}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%
+% (find-dn6 "preamble6.lua" "preamble0")
+\usepackage{proof}                    % For derivation trees ("%:" lines)
+\input diagxy                         % For 2D diagrams ("%D" lines)
+%
+\catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+\directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
+%\usepackage{edrx15}                  % (find-angg "LATEX/edrx15.sty")
+%\input edrxaccents.tex               % (find-angg "LATEX/edrxaccents.tex")
+%\input edrxchars.tex                 % (find-LATEX "edrxchars.tex")
+\usepackage{url}
+
+\begin{document}
+
+\catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+\catcode`\^^O=13 \def{{\color{red}*}}
+
+
+% \co: a low-level way to typeset code; a poor man's "\verb"
+% (find-es "tex" "co")
+\def\co#1{{%
+  \def\\{\char92}%
+  \tt#1%
+  }}
+
+%L addabbrevs("->", "\\to ")
+
+% http://linorg.usp.br/CTAN/macros/latex/contrib/tugboat/ltubguid.pdf
+% http://angg.twu.net/math-b.html
+
+
+%  _____ _ _   _      
+% |_   _(_) |_| | ___ 
+%   | | | | __| |/ _ \
+%   | | | | |_| |  __/
+%   |_| |_|\__|_|\___|
+%                     
+% «title» (to ".title")
+% (tubp 1)
+
+\title{Dednat6: An extensible (semi-)preprocessor for Lua\LaTeX\
+  that understands diagrams in~\ASCII\ art}
+\author{Eduardo Ochs}
+\EDITORnoaddress
+\netaddress{eduardoochs (at) gmail dot com}
+\personalURL{http://angg.twu.net/dednat6.html} \maketitle
+
+%                 _     _     _                   
+%  _ __  _ __ ___| |__ (_)___| |_ ___  _ __ _   _ 
+% | '_ \| '__/ _ \ '_ \| / __| __/ _ \| '__| | | |
+% | |_) | | |  __/ | | | \__ \ || (_) | |  | |_| |
+% | .__/|_|  \___|_| |_|_|___/\__\___/|_|   \__, |
+% |_|                                       |___/ 
+%
+% «prehistory» (to ".prehistory")
+% «dednat.icn» (to ".dednat.icn")
+% (tugp 2)
+% (tubp 1)
+\section{Prehistory}
+\label{prehistory}
+\label{dednat.icn}
+
+Many, many years ago, when I was writing my master's thesis, I
+realized that I was typesetting too many natural deduction trees, and
+that this was driving me mad. The code (in \texttt{proof.sty}) for a small tree
+like this one
+%
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^a->c
+%:
+\pu
+$$\ded{a->c}$$
+%
+was this:
+
+\begin{verbatim}
+\infer[{1}]{ a\to c }{
+ \infer[{}]{ c }{
+  \infer[{}]{ b }{
+   [a]^1 &
+   a\to b } &
+  b\to c } } }
+\end{verbatim}
+
+This was somewhat manageable, but the code for bigger trees was very hard
+to understand and to debug. I started to add 2D representations of the
+typeset trees above the code, and I defined a macro \co{\\defded} to
+let me define the code for several trees at once, and a macro
+\co{\\ded} to invoke that code later:
+
+\begin{verbatim}
+%  [a]^1  a->b
+%  -----------
+%       b       b->c
+%       ------------
+%            c
+%          ----1
+%          a->c
+%
+%          ^a->c
+%
+\defded{a->c}{
+ \infer[{1}]{ a\to c }{
+  \infer[{}]{ c }{
+   \infer[{}]{ b }{
+    [a]^1 &
+    a\to b } &
+   b\to c } } }
+%
+$$\ded{a->c}$$
+\end{verbatim}
+
+
+Then I realized that if I made the syntax of my 2D representations a
+bit more rigid, I could write a preprocessor that would understand
+them directly, and write all the `\co{\\defded}'s itself to an
+auxiliary file. If a file \co{foo.tex} had this (note: I will omit
+all header and footer code, like \co{\\begin\{document\}} and
+\co{\\end\{document\}}, from the examples),
+
+\begin{verbatim}
+\input foo.dnt
+
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^a->c
+
+$$\ded{a->c}$$
+\end{verbatim}
+%
+then I just had to run ``\co{dednat.icn foo.tex;latex foo.tex}''
+instead of ``\co{latex foo.tex}''.
+
+
+%      _          _             _         _             
+%   __| | ___  __| |_ __   __ _| |_      | |_   _  __ _ 
+%  / _` |/ _ \/ _` | '_ \ / _` | __|     | | | | |/ _` |
+% | (_| |  __/ (_| | | | | (_| | |_   _  | | |_| | (_| |
+%  \__,_|\___|\__,_|_| |_|\__,_|\__| (_) |_|\__,_|\__,_|
+%
+% «dednat.lua» (to ".dednat.lua")
+\section{\texttt{dednat.lua}}
+\label{dednat.lua}
+
+A few years after that, I learned Lua, fell in love with it, and ported
+dednat.icn from Icon\Dash which was a {\sl compiled} language\Dash to
+Lua.
+
+The first novel feature in \co{dednat.lua} was a way to run arbitrary Lua
+code from the \co{.tex} file being preprocessed, and so extend the
+preprocessor dynamically. \co{dednat.lua} treated blocks of lines starting
+with `\co{\%:}' as specifications of trees, and blocks of lines
+starting with `\co{\%L}' as Lua code. More precisely, the initial set
+of {\sl heads} was \co{\{"\%:", "\%L", "\%D"\}}, and \co{dednat.lua}
+processed each block of contiguous lines starting with the same head
+in a way that depended on the head.
+
+The second novel feature in \co{dednat.lua} was a way to generate code for
+categorical diagrams, or ``2D diagrams'' for short, automatically,
+analogous to what we did for trees. I wanted to make the preprocessor write
+the `\co{\\defdiag}'s seen here itself:
+
+\begin{verbatim}
+%   LA <-| A
+%   |      |
+%   v      v
+%   B |-> RB
+%
+\defdiag{adj_L-|R}{
+  \morphism(0,0)/<-|/<400,0>[LA`A;]
+  \morphism(0,0)/->/<0,-400>[LA`B;]
+  \morphism(400,0)/->/<0,-400>[A`RB;]
+  \morphism(0,-400)/|->/<400,0>[B`RB;]
+}
+$$\diag{adj_L-|R}$$
+\end{verbatim}
+%
+where `\co{\\morphism}' is the main macro in \co{diagxy}, Michael
+Barr's front-end for \Xy-pic.
+
+After months of experimentation I arrived at a good syntax for 2D
+diagrams. This code:
+
+\begin{verbatim}
+%D diagram adj_L-|R
+%D 2Dx     100    +25
+%D 2D  100 LA <-| A
+%D 2D      |      |
+%D 2D      |      |
+%D 2D      v      v
+%D 2D  +25 B |-> RB
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D ))
+%D enddiagram
+%D
+$$\diag{adj_L-|R}$$
+\end{verbatim}
+%
+generates this:
+%
+%D diagram adj_L-|R
+%D 2Dx     100    +25
+%D 2D  100 LA <-| A
+%D 2D      |      |
+%D 2D      |      |
+%D 2D      v      v
+%D 2D  +25 B |-> RB
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{adj_L-|R}
+$$
+
+The lines with `\co{\%D 2Dx}' and `\co{\%D 2D}' define a grid with
+coordinates and nodes, and the lines between `\co{\%D ((}' and
+`\co{\%D ))}' connect these nodes with arrows.
+
+
+
+%  ____  ____      _                    _                _ 
+% |___ \|  _ \ _  | | _____      __    | | _____   _____| |
+%   __) | | | (_) | |/ _ \ \ /\ / /____| |/ _ \ \ / / _ \ |
+%  / __/| |_| |_  | | (_) \ V  V /_____| |  __/\ V /  __/ |
+% |_____|____/(_) |_|\___/ \_/\_/      |_|\___| \_/ \___|_|
+%
+% «2D-low-level» (to ".2D-low-level")
+\subsection{A Forth-based language for 2D diagrams\Dash low-level ideas}
+\label{2D-low-level}
+
+The article ``Bootstrapping a Forth in 40 lines of Lua code'' [1]
+describes how a Forth-like language can be reduced to a minimal
+extensible core, and bootstrapped from it. The most basic feature in
+[1] is ``words that eat text''; the fact that Forth
+is a stack-based language is secondary \Dash stacks are added later. The
+code for `\co{\%D}'-lines is based on [1].
+
+A ``Forth'' \Dash actually the ``outer interpreter'' of
+a Forth, but let's call it simply a ``Forth'' \Dash works on one line of
+input at a time, reads each ``word'' in it and executes it as soon as
+it is read. A ``word'' is any sequence of one of more non-whitespace
+characters, and an input line is made of words separated by
+whitespace. The ``outer interpreter'' of Forth does essentially this
+on each line, in pseudocode:
+
+\begin{verbatim}
+while true do
+  word = getword()
+  if not word then break end
+  execute(word)
+end
+\end{verbatim}
+
+Note that \co{word} is a global variable. The current input line is
+stored in \co{subj} and the current position of the parser is stored
+in \co{pos}; \co{subj} and \co{pos} are also global variables \Dash
+which means the \co{execute(word)} can change them!
+
+The function \co{getword()} parses whitespace in \co{subj} starting at
+\co{pos}, then parses a word and returns it, and advances \co{pos} to
+the position after that word. There is a similar function called
+\co{getrestofline()} that returns all the rest of the line from
+\co{pos} onwards, and advances \co{pos} to the end of the line.
+
+One of the simplest Forth words is `\co{\#}' (``comment''). It is
+defined as:
+
+\begin{verbatim}
+forths["#"] = function ()
+    getrestofline()
+  end
+\end{verbatim}
+
+It simply runs \co{getrestofline()}, discards its return value, and
+returns. We say that \co{\#} ``eats the rest of the line''.
+
+In a ``real'' Forth we can define words using `\co{:}' and `\co{;}',
+like this:
+
+\begin{verbatim}
+  : SQUARE DUP * ;
+\end{verbatim}
+%
+but the Forth-based language in \co{dednat.lua} is so minimalistic that we
+don't have `\co{:}' and `\co{;}' \Dash we define words by storing their
+Lua code in the table \co{forths}.
+
+
+
+%  ____  ____                    _      
+% |___ \|  _ \ _    ___ ___   __| | ___ 
+%   __) | | | (_)  / __/ _ \ / _` |/ _ \
+%  / __/| |_| |_  | (_| (_) | (_| |  __/
+% |_____|____/(_)  \___\___/ \__,_|\___|
+%                                       
+% «2D-code» (to ".2D-code")
+\subsection{A Forth-based language for 2D diagrams \Dash code for diagrams}
+\label{2D-code}
+
+Let's look at an example. This code
+%
+% (find-dn6 "diagforth.lua" "2D-and-2Dx")
+% (find-dn6 "diagstacks.lua")
+
+\begin{verbatim}
+%D diagram T:F->G
+%D 2Dx     100 +20 +20
+%D 2D  100     A
+%D 2D         /|\
+%D 2D        v v v
+%D 2D  +30 FA --> GA
+%D 2D
+%D (( A FA |-> A GA |->
+%D    FA GA -> .plabel= b TA
+%D    A FA GA midpoint -->
+%D ))
+%D enddiagram
+%D
+$$\diag{T:F->G}$$
+\end{verbatim}
+%
+yields this:
+%
+%D diagram T:F->G
+%D 2Dx     100 +20 +20
+%L print("xs:"); print(xs)
+%D 2D  100     A
+%D 2D         /|\
+%D 2D        v v v
+%D 2D  +30 FA --> GA
+%L print("nodes:"); print(nodes)
+%D 2D
+%D (( A FA |-> A GA |->
+%D    FA GA -> .plabel= b TA
+%D    A FA GA midpoint -->
+%L print("ds:"); print(ds)
+%D ))
+%L print("arrows:"); print(arrows)
+%D enddiagram
+%D
+$$\pu
+  \diag{T:F->G}
+$$
+
+The word \co{diagram} eats a word \Dash the name of the diagram \Dash and
+sets \co{diagramname} to it. The word \co{2Dx} eats the rest of the
+line, and uses it to attribute $x$-coordinates to some columns. The
+word \co{2D} also eats the rest of the line; when it is followed by
+$nnn$ or $+nnn$ that number gives the $y$-coordinate of that line, and
+the words that intersect a point that has both an $x$-coordinate and a
+$y$-coordinate become {\sl nodes}. When a \co{2D} is not followed by
+an $nnn$ or $+nnn$ then this is a line without a $y$-coordinate, and
+it is ignored.
+
+In a sequence like ``\co{A FA |->}'', both \co{A} and \co{FA} put nodes
+on the stack, and \co{|->} creates an arrow joining the two nodes on
+the top of the stack, without dropping the nodes from the stack. In a
+sequence like ``\co{FA GA midpoint}'' the \co{midpoint} creates a
+phantom node halfway between the two nodes on the top of the stack,
+drops (pops) them and pushes the phantom node in their place. The word
+\co{.plabel=} eats two words, a {\sl placement} and a {\sl label}, and
+modifies the arrow at the top of the stack by setting the arrow's
+label and placement attributes with them. The word `\co{((}' remembers
+the depth of the stack \Dash 42, say \Dash and the word `\co{))}' pops
+elements from the top of the stack; if the depth at `\co{))}' is 200
+then `\co{))}' pops $200-42$ elements to make the depth become 42
+again.
+
+The word \co{enddiagram} defines a diagram with the name stored in
+\co{diagramname}; each arrow that was created, even the ones that were
+dropped from the stack, becomes a call to \co{\\morphism} \Dash the main
+macro in \co{diagxy} \Dash in the body of the diagram.
+
+A good way to understand in detail how everything works is to inspect
+the data structures. Let's modify the code of the example to add some
+`\co{print}'s in `\co{\%L}'-lines in the middle of the
+`\co{\%D}'-code:
+
+\begin{verbatim}
+%D diagram T:F->G
+%D 2Dx     100 +20 +20
+%L print("xs:"); print(xs)
+%D 2D  100     A
+%D 2D         /|\
+%D 2D        v v v
+%D 2D  +30 FA --> GA
+%L print("nodes:"); print(nodes)
+%D 2D
+%D (( A FA |-> A GA |->
+%D    FA GA -> .plabel= b TA
+%D    A FA GA midpoint -->
+%L print("ds:"); print(ds)
+%D ))
+%L print("arrows:"); print(arrows)
+%D enddiagram
+\end{verbatim}
+
+The preprocessor outputs this on stdout:
+
+\begin{verbatim}[\footnotesize]
+xs:
+{12=100, 16=120, 20=140}
+nodes:
+{ 1={"noden"=1, "tag"="A", "x"=120, "y"=100},
+  2={"noden"=2, "tag"="FA", "x"=100, "y"=130},
+  3={"noden"=3, "tag"="-->", "x"=120, "y"=130},
+  4={"noden"=4, "tag"="GA", "x"=140, "y"=130},
+  "-->"={"noden"=3, "tag"="-->", "x"=120, "y"=130},
+  "A"={"noden"=1, "tag"="A", "x"=120, "y"=100},
+  "FA"={"noden"=2, "tag"="FA", "x"=100, "y"=130},
+  "GA"={"noden"=4, "tag"="GA", "x"=140, "y"=130}
+}
+ds:
+12={"arrown"=4, "from"=1, "shape"="-->", "to"=5}
+11={"TeX"="\\phantom{O}", "noden"=5, "x"=120,
+    "y"=130}
+10={"noden"=1, "tag"="A", "x"=120, "y"=100}
+9={"arrown"=3, "from"=2, "label"="TA",
+   "placement"="b", "shape"="->", "to"=4}
+8={"noden"=4, "tag"="GA", "x"=140, "y"=130}
+7={"noden"=2, "tag"="FA", "x"=100, "y"=130}
+6={"arrown"=2, "from"=1, "shape"="|->", "to"=4}
+5={"noden"=4, "tag"="GA", "x"=140, "y"=130}
+4={"noden"=1, "tag"="A", "x"=120, "y"=100}
+3={"arrown"=1, "from"=1, "shape"="|->", "to"=2}
+2={"noden"=2, "tag"="FA", "x"=100, "y"=130}
+1={"noden"=1, "tag"="A", "x"=120, "y"=100}
+arrows:
+{ 1={"arrown"=1, "from"=1, "shape"="|->", "to"=2},
+  2={"arrown"=2, "from"=1, "shape"="|->", "to"=4},
+  3={"arrown"=3, "from"=2, "label"="TA",
+     "placement"="b", "shape"="->", "to"=4},
+  4={"arrown"=4, "from"=1, "shape"="-->", "to"=5}
+}
+\end{verbatim}
+
+
+
+%  ____                 _                                               
+% / ___|  ___ _ __ ___ (_)      _ __  _ __ ___ _ __  _ __ ___   ___ ___ 
+% \___ \ / _ \ '_ ` _ \| |_____| '_ \| '__/ _ \ '_ \| '__/ _ \ / __/ __|
+%  ___) |  __/ | | | | | |_____| |_) | | |  __/ |_) | | | (_) | (__\__ \
+% |____/ \___|_| |_| |_|_|     | .__/|_|  \___| .__/|_|  \___/ \___|___/
+%                              |_|            |_|                       
+%
+% «semi-preprocessors» (to ".semi-preprocessors")
+\section{Semi-preprocessors}
+
+\co{dednat.icn}, \co{dednat.lua} and all its successors until \co{dednat5.lua} were
+preprocessors in the usual sense \Dash they had to be run {\sl outside}
+\co{latex} and {\sl before} \co{latex}. With dednat6 this changed;
+dednat6 can still be run as a preprocessor, but the recommended way to
+run it on, say, \co{foo.tex}, is to put a line like
+%
+\begin{verbatim}
+\directlua{dofile "dednat6load.lua"}
+\end{verbatim}
+%
+somewhere near the beginning of \co{foo.tex}, add some calls to \co{\\pu} at
+some points \Dash as we will explain soon \Dash and compile \co{foo.tex} with
+\co{lualatex} instead of \co{latex}, to make \co{foo.tex} be processed ``in
+parallel'' by \TeX{} and by Lua. That ``in parallel'' is a
+simplification, though; consider this example:
+
+\begin{verbatim}
+%:
+%:  a  b
+%:  ----
+%:   c
+%:
+%:   ^my-tree
+%:
+$$\pu\ded{my-tree}$$
+%:
+%:  d  e  f
+%:  -------
+%:     g
+%:
+%:     ^my-tree
+%:
+$$\pu\ded{my-tree}$$
+\end{verbatim}
+
+Suppose that this fragment starts at line 20. (As mentioned above, we
+are omitting the
+header and footer \Dash e.g., \co{\\begin\{document\}} and
+\co{\\directlua \{dofile "dednat6load.lua"\}}.)
+
+We have a \co{\%:}-block from lines 20--26, a call to \co{\\pu} at
+line 27, another \co{\%:}-block from lines 28-34, and another call to
+\co{\\pu} at line 35.
+
+The output of the first \co{\%:}-block above is a
+\co{\\defded\{my-tree\}}, and the output of the second \co{\%:}-block
+above is a {\sl different} \co{\\defded\{my-tree\}}. 
+
+`\co{\\pu}' means ``process until'' \Dash or, more precisely, {\sl make
+  dednat6 process everything until this point that it hasn't processed
+  yet}. The first \co{\\pu} processes the lines 1--26 of \co{foo.tex}, and
+``outputs'' \Dash i.e., sends to \TeX \Dash the first
+\co{\\defded\{my-tree\}}; the second \co{\\pu} processes the lines
+28--34 of \co{foo.tex}, and ``outputs'' the second
+\co{\\defded\{my-tree\}}. Thus, it is not technically true that \TeX\ and dednat6
+process \co{foo.tex} in parallel; dednat6 goes later, and each \co{\\pu} is
+a synchronization point.
+
+
+
+%  _   _                _                       _   _     _            _        
+% | | | | ___  __ _  __| |___    __ _ _ __   __| | | |__ | | ___   ___| | _____ 
+% | |_| |/ _ \/ _` |/ _` / __|  / _` | '_ \ / _` | | '_ \| |/ _ \ / __| |/ / __|
+% |  _  |  __/ (_| | (_| \__ \ | (_| | | | | (_| | | |_) | | (_) | (__|   <\__ \
+% |_| |_|\___|\__,_|\__,_|___/  \__,_|_| |_|\__,_| |_.__/|_|\___/ \___|_|\_\___/
+%                                                                               
+% «heads-and-blocks» (to ".heads-and-blocks")
+\subsection{Heads and blocks}
+
+In order to understand how this idea \Dash ``semi-pre\-pro\-cessors''
+\Dash is implemented in dednat6 we need some terminology.
+
+The initial {\sl set of heads} is \co{\{"\%:", "\%L", "\%D"\}}. It may
+be extended with other heads, but we may only add heads that
+start with `\co{\%}'.
+
+A {\sl block} is a set of contiguous lines in the current \co{.tex} file.
+This code
+%
+\begin{verbatim}
+Block {i=42, j=99}
+\end{verbatim}
+%
+creates and returns a block that starts on line 42 and ends on line
+99. The Lua function \co{Block} receives a table, changes its
+metatable to make it a ``block object'', and returns the modified
+table.
+
+A {\sl head block} is a (maximal) set of contiguous lines all with
+same head. Head blocks are implemented as blocks with an extra field
+\co{head}. For example:
+%
+\begin{verbatim}
+Block {i=20, j=26, head="%:"}
+\end{verbatim}
+
+A block is {\sl bad} when it contains a part of a head block but not
+the whole of it. We avoid dealing with bad blocks \Dash dednat6 never
+creates a block object that is ``bad''.
+
+Each head has a {\sl processor}. {\sl Executing} a head block means
+running it through the processor associated with its head. Executing an
+arbitrary (non-bad) block means executing each head block in it, one at
+a time, in order. Note: the code for executing non-bad arbitrary
+blocks was a bit tricky to implement, as executing a `\co{\%L}'-block
+may change the set of heads and the processors associated to heads.
+
+A {\sl texfile block} is a block that refers to the whole of the
+current \co{.tex} file, and that has an extra field \co{nline} that points
+to the first line that dednat6 hasn't processed yet. If \co{foo.tex} has
+234 lines then the texfile block for \co{foo.tex} starts as:
+%
+\begin{verbatim}
+Block {i=1, j=234, nline=1}
+\end{verbatim}
+
+We saw in sections \ref{dednat.icn} and \ref{2D-code} that the
+``output'' of a \co{\%:}-block is a series of `\co{\\defded}'s and the
+``output'' of a \co{\%D}-block is a series of `\co{\\defdiags}'s. We
+can generalize this. For example, the ``output'' of
+%
+\begin{verbatim}
+%L output [[\def\Foo{FOO}]]
+%L output [[\def\Bar{BAR}]]
+\end{verbatim}
+%
+is
+%
+\begin{verbatim}
+\def\Foo{FOO}
+\def\Bar{BAR}
+\end{verbatim}
+
+The {\sl output} of a head block is the concatenation of the strings
+sent to \co{output()} when that block is executed. The output of an
+arbitrary (non-bad) block is the concatenation of the strings sent to
+\co{output()} by its head blocks when the arbitrary block is executed.
+
+A {\sl \co{\\pu}-block} is created by dednat6 when a \co{\\pu} is
+executed, pointing to the lines between this \co{\\pu} and the
+previous \co{\\pu}. If \co{foo.tex} has a \co{\\pu} at line 27 and another
+at line 35 then the first \co{\\pu} creates this block,
+%
+\begin{verbatim}
+Block {i=1, j=26}
+\end{verbatim}
+%
+and the second \co{\\pu} creates this:
+%
+\begin{verbatim}
+Block {i=28, j=34}
+\end{verbatim}
+
+As `\co{\\pu}'s only happen in non-comment lines, \co{\\pu}-blocks are
+never bad.
+
+
+
+%  ___                 _                           _    __                
+% |_ _|_ __ ___  _ __ | | ___ _ __ ___   ___ _ __ | |_  \ \   _ __  _   _ 
+%  | || '_ ` _ \| '_ \| |/ _ \ '_ ` _ \ / _ \ '_ \| __|  \ \ | '_ \| | | |
+%  | || | | | | | |_) | |  __/ | | | | |  __/ | | | |_    \ \| |_) | |_| |
+% |___|_| |_| |_| .__/|_|\___|_| |_| |_|\___|_| |_|\__|    \_\ .__/ \__,_|
+%               |_|                                          |_|          
+%
+\subsection{The implementation of \co{\\pu}}
+% «implementation-of-pu» (to ".implementation-of-pu")
+
+The macro \co{\\pu} is defined as 
+%
+\begin{verbatim}
+\def\pu{\directlua{
+    processuntil(tex.inputlineno)
+  }}
+\end{verbatim}
+%
+in \LaTeX, and \co{processuntil()} is this (in Lua):
+%
+\begin{verbatim}
+processuntil = function (puline)
+    local publock =
+      Block {i=tf.nline, j=puline-1}
+    publock:process()
+    tf.nline = puline + 1
+  end
+\end{verbatim}
+
+Here's a high-level explanation. When dednat6 is loaded and
+initialized it creates a texfile block for the current \co{.tex} file \Dash
+with \co{nline=1} \Dash and stores it in the global variable \co{tf}.
+The macro \co{\\pu} creates a \co{\\pu}-block that starts at line
+\co{tf.nline} and ends at line \co{tex.inputlineno - 1}, executes it,
+and advances \co{tf.nline} \Dash i.e., sets it to
+\co{tex.inputlineno + 1}.
+
+% \co{tf.nline}
+
+The code above looks simple because the line \co{publock:process()}
+does all the hard work.
+
+
+
+
+%   ____                _   _               _                    _     
+%  / ___|_ __ ___  __ _| |_(_)_ __   __ _  | |__   ___  __ _  __| |___ 
+% | |   | '__/ _ \/ _` | __| | '_ \ / _` | | '_ \ / _ \/ _` |/ _` / __|
+% | |___| | |  __/ (_| | |_| | | | | (_| | | | | |  __/ (_| | (_| \__ \
+%  \____|_|  \___|\__,_|\__|_|_| |_|\__, | |_| |_|\___|\__,_|\__,_|___/
+%                                   |___/                              
+%
+% «creating-new-heads» (to ".creating-new-heads")
+\section{Creating new heads}
+
+New heads can be created with \co{registerhead}, and they are
+recognized immediately. For example, this
+
+\begin{verbatim}
+%L eval = function (str)
+%L     return assert(loadstring(str))()
+%L   end
+%L expr = function (str)
+%L     return eval("return "..str)
+%L   end
+%L
+%L registerhead "%A" {
+%L   name   = "eval-angle-brackets",
+%L   action = function ()
+%L       local i,j,str = tf:getblockstr()
+%L       str = str:gsub("<(.-)>", expr)
+%L       output(str)
+%L     end,
+%L }
+%A $2+3 = <2+3>$
+\pu
+\end{verbatim}
+%
+\setbox0=\hbox{\pu}   % Discard the output of the real \pu
+%
+produces ``$2+3=5$''; that looks trivial, but it is easy to write
+bigger examples of `\co{\%A}'-blocks with \co{pict2e} code in them, in
+which the Lua expressions in `\co{<...>}'s generate
+`\co{\\polyline}'s and `\co{\\puts}'s whose coordinates are all
+calculated by Lua.
+
+
+
+
+
+% (find-fline "c:/Users/Vermelhinho/Downloads/2018tugboat.tex" "registerhead")
+% (find-dn6 "block.lua")
+% (find-dn6 "heads6.lua")
+
+
+
+
+
+
+
+%  ____  _____ ____  _     
+% |  _ \| ____|  _ \| |    
+% | |_) |  _| | |_) | |    
+% |  _ <| |___|  __/| |___ 
+% |_| \_\_____|_|   |_____|
+%                          
+% «REPL» (to ".REPL")
+\section{A read-eval-print-loop (\acro{REPL})}
+
+% (find-dn6 "luarepl.lua")
+% (tugp 22 "repls-2")
+% (tug     "repls-2")
+
+Dednat6 uses only one function from the Lua\TeX{} libraries \Dash
+\co{tex.print} \Dash and two variables, \co{status.}\allowbreak\co{filename} and
+\co{tex.inputlineno}, but it includes a nice way to play with the
+other functions and variables in the libraries.
+
+Dednat6 includes a copy of \co{lua-repl} (by Rob Hoelz,
+\url{github.com/hoelzro/lua-repl}), and we can
+invoke it by running \co{luarepl()}. If we put this in our \co{foo.tex},
+{\hfuzz=1.5pt\par}
+
+\begin{verbatim}
+\setbox0=\hbox{abc}
+\directlua{luarepl()}
+\end{verbatim}
+%
+then running \co{lualatex foo.tex} will print lots of stuff, and then
+the prompt `\co{>>>}' of the \co{lua-repl} inside dednat6; if we send
+these commands to the \acro{REPL},
+
+\begin{verbatim}[\footnotesize]
+print(tex.box[0])
+print(tex.box[0].id,        node.id("hlist"))
+print(tex.box[0].list)
+print(tex.box[0].list.id,   node.id("glyph"))
+print(tex.box[0].list.char, string.byte("a"))
+print(tex.box[0].list.next)
+print(tex.box[0].list.next.char,
+                            string.byte("b"))
+\end{verbatim}
+%
+\newpage\noindent
+we get this in the terminal:
+
+\begin{verbatim}[\footnotesize]
+>>> print(tex.box[0])
+<node    nil <  35981 >    nil : hlist 2>
+>>> print(tex.box[0].id,        node.id("hlist"))
+0	0
+>>> print(tex.box[0].list)
+<node    nil <   6107 >   6114 : glyph 256>
+>>> print(tex.box[0].list.id,   node.id("glyph"))
+29	29
+>>> print(tex.box[0].list.char, string.byte("a"))
+97	97
+>>> print(tex.box[0].list.next)
+<node   6107 <   6114 >  32849 : glyph 256>
+>>> print(tex.box[0].list.next.char,
+>>>>                             string.byte("b"))
+98	98
+>>>
+\end{verbatim}
+
+The best way to use \co{luarepl()} \Dash in my not so humble opinion \Dash
+is from Emacs, with the \co{eev} library. The tutorial of eev at
+
+\begin{verbatim}
+  http://angg.twu.net/eev-intros/
+    find-eev-quick-intro.html
+\end{verbatim}
+%
+explains, in the section ``Controlling shell-like programs'', how we
+can edit the commands to be sent to \co{lualatex} in a buffer, called
+the ``notes buffer'', and send them line by line to another buffer
+that runs \co{lualatex foo.tex} in a shell \Dash the ``target buffer'';
+each time that we type the F8 key Emacs sends the current line to the
+program running in the target buffer, {\sl as if the user had typed
+  it}.
+
+
+
+
+
+%%%%%%%
+%%%%%%% Test the REPL
+%%%%%%% See section 6 ("Controlling shell-like programs")
+%%%%%%% of: http://angg.twu.net/eev-intros/find-eev-quick-intro.html
+%%%%%%% Uncomment the "\directlua" line, run the eepitch block,
+%%%%%%% then put the "%" back. 
+%%%%%%%
+
+\setbox0=\hbox{abc}
+% \directlua{luarepl()}
+
+\def\IGNORETHIS{
+ (eepitch-shell)
+ (eepitch-kill)
+ (eepitch-shell)
+lualatex 2018tugboat.tex
+print(tex.box[0])
+print(tex.box[0].id,        node.id("hlist"))
+print(tex.box[0].list)
+print(tex.box[0].list.id,   node.id("glyph"))
+print(tex.box[0].list.char, string.byte("a"))
+print(tex.box[0].list.next)
+print(tex.box[0].list.next.char,
+                            string.byte("b"))
+}
+
+
+
+
+
+
+
+%     _             _ _       _     _ _ _ _         
+%    / \__   ____ _(_) | __ _| |__ (_) (_) |_ _   _ 
+%   / _ \ \ / / _` | | |/ _` | '_ \| | | | __| | | |
+%  / ___ \ V / (_| | | | (_| | |_) | | | | |_| |_| |
+% /_/   \_\_/ \__,_|_|_|\__,_|_.__/|_|_|_|\__|\__, |
+%                                             |___/ 
+%
+% «availability» (to ".availability")
+\section{Availability}
+
+Dednat6 is not in \CTAN\ yet (as of October, 2018). Until it gets there
+you can download it from:
+
+\begin{verbatim}
+  http://angg.twu.net/dednat6.html
+\end{verbatim}
+
+
+
+%  ____       __                                   
+% |  _ \ ___ / _| ___ _ __ ___ _ __   ___ ___  ___ 
+% | |_) / _ \ |_ / _ \ '__/ _ \ '_ \ / __/ _ \/ __|
+% |  _ <  __/  _|  __/ | |  __/ | | | (_|  __/\__ \
+% |_| \_\___|_|  \___|_|  \___|_| |_|\___\___||___/
+%                                                  
+% «references» (to ".references")
+\section*{References}
+
+% http://angg.twu.net/miniforth/miniforth-article.pdf
+% (find-LATEX "catsem.bib" "bib-Bootstrapping")
+% (find-LATEX "catsem.bib" "bib-LuaGems")
+
+{\frenchspacing
+[1] E.\ Ochs: {\sl Bootstrapping a Forth in 40 Lines of Lua Code}.
+Chapter 6 (pp.\ 57--70) of {\sl Lua Programming Gems}, L.H. de
+Figueiredo, W.\ Celes, and R.\ Ierusa\-limschy, eds. {\tt lua.org/gems},
+2008. Available from \url{http://angg.twu.net/miniforth-article.html}.
+
+}
+
+% (find-angg "dednat/")
+% (find-angg "dednat4/")
+
+
+
+
+\advance\signaturewidth by 8pt
+\makesignature
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:
