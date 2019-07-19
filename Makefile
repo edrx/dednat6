@@ -51,7 +51,8 @@ demo-preproc.pdf:
 	lualatex -record 2018dednat6-extras.tex
 
 extra-comparisons.pdf:
-	lualatex -record extra-features.tex
+	lualatex -record extra-comparisons.tex
+	lualatex -record extra-comparisons.tex
 
 extra-features.pdf:
 	lualatex -record extra-features.tex

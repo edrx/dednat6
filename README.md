@@ -5,7 +5,8 @@ understands diagrams in ASCII art.
 
 The best introduction to Dednat6 is the TUGBoat article about it:
 
-  http://angg.twu.net/LATEX/2018tugboat-rev1.pdf
+  http://angg.twu.net/dednat6/tugboat-rev2.pdf
+  https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
 
 The home page of Dednat6 is:
 
@@ -27,7 +28,14 @@ will delete all the generated files except the PDFs. After doing
 "make" and "make clean" open the file demo-minimal.tex, read its
 instructions and try to modify it and recompile it. See:
 
+  http://angg.twu.net/dednat6.html#quick-start
   http://angg.twu.net/dednat6/demo-minimal.tex.html
+
+The git repository does not include the PDFs generated from the .tex
+files. To access them and the HTMLized versions of the source files,
+go to:
+
+  http://angg.twu.net/dednat6.html#git
 
   Eduardo Ochs  
   eduardoochs@gmail.com  
