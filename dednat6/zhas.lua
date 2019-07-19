@@ -1,8 +1,12 @@
 -- zhas.lua: ZHAs, cuts, and mixed LaTeX/ascii pictures of ZHAs and cuts.
 -- This file:
--- http://angg.twu.net/LATEX/dednat6/zhas.lua
--- http://angg.twu.net/LATEX/dednat6/zhas.lua.html
---  (find-angg        "dednat6/zhas.lua")
+-- http://angg.twu.net/dednat6/zhas.lua
+-- http://angg.twu.net/dednat6/zhas.lua.html
+--  (find-dn6                 "zhas.lua")
+--
+-- See these links for what are ZHAs:
+--   http://angg.twu.net/LATEX/2017planar-has-1.pdf
+--   http://angg.twu.net/math-b.html#zhas-for-children-2
 --
 
 

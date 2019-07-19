@@ -1,7 +1,7 @@
 -- zhaspecs.lua: construct ZHA specs from walls, points, or generators.
--- http://angg.twu.net/LATEX/dednat6/zhaspecs.lua
--- http://angg.twu.net/LATEX/dednat6/zhaspecs.lua.html
---                        (find-dn6 "zhaspecs.lua")
+-- http://angg.twu.net/dednat6/zhaspecs.lua
+-- http://angg.twu.net/dednat6/zhaspecs.lua.html
+--                  (find-dn6 "zhaspecs.lua")
 --
 -- A ZHA object has fields L and R that obey the "ZHA conditions",
 -- which are:

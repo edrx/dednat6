@@ -1,8 +1,8 @@
 -- eoo.lua: Edrx'x simple OO scheme, with explanations.
 -- This file:
---   http://angg.twu.net/LATEX/dednat6/eoo.lua.html
---   http://angg.twu.net/LATEX/dednat6/eoo.lua
---                          (find-dn6 "eoo.lua")
+--   http://angg.twu.net/dednat6/eoo.lua.html
+--   http://angg.twu.net/dednat6/eoo.lua
+--                    (find-dn6 "eoo.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019feb22
 -- License: GPL3

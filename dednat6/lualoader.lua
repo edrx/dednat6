@@ -1,8 +1,8 @@
 -- lualoader.lua: make LuaTeX's "require" behave more like Lua's
 -- This file:
--- http://angg.twu.net/LATEX/dednat6/lualoader.lua
--- http://angg.twu.net/LATEX/dednat6/lualoader.lua.html
---  (find-LATEX             "dednat6/lualoader.lua")
+-- http://angg.twu.net/dednat6/lualoader.lua
+-- http://angg.twu.net/dednat6/lualoader.lua.html
+--          (find-dn6         "lualoader.lua")
 --
 -- Loaded by:
 --   (find-dn6 "dednat6.lua" "luatex-require")

@@ -68,7 +68,8 @@ dnt_log = ""
 -- `output(str)' is the main way to send TeX code from dednat6 to TeX.
 -- The TUGBoat article explains this briefly in sec.3.1. See:
 --
---   http://angg.twu.net/LATEX/2018tugboat-rev1.pdf
+--   https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
+--   http://angg.twu.net/dednat6/tugboat-rev2.pdf
 --
 -- The article says:
 -- 

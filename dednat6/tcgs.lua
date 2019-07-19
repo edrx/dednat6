@@ -1,7 +1,7 @@
 -- tcgs.lua: classes for two-column graphs.
--- http://angg.twu.net/LATEX/dednat6/tcgs.lua
--- http://angg.twu.net/LATEX/dednat6/tcgs.lua.html
---                        (find-dn6 "tcgs.lua")
+-- http://angg.twu.net/dednat6/tcgs.lua
+-- http://angg.twu.net/dednat6/tcgs.lua.html
+--                  (find-dn6 "tcgs.lua")
 --
 -- This file supersedes the code for TCGs in:
 --   (find-LATEX "edrxpict.lua" "TCG")

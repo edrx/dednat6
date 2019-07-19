@@ -1,14 +1,15 @@
 #!/usr/bin/env lua5.1
 -- This file:
--- http://angg.twu.net/LATEX/dednat6/dednat6.lua
--- http://angg.twu.net/LATEX/dednat6/dednat6.lua.html
---                       (find-dn6  "dednat6.lua")
+-- http://angg.twu.net/dednat6/dednat6.lua
+-- http://angg.twu.net/dednat6/dednat6.lua.html
+--                 (find-dn6  "dednat6.lua")
 -- By Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2019jan13
+-- Version: 2019jul06
 --
 -- This file adds "dednat6/" to the load path and loads all the
 -- default modules of dednat6. See:
---   http://angg.twu.net/LATEX/2018tugboat-rev1.pdf
+--   https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
+--   http://angg.twu.net/dednat6/tugboat-rev2.pdf
 --   (find-LATEX "dednat6load.lua")
 
 

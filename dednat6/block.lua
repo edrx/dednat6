@@ -7,18 +7,19 @@
 -- blocks", the "pu blocks", and the "head blocks".
 --
 -- The algorithm is described here:
--- http://angg.twu.net/LATEX/2018tugboat-rev1.pdf
+-- https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
+-- http://angg.twu.net/dednat6/tugboat-rev2.pdf
 --   (turp 4 "heads-and-blocks" "Heads and blocks")
 --   (tur    "heads-and-blocks" "Heads and blocks")
 --
 -- This file:
--- http://angg.twu.net/LATEX/dednat6/block.lua
--- http://angg.twu.net/LATEX/dednat6/block.lua.html
---                        (find-dn6 "block.lua")
+-- http://angg.twu.net/dednat6/block.lua
+-- http://angg.twu.net/dednat6/block.lua.html
+--                  (find-dn6 "block.lua")
 -- It replaces this:
--- http://angg.twu.net/LATEX/dednat6/texfile.lua
--- http://angg.twu.net/LATEX/dednat6/texfile.lua.html
---                        (find-dn6 "texfile.lua")
+-- http://angg.twu.net/dednat6/texfile.lua
+-- http://angg.twu.net/dednat6/texfile.lua.html
+--                  (find-dn6 "texfile.lua")
 --
 -- Suppose that we have a .tex file with 1000 lines, with a "\pu" at
 -- line 200, another "\pu" at line 300, and with lines with the "%D"
@@ -30,9 +31,10 @@
 --     publ   = Block {i=201, j=299}
 --     headbl = Block {i=210, j=215, head="%D"}
 --
--- «.TexLines»	(to "TexLines")
--- «.Block»	(to "Block")
--- «.texfile0»	(to "texfile0")
+-- «.TexLines»			(to "TexLines")
+-- «.Block»			(to "Block")
+-- «.texfile0»			(to "texfile0")
+-- «.tf_push_and_tf_pop»	(to "tf_push_and_tf_pop")
 
 
 -- (find-LATEXfile "dednat6load.lua" "texfile0(status.filename)")
@@ -139,7 +141,8 @@ tl = TexLines.test "p DD::: DD DD LLL:::p::p "
 -- blocks, pu blocks and arbitrary (non-bad) blocks, as described in
 -- the section "Heads and blocks" of the article about Dednat6 on
 -- TUGBoat:
---   http://angg.twu.net/LATEX/2018tugboat.pdf
+--   https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
+--   http://angg.twu.net/dednat6/tugboat-rev2.pdf
 --   (tubp 4 "heads-and-blocks")
 --   (tub    "heads-and-blocks")
 --
@@ -283,8 +286,6 @@ texfile = function (fname)
 
 pu = function (puline) tf:processuntil(puline or tex.inputlineno) end
 
-
-
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -302,9 +303,46 @@ heads = {
 tf:process()
 tf:processuntil(110)
 
-
-
 --]]
+
+
+
+
+--  _    __                    _     
+-- | |_ / _|   _ __  _   _ ___| |__  
+-- | __| |_   | '_ \| | | / __| '_ \ 
+-- | |_|  _|  | |_) | |_| \__ \ | | |
+--  \__|_|____| .__/ \__,_|___/_| |_|
+--      |_____|_|                    
+--
+-- «tf_push_and_tf_pop»  (to ".tf_push_and_tf_pop")
+-- Use this if want to run dednat6 on a subfile.
+-- If your main .tex file is foo.tex and it runs "\input bar.tex"
+-- then you should put this before the first "\pu" in bar.tex,
+--
+--   \directlua{tf_push("foo.tex")}
+--
+-- and this after the last "\pu":
+--
+--   \directlua{tf_pop()}
+--
+-- This is an experimental feature, written in june 2019. I hope
+-- the source code is obvious.
+--
+tf_stack = {}
+tf_push = function (fname)
+    local obj = {texlines=texlines, tf=tf}
+    table.insert(tf_stack, obj)
+    texfile0(fname)
+  end
+tf_pop = function ()
+    local obj = table.remove(tf_stack)
+    texlines = obj.texlines
+    tf = obj.tf
+  end
+
+
+
 
 
 

@@ -6,7 +6,8 @@
 --
 -- 2017ago05: see: (find-es "emacs" "merge")
 -- (find-sh "tkdiff ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
--- (find-sh "cp -v  ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua       ~/dednat6/edrxlib.lua")
 --
 -- On my system ~/LUA/lua50init.lua the two "edrxlib.lua"s
 -- USED TO BE hard linked:
@@ -20,7 +21,7 @@
 --
 -- This is my "init file" for Lua. As I have LUA_INIT set
 -- to "@$HOME/LUA/lua50init.lua", the Lua interpreter loads
--- this on start-up. 
+-- this on start-up.
 -- See: (find-angg ".zshrc" "lua" "LUA_INIT")
 --      (find-luamanualw3m "#6" "LUA_INIT" "@filename")
 --      (find-man "1 lua50" "LUA_INIT")
@@ -177,7 +178,7 @@
 -- (find-es "lua5" "install-5.1.2")
 
 -- «compat»  (to ".compat")
--- On Lua 4.x these functions had the short names on the left; 
+-- On Lua 4.x these functions had the short names on the left;
 -- on Lua-5.0.x a file etc/compat.lua could be used to make the short
 -- names work, but on Lua-5.1.x this compat.lua has been dropped...
 -- I still like the short names, so:
@@ -467,7 +468,7 @@ Tos = Class {
     getsortedpairs = function (tos, T)
         local ps = {}
         for k,v in pairs(T) do table.insert(ps, {key=k, val=v}) end
-        -- return ps        
+        -- return ps
         return sorted(ps, tos.comparepairs)
       end,
     comparepairs = function (pair1, pair2)
@@ -635,7 +636,7 @@ tos_has_eootype = function (o)
 --     return mytostring_table_orig(T, sep)
 --   end
 -- mytostring_table = mytostring_table_new
--- 
+--
 -- mytostring = function (o)
 --     local t = type(o)
 --     if t=="number" then return tostring(o) end
@@ -646,7 +647,7 @@ tos_has_eootype = function (o)
 
 
 -- mytostringk = mytostring   -- change this to print string keys differently
--- 
+--
 -- mytostring_arg = function (arg, sep)
 --     local images = {}
 --     for i=1,arg.n do images[i] = mytostring(arg[i]) end
@@ -1216,7 +1217,7 @@ translatechars = function (str, re, tbl)
 --         return gsub(str, re, function (c) return tbl[c] or c end)
 --       end
 --   end
--- 
+--
 -- sgmlify = chartranslator(sgmlify_re, sgmlify_table)
 
 -- «sbeconcat»  (to ".sbeconcat")
@@ -1272,7 +1273,7 @@ concatbestrings = function (subj, f, bestrings)
 curriedconcatbestrings = function (subj, f)
     return function (bestrings)
         return concatbestrings(subj, f, bestrings)
-      end 
+      end
   end
 
 
@@ -1333,7 +1334,7 @@ lpeg_gsub = function (Word, subj, f)
 --
 lpeg_gsub_ = function (WordTogsubCt, subj, f)
     f = f or function (...) return ... end
-    return concatbestrings(subj, f, WordTogsubCt:match(subj)) 
+    return concatbestrings(subj, f, WordTogsubCt:match(subj))
   end
 
 
@@ -1431,9 +1432,9 @@ chdir = function (dir) loadposix(); return assert(posix.chdir(ee_expand(dir))) e
 --   (find-luamanualw3m "#pdf-require")
 --   (find-lua51file "")
 --   (find-lua51file "src/loadlib.c" "static int ll_require ")
-package.loaded.lua50init = 
+package.loaded.lua50init =
   package.loaded.lua50init or "(loaded by LUA_INIT=@...)"
-package.loaded.edrxlib = 
+package.loaded.edrxlib =
   package.loaded.edrxlib or "(loaded by LUA_INIT=@...)"
 
 
@@ -1914,7 +1915,7 @@ Sexp = Class {
     getsexphtml = function (sexp)
         sexp.htmlranges = {}
         if not sexp.head then return end
-        if elispSPECIAL[sexp.head] then    -- for all kinds of special hacks 
+        if elispSPECIAL[sexp.head] then    -- for all kinds of special hacks
           elispSPECIAL[sexp.head](sexp)
           return
         end
@@ -2127,7 +2128,7 @@ ELispH = Class {
 -- (find-es "lua5" "ELispHF-tests")
 -- An ELispHF object holds an "elisp hyperlink function", that when
 -- called produces an ElispH object.
--- 
+--
 ELispHF = Class {
   type    = "ELispHF",
   newangg = function (head, d, suffix)
@@ -2265,7 +2266,7 @@ SexpSkel = Class {
         return ehf(ss:parsestrargs()) end,
     toehf = function (ss)
         return _EHF[ss.head] end,
-    toeh = function (ss) 
+    toeh = function (ss)
         local ehf = ss:toehf(); return ehf and ss:ehftoeh(ehf)
       end,
     totarget = function (ss)
@@ -2694,7 +2695,7 @@ findxxxpdf_parse = function (li, stem, adj)
       end
     end
     return str,p
-  end  
+  end
 findxxxpdf_parse_file = function (fname, stem, adj)
     for _,li in ipairs(splitlines(ee_readfile(fname))) do
       findxxxpdf_parse(li, stem, adj)
@@ -2724,6 +2725,12 @@ findxxxpdf_parse_file = function (fname, stem, adj)
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'mpott', 16)\"")
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'hott', 12)\"")
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'damasphd', 6)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'mancosupmp', 14)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'fongspivak', 12)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'agdausermanual', 4)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'awodeyct', 10)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'simmonsi', 12)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'asy', 5)\"")
 --
 -- bigstr = ee_readfile "/tmp/o"
 -- lines = splitlines(bigstr)

@@ -1,5 +1,5 @@
 % (find-angg "dednat6/extra-comparisons.tex")
-% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-comparisons.tex"))
+% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-comparisons.tex" :end))
 % (defun d () (interactive) (find-pdf-page "~/dednat6/extra-comparisons.pdf"))
 % (defun e () (interactive) (find-dednat6 "extra-comparisons.tex"))
 % (defun u () (interactive) (find-latex-upload-links "extra-comparisons"))
@@ -10,26 +10,609 @@
 %               file:///tmp/extra-comparisons.pdf
 %           file:///tmp/pen/extra-comparisons.pdf
 % http://angg.twu.net/dednat6/extra-comparisons.pdf
-\documentclass[oneside]{book}
+
+% «.a-few-samples»			(to "a-few-samples")
+% «.samples-5x8»			(to "samples-5x8")
+% «.samples-5x8-srcboxdefs»		(to "samples-5x8-srcboxdefs")
+% «.samples-5x8-srcpage»		(to "samples-5x8-srcpage")
+% «.samples-5x8-output»			(to "samples-5x8-output")
+% «.samples-triangle»			(to "samples-triangle")
+% «.samples-triangle-srcboxdefs»	(to "samples-triangle-srcboxdefs")
+% «.samples-triangle-srcpage»		(to "samples-triangle-srcpage")
+% «.samples-triangle-output»		(to "samples-triangle-output")
+% «.other»				(to "other")
+% «.other-hafagaka»			(to "other-hafagaka")
+% «.other-xcx»				(to "other-xcx")
+
+\documentclass[oneside]{article}
 \usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{pict2e}
+\usepackage{verbatimbox}
+\usepackage{graphicx}
+\usepackage{lipsum}
 \usepackage[x11names,svgnames]{xcolor} % (find-es "tex" "xcolor")
 %\usepackage{tikz}
 %
 % (find-dn6 "preamble6.lua" "preamble0")
 %\usepackage{proof}   % For derivation trees ("%:" lines)
-%\input diagxy        % For 2D diagrams ("%D" lines)
-%\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
 %
 \begin{document}
 
 \catcode`\^^J=10
 \directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
 
-Hello
+% (find-es "tex" "co")
+% \co: a low-level way to typeset code; a poor man's "\verb"
+\def\co#1{{%
+  \def\%{\char37}%
+  \def\\{\char92}%
+  \def\^{\char94}%
+  \def\~{\char126}%
+  \tt#1%
+  }}
+\def\qco#1{`\co{#1}'}
+\def\qqco#1{``\co{#1}''}
+
+
+
+%L forths[".mod="] = function ()
+%L     ds:pick(0).modifier = getword() or error()
+%L   end
+
+
+% (find-dednat6 "2018dednat6-extras.tex")
+% (find-dednat6 "2018dednat6-extras.tex" "a-few-samples")
+
+% (find-es "tex" "verbatimbox")
+% (find-es "tex" "resizebox")
+% (find-es "tex" "newsavebox")
+% (find-kopkadaly4page (+ 12 87) "\\newsavebox")
+% (find-kopkadaly4text (+ 12 87) "\\newsavebox")
+% (find-kopkadaly4page (+ 12 87) "\\savebox{\\boxname}[width][pos]{text}")
+% (find-kopkadaly4text (+ 12 87) "\\savebox{\\boxname}[width][pos]{text}")
+\newsavebox{\barrdednatsix}
+\newsavebox{\barrorig}
+\newsavebox{\barrtridednatsix}
+\newsavebox{\barrtriorig}
+\newsavebox{\hafagaka}
+\newsavebox{\xcx}
+
+
+\title{Dednat6: some comparisons \\ with diagxy}
+
+\author{Eduardo Ochs}
+
+\maketitle
+
+
+A few weeks after my article about Dednat6 appeared in TUGBoat Michael
+Barr sent me an e-mail asking how I would do in Dednat6 two diagrams
+from the diagxy manual (sec.\ref{a-few-samples}) and two other
+diagrams (sec.\ref{other})...
+
+
+
+%     _       __                                           _           
+%    / \     / _| _____      __  ___  __ _ _ __ ___  _ __ | | ___  ___ 
+%   / _ \   | |_ / _ \ \ /\ / / / __|/ _` | '_ ` _ \| '_ \| |/ _ \/ __|
+%  / ___ \  |  _|  __/\ V  V /  \__ \ (_| | | | | | | |_) | |  __/\__ \
+% /_/   \_\ |_|  \___| \_/\_/   |___/\__,_|_| |_| |_| .__/|_|\___||___/
+%                                                   |_|                
+% «a-few-samples»  (to ".a-few-samples")
+% (find-es "dednat" "diaxydoc-and-barrdoc")
+% https://ctan.org/pkg/diagxy
+% http://tug.ctan.org/tex-archive/macros/generic/diagrams/diagxy/diaxydoc.pdf
+% http://tug.ctan.org/tex-archive/macros/latex/contrib/xypic/doc/barrdoc.pdf
+% (code-pdf-page "diaxydoc" "/usr/local/texlive/2018/texmf-dist/doc/generic/barr/diaxydoc.pdf")
+% (code-pdf-text "diaxydoc" "/usr/local/texlive/2018/texmf-dist/doc/generic/barr/diaxydoc.pdf")
+% (code-c-d      "barrdoc"  "/usr/local/texlive/2018/texmf-dist/doc/generic/barr/")
+% (code-pdf-page "barrdoc"  "/usr/local/texlive/2018/texmf-dist/doc/generic/xypic/barrdoc.pdf")
+% (code-pdf-text "barrdoc"  "/usr/local/texlive/2018/texmf-dist/doc/generic/xypic/barrdoc.pdf")
+% (find-diaxydocpage)
+% (find-diaxydoctext)
+% (find-barrdocpage)
+% (find-barrdoctext)
+% (find-diaxydocpage 1 "Version 2015-09-26")
+% (find-diaxydoctext 1 "Version 2015-09-26")
+% (find-barrdocpage  1 "Version 2011-06-18")
+% (find-barrdoctext  1 "Version 2011-06-18")
+% (find-barrdocpage 24 "5.3    Empty placement and moving labels")
+% (find-barrdoctext 24 "5.3    Empty placement and moving labels")
+% (find-barrdocpage  33 "5.9   A few samples")
+% (find-barrdoctext  33 "5.9   A few samples")
+% (find-diaxydocpage 34 "4.9   A few samples")
+% (find-diaxydoctext 34 "4.9   A few samples")
+% (find-es "xypic" "a-few-samples")
+
+\section{``A few samples''}
+\label{a-few-samples}
+
+The section ``A few samples'' in the diagxy manual --- section 4.9 or
+5.9, depending on the version --- has big two diagrams, one based on a
+$5 \times 8$ grid and one based on a triangle.
+
+%  ____      ___  
+% | ___|_  _( _ ) 
+% |___ \ \/ / _ \ 
+%  ___) >  < (_) |
+% |____/_/\_\___/ 
+%                 
+% «samples-5x8»  (to ".samples-5x8")
+% The diagram in the section "A few samples" that is based on a 5x8 grid
+% (find-dednat6 "2018dednat6-extras.tex" "a-few-samples")
+\subsection{The $5 \times 8$ diagram}
+
+Barr's $5 \times 8$ diagram uses splines for the outermost curved
+arrows, and he hardcodes their controls points: look for the
+\qco{c,(3000,0),(2700,2800),p} and the \qco{c,(-300,0),(-600,2400),p}
+in the last two \qco{\\arrow}s. In dednat6 the ``low-level
+coordinates'' of nodes are not trivial to get; I just hacked a way to
+insert these \qco{c,(\_,\_),(\_,\_),p}s into \qco{\\morphism}s and
+guessed values that gave a result that looked reasonably well.
+
+
+
+% «samples-5x8-srcboxdefs»  (to ".samples-5x8-srcboxdefs")
+
+\begin{verbbox}
+% Source code for Barr's diagram:
+%
+$$\bfig
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \node A11(0,2800)[(\h(\g\f))\t_A]
+  \node A13(1200,2800)[((\h\g)\f)\t_A]
+  \node A21(0,2400)[\h((\g\f)\t_A)]
+  \node A22(600,2400)[\h(\g\f\t_A)]
+  \node A23(1200,2400)[(\h\g(\f\t_A))]
+  \node A32(600,2000)[\h(\g(\t_Bf))]
+  \node A33(1200,2000)[(\h\g)(\t_Bf)]
+  \node A34(1800,2000)[((\h\g)\t_B)f]
+  \node A42(600,1600)[\h((\g\t_B)f)]
+  \node A44(1800,1600)[(\h(\g\t_B))f]
+  \node A52(600,1200)[\h((\t_C)g)f]
+  \node A54(1800,1200)[(\h(\t_Cg))f]
+  \node A62(600,800)[\h(\t_C(gf))]
+  \node A63(1200,800)[(\h\t_C)(gf)]
+  \node A64(1800,800)[\h(\t_C(gf))]
+  \node A73(1200,400)[(\t_Dh)(gf)]
+  \node A74(1800,400)[((\t_D)h)g]
+  \node A75(2400,400)[(\t_D(hg))f]
+  \node A83(1200,0)[\t_D(h(gf))]
+  \node A85(2400,0)[\t_D((hg)f)]
+  \arrow[A11`A13;]
+  \arrow[A21`A11;]
+  \arrow[A21`A22;]
+  \arrow[A22`A23;]
+  \arrow[A23`A13;]
+  \arrow[A32`A22;\h(\g\t_f)]
+  \arrow[A32`A33;]
+  \arrow[A33`A23;(\h\g)\t_f]
+  \arrow[A33`A34;]
+  \arrow[A42`A44;]
+  \arrow[A42`A32;]
+  \arrow[A44`A34;]
+  \arrow[A52`A42;\h(\t_gf)]
+  \arrow[A52`A54;]
+  \arrow[A54`A44;(\h\t_g)f]
+  \arrow[A62`A52;]
+  \arrow[A62`A63;]
+  \arrow[A63`A64;]
+  \arrow[A73`A63;\t_h(gf)]
+  \arrow[A73`A74;]
+  \arrow[A74`A64;\t_{(hg)f}]
+  \arrow[A74`A75;]
+  \arrow[A83`A73;]
+  \arrow[A83`A85;]
+  \arrow[A85`A75;]
+  \arrow|r|/{@{>}@/_15pt/}/[A75`A34;\t_{hg}f]
+  \arrow|l|/{@{>}@/^15pt/}/[A62`A21;\h(\t_C(gf))]
+  \arrow|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/[A85`A13;\t_{hg}f]
+  \arrow|r|/{@{>}@`{c,(-300,0),(-600,2400),p}}/[A83`A11;\t_{h(fg)}]
+  \efig
+$$
+\end{verbbox}
+
+\savebox\barrorig{\theverbbox}
+
+\begin{verbbox}
+% Source code for its translation to Dednat6:
+%
+%D diagram barr-dednat6
+%D 2Dx     100    +40    +40    +40    +40
+%D 2D  100 A11 --------> A13
+%D 2D       ^             ^
+%D 2D       |             |
+%D 2D  +27 A21 -> A22 -> A23
+%D 2D       ^      ^      ^
+%D 2D       |      |      |
+%D 2D  +27  |     A32 -> A33 -> A34
+%D 2D       |      ^             ^  ^
+%D 2D       |      |             |   \
+%D 2D  +27  |     A42 --------> A44   \
+%D 2D       |      ^             ^     \
+%D 2D        \     |             |      |
+%D 2D  +27    \   A52 --------> A54     |
+%D 2D          \   ^                    |
+%D 2D           \  |                    |
+%D 2D  +27        A62 -> A63 -> A64     |
+%D 2D                     ^      ^      |
+%D 2D                     |      |      |
+%D 2D  +27               A73 -> A74 -> A75
+%D 2D                     ^             ^
+%D 2D                     |             |
+%D 2D  +27               A83 --------> A85
+%D 2D
+%D ren A11     A13   ==>   (\h(\g\f))\t_A              ((\h\g)\f)\t_A
+%D ren A21 A22 A23   ==>   \h((\g\f)\t_A) \h(\g\f\t_A) (\h\g(\f\t_A))
+%D ren     A32 A33 A34     ==>            \h(\g(\t_Bf)) (\h\g)(\t_Bf) ((\h\g)\t_B)f
+%D ren     A42     A44     ==>            \h((\g\t_B)f)               (\h(\g\t_B))f
+%D ren     A52     A54     ==>            \h((\t_C)g)f                (\h(\t_Cg))f
+%D ren     A62 A63 A64     ==>            \h(\t_C(gf)) (\h\t_C)(gf) \h(\t_C(gf))
+%D ren         A73 A74 A75 ==>                          (\t_Dh)(gf) ((\t_D)h)g (\t_D(hg))f
+%D ren         A83     A85 ==>                          \t_D(h(gf))            \t_D((hg)f)
+%D
+%D (( # Horizontal arrows:
+%D    A11 A13 ->
+%D    A21 A22 -> A22 A23 ->
+%D    A32 A33 -> A33 A34 ->
+%D    A42 A44 ->
+%D    A52 A54 ->
+%D    A62 A63 -> A63 A64 ->
+%D    A73 A74 -> A74 A75 ->
+%D    A83 A85 ->
+%D
+%D    # Simple vertical arrows:
+%D    A11 A21 <-                       A13 A23 <-
+%D    A22 A32 <- .plabel= r \h(\g\t_f) A23 A33 <- .plabel= r (\h\g)\t_f
+%D    A32 A42 <-                       A34 A44 <-
+%D    A42 A52 <- .plabel= r \h(\t_gf)  A44 A54 <- .plabel= r (\h\t_g)f
+%D    A52 A62 <-
+%D    A63 A73 <- .plabel= r \t_h(gf)   A64 A74 <- .plabel= r \t_{(hg)f}
+%D    A73 A83 <- A75 A85 <-
+%D
+%D    # Curved vertical arrows:
+%D    A75 A34 -> .curve= _15pt .plabel= r \t_{hg}f
+%D    A62 A21 -> .curve= ^15pt .plabel= l \h(\t_C(gf))
+%D    A83 A11 -> .mod= @`{c,(-300,-2835),(-800,-100),p} .plabel= r \t_{h(fg)}
+%D    A85 A13 -> .mod= @`{c,(3000,-2000),(2700,-500),p} .plabel= l \t_{hg}f
+%D
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \diag{barr-dednat6}
+$$
+\end{verbbox}
+
+\savebox\barrdednatsix{\theverbbox}
+
+% (find-es "tex" "setbox")
+% (find-es "tex" "newbox")
+
+% «samples-5x8-srcpage»  (to ".samples-5x8-srcpage")
+
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrorig}}}
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrdednatsix}}}
+
+\newpage
+
+% «samples-5x8-output»  (to ".samples-5x8-output")
+
+Output of Barr's code:
+
+$$\bfig
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \node A11(0,2800)[(\h(\g\f))\t_A]
+  \node A13(1200,2800)[((\h\g)\f)\t_A]
+  \node A21(0,2400)[\h((\g\f)\t_A)]
+  \node A22(600,2400)[\h(\g\f\t_A)]
+  \node A23(1200,2400)[(\h\g(\f\t_A))]
+  \node A32(600,2000)[\h(\g(\t_Bf))]
+  \node A33(1200,2000)[(\h\g)(\t_Bf)]
+  \node A34(1800,2000)[((\h\g)\t_B)f]
+  \node A42(600,1600)[\h((\g\t_B)f)]
+  \node A44(1800,1600)[(\h(\g\t_B))f]
+  \node A52(600,1200)[\h((\t_C)g)f]
+  \node A54(1800,1200)[(\h(\t_Cg))f]
+  \node A62(600,800)[\h(\t_C(gf))]
+  \node A63(1200,800)[(\h\t_C)(gf)]
+  \node A64(1800,800)[\h(\t_C(gf))]
+  \node A73(1200,400)[(\t_Dh)(gf)]
+  \node A74(1800,400)[((\t_D)h)g]
+  \node A75(2400,400)[(\t_D(hg))f]
+  \node A83(1200,0)[\t_D(h(gf))]
+  \node A85(2400,0)[\t_D((hg)f)]
+  \arrow[A11`A13;]
+  \arrow[A21`A11;]
+  \arrow[A21`A22;]
+  \arrow[A22`A23;]
+  \arrow[A23`A13;]
+  \arrow[A32`A22;\h(\g\t_f)]
+  \arrow[A32`A33;]
+  \arrow[A33`A23;(\h\g)\t_f]
+  \arrow[A33`A34;]
+  \arrow[A42`A44;]
+  \arrow[A42`A32;]
+  \arrow[A44`A34;]
+  \arrow[A52`A42;\h(\t_gf)]
+  \arrow[A52`A54;]
+  \arrow[A54`A44;(\h\t_g)f]
+  \arrow[A62`A52;]
+  \arrow[A62`A63;]
+  \arrow[A63`A64;]
+  \arrow[A73`A63;\t_h(gf)]
+  \arrow[A73`A74;]
+  \arrow[A74`A64;\t_{(hg)f}]
+  \arrow[A74`A75;]
+  \arrow[A83`A73;]
+  \arrow[A83`A85;]
+  \arrow[A85`A75;]
+  \arrow|r|/{@{>}@/_15pt/}/[A75`A34;\t_{hg}f]
+  \arrow|l|/{@{>}@/^15pt/}/[A62`A21;\h(\t_C(gf))]
+  \arrow|l|/{@{>}@`{c,(3000,0),(2700,2800),p}}/[A85`A13;\t_{hg}f]
+  \arrow|r|/{@{>}@`{c,(-300,0),(-600,2400),p}}/[A83`A11;\t_{h(fg)}]
+  \efig
+$$
+
+\newpage
+
+Output of my conversion of it to dednat6:
+
+$$\pu
+  \def\f{\bar f}
+  \def\g{\bar g}
+  \def\h{\bar h}
+  \let\t\tau
+  \diag{barr-dednat6}
+$$
+
+
+\newpage
+
+%  _____     _                   _      
+% |_   _| __(_) __ _ _ __   __ _| | ___ 
+%   | || '__| |/ _` | '_ \ / _` | |/ _ \
+%   | || |  | | (_| | | | | (_| | |  __/
+%   |_||_|  |_|\__,_|_| |_|\__, |_|\___|
+%                          |___/        
+%
+% «samples-triangle»  (to ".samples-triangle")
+% (find-barrdocpage  37 "all four diagonal arrows should be curved")
+% (find-barrdoctext  37 "all four diagonal arrows should be curved")
+% (find-diaxydocpage 38 "all four diagonal arrows should be curved")
+% (find-diaxydoctext 38 "all four diagonal arrows should be curved")
+% (find-barrdocfile "diaxydoc.tex")
+% (find-barrdocfile "diaxydoc.tex" "all four diagonal arrows should be curved")
+% (find-LATEX "2019barr2.tex" "TAC")
+
+\subsection{The triangle diagram}
+
+The source in diagxy for this triangle diagram can be found in
+diaxydoc.tex. I don't have support for ``holes'' in dednat6 yet, so I
+simplified the original diagram a bit; note that in the dednat6
+version some arrows cross.
+
+% «samples-triangle-srcboxdefs»  (to ".samples-triangle-srcboxdefs")
+
+\begin{verbbox}
+$$\bfig
+  \node 1(1000,800)[Y]
+  \node 21(0,0)[X]
+  \node 22(2000,0)[Z]
+  \node aa(300,400)[]
+  \node ab(450,400)[]
+  \node ba(1550,400)[]
+  \node bb(1700,400)[]
+  \arrow|a|/{@{>}@/^20pt/}/[21`1;f]
+  \arrow|b|[21`1;g]
+  \arrow[aa`ab;\beta]
+  \arrow[bb`ba;\delta]
+  \arrow|b|[1`22;i]
+  \arrow|a|/{@{>}@/^20pt/}/[1`22;h]
+  \arrow/{@{>}@/^15pt/@<5pt>^(.4)k}/[21`22;]
+  \arrow/{@{>}@/^15pt/@<5pt>^(.4)k}/[21`22;]
+  \arrow/{@{>}@<5pt>|(.4)j|(.5)\hole}/[21`22;]
+  \arrow/{@{>}@<-10pt>|(.4){hf}|-\hole}/[21`22;]
+  \arrow/{@{>}@/_15pt/@<-10pt>_(0.4){ig}}/[21`22;]
+  \node c(1000,150)[]
+  \node f(1000,-200)[]
+  \arrow|l|[f`c;t]
+  \node d(1100,25)[]
+  \node e(1100,-75)[]
+  \arrow|r|[e`d;s]
+  \efig
+$$
+\end{verbbox}
+
+\savebox\barrtriorig{\theverbbox}
+
+\begin{verbbox}
+%D diagram TAC
+%D 2Dx     100  +60  +60
+%D 2D  100      Y
+%D 2D         ^   \
+%D 2D        /     v
+%D 2D  +45 X ------> Z
+%D 2D
+%D (( X Y -> .curve= ^15pt sl^                   .plabel= a f
+%D    X Y ->                                     .plabel= b g
+%D    Y Z -> .curve= ^15pt sl^                   .plabel= a h
+%D    Y Z ->                                     .plabel= b i
+%D    X Z -> .curve= ^15pt                       .plabel= a k
+%D    X Z ->                                     .plabel= m j
+%D    X Z ->               .slide= -15pt         .plabel= m hf
+%D    X Z -> .curve= _15pt .slide= -15pt         .plabel= m ig
+%D
+%D    X Y harrownodes nil 15 15  ->              .plabel= a \beta
+%D    Y Z harrownodes 15  15 nil <-              .plabel= a \delta
+%D
+%D    X Z varrownodes 12 30 nil <- .slide= -15pt .plabel= l t
+%D    X Z varrownodes 12 15 nil <- .slide=  15pt .plabel= r s
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \text{Edrx:} \quad \diag{TAC}
+$$
+\end{verbbox}
+
+\savebox\barrtridednatsix{\theverbbox}
+
+
+% «samples-triangle-srcpage»  (to ".samples-triangle-srcpage")
+
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrtriorig}}}
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrtridednatsix}}}
+
+% «samples-triangle-output»  (to ".samples-triangle-output")
+
+$$\pu
+  \text{Dednat6:} \quad \diag{TAC}
+$$
+
+$$\text{Barr:}
+  \quad
+  \bfig
+  \node 1(1000,800)[Y]
+  \node 21(0,0)[X]
+  \node 22(2000,0)[Z]
+  \node aa(300,400)[]
+  \node ab(450,400)[]
+  \node ba(1550,400)[]
+  \node bb(1700,400)[]
+  \arrow|a|/{@{>}@/^20pt/}/[21`1;f]
+  \arrow|b|[21`1;g]
+  \arrow[aa`ab;\beta]
+  \arrow[bb`ba;\delta]
+  \arrow|b|[1`22;i]
+  \arrow|a|/{@{>}@/^20pt/}/[1`22;h]
+  \arrow/{@{>}@/^15pt/@<5pt>^(.4)k}/[21`22;]
+  \arrow/{@{>}@/^15pt/@<5pt>^(.4)k}/[21`22;]
+  \arrow/{@{>}@<5pt>|(.4)j|(.5)\hole}/[21`22;]
+  \arrow/{@{>}@<-10pt>|(.4){hf}|-\hole}/[21`22;]
+  \arrow/{@{>}@/_15pt/@<-10pt>_(0.4){ig}}/[21`22;]
+  \node c(1000,150)[]
+  \node f(1000,-200)[]
+  \arrow|l|[f`c;t]
+  \node d(1100,25)[]
+  \node e(1100,-75)[]
+  \arrow|r|[e`d;s]
+  \efig
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+%   ___  _   _                     _ _                 
+%  / _ \| |_| |__   ___ _ __    __| (_) __ _  __ _ ___ 
+% | | | | __| '_ \ / _ \ '__|  / _` | |/ _` |/ _` / __|
+% | |_| | |_| | | |  __/ |    | (_| | | (_| | (_| \__ \
+%  \___/ \__|_| |_|\___|_|     \__,_|_|\__,_|\__, |___/
+%                                            |___/     
+%
+% «other»  (to ".other")
+% (find-LATEX "2019barr2.tex" "HAFAGAKA")
+\section{Other diagrams}
+\label{other}
+
+% «other-hafagaka»  (to ".other-hafagaka")
+% (find-LATEX "2019barr2.tex" "HAFAGAKA")
+
+\begin{verbbox}
+%D diagram HAFAGAKA
+%D 2Dx     100    +30 +15 +15   +30
+%D 2D  100            A
+%D 2D               / | \
+%D 2D              v  v  v
+%D 2D  +25 HA --> FA --> GA --> KA
+%D 2D
+%D (( A HA -> A FA |-> A GA |-> A KA ->
+%D    HA FA -> FA GA -> .plabel= b TA GA KA ->
+%D    A FA GA midpoint -->
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{HAFAGAKA}
+$$
+\end{verbbox}
+
+\savebox\hafagaka{\theverbbox}
+
+
+% \fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrtriorig}}}
+% \fbox{\resizebox{0.4\textwidth}{!}{\usebox{\barrtridednatsix}}}
+
+% «other-xcx»  (to ".other-xcx")
+% (find-LATEX "2019barr2.tex" "XCX")
+
+\begin{verbbox}
+%D diagram XCX
+%D 2Dx     100   +30   +30
+%D 2D  100 A --> X --> C
+%D 2D       \   | ^   ^
+%D 2D        \  | |  /
+%D 2D         v v | /
+%D 2D  +30       Y
+%D 2D
+%D ren A ==> C
+%D
+%D (( A X -> .plabel= a f  X C -> .plabel= a g
+%D    A Y -> .plabel= l kf Y C -> .plabel= r g\ell
+%D    X Y -> sl_ .plabel= l k
+%D    X Y <- sl^ .plabel= r \ell
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{XCX}
+$$
+\end{verbbox}
+
+\savebox\xcx{\theverbbox}
+
+
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\hafagaka}}}
+\fbox{\resizebox{0.4\textwidth}{!}{\usebox{\xcx}}}
+
+\pu
+$$\diag{HAFAGAKA}
+$$
+
+$$  \diag{XCX}
+$$
+
+
+
 
 \end{document}
 

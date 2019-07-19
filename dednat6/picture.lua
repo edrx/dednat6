@@ -1,8 +1,8 @@
 -- picture.lua: classes to create LaTeX pictures (and ascii representations).
 -- This file:
--- http://angg.twu.net/LATEX/dednat6/picture.lua
--- http://angg.twu.net/LATEX/dednat6/picture.lua.html
---  (find-angg        "LATEX/dednat6/picture.lua")
+-- http://angg.twu.net/dednat6/picture.lua
+-- http://angg.twu.net/dednat6/picture.lua.html
+--  (find-dn6                 "picture.lua")
 --
 -- This file defines a class LPicture that generates LaTeX
 -- pict2e diagrams, and a class AsciiPicture for ascii
