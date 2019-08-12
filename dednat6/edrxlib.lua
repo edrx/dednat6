@@ -200,6 +200,7 @@ tremove  = table.remove    -- (find-luamanualw3m "#pdf-table.remove")
 -- foreachi = table.foreachi -- (find-luamanualw3m "#7.2" "table.foreachi")
 getn     = table.getn        -- (find-luamanualw3m "#7.2" "table.getn")
 
+toint    = math.floor      -- for 5.3
 
 
 -- «dformat»  (to ".dformat")
