@@ -117,6 +117,7 @@
 -- «.gformat»		(to "gformat")
 -- «.each2»		(to "each2")
 -- «.splitlines»	(to "splitlines")
+-- «.splitlines-5.3»	(to "splitlines-5.3")
 -- «.translatechars»	(to "translatechars")
 -- «.sbeconcat»		(to "sbeconcat")
 -- «.concatbestrings»	(to "concatbestrings")
@@ -1218,11 +1219,21 @@ each2 = function (tbl)
 -- «splitlines»  (to ".splitlines")
 splitlines = function (bigstr)
     local arr = split(bigstr, "([^\n]*)\n?")
-    tremove(arr)
+    table.remove(arr)
     return arr
   end
 isplitlines = function (bigstr)
     return ipairs(splitlines(bigstr))
+  end
+
+-- «splitlines-5.3»  (to ".splitlines-5.3")
+-- (find-es "lua5" "splitlines-5.3")
+splitlines = function (bigstr)
+    local arr = split(bigstr, "([^\n]*)\n?")
+    if _VERSION:sub(5) < "5.3" then
+      table.remove(arr)
+    end
+    return arr
   end
 
 -- «translatechars»  (to ".translatechars")

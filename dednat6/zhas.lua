@@ -1393,6 +1393,16 @@ for v in z:points() do mp:put(v, "**") end
 = mp
 = mp:tolatex()
 
+opts = {def="dagHouse", scale="4pt", meta="p b s"}
+str = ".1.|2.3|4.5"
+mp = MixedPicture.new(opts):zfunction(str)
+= mp
+= mp:tolatex()
+
+mp = MixedPicture.new(opts):zsetbullets(str)
+= mp
+= mp:tolatex()
+
 -- (find-istfile "1.org" "* 2-column graphs")
 -- (find-istfile "1.org" "* 2-column graphs" "how to convert between proper")
 z = ZHA.fromspec("12RR1234321L"):print()

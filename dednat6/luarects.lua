@@ -411,7 +411,7 @@ ZHAFromPoints = Class {
     spec = function (zfp)
         local s = "1"
         local L, R, W = zfp.L, zfp.R, {}
-        for y=0,#L do W[y] = (R[y] - L[y])/2 + 1 end
+        for y=0,#L do W[y] = toint((R[y] - L[y])/2) + 1 end
         for y=1,#L do
           if W[y] == W[y-1]
           then s = s..((L[y]<L[y-1]) and "L" or "R")
