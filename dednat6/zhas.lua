@@ -90,7 +90,7 @@ ZHA = Class {
           if c == "R"       then return V{ 1,  1} end           -- move right
           if c == (w+1).."" then w = w+1; return V{-1,  1} end  -- become wider
           if c == (w-1).."" then w = w-1; return V{ 1, -1} end  -- become thinner
-          error("Bad char: "..c)
+          error("Bad char: "..c.." in spec: "..z.spec)
         end
       for y=1,z.maxy do
         -- PP(y, getc(y), w)

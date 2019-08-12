@@ -8,6 +8,7 @@
 -- (find-sh "tkdiff ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
 -- (find-sh0 "cp -v ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
 -- (find-sh0 "cp -v ~/LUA/lua50init.lua       ~/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua       ~/blogme3/edrxlib.lua")
 --
 -- On my system ~/LUA/lua50init.lua the two "edrxlib.lua"s
 -- USED TO BE hard linked:
@@ -54,6 +55,7 @@
 -- «.escripts»		(to "escripts")
 -- «.build-lua»		(to "build-lua")
 -- «.compat»		(to "compat")
+-- «.dformat»		(to "dformat")
 -- «.string-methods»	(to "string-methods")
 -- «.otherfunctions»	(to "otherfunctions")
 -- «.printf»		(to "printf")
@@ -197,6 +199,22 @@ tremove  = table.remove    -- (find-luamanualw3m "#pdf-table.remove")
 
 -- foreachi = table.foreachi -- (find-luamanualw3m "#7.2" "table.foreachi")
 getn     = table.getn        -- (find-luamanualw3m "#7.2" "table.getn")
+
+
+
+-- «dformat»  (to ".dformat")
+-- (find-es "lua5" "dformat")
+if _VERSION:sub(5) < "5.3" then
+  dformat_fmt = function (fmt) return fmt end
+  string.dformat = string.format
+  dformat        = string.format
+else
+  dformat_fmt = function (fmt) return (fmt:gsub("%%d", "%%.0f")) end
+  string.dformat = function (fmt, ...)
+      return string.format(dformat_fmt(fmt), ...)
+    end
+  dformat = string.dformat
+end
 
 
 
@@ -2731,6 +2749,7 @@ findxxxpdf_parse_file = function (fname, stem, adj)
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'awodeyct', 10)\"")
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'simmonsi', 12)\"")
 -- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'asy', 5)\"")
+-- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'downeytp', 22)\"")
 --
 -- bigstr = ee_readfile "/tmp/o"
 -- lines = splitlines(bigstr)

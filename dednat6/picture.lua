@@ -84,9 +84,9 @@ V = Class {
         local x, y = a:match("^%((.-),(.-)%)$")
         if x then return V{x+0, y+0} end
         local l, r = a:match("^(%d)(%d)$")
-        if l then return V{l+0, r+0}:lrtoxy() end
+        if l then return V{tonumber(l), tonumber(r)}:lrtoxy() end
         local l, r, ensw = a:match("^(%d)(%d)([ensw])$")
-        if l then return V{l+0, r+0}:lrtoxy():walk(ensw) end
+        if l then return V{tonumber(l), tonumber(r)}:lrtoxy():walk(ensw) end
         error("V() got bad string: "..a)
       end
     end,
@@ -95,8 +95,8 @@ V = Class {
   __index = {
     xytolr = function (v)
         local x, y = v[1], v[2]
-        local l = (y - x) / 2
-        local r = (y + x) / 2
+        local l = toint((y - x) / 2)
+        local r = toint((y + x) / 2)
         return V{l, r}
       end,
     lrtoxy = function (v)

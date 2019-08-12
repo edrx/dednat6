@@ -80,6 +80,7 @@ LR = Class {
       -- local maxl,maxr,leftgens,rightgens = unpack(split(spec, "[ %d]+"))
       local pat = "^ *(%d)[ ,]*(%d) *;([ %d]*),([ %d]*)$"
       local maxl,maxr,leftgens,rightgens = spec:match(pat)
+      maxl,maxr = tonumber(maxl),tonumber(maxr)
       return LR.fromtwocolgraph(maxl+0, maxr+0, leftgens, rightgens, ax)
     end,
   fromtwocolgraph = function (maxl, maxr, leftgens, rightgens, ax)
@@ -118,7 +119,7 @@ LR = Class {
       end,
     spec = function (o)
         local W = {}
-        for y=0,#o.L do W[y] = (o.R[y] - o.L[y])/2 + 1 end
+        for y=0,#o.L do W[y] = toint((o.R[y] - o.L[y])/2) + 1 end
         local spec = "1"
         for y=1,#o.L do
           if W[y] == W[y-1]

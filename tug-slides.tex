@@ -17,6 +17,7 @@
 % http://angg.twu.net/dednat6/tug-slides.pdf
 
 % «.defs»			(to "defs")
+% «.pbsymbol»			(to "pbsymbol")
 % «.verbatim»			(to "verbatim")
 % «.myhbox»			(to "myhbox")
 % «.bgcolorhbox»		(to "bgcolorhbox")
@@ -28,6 +29,7 @@
 % «.dednat.icn-4»		(to "dednat.icn-4")
 % «.dednat4.lua»		(to "dednat4.lua")
 % «.dednat4.lua-diagram»	(to "dednat4.lua-diagram")
+%   «.BCC»			(to "BCC")
 % «.dednat4.lua-diagram-2»	(to "dednat4.lua-diagram-2")
 % «.dednat4.lua-diagram-3»	(to "dednat4.lua-diagram-3")
 % «.dednat4.lua-diagram-4»	(to "dednat4.lua-diagram-4")
@@ -113,6 +115,8 @@
 \def\catA{\mathbf{A}}
 \def\catB{\mathbf{B}}
 \def\ot{\leftarrow}
+
+% «pbsymbol»  (to ".pbsymbol")
 \def\pbsymbol#1{%
   \begin{picture}(#1,#1)
     \put(0,0){\line(1,0){#1}}
@@ -485,7 +489,8 @@ Generates code for \ColorGreen{\tt diagxy.tex} (a front-end for \ColorGreen{\tt 
 %L verbdef "BCCLstdsrc"
 
 
-
+% «BCC»  (to ".BCC")
+%
 %D diagram BCCL-std
 %D 2Dx    100     +45                +55   +45
 %D 2D 100 B0 <====================== B1

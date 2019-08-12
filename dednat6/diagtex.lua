@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/diagtex.lua
 --                    (find-dn6 "diagtex.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2011apr10
+-- Version: 2019aug12
 -- License: GPL3
 
 -- «.coords»		(to "coords")
@@ -66,7 +66,7 @@ arrow_to_TeX = function (arrow)
     --   (find-es "diagxy" "shape")
     local p, sh, L = arrow_to_TeX_pshL(arrow)  -- defined below
     --
-    return format("\\morphism(%d,%d)%s%s<%d,%d>[%s`%s;%s]",
+    return dformat("\\morphism(%d,%d)%s%s<%d,%d>[%s`%s;%s]",
                   x1, y1, p, sh, dx, dy, N1, N2, L)
   end
 
@@ -132,7 +132,7 @@ DxyPlace = Class {
     TeX = function (pseudoar)
         local node = pseudoar[1]
         local x, y = realxy(node.x, node.y)
-        return format("\\place(%d,%d)[{%s}]", x, y, node_to_TeX(node))
+        return dformat("\\place(%d,%d)[{%s}]", x, y, node_to_TeX(node))
       end,
   },
 }
@@ -151,7 +151,7 @@ DxyLoop = Class {
     TeX = function (pseudoar)
         local node, dTeX = pseudoar[1], pseudoar.dTeX
         local x, y = realxy(node.x, node.y)
-        return format("\\Loop(%d,%d){%s}%s", x, y, node_to_TeX(node), dTeX)
+        return dformat("\\Loop(%d,%d){%s}%s", x, y, node_to_TeX(node), dTeX)
       end,
   },
 }
