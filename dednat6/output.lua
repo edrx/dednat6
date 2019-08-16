@@ -14,12 +14,13 @@
 --   \directlua{output =  printboth}
 -- or: (...)
 
--- «.deletecomments»	(to "deletecomments")
--- «.output»		(to "output")
--- «.output_dnt»	(to "output_dnt")
--- «.write_dnt_file»	(to "write_dnt_file")
--- «.formatt»		(to "formatt")
--- «.bprintt»		(to "bprintt")
+-- «.deletecomments»		(to "deletecomments")
+-- «.output»			(to "output")
+-- «.output_dnt»		(to "output_dnt")
+-- «.write_dnt_file»		(to "write_dnt_file")
+-- «.write_single_dnt_file»	(to "write_single_dnt_file")
+-- «.formatt»			(to "formatt")
+-- «.bprintt»			(to "bprintt")
 
 
 -- «deletecomments» (to ".deletecomments")
@@ -150,6 +151,27 @@ write_dnt_file  = function (fname)
     writefile(fname, dnt_log)
   end
 
+--                _ _               _             _      
+-- __      ___ __(_) |_ ___     ___(_)_ __   __ _| | ___ 
+-- \ \ /\ / / '__| | __/ _ \   / __| | '_ \ / _` | |/ _ \
+--  \ V  V /| |  | | ||  __/   \__ \ | | | | (_| | |  __/
+--   \_/\_/ |_|  |_|\__\___|___|___/_|_| |_|\__, |_|\___|
+--                        |_____|           |___/        
+--
+-- «write_single_dnt_file»  (to ".write_single_dnt_file")
+-- Experimental, 2019aug16
+write_single_tex_file__pat = "^(.-\n)(%s*)(\\input\\jobname.dnt[^\n]*\n)(.*)$"
+write_single_tex_file = function (fname_out)
+    local fname_in = status.filename
+    local bigstr_in = ee_readfile(fname_in)
+    local a,spaces,inputdnt,b = bigstr_in:match(write_single_tex_file__pat)
+    local header = format("%% Generated from %s\n"..
+            "%% using write_single_tex_file(\"%s\")\n%%\n",
+            fname_in, fname_out)
+    local bigstr_out = header..a..spaces.."% "..inputdnt..dnt_log.."\n"..b
+    ee_writefile(fname_out, bigstr_out)
+    print("Wrote "..fname_out)
+  end
 
 
 

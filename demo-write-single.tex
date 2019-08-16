@@ -1,0 +1,100 @@
+% This file:
+%   (find-dednat6 "demo-write-single.tex")
+% Experimental. No documentation yet.
+% Version: 2019aug16
+
+% Some emacs/eev-isms. You don't need to understand this.
+% See: (find-eev-quick-intro "7.4. Commands with very short names")
+%      http://angg.twu.net/eev-intros/find-eev-quick-intro.html#7.4
+% (defun c () (interactive) (find-dednat6sh "lualatex -record demo-write-single.tex"))
+% (defun c () (interactive) (find-dednat6sh "pdflatex         demo-write-single.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/demo-write-single.pdf"))
+% (defun e () (interactive) (find-dednat6 "demo-write-single.tex"))
+% (defun u () (interactive) (find-latex-upload-links "demo-write-single"))
+% (defun s () (interactive) (find-fline "/tmp/foo.tex"))
+%   (find-pdf-page "~/dednat6/demo-write-single.pdf")
+% http://angg.twu.net/dednat6/demo-write-single.pdf
+%
+%
+\documentclass[oneside]{book}
+\usepackage{ifluatex}
+\usepackage{proof}   % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+\begin{document}
+
+\ifluatex
+  \catcode`\^^J=10
+  \directlua{dofile "dednat6load.lua"}
+\else
+  \input\jobname.dnt
+  \def\pu{}
+\fi
+
+A tree:
+%
+%L addabbrevs("->", "\\to ")
+%
+%:  [a]^1  a->b
+%:  -----------
+%:       b       b->c
+%:       ------------
+%:            c
+%:          ----1
+%:          a->c
+%:
+%:          ^comp
+%:
+\pu
+$$\ded{comp}$$
+
+
+
+\def\catA{\mathbf{A}}
+\def\catB{\mathbf{B}}
+
+A diagram:
+%
+%D diagram adj
+%D 2Dx     100     +25
+%D 2D  100 LA <--| A
+%D 2D      |       |
+%D 2D      |  <->  |
+%D 2D      v       v
+%D 2D  +25 B |--> RB  
+%D 2D
+%D 2D  +15 \catB \catA
+%D 2D
+%D (( LA A <-|
+%D    LA B -> A RB ->
+%D    B RB |->
+%D    LA RB harrownodes nil 20 nil <->
+%D    \catB \catA <- sl^ .plabel= a L
+%D    \catB \catA -> sl_ .plabel= b R
+%D ))
+%D enddiagram
+%D
+$$\pu
+  \diag{adj}
+$$
+
+
+% More eev-isms, for tests in the author's machine.
+% You are not expected to understand this.
+% (find-angg      "LATEX/dednat6/output.lua" "write_single_dnt_file")
+% (find-tkdiff  "~/LATEX/dednat6/output.lua" "~/dednat6/dednat6/output.lua")
+% (find-tkdiff> "~/LATEX/dednat6/output.lua" "~/dednat6/dednat6/output.lua")
+% (find-sh "cd /tmp/ && pdflatex foo.tex")
+% (find-fline "/tmp/" "foo.tex")
+% (find-pdf-page "/tmp/foo.pdf")
+
+%L write_single_tex_file("/tmp/foo.tex")
+%L write_dnt_file()
+\pu
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:
