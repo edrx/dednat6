@@ -18,7 +18,7 @@
 -- «.output»			(to "output")
 -- «.output_dnt»		(to "output_dnt")
 -- «.write_dnt_file»		(to "write_dnt_file")
--- «.write_single_dnt_file»	(to "write_single_dnt_file")
+-- «.write_single_tex_file»	(to "write_single_tex_file")
 -- «.formatt»			(to "formatt")
 -- «.bprintt»			(to "bprintt")
 
@@ -158,7 +158,7 @@ write_dnt_file  = function (fname)
 --   \_/\_/ |_|  |_|\__\___|___|___/_|_| |_|\__, |_|\___|
 --                        |_____|           |___/        
 --
--- «write_single_dnt_file»  (to ".write_single_dnt_file")
+-- «write_single_tex_file»  (to ".write_single_tex_file")
 -- Experimental, 2019aug16
 write_single_tex_file__pat = "^(.-\n)(%s*)(\\input\\jobname.dnt[^\n]*\n)(.*)$"
 write_single_tex_file = function (fname_out)
@@ -169,8 +169,8 @@ write_single_tex_file = function (fname_out)
             "%% using write_single_tex_file(\"%s\")\n%%\n",
             fname_in, fname_out)
     local bigstr_out = header..a..spaces.."% "..inputdnt..dnt_log.."\n"..b
+    print("% Writing: "..fname_out)
     ee_writefile(fname_out, bigstr_out)
-    print("Wrote "..fname_out)
   end
 
 

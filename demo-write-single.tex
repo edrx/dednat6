@@ -1,17 +1,44 @@
+% A demo that produces a single, complete .tex file.
 % This file:
-%   (find-dednat6 "demo-write-single.tex")
-% Experimental. No documentation yet.
-% Version: 2019aug16
-
+%   http://angg.twu.net/dednat6/demo-write-single.tex.html
+%   http://angg.twu.net/dednat6/demo-write-single.tex
+%                (find-dednat6 "demo-write-single.tex")
+% See: http://angg.twu.net/dednat6.html#no-lua
+% Version: 2019aug20.
+%
+%
+% This is a modification of demo-write-dnt.tex that replaces the
+%
+%   %L write_dnt_file()
+%
+% near the end of the file by these two lines:
+%
+%   %L write_dnt_file()
+%   %L write_single_tex_file("demo-write-single-sngf.tex")
+%
+% The "write_dnt_file()" writes the contents of the global variable
+% dnt_log to the file "demo-write-single.dnt"; the 
+%
+%   write_single_tex_file("demo-write-single-sngf.tex")
+%
+% creates a file that is a copy of demo-write-single.tex with the line
+%
+%   \input\jobname.dnt
+%
+% replaced by the contents of the global variable dnt_log.
+%
+%
 % Some emacs/eev-isms. You don't need to understand this.
 % See: (find-eev-quick-intro "7.4. Commands with very short names")
 %      http://angg.twu.net/eev-intros/find-eev-quick-intro.html#7.4
 % (defun c () (interactive) (find-dednat6sh "lualatex -record demo-write-single.tex"))
 % (defun c () (interactive) (find-dednat6sh "pdflatex         demo-write-single.tex"))
+% (defun c () (interactive) (find-dednat6sh "pdflatex    demo-write-single-sngf.tex"))
 % (defun d () (interactive) (find-pdf-page "~/dednat6/demo-write-single.pdf"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/demo-write-single-sngf.pdf"))
 % (defun e () (interactive) (find-dednat6 "demo-write-single.tex"))
+% (defun e () (interactive) (find-dednat6 "demo-write-single-sngf.tex"))
 % (defun u () (interactive) (find-latex-upload-links "demo-write-single"))
-% (defun s () (interactive) (find-fline "/tmp/foo.tex"))
 %   (find-pdf-page "~/dednat6/demo-write-single.pdf")
 % http://angg.twu.net/dednat6/demo-write-single.pdf
 %
@@ -88,8 +115,8 @@ $$
 % (find-fline "/tmp/" "foo.tex")
 % (find-pdf-page "/tmp/foo.pdf")
 
-%L write_single_tex_file("/tmp/foo.tex")
 %L write_dnt_file()
+%L write_single_tex_file("demo-write-single-sngf.tex")
 \pu
 
 

@@ -24,10 +24,10 @@ clean:	$(STEMS:%=%.clean)
 veryclean: $(STEMS:%=%.veryclean)
 
 %.clean:
-	rm -Rfv $*.aux $*.log $*.out $*.toc $*.dnt $*.fls $*/
+	rm -Rfv $*.aux $*.log $*.out $*.toc $*.dnt $*-sngf.tex $*.fls $*/
 
 %.veryclean:
-	rm -Rfv $*.aux $*.log $*.out $*.toc $*.dnt $*.fls $*/ $*.pdf
+	rm -Rfv $*.aux $*.log $*.out $*.toc $*.dnt $*-sngf.tex $*.fls $*/ $*.pdf
 
 tugboat-rev2.pdf:
 	lualatex -record tugboat-rev2.tex
@@ -42,6 +42,9 @@ demo-minimal.pdf:
 demo-write-dnt.pdf:
 	lualatex -record demo-write-dnt.tex
 	pdflatex         demo-write-dnt.tex
+
+demo-write-single.pdf:
+	lualatex -record demo-write-single.tex
 
 demo-preproc.pdf:
 	./dednat6load.lua -4 demo-preproc.tex
@@ -65,3 +68,9 @@ extra-modules.pdf:
 	cp -v $*.tex $*/
 	cp -v $*.dnt $*/
 	cd $*/ && pdflatex $*.tex
+
+%.subdirpdfsingle:
+	mkdir -p $*/
+	cp -v $*-sngf.tex $*/
+	cd $*/ && pdflatex $*-sngf.tex
+

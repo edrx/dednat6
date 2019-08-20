@@ -1,5 +1,5 @@
 % (find-angg "dednat6/extra-features.tex")
-% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-features.tex"))
+% (defun c () (interactive) (find-dednat6sh "lualatex -record extra-features.tex" :end))
 % (defun d () (interactive) (find-pdf-page "~/dednat6/extra-features.pdf"))
 % (defun e () (interactive) (find-dednat6 "extra-features.tex"))
 % (defun u () (interactive) (find-latex-upload-links "extra-features"))
@@ -78,6 +78,11 @@
 
 \def\myvcenter#1{\begin{matrix}#1\end{matrix}}
 \catcode`\^^O=13 \def{{\color{red}*}}
+
+% (find-angg "LATEX/edrxchars.tex")
+\catcode`Γ=13 \defΓ{\Gamma}
+\catcode`∨=13 \def∨{\lor}
+\catcode`⊢=13 \def⊢{\vdash}
 
 
 
