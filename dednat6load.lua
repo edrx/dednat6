@@ -29,7 +29,8 @@
 -- "\pu" command. See the section 3 ("3. Semi-preprocessors") of the
 -- TUGBoat article about dednat6:
 --
---   http://angg.twu.net/LATEX/2018tugboat-rev1.pdf
+--   https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
+--   http://angg.twu.net/dednat6/2018tugboat-rev2.pdf
 --
 -- That section ends with this paragraph:
 --
