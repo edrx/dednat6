@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/diagforth.lua
 --                    (find-dn5 "diagforth.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2015aug06
+-- Version: 2019oct01
 -- License: GPL3
 --
 
@@ -27,6 +27,8 @@
 
 -- «.run»		(to "run")
 -- «.forths»		(to "forths")
+
+-- «.relplace»		(to "relplace")
 
 -- «.high-level-tests»	(to "high-level-tests")
 -- «.low-level-tests»	(to "low-level-tests")
@@ -268,6 +270,7 @@ forths["loop"] = function ()
 forths["x+="] = function () ds:pick(0).x = ds:pick(0).x + getwordasluaexpr() end
 forths["y+="] = function () ds:pick(0).y = ds:pick(0).y + getwordasluaexpr() end
 
+-- «relplace»  (to ".relplace")
 -- (find-LATEXfile "2017elephant.tex" "relplace")
 forths["relplace"] = function ()
     local x, y = ds:pick(0).x, ds:pick(0).y

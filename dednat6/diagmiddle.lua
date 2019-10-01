@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/diagmiddle.lua
 --                    (find-dn6 "diagmiddle.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2011may09
+-- Version: 2019oct01
 -- License: GPL3
 --
 -- This corresponds to:
@@ -18,7 +18,11 @@
 -- «.midpoint»		(to "midpoint")
 -- «.midpoint-tests»	(to "midpoint-tests")
 -- «.splitdist»		(to "splitdist")
+-- «.harrownodes»	(to "harrownodes")
+-- «.varrownodes»	(to "varrownodes")
 -- «.splitdists»	(to "splitdists")
+-- «.dharrownodes»	(to "dharrownodes")
+-- «.dvarrownodes»	(to "dvarrownodes")
 
 
 
@@ -64,6 +68,7 @@ run [[ 2D +20  c ==> b|->c ]]
 PP(xs)
 PP(lasty)                 --> 120
 PP(nodes)
+PPV(nodes)
 PP(nodes["a"])
 PP(nodes["a,b"])
 
@@ -108,6 +113,7 @@ splitdist = function (x1, x2, dx0, dx1, dx2)
     print("Bad splitdist pattern: "..p(dx0).." "..p(dx1).." "..p(dx2))
   end
 
+-- «harrownodes»  (to ".harrownodes")
 harrownodes = function (dx0, dx1, dx2, TeX1, TeX2)
     local node1, node2 = ds:pick(1), ds:pick(0)
     local midy = (node1.y + node2.y)/2
@@ -115,6 +121,8 @@ harrownodes = function (dx0, dx1, dx2, TeX1, TeX2)
     ds:push(storenode{x=x1, y=midy, TeX=(TeX1 or phantomnode)})
     ds:push(storenode{x=x2, y=midy, TeX=(TeX2 or phantomnode)})
   end
+
+-- «varrownodes»  (to ".varrownodes")
 varrownodes = function (dy0, dy1, dy2, TeX1, TeX2)
     local node1, node2 = ds:pick(1), ds:pick(0)
     local midx = (node1.x + node2.x)/2
@@ -147,6 +155,8 @@ splitdists = function (w0, w2, dw0, dw1, dw2, z0, z2)
     local z1a, z1b = proportionals(w0, w1a, w1b, w2, z0, z2)
     return w1a, w1b, z1a, z1b
   end
+
+-- «dharrownodes»  (to ".dharrownodes")
 dharrownodes = function (dx0, dx1, dx2, TeX1a, TeX1b)
     local node0, node2 = ds:pick(1), ds:pick(0)
     local x0, x2, y0, y2 = node0.x, node2.x, node0.y, node2.y
@@ -154,6 +164,8 @@ dharrownodes = function (dx0, dx1, dx2, TeX1a, TeX1b)
     ds:push(storenode{x=x1a, y=y1a, TeX=(TeX1a or phantomnode)})
     ds:push(storenode{x=x1b, y=y1b, TeX=(TeX1b or phantomnode)})
   end
+
+-- «dvarrownodes»  (to ".dvarrownodes")
 dvarrownodes = function (dy0, dy1, dy2, TeX1a, TeX1b)
     local node0, node2 = ds:pick(1), ds:pick(0)
     local x0, x2, y0, y2 = node0.x, node2.x, node0.y, node2.y

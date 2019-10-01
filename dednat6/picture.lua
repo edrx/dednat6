@@ -211,7 +211,7 @@ dofile "zhas.lua"
 = V{0,3}:torowcol(4, 2, 6)   --> 3 5
 = V{0,4}:torowcol(4, 2, 6)   --> (nothing)
 
- (ex "v-1")
+-- (ex "v-1")
 
  (eepitch-lua51)
  (eepitch-kill)
@@ -221,19 +221,23 @@ dofile "picture.lua"
 = v(2, 3)
 = v(2, 3):to12()
 
- (ex "v-2")
+-- (ex "v-2")
 
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
--- Obsolete and broken:
 dofile "picture.lua"
+= v"20"
+= v"02"
+= v"22"
+
+-- Obsolete and broken:
 = lr"00"      -- err?
 = lr"10"      -- err?
 = lr"03"      -- err?
 = lr"03":s()  -- err?
 
- (ex "v-3")
+--  (ex "v-3")
 
 --]]
 
@@ -251,7 +255,13 @@ BoundingBox = Class {
   type    = "BoundingBox",
   new     = function () return BoundingBox {} end,
   __tostring = function (b)
-      return bb.x0y0 and tostring(bb.x0y0).." to "..tostring(bb.x1y1) or "empty"
+      -- return bb.x0y0 and tostring(bb.x0y0).." to "..tostring(bb.x1y1) or "empty"
+      if bb.x0y0 then
+        return "BoundingBox: \n (x1,y1)="..tostring(bb.x1y1)..
+                            "\n (x0,y0)="..tostring(bb.x0y0)
+      else
+        return "BoundingBox: empty"
+      end
     end,
   __index = {
     addpoint = function (bb, v)
@@ -289,13 +299,15 @@ BoundingBox = Class {
  (eepitch-lua51)
 dofile "picture.lua"
 bb = BoundingBox.new()
+PP(bb)
 = bb
 = bb:addpoint(v(2, 4))
 = bb:addbox(v(6, 7), v(.5, .5))
 = bb:addbox(v(1, 2), v(.5, .5))
 = bb:x0x1y0y1()
+PP(bb)
 
- (ex "boundingbox")
+-- (ex "boundingbox")
 
 --]]
 
@@ -359,6 +371,7 @@ AsciiPicture = Class {
 dofile "picture.lua"
 ap = AsciiPicture.new("  ")
 ap = AsciiPicture.new("     ")
+ap = AsciiPicture.new("      ")
 for l=0,2 do
   for r=0,3 do
     local pos=lr(l, r)
@@ -374,13 +387,17 @@ end
  (eepitch-lua51)
 dofile "picture.lua"
 ap = AsciiPicture.new("  ")
+PP(ap)
+PP(ap.bb)
+= ap
+= ap.bb
 ap = AsciiPicture.new("  "):put(v(1,1),"  ")
 = ap
 = ap:put(v(1,1), "..")
 = ap
 PP(ap)
 
- (ex "asciipicture")
+-- (ex "asciipicture")
 
 --]]
 
