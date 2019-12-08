@@ -2,24 +2,25 @@
 -- blocks, publocks and head blocks. This file supersedes and replaces
 -- texfile.lua...
 --
+-- This file:
+-- http://angg.twu.net/dednat6/dednat6/block.lua
+-- http://angg.twu.net/dednat6/dednat6/block.lua.html
+--         (find-angg "dednat6/dednat6/block.lua")
+--
+-- It replaces this:
+-- http://angg.twu.net/dednat6/dednat6/texfile.lua
+-- http://angg.twu.net/dednat6/dednat6/texfile.lua.html
+--         (find-angg "dednat6/dednat6/texfile.lua")
+--
 -- In may 2018 I realized that three data structures in dednat6 could
 -- be unified into a single one, the "Block"; they are the "texfile
 -- blocks", the "pu blocks", and the "head blocks".
 --
--- The algorithm is described here:
+-- The algorithm is described in sections 3 and 3.1 of:
 -- https://tug.org/TUGboat/tb39-3/tb123ochs-dednat.pdf
 -- http://angg.twu.net/dednat6/tugboat-rev2.pdf
 --   (turp 4 "heads-and-blocks" "Heads and blocks")
 --   (tur    "heads-and-blocks" "Heads and blocks")
---
--- This file:
--- http://angg.twu.net/dednat6/block.lua
--- http://angg.twu.net/dednat6/block.lua.html
---                  (find-dn6 "block.lua")
--- It replaces this:
--- http://angg.twu.net/dednat6/texfile.lua
--- http://angg.twu.net/dednat6/texfile.lua.html
---                  (find-dn6 "texfile.lua")
 --
 -- Suppose that we have a .tex file with 1000 lines, with a "\pu" at
 -- line 200, another "\pu" at line 300, and with lines with the "%D"

@@ -1,17 +1,27 @@
 -- diagmiddle.lua: words for drawing arrows between the sides of rectangles.
 -- This file:
---   http://angg.twu.net/dednat6/diagmiddle.lua.html
---   http://angg.twu.net/dednat6/diagmiddle.lua
---                    (find-dn6 "diagmiddle.lua")
+--   http://angg.twu.net/dednat6/dednat6/diagmiddle.lua.html
+--   http://angg.twu.net/dednat6/dednat6/diagmiddle.lua
+--           (find-angg "dednat6/dednat6/diagmiddle.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2019oct06
+-- Version: 2019dec08
 -- License: GPL3
 --
--- This corresponds to:
+--
+-- This is a hack! I wrote this to draw the middle arrows in
+-- adjunctions, and then adapted it to draw arrows in the middle of
+-- slanted rectangles, like in this diagram:
+--   http://angg.twu.net/dednat6.html#a-big-example
+--
+-- It worked well enough for me, so I've kept it... the algorithm that
+-- the "splitdist*" functions use to calculate the phantom nodes is a
+-- bit hard to explain, and I would love to 1) write better docs for
+-- it, 2) implement variants of it that people would find clearer. If
+-- you want me to work on (1) on (2) please do get in touch, and I'll
+-- stop postponing this!
+--
+-- A link to a very old implementation of this:
 --   (find-dn4 "experimental.lua" "splitdist")
--- and at the moment (?) it is not included by default in dednat6.
--- The test that uses this file is at:
---   (find-dn6 "tests/test3.tex")
 
 
 

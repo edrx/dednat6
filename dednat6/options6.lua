@@ -1,8 +1,8 @@
 -- options6.lua: process command-line options in standalone dednat6.
 -- This file:
---   http://angg.twu.net/dednat6/options.lua.html
---   http://angg.twu.net/dednat6/options.lua
---                    (find-dn6 "options.lua")
+--   http://angg.twu.net/dednat6/dednat6/options.lua.html
+--   http://angg.twu.net/dednat6/dednat6/options.lua
+--           (find-angg "dednat6/dednat6/options.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019may15
 -- License: GPL3

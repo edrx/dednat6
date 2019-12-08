@@ -1,8 +1,8 @@
 -- diagforth.lua: interpreting the words in "%D" lines in dednat6 files.
 -- This file:
---   http://angg.twu.net/dednat6/diagforth.lua.html
---   http://angg.twu.net/dednat6/diagforth.lua
---                    (find-dn5 "diagforth.lua")
+--   http://angg.twu.net/dednat6/dednat6/diagforth.lua.html
+--   http://angg.twu.net/dednat6/dednat6/diagforth.lua
+--           (find-angg "dednat6/dednat6/diagforth.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019oct01
 -- License: GPL3

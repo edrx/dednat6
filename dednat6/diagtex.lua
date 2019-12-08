@@ -1,8 +1,8 @@
 -- diagtex.lua:
 -- This file:
---   http://angg.twu.net/dednat6/diagtex.lua.html
---   http://angg.twu.net/dednat6/diagtex.lua
---                    (find-dn6 "diagtex.lua")
+--   http://angg.twu.net/dednat6/dednat6/diagtex.lua.html
+--   http://angg.twu.net/dednat6/dednat6/diagtex.lua
+--           (find-angg "dednat6/dednat6/diagtex.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019aug12
 -- License: GPL3

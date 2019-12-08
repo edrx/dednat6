@@ -1,12 +1,12 @@
 -- texfile.lua: the TexFile class for dednat6 (obsolete).
 -- This file:
---   http://angg.twu.net/dednat6/texfile.lua
---   http://angg.twu.net/dednat6/texfile.lua.html
---                   (find-dn6 "texfile.lua")
+--   http://angg.twu.net/dednat6/dednat6/texfile.lua
+--   http://angg.twu.net/dednat6/dednat6/texfile.lua.html
+--           (find-angg "dednat6/dednat6/texfile.lua")
 -- Superseded by:
---   http://angg.twu.net/dednat6/block.lua
---   http://angg.twu.net/dednat6/block.lua.html
---                    (find-dn6 "block.lua")
+--   http://angg.twu.net/dednat6/dednat6/block.lua
+--   http://angg.twu.net/dednat6/dednat6/block.lua.html
+--           (find-angg "dednat6/dednat6/block.lua")
 --
 -- Idea: we read each .tex file into a TexFile object.
 -- Older version: (find-angg "LUA/picture.lua" "Texfile")

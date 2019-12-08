@@ -1,8 +1,8 @@
--- treesegs.lua:
+-- treesegs.lua: handle the whitespace-sparated "segments" in "%:"-blocks.
 -- This file:
---   http://angg.twu.net/dednat6/treesegs.lua.html
---   http://angg.twu.net/dednat6/treesegs.lua
---                    (find-dn6 "treesegs.lua")
+--   http://angg.twu.net/dednat6/dednat6/treesegs.lua.html
+--   http://angg.twu.net/dednat6/dednat6/treesegs.lua
+--           (find-angg "dednat6/dednat6/treesegs.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2018oct11
 -- License: GPL3

@@ -1,7 +1,7 @@
 -- This file:
--- http://angg.twu.net/dednat6/output.lua
--- http://angg.twu.net/dednat6/output.lua.html
---  (find-angg        "dednat6/output.lua")
+-- http://angg.twu.net/dednat6/dednat6/output.lua
+-- http://angg.twu.net/dednat6/dednat6/output.lua.html
+--         (find-angg "dednat6/dednat6/output.lua")
 --
 -- Sending (Lua-produced) TeX code back to the TeX interpreter requires
 -- some preprocessing... see:

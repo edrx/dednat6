@@ -1,17 +1,40 @@
 -- luarects.lua: a preprocessor tho let us use literal rectangles in Lua code.
 -- This file:
--- http://angg.twu.net/dednat6/luarects.lua
--- http://angg.twu.net/dednat6/luarects.lua.html
---  (find-angg        "dednat6/luarects.lua")
+-- http://angg.twu.net/dednat6/dednat6/luarects.lua
+-- http://angg.twu.net/dednat6/dednat6/luarects.lua.html
+--         (find-angg "dednat6/dednat6/luarects.lua")
 --
--- Example:
+-- This is a hack that I wrote for my "Planar Heyting Algebras for
+-- Children" paper, that is at:
+--   http://angg.twu.net/math-b.html#zhas-for-children-2
+--   http://angg.twu.net/LATEX/2017planar-has-1.pdf
+--   http://angg.twu.net/LATEX/2017planar-has-1.tgz (full source)
 --
---   for x,y,str in 2/  ..      \:gen() do print(x,y,str) end
---                   |    ..    |
---                   |  ..  12  |
---                   |..  11  02|
---                   |  ..  01  |
---                   \    ..    /
+-- To see examples of how I use this, download the .tgz above and look
+-- for the "%R"-blocks in 2017planar-has-1.tex.
+--   (find-LATEXgrep "grep --color -nH --null -e '%R' 2017planar-has-1.tex")
+--   http://catb.org/jargon/html/Y/You-are-not-expected-to-understand-this.html
+--
+-- Here's a brief low-level view of how it works.
+-- When this code in a .tex file is executed by a \pu,
+--
+--   %R A = 1/ a \;  B = 2/abcd\;
+--   %R      |b c|        \efgh/   C = 1/o o \
+--   %R      | d |                      | o o|
+--   %R      \  e/                      \o o /
+--   %R 
+--   %R foo(A, B, C)
+--
+-- The effect is the same as executing this "%L"-block:
+--
+--   %L local aR0 = AsciiRect.new(1, {" a ", "b c", " d ", "  e"})
+--   %L local aR1 = AsciiRect.new(2, {"abcd", "efgh"})
+--   %L local aR2 = AsciiRect.new(1, {"o o ", " o o", "o o "})
+--   %L A = aR0   ;  B = aR1    ;
+--   %L                            C = aR2    
+--   %L                                       
+--   %L foo(A, B, C)
+--
 
 
 -- «.AsciiRect»			(to "AsciiRect")

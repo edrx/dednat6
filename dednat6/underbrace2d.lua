@@ -1,7 +1,7 @@
 -- This file:
--- http://angg.twu.net/dednat6/underbrace2d.lua
--- http://angg.twu.net/dednat6/underbrace2d.lua.html
---  (find-dn6                 "underbrace2d.lua")
+-- http://angg.twu.net/dednat6/dednat6/underbrace2d.lua
+-- http://angg.twu.net/dednat6/dednat6/underbrace2d.lua.html
+--         (find-angg "dednat6/dednat6/underbrace2d.lua")
 --
 -- This module supersedes underbrace.lua, that used a stack language
 -- to draw underbrace diagrams... this one uses a 2D ascii art syntax.

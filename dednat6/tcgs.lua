@@ -1,7 +1,10 @@
 -- tcgs.lua: classes for two-column graphs.
--- http://angg.twu.net/dednat6/tcgs.lua
--- http://angg.twu.net/dednat6/tcgs.lua.html
---                  (find-dn6 "tcgs.lua")
+-- http://angg.twu.net/dednat6/dednat6/tcgs.lua
+-- http://angg.twu.net/dednat6/dednat6/tcgs.lua.html
+--         (find-angg "dednat6/dednat6/tcgs.lua")
+--
+-- This is a hack that I use in the papers of my "Planar Heyting
+-- Algebras for Children" series.
 --
 -- This file supersedes the code for TCGs in:
 --   (find-LATEX "edrxpict.lua" "TCG")

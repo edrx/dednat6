@@ -1,8 +1,8 @@
 -- rect.lua: concatenable ascii rectangles, for building trees in ascii.
 -- This file:
--- http://angg.twu.net/dednat6/rect.lua
--- http://angg.twu.net/dednat6/rect.lua.html
---  (find-angg        "dednat6/rect.lua")
+-- http://angg.twu.net/dednat6/dednat6/rect.lua
+-- http://angg.twu.net/dednat6/dednat6/rect.lua.html
+--         (find-angg "dednat6/dednat6/rect.lua")
 --
 -- Example:
 --

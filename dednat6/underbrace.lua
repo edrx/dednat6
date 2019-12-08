@@ -1,7 +1,17 @@
 -- This file:
--- http://angg.twu.net/dednat6/underbrace.lua
--- http://angg.twu.net/dednat6/underbrace.lua.html
---  (find-angg        "dednat6/underbrace.lua")
+-- http://angg.twu.net/dednat6/dednat6/underbrace.lua
+-- http://angg.twu.net/dednat6/dednat6/underbrace.lua.html
+--         (find-angg "dednat6/dednat6/underbrace.lua")
+--
+-- This is obsolete, and has been superseded by:
+-- http://angg.twu.net/dednat6/dednat6/underbrace2d.lua
+-- http://angg.twu.net/dednat6/dednat6/underbrace2d.lua.html
+--         (find-angg "dednat6/dednat6/underbrace2d.lua")
+--
+-- This was a quick hack that I used in early versions of my paper
+-- "Planar Heyting Algebras for Children", but I replaced all code
+-- that used this by code that uses underbrace2d.
+--
 --
 -- The easiest way to work with user-given expressions in dednat6 is
 -- to build them as syntactic trees using a stack-based, Forth-like

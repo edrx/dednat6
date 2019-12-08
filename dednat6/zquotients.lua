@@ -1,9 +1,13 @@
 -- zquotients.lua: handle (z)quotients of ZHAs
 -- This file:
--- http://angg.twu.net/dednat6/zquotients.lua
--- http://angg.twu.net/dednat6/zquotients.lua.html
---  (find-angg        "dednat6/zquotients.lua")
+-- http://angg.twu.net/dednat6/dednat6/zquotients.lua
+-- http://angg.twu.net/dednat6/dednat6/zquotients.lua.html
+--         (find-angg "dednat6/dednat6/zquotients.lua")
 --
+-- This is obsolete and broken and will be deleted.
+-- Part of its functionality went to:
+--         (find-angg "dednat6/dednat6/zhas.lua" "ZHA-getcuts")
+
 
 todd = function (a, b) return a..b end
 to_d_d = function (o)

@@ -1,13 +1,21 @@
 -- zhas.lua: ZHAs, cuts, and mixed LaTeX/ascii pictures of ZHAs and cuts.
 -- This file:
--- http://angg.twu.net/dednat6/zhas.lua
--- http://angg.twu.net/dednat6/zhas.lua.html
---  (find-dn6                 "zhas.lua")
+-- http://angg.twu.net/dednat6/dednat6/zhas.lua
+-- http://angg.twu.net/dednat6/dednat6/zhas.lua.html
+--         (find-angg "dednat6/dednat6/zhas.lua")
 --
--- See these links for what are ZHAs:
---   http://angg.twu.net/LATEX/2017planar-has-1.pdf
+-- This is a hack that I use in the papers of my "Planar Heyting
+-- Algebras for Children" series:
 --   http://angg.twu.net/math-b.html#zhas-for-children-2
+--   http://angg.twu.net/LATEX/2017planar-has-1.pdf
+--   http://angg.twu.net/LATEX/2017planar-has-1.tgz
 --
+-- The code in this file and in zhaspecs.lua creates and manipulates
+-- ZHAs in several ways, and draws them in ASCII and in LaTeX/pict2e.
+-- There are many things in "Planar Heyting Algebras for Children"
+-- that I was only able to discover because I had this to do the
+-- calculations for me... but as I implemented more and more functions
+-- here this file grew too much, and became almost unmanageable. =(
 
 
 

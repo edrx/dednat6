@@ -1,8 +1,8 @@
 -- diagstacks.lua: the stack, the metastack, and the arrays "nodes" and "arrows".
 -- This file:
---   http://angg.twu.net/dednat6/diagstacks.lua.html
---   http://angg.twu.net/dednat6/diagstacks.lua
---                    (find-dn6 "diagstacks.lua")
+--   http://angg.twu.net/dednat6/dednat6/diagstacks.lua.html
+--   http://angg.twu.net/dednat6/dednat6/diagstacks.lua
+--           (find-angg "dednat6/dednat6/diagstacks.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2015aug16
 -- License: GPL3

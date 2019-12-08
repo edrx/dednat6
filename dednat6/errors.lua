@@ -1,8 +1,8 @@
 -- errors.lua:
 -- This file:
---   http://angg.twu.net/dednat6/errors.lua.html
---   http://angg.twu.net/dednat6/errors.lua
---                    (find-dn6 "errors.lua")
+--   http://angg.twu.net/dednat6/dednat6/errors.lua.html
+--   http://angg.twu.net/dednat6/dednat6/errors.lua
+--           (find-angg "dednat6/dednat6/errors.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2011feb27?
 -- License: GPL3

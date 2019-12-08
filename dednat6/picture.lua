@@ -1,8 +1,8 @@
 -- picture.lua: classes to create LaTeX pictures (and ascii representations).
 -- This file:
--- http://angg.twu.net/dednat6/picture.lua
--- http://angg.twu.net/dednat6/picture.lua.html
---  (find-dn6                 "picture.lua")
+-- http://angg.twu.net/dednat6/dednat6/picture.lua
+-- http://angg.twu.net/dednat6/dednat6/picture.lua.html
+--         (find-angg "dednat6/dednat6/picture.lua")
 --
 -- This file defines a class LPicture that generates LaTeX
 -- pict2e diagrams, and a class AsciiPicture for ascii
@@ -17,6 +17,12 @@
 -- IMPORTANT! Until 2015 I didn't know that pict2e existed, and I used
 -- picture-mode instead. The code here still has some fossils from
 -- that time. See the comments in this section: (to "pict2e")
+--
+-- BAD NEWS: the description above may give the impression that this
+-- module is quite general, but this is currently not the case... this
+-- module is used by my super-hacky code for handling finite planar
+-- Heyting Algebras, a.k.a. ZHAs, and is not independent from it. =(
+--
 --
 -- «.V»				(to "V")
 -- «.V-tests»			(to "V-tests")

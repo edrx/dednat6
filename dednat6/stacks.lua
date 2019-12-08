@@ -1,8 +1,8 @@
 -- stacks.lua: the class Stacks, used by diagstacks and underbrace.
 -- This file:
--- http://angg.twu.net/dednat6/stacks.lua
--- http://angg.twu.net/dednat6/stacks.lua.html
---  (find-angg        "dednat6/stacks.lua")
+-- http://angg.twu.net/dednat6/dednat6/stacks.lua
+-- http://angg.twu.net/dednat6/dednat6/stacks.lua.html
+--         (find-angg "dednat6/dednat6/stacks.lua")
 --
 -- «.Stack»		(to "Stack")
 -- «.Stack-tests»	(to "Stack-tests")

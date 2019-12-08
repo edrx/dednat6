@@ -1,8 +1,8 @@
 -- luarepl.lua: load Rob Hoelz's lua-repl.
 -- This file:
--- http://angg.twu.net/dednat6/luarepl.lua
--- http://angg.twu.net/dednat6/luarepl.lua.html
---  (find-dn6                 "luarepl.lua")
+-- http://angg.twu.net/dednat6/dednat6/luarepl.lua
+-- http://angg.twu.net/dednat6/dednat6/luarepl.lua.html
+--         (find-angg "dednat6/dednat6/luarepl.lua")
 --
 -- The e-script that downloads lua-repl and copies some of its files in the
 -- dednat6 tree is here:

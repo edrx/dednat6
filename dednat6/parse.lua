@@ -2,9 +2,9 @@
 -- These functions are used to parse tree segments (in "%:" lines)
 --   and 2D grids (in both "%D 2Dx" and "%D 2D" lines).
 -- This file:
---   http://angg.twu.net/dednat6/parse.lua.html
---   http://angg.twu.net/dednat6/parse.lua
---                    (find-dn6 "parse.lua")
+--   http://angg.twu.net/dednat6/dednat6/parse.lua.html
+--   http://angg.twu.net/dednat6/dednat6/parse.lua
+--           (find-angg "dednat6/dednat6/parse.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2015aug22
 -- License: GPL3

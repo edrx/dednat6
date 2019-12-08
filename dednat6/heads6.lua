@@ -1,8 +1,8 @@
 -- heads6.lua: override the dednat5-ish heads with dednat6-ish ones.
 -- This file:
--- http://angg.twu.net/dednat6/heads6.lua
--- http://angg.twu.net/dednat6/heads6.lua.html
---  (find-angg        "dednat6/heads6.lua")
+-- http://angg.twu.net/dednat6/dednat6/heads6.lua
+-- http://angg.twu.net/dednat6/dednat6/heads6.lua.html
+--         (find-angg "dednat6/dednat6/heads6.lua")
 --
 -- (find-dn6 "diagforth.lua" "diag-head")
 -- (find-dn6 "treehead.lua"  "tree-head")

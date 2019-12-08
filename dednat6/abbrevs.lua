@@ -1,7 +1,7 @@
 -- This file:
--- http://angg.twu.net/dednat6/abbrevs.lua
--- http://angg.twu.net/dednat6/abbrevs.lua.html
---                  (find-dn6 "abbrevs.lua")
+-- http://angg.twu.net/dednat6/dednat6/abbrevs.lua
+-- http://angg.twu.net/dednat6/dednat6/abbrevs.lua.html
+--                          (find-dn6 "abbrevs.lua")
 --
 -- This is a rewrite of:
 --   (find-dn6 "prefixes.lua")

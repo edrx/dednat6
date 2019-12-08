@@ -1,8 +1,8 @@
 #!/usr/bin/env lua5.1
 -- This file:
--- http://angg.twu.net/dednat6/dednat6.lua
--- http://angg.twu.net/dednat6/dednat6.lua.html
---                 (find-dn6  "dednat6.lua")
+-- http://angg.twu.net/dednat6/dednat6/dednat6.lua
+-- http://angg.twu.net/dednat6/dednat6/dednat6.lua.html
+--         (find-angg "dednat6/dednat6/dednat6.lua")
 -- By Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019jul06
 --
@@ -77,28 +77,27 @@ require "diagforth"    -- (find-dn6 "diagforth.lua")
 require   "errors"     -- (find-dn6 "errors.lua")
 require "diagmiddle"   -- (find-dn6 "diagmiddle.lua")
 
--- Things from may/2015 made obsolete in aug/2015:
--- require "wrap"      -- (find-dn6 "wrap.lua")
--- require "zha"       -- (find-dn6 "zha.lua")
--- require "zrect"     -- (find-dn6 "zrect.lua")
--- Problem: istanbul-handouts.tex uses zrect!!!
+-- Code for generating diagrams with "\underbrace"s:
+require "underbrace2d"  -- (find-dn6 "underbrace2d.lua")
 
--- New things (may 2015):
--- require "newrect"   -- (find-dn6 "newrect.lua")
-require "picture"      -- (find-dn6 "picture.lua")
-require "zhas"         -- (find-dn6 "zhas.lua")
-require "zhaspecs"     -- (find-dn6 "zhaspecs.lua")
-require "zquotients"   -- (find-dn6 "zquotients.lua")
-require "luarects"     -- (find-dn6 "luarects.lua")
-require "underbrace"   -- (find-dn6 "underbrace.lua")
-require "underbrace2d" -- (find-dn6 "underbrace2d.lua")
-require "tcgs"         -- (find-dn6 "tcgs.lua")
-
--- The Begriffsschrift extension (experimental):
--- require "begriff"   -- (find-dn6 "begriff.lua")
+-- Code for handling and drawing ZHAs:
+require "picture"       -- (find-dn6 "picture.lua")
+require "zhas"          -- (find-dn6 "zhas.lua")
+require "zhaspecs"      -- (find-dn6 "zhaspecs.lua")
+require "tcgs"          -- (find-dn6 "tcgs.lua")
+require "luarects"      -- (find-dn6 "luarects.lua")
 
 -- The REPL, for interaction (experimental):
 require "luarepl"      -- (find-dn6 "luarepl.lua")
+
+-- Obsolete modules:
+-- require "wrap"       -- (find-dn5 "wrap.lua")
+-- require "zha"        -- (find-dn5 "zha.lua")
+-- require "zrect"      -- (find-dn5 "zrect.lua")
+-- require "begriff"    -- (find-dn5 "begriff.lua")
+-- require "zquotients" -- (find-dn6 "zquotients.lua")
+-- require "underbrace" -- (find-dn6 "underbrace.lua")
+-- Problem: istanbul-handouts.tex uses zrect!!!
 
 -- «utf8» (to ".utf8")
 -- (find-es "lua5" "utf8")

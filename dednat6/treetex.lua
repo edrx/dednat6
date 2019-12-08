@@ -9,9 +9,9 @@
 -- with the syntax...
 --
 -- This file:
---   http://angg.twu.net/dednat6/treetex.lua.html
---   http://angg.twu.net/dednat6/treetex.lua
---                    (find-dn6 "treetex.lua")
+--   http://angg.twu.net/dednat6/dednat6/treetex.lua.html
+--   http://angg.twu.net/dednat6/dednat6/treetex.lua
+--           (find-angg "dednat6/dednat6/treetex.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
 -- Version: 2019jan18
 -- License: GPL3

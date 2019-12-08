@@ -1,8 +1,8 @@
 -- preamble6.lua: the preamble-ish TeX definitions for the .dnt file.
 -- This file:
--- http://angg.twu.net/dednat6/preamble6.lua
--- http://angg.twu.net/dednat6/preamble6.lua.html
---  (find-dn6                 "preamble6.lua")
+-- http://angg.twu.net/dednat6/dednat6/preamble6.lua
+-- http://angg.twu.net/dednat6/dednat6/preamble6.lua.html
+--         (find-angg "dednat6/dednat6/preamble6.lua")
 --
 -- See: (find-dn6 "preamble.lua")
 
