@@ -1,0 +1,144 @@
+% A test file for the module "underbrace2d.lua" of dednat6.
+% This file: http://angg.twu.net/dednat6/demo-underbrace.tex.html
+%            http://angg.twu.net/dednat6/demo-underbrace.tex
+%                         (find-dednat6 "demo-underbrace.tex")
+%    Output: http://angg.twu.net/dednat6/demo-underbrace.pdf
+%
+% (defun c () (interactive) (find-dednat6sh "lualatex -record demo-underbrace.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/demo-underbrace.pdf"))
+% (defun e () (interactive) (find-dednat6 "demo-underbrace.tex"))
+% (defun u () (interactive) (find-latex-upload-links "demo-underbrace"))
+%   (find-pdf-page "~/dednat6/demo-underbrace.pdf")
+% http://angg.twu.net/dednat6/demo-underbrace.pdf
+%
+% (find-LATEXgrep "grep --color -nH --null -e '%R' 2017planar-has-1.tex")
+%
+\documentclass[oneside]{article}
+%
+% Not needed:
+%   \usepackage{proof}   % For derivation trees ("%:" lines)
+%   \input diagxy        % For 2D diagrams ("%D" lines)
+%   \xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+%
+\usepackage{amsfonts}
+\catcode`¬=13 \def¬{\neg}
+\catcode`∧=13 \def∧{\land}
+\catcode`∨=13 \def∨{\lor}
+\catcode`→=13 \def→{\to}
+\catcode`◻=13 \def◻{\Box}
+\catcode`□=13 \def□{\Box}
+%
+\def\ttchar#1{\setbox0=\hbox{\texttt{a}}\leavevmode\hbox to \wd0{\hss#1\hss}}
+\def\basicttchars{
+  \def¬{\ttchar{$\neg$}}
+  \def→{\ttchar{$\to$}}
+  \def∧{\ttchar{$\land$}}
+  \def∨{\ttchar{$\lor$}}
+  \def◻{\ttchar{$\Box$}}
+}
+%
+\begin{document}
+  \catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+  \directlua{dofile "dednat6load.lua"}  % (find-dednat6 "dednat6load.lua")
+
+
+\title{Dednat6: a demo for underbrace2d.lua}
+\author{Eduardo Ochs}
+\maketitle
+
+
+% From: (find-LATEX "2017planar-has-defs.tex" "defub")
+%
+\def\defub#1#2{\expandafter\def\csname ub-#1\endcsname{#2}}
+\def\ifubundefined#1{\expandafter\ifx\csname ub-#1\endcsname\relax}
+\def\ub#1{\ifubundefined{#1}
+    \errmessage{UNDEFINED UB: #1}
+  \else
+    \csname ub-#1\endcsname
+  \fi
+}
+\def\und#1#2{\underbrace{#1}_{#2}}
+
+
+Output:
+
+% From: (find-LATEX "2017planar-has-1.tex" "prop-calc-ZHA")
+%       (find-LATEX "2017planar-has-1.tex" "prop-calc-ZHA" "defub")
+%
+%UB (¬ ¬ P) → P
+%UB     --   --
+%UB     10   10
+%UB    ---
+%UB    02
+%UB  -----
+%UB   20
+%UB ----------- 
+%UB       12
+%L
+%L defub "notnotP"
+%
+%UB ¬(P ∧ Q) → (¬ P ∨ ¬ Q)
+%UB   -- --      --    --
+%UB   10 01      10    01
+%UB   -----     ---   ---
+%UB     00      02    20
+%UB -------     ---------
+%UB    32          22
+%UB ----------------------
+%UB          22
+%L
+%L defub "demorgan"
+%
+$$\pu
+  \ub{notnotP}
+  \qquad
+  \ub{demorgan}
+$$
+
+%UB    ¬( P ∧  Q) → (¬  P ∨ ¬  Q)
+%UB      --   --       --     --
+%UB      ◻P   ◻Q       ◻P     ◻Q
+%UB      -------     ----   ----
+%UB      ◻P ∧ ◻Q     ◻¬◻P   ◻¬◻Q
+%UB    ----------   ------------
+%UB    ◻¬(◻P∧◻Q)     ◻¬◻P ∨ ◻¬◻Q
+%UB   ---------------------------
+%UB   ◻((◻¬(◻P∧◻Q))→(◻¬◻P∨◻¬◻Q))
+%L
+%L defub "demorgan"
+%
+$$\pu
+  T(\ub{demorgan})
+$$
+
+\bigskip
+
+Source (for the second diagram):
+
+{
+\basicttchars
+\begin{verbatim}
+   %UB ¬(P ∧ Q) → (¬ P ∨ ¬ Q)
+   %UB   -- --      --    --
+   %UB   10 01      10    01
+   %UB   -----     ---   ---
+   %UB     00      02    20
+   %UB -------     ---------
+   %UB    32          22
+   %UB ----------------------
+   %UB          22
+   %L
+   %L defub "demorgan"
+   %
+   $$\pu
+     \ub{demorgan}
+   $$
+\end{verbatim}
+}
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:

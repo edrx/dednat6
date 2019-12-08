@@ -7,6 +7,7 @@
 SIMPLEPDFSTEMS= tugboat-rev2			\
 	tug-slides				\
 	demo-minimal				\
+	demo-underbrace				\
 	2018dednat6-extras			\
 	extra-comparisons			\
 	extra-features				\
@@ -38,6 +39,9 @@ tug-slides.pdf:
 
 demo-minimal.pdf:
 	lualatex -record demo-minimal.tex
+
+demo-underbrace.pdf:
+	lualatex -record demo-underbrace.tex
 
 demo-write-dnt.pdf:
 	lualatex -record demo-write-dnt.tex
