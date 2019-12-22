@@ -1,0 +1,243 @@
+-- This file:
+-- http://angg.twu.net/dednat6/extra-modules.txt.html
+-- http://angg.twu.net/dednat6/extra-modules.txt
+--              (find-dednat6 "extra-modules.txt")
+--
+-- Dednat6's main page is at:
+--    http://angg.twu.net/dednat6.html
+--
+-- This is a hacker's guide to the modules of dednat6 that deal with
+-- Planar Heyting Algebras and 2-column graphs - the ZHAs and 2CGs of
+-- this series of papers:
+--
+--   http://angg.twu.net/math-b.html#zhas-for-children-2
+--
+-- I doubt that other people would want to use those modules, at least
+-- in their present messy form, but I hope that this text will give
+-- people some ideas on how they can write their own extensions to
+-- dednat6 - as quick hacks or not.
+--
+-- This file is made of "executable notes" in the sense of:
+--
+--   http://angg.twu.net/emacsconf2019.html
+--   http://angg.twu.net/#eev
+--
+-- it is made of text intermixed with sexp hyperlinks and eepitch
+-- blocks. If you want to _read_ this, just access this URL:
+--
+--   http://angg.twu.net/dednat6/extra-modules.txt.html
+--
+-- all the sexp hyperlinks should work there (in htmlized form).
+-- If you want to execute by yourself the executable parts you will
+-- need Emacs, eev, this patch to eepitch,
+--
+--   (find-es "eev" "eepitch-indented")
+--
+-- and a couple of customizations. Please nudge me if you're
+-- interested!
+--
+--   Eduardo Ochs <eduardoochs@gmail.com>
+--   http://angg.twu.net/contact.html
+--   Version: 2019dec22
+--   Public domain.
+
+
+
+
+
+1. ZHAs in ASCII
+================
+
+Dednat6 comes with some .lua files that implement extensions that are
+only useful to me ("me" = Eduardo Ochs). This is the part of
+dednat6/dednat6.lua that loads them:
+
+  -- From:
+  -- (find-dednat6 "dednat6/dednat6.lua" "requires")
+  -- (find-dednat6 "dednat6/dednat6.lua" "requires" "Code for" "ZHAs:")
+
+  -- Code for handling and drawing ZHAs:
+  require "picture"       -- (find-dn6 "picture.lua")
+  require "zhas"          -- (find-dn6 "zhas.lua")
+  require "zhaspecs"      -- (find-dn6 "zhaspecs.lua")
+  require "tcgs"          -- (find-dn6 "tcgs.lua")
+  require "luarects"      -- (find-dn6 "luarects.lua")
+
+I started writing them because I needed to draw ZHAs in ascii and
+LaTeX in several ways. I started with code to represent ZHA objects in
+Lua, draw them in ascii, and calculate with them (the implication is
+non-trivial):
+
+  -- See:
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA-tests")
+  -- (find-dednat6 "dednat6/zhas.lua" "MixedPicture-tests")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  z = ZHA.fromspec("12321L")
+  = z
+  z:PP()
+
+My class for 2D vectors supports LR coordinates, and the class
+for ZHAs uses that to refer to the elements of a ZHA:
+
+  -- See:
+  -- (find-dednat6 "dednat6/picture.lua" "V")
+  -- (find-dednat6 "dednat6/picture.lua" "V-tests")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA-connectives")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  = V.fromab(-2, 2)
+  = V.fromab("(-2,2)")
+  = V.fromab("20")
+  = v(-2, 2)
+  = v"20"
+  = v"20":xy()
+  = v"20":lr()
+  z = ZHA.fromspec("1234321L")
+  = z
+  = z:Imp(v"21", v"12"):lr()
+
+The ZHA class has a methods :points() that generates all the points in
+a ZHA:
+
+  -- See:
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA" "points =")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA-test-generators")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  z = ZHA.fromspec("12321L")
+  = z
+  for p in z:points() do print(p:lr()) end
+
+If you look at the source for the method :points() you will see that
+it uses "cow" and "coy", that are my abbreviations for coroutine.wrap
+and coroutine.yield:
+
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA" "points =")
+  -- (find-dednat6 "dednat6/edrxlib.lua" "cow-and-coy")
+
+The __tostring method of the ZHA class constructs the lines of the
+ascii representation of the ZHA one by one in a low-level way, using
+the method tolines():
+
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA" "__tostring =")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA" " tostring =")
+  -- (find-dednat6 "dednat6/zhas.lua" "ZHA" "tolines =")
+
+but later I implemented a class AsciiPicture that generalized the idea
+behind :tolines(), of a 2D rectangle of 2-char wide "cells" that are
+somehow concatenated into a string with newlines:
+
+  -- (find-dednat6 "dednat6/picture.lua" "AsciiPicture")
+  -- (find-dednat6 "dednat6/picture.lua" "AsciiPicture-tests")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  z = ZHA.fromspec("12321L")
+  = z
+  ap = AsciiPicture.new("  ")
+  for p in z:points() do ap:put(p, "..") end
+  = ap
+  ap = AsciiPicture.new("  ")
+  for p in z:points() do ap:put(p, p:lr()) end
+  = ap
+  ap = AsciiPicture.new("     ")
+  for p in z:points() do ap:put(p, p:xy()) end
+  = ap
+  PPV(ap)
+
+An AsciiPicture object uses a BoundingBox object to store the
+coordinates of the lower left cell and upper right cell, and to adjust
+these coordinates as more cells are added. See:
+
+  -- (find-dednat6 "dednat6/picture.lua" "BoundingBox")
+  -- (find-dednat6 "dednat6/picture.lua" "BoundingBox-tests")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  bb = BoundingBox.new()
+  = bb
+  = bb:addpoint(v(2, 4))
+  = bb:addpoint(v(5, 10))
+  = bb:addbox(v(5, 10), v(.5, .5))
+  = bb:addbox(v(1, 2), v(.5, .5))
+
+
+
+2. Cuts in ASCII
+================
+
+  -- See:
+  -- (find-dednat6 "dednat6/zhas.lua" "Cuts")
+  -- (find-dednat6 "dednat6/zhas.lua" "Cuts-tests")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  c = Cuts.new()
+  = c:addcuts0{v"00":w(), v"01":n(), v"01":e()}
+  = c.asciibb
+  = c.latexbb
+  = c.minicuts
+  z = ZHA.fromspec("12321L")
+  = z
+  = c:addcontour(z)
+  = c.minicuts
+  = c.latex
+
+
+3. MixedPicture
+===============
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  mp = mpnew({}, "12321L")
+  = mp
+  = mp:addcontour()
+  = mp:addlrs()
+  PPV(mp)
+  = mp.ap
+  = mp.cuts
+  = mp.cuts.latex
+  = mp.lp
+  = mp:tolatex()
+
+# (find-dednat6 "dednat6/zhas.lua" "MixedPicture-tests")
+
+
+
+
+
+
+2. LPicture
+===========
+
+  -- (find-dednat6 "dednat6/picture.lua" "LPicture")
+
+
+
+
+
+-- Local Variables:
+-- coding: utf-8-unix
+-- modes:  (fundamental-mode lua-mode)
+-- End:
