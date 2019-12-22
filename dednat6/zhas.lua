@@ -543,8 +543,9 @@ shortoperators()
 Cuts = Class {
   type    = "Cuts",
   new = function ()
-      return Cuts {minicuts={}, asciibb=BoundingBox.new(),
-                   latex="",    latexbb=BoundingBox.new()}
+      return Cuts {minicuts = VerticalTable {},
+                             asciibb=BoundingBox.new(),
+                   latex="", latexbb=BoundingBox.new()}
     end,
   __tostring = function (c) return c:tostring() end,
   __index = {
@@ -1243,6 +1244,8 @@ vc:cutr(3):cutr(5)
 -- Code commented out! Too messy!
 -- Moved to:
 --   (find-LATEX "edrxpict.lua" "TCG")
+-- Sort of superseded by this, that has a different interface:
+--   (find-dn6file "tcgs.lua")
 
 
 TCG = Class {

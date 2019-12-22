@@ -543,6 +543,7 @@ tq = TCGQ.new(td, opts, 3, 4)
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
+loaddednat6()
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32,   15 26", "?..?", "..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
@@ -559,6 +560,7 @@ tq:print()
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
+loaddednat6()
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32, 15 26", "?..?","..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}

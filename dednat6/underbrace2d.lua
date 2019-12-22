@@ -5,9 +5,12 @@
 --
 -- This module supersedes underbrace.lua, that used a stack language
 -- to draw underbrace diagrams... this one uses a 2D ascii art syntax.
--- See the tests for an example.
+-- See this for an example:
+--   http://angg.twu.net/dednat6/demo-underbrace.pdf
+--   http://angg.twu.net/dednat6/demo-underbrace.tex
+--   http://angg.twu.net/dednat6/demo-underbrace.tex.html
 --
--- Author and version: Eduardo Ochs <eduardoochs@gmail.com>, 2019may13
+-- Author and version: Eduardo Ochs <eduardoochs@gmail.com>, 2019dec08
 -- License: GPL3
 
 -- «.UB»	(to "UB")

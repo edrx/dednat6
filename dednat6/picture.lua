@@ -34,6 +34,7 @@
 -- «.copyopts»			(to "copyopts")
 -- «.copyopts-tests»		(to "copyopts-tests")
 -- «.makepicture»		(to "makepicture")
+-- «.makepicture-tests»		(to "makepicture-tests")
 -- «.texarrow»			(to "texarrow")
 -- «.pict2e»			(to "pict2e")
 -- «.pict2e-test»		(to "pict2e-test")
@@ -53,6 +54,9 @@
 --  / __/| |_| |  \ V /  __/ (__| || (_) | |  \__ \
 -- |_____|____/    \_/ \___|\___|\__\___/|_|  |___/
 --                                                 
+-- This class supports the usual operations on 2D vectors and also the
+-- logical operations on elements of a ZHA - even the implication,
+-- IIRC...
 -- «V» (to ".V")
 V = Class {
   type    = "V",
@@ -255,12 +259,16 @@ dofile "picture.lua"
 -- | |_) | (_) | |_| | | | | (_| | | | | | (_| | |_) | (_) >  < 
 -- |____/ \___/ \__,_|_| |_|\__,_|_|_| |_|\__, |____/ \___/_/\_\
 --                                        |___/                 
+-- A BoundingBox object contains:
+--   a field "x0x0" with a V object (the lower left corner),
+--   a field "x1x1" with a V object (the upper right corner).
+--
 -- «BoundingBox» (to ".BoundingBox")
 
 BoundingBox = Class {
   type    = "BoundingBox",
   new     = function () return BoundingBox {} end,
-  __tostring = function (b)
+  __tostring = function (bb)
       -- return bb.x0y0 and tostring(bb.x0y0).." to "..tostring(bb.x1y1) or "empty"
       if bb.x0y0 then
         return "BoundingBox: \n (x1,y1)="..tostring(bb.x1y1)..
@@ -308,6 +316,7 @@ bb = BoundingBox.new()
 PP(bb)
 = bb
 = bb:addpoint(v(2, 4))
+PP(bb)
 = bb:addbox(v(6, 7), v(.5, .5))
 = bb:addbox(v(1, 2), v(.5, .5))
 = bb:x0x1y0y1()
@@ -355,6 +364,7 @@ AsciiPicture = Class {
       end,
     --
     tolines = function (ap)
+        if not ap.bb.x0y0 then return {} end     -- empty
         local x0, x1, y0, y1 = ap.bb:x0x1y0y1()
         local lines = {}
         for y=y1,y0,-1 do
@@ -387,6 +397,7 @@ for l=0,2 do
   end
 end
 = ap
+PPV(ap)
 
  (eepitch-lua51)
  (eepitch-kill)
@@ -401,9 +412,8 @@ ap = AsciiPicture.new("  "):put(v(1,1),"  ")
 = ap
 = ap:put(v(1,1), "..")
 = ap
+= ap.bb
 PP(ap)
-
--- (ex "asciipicture")
 
 --]]
 
@@ -417,24 +427,51 @@ PP(ap)
 --  \___\___/| .__/ \__, |\___/| .__/ \__|___/
 --           |_|    |___/      |_|            
 --
--- «metaopts» (to ".metaopts")
--- «copyopts» (to ".copyopts")
+-- An _UGLY_ hack to let me specify options for makepicture in a compact way.
+-- A call to copyopts(A, B) copies the options in the table A to the table B.
+-- If there is a field "meta" in A it is treated in a special way:
+--
+--   copyopts({foo=2, bar=3, meta="s ()"}, B)
+--
+-- works as this, but in an unspecified order:
+--
+--   copyopts({foo=2, bar=3}, B)
+--   copyopts(metaopts["s"],  B)
+--   copyopts(metaopts["()"], B)
+--
 -- Used by: (find-dn6 "zhas.lua" "MixedPicture" "LPicture.new(options)")
 --          (find-dn6 "picture.lua" "LPicture" "new" "copyopts(opts, lp)")
+--
+-- «copyopts» (to ".copyopts")
 --          
 copyopts = function (A, B)
     if type(A) == "string" then
-      if A:match(" ")
-      then for _,a in ipairs(split(A)) do copyopts(a, B) end; return B
-      else return copyopts(metaopts[A] or error("No metaopt[\""..A.."\"]"), B)
+      for _,name in ipairs(split(A)) do
+        local tbl = metaopts[name] or error("No metaopt[\""..A.."\"]")
+        copyopts(tbl, B)
       end
+      return B
+      -- Old:
+      -- if A:match(" ") then
+      --   for _,str in ipairs(split(A)) do copyopts(str, B) end
+      --   return B
+      -- else
+      --   local mopts = metaopts[A] or error("No metaopt[\""..A.."\"]")
+      --   return copyopts(mopts, B)
+      -- end
     end
-    for k,v in pairs(A) do
-      if k == "meta" then copyopts(v, B) else B[k] = v end
+    for key,val in pairs(A) do
+      if key == "meta" then
+        copyopts(val, B)
+      else
+        B[key] = val
+      end
     end
     return B
   end
 
+-- «metaopts» (to ".metaopts")
+--
 metaopts = {}
 metaopts["b"]   = {bhbox = 1}
 metaopts["p"]   = {paren = 1}
@@ -456,11 +493,13 @@ metaopts["1pt"]  = {scale="1pt"}
  (eepitch-kill)
  (eepitch-lua51)
 dofile "picture.lua"
-PP(copyopts("8pt", {}))
-PP(copyopts({hello=1, meta="8pt"}, {}))
-PP(copyopts({hello=1, meta="b p s 8pt"}, {}))
-
- (ex "copyopts")
+testcopyopts = function (A) PP(copyopts(A, {})) end
+testcopyopts  "8pt"
+testcopyopts  "8pt ()"
+testcopyopts {foo=2, bar=3}
+testcopyopts {foo=2, bar=3, meta="8pt"}
+testcopyopts {foo=2, bar=3, meta="8pt ()"}
+testcopyopts {foo=2, bar=3}
 
 --]]
 
@@ -517,6 +556,26 @@ makepicture = function (options, bb, body)
     return latex
   end
 
+-- «makepicture-tests»  (to ".makepicture-tests")
+--[[
+ (eepitch-lua51)
+ (eepitch-kill)
+ (eepitch-lua51)
+dofile "picture.lua"
+bb = BoundingBox.new()
+bb:addpoint(v(2,5))
+bb:addpoint(v(4,12))
+= bb
+opts = {}
+body = "  hello\n"
+= makepicture({},           bb, body)
+= makepicture({def ="foo"}, bb, body)
+= makepicture({tdef="foo"}, bb, body)
+= makepicture({zdef="foo"}, bb, body)
+= makepicture({meta="s"},   bb, body)
+
+--]]
+
 
 
 --  _                                        
@@ -526,8 +585,13 @@ makepicture = function (options, bb, body)
 --  \__\___/_/\_\__,_|_|  |_|  \___/ \_/\_/  
 --                                           
 -- «texarrow» (to ".texarrow")
--- Usage: local tar = texarrow_smart(usewhitemoves)
---        pic:putarrow(v"34", 0, -1, tar.s)
+-- Used in: (find-dn6 "zhas.lua" "MixedPicture")
+--          (find-dn6 "zhas.lua" "MixedPicture" "addarrows =")
+--          (find-dn6 "zhas.lua" "MixedPicture" "addarrowsexcept =")
+--          (find-dn6 "picture.lua" "LPicture")
+--          (find-dn6 "picture.lua" "LPicture" "putarrow =")
+--          (find-dn6 "zhas.lua" "ZHA")
+--          (find-dn6 "zhas.lua" "ZHA" "arrows =")
 --
 texarrow = {
   nw="\\nwarrow",  n="\\uparrow",   ne="\\nearrow",
@@ -543,6 +607,9 @@ texarrow_smart = function (usewhitemoves)
     if usewhitemoves then return texarrow_inv end
     return texarrow
   end
+
+-- Usage: local tar = texarrow_smart(usewhitemoves)
+--        pic:putarrow(v"34", 0, -1, tar.s)
 
 
 
@@ -741,9 +808,11 @@ LPicture = Class {
         return lp:addrect2(cxcy-rxry, cxcy+rxry)
       end,
     --
-    -- 2019apr28:
-    -- (find-LATEX "edrxtikz.lua" "Line")
-    -- (find-LATEX "edrxtikz.lua" "Line" "pictv =")
+    -- 2019apr28. Calls this:
+    --     (find-LATEX "edrxtikz.lua" "Line")
+    --     (find-LATEX "edrxtikz.lua" "Line" "pictv =")
+    -- or: (find-dn6 "tcgs.lua" "Line")
+    --     (find-dn6 "tcgs.lua" "Line" "pictv =")
     addarrow = function (lp, A, B, t0, t1)
         lp:addtex(Line.newAB(A, B, t0, t1):pictv())
       end,
@@ -765,13 +834,11 @@ for l=0,2 do
 end
 = lp
 
- (ex "lpicture")
-
--- 2017nov28
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
 dofile "picture.lua"
+-- (find-angg "LUA/lua50init.lua" "pformat")
 V.__tostring = function (v) return format("(%.3f,%.3f)", v[1], v[2]) end
 V.__tostring = function (v) return format("(%s,%s)", myntos(v[1]), myntos(v[2])) end
 V.__tostring = function (v) return "("..myntos(v[1])..","..myntos(v[2])..")" end
