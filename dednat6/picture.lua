@@ -46,6 +46,9 @@
 -- «.Picture-tests»		(to "Picture-tests")
 
 
+require "output"             -- (find-dn6 "output.lua" "formatt")
+
+
 
 
 --  ____  ____                   _                 

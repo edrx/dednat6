@@ -44,6 +44,10 @@
 -- «.LR-fromtcgspec-tests»	(to "LR-fromtcgspec-tests")
 -- «.LR-shrinktop-tests»	(to "LR-shrinktop-tests")
 
+require "zhas"               -- (find-dn6 "zhas.lua")
+
+
+
 
 --  _     ____  
 -- | |   |  _ \ 

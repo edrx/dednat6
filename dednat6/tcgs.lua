@@ -27,6 +27,9 @@
 -- (find-LATEX "edrxtikz.lua" "Line")
 -- (find-LATEX "edrxtikz.lua" "Line-test")
 
+require "zhaspecs"          -- (find-dn6 "zhaspecs.lua")
+require "picture"           -- (find-dn6 "picture.lua")
+
 
 
 
@@ -126,7 +129,8 @@ Line = Class {
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-dofile "edrxtikz.lua"
+-- dofile "edrxtikz.lua"
+dofile "tcgs.lua"
 r = Line.new(v(0, 1), v(3, 2), -1, 2)
 = r
 = r:t(0)
@@ -134,11 +138,6 @@ r = Line.new(v(0, 1), v(3, 2), -1, 2)
 = r:t(1)
 = r:draw()
 = r:pict()
-
-= r:proj(v(0, 1))
-= r:proj(v(-2, 4))
-= r:sym(v(0, 1))
-= r:sym(v(-2, 4))
 
 --]]
 
@@ -324,7 +323,7 @@ TCGDims = Class {
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-dofile "edrxpict.lua"
+dofile "tcgs.lua"
 td = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
 = td
 = td:lowerleft()

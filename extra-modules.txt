@@ -41,9 +41,18 @@
 --   Version: 2019dec22
 --   Public domain.
 
+  «.ZHA»		(to "ZHA")
+  «.AsciiPicture»	(to "AsciiPicture")
+  «.BoundingBox»	(to "BoundingBox")
+  «.Cuts»		(to "Cuts")
+  «.MixedPicture»	(to "MixedPicture")
 
 
 
+
+
+
+  «ZHA»  (to ".ZHA")
 
 1. ZHAs in ASCII
 ================
@@ -136,7 +145,34 @@ the method tolines():
   -- (find-dednat6 "dednat6/zhas.lua" "ZHA" " tostring =")
   -- (find-dednat6 "dednat6/zhas.lua" "ZHA" "tolines =")
 
-but later I implemented a class AsciiPicture that generalized the idea
+The methods :tolines() works roughly like this, but it returns a
+string:
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  z = ZHA.fromspec("12321L")
+  = z
+  for y = z.maxy, 0, -1 do
+    for x = z.minx, z.maxx do
+      printf(z:xycontents(x, y) or "  ")
+    end
+    print()
+  end
+
+Note that points (x,y) that do not belong to the ZHA z are printed as
+exactly two spaces.
+
+
+
+
+  «AsciiPicture»  (to ".AsciiPicture")
+
+2. AsciiPicture
+===============
+
+Ater I implemented a class AsciiPicture that generalized the idea
 behind :tolines(), of a 2D rectangle of 2-char wide "cells" that are
 somehow concatenated into a string with newlines:
 
@@ -159,6 +195,17 @@ somehow concatenated into a string with newlines:
   for p in z:points() do ap:put(p, p:xy()) end
   = ap
   PPV(ap)
+  PP(ap.s)
+  = ap
+  ap.s = "      "
+  = ap
+
+
+
+  «BoundingBox»  (to ".BoundingBox")
+
+3. BoundingBox
+==============
 
 An AsciiPicture object uses a BoundingBox object to store the
 coordinates of the lower left cell and upper right cell, and to adjust
@@ -180,7 +227,10 @@ these coordinates as more cells are added. See:
 
 
 
-2. Cuts in ASCII
+
+  «Cuts»  (to ".Cuts")
+
+4. Cuts in ASCII
 ================
 
   -- See:
@@ -203,7 +253,10 @@ these coordinates as more cells are added. See:
   = c.latex
 
 
-3. MixedPicture
+
+  «MixedPicture»  (to ".MixedPicture")
+
+5. MixedPicture
 ===============
 
    (eepitch-lua51)
