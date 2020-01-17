@@ -77,9 +77,7 @@ cutstoqmarks = function (cuts)
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-loaddednat6()
 require "tcgs"
-
 PP(qmarkstocuts(".??", "..???"))
 PP(cutstoqmarks "321/0 0|1|2345")
 
@@ -129,7 +127,6 @@ Line = Class {
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
--- dofile "edrxtikz.lua"
 dofile "tcgs.lua"
 r = Line.new(v(0, 1), v(3, 2), -1, 2)
 = r
@@ -515,7 +512,6 @@ TCGQ = Class {
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-loaddednat6()
 require "tcgs"
 td = TCGDims {h=6, v=3, q=4, crh=2, crv=1, qrh=1}
 opts = {meta="p s", def="foo"}
@@ -524,10 +520,13 @@ tq:addqpoints()
 tq:Lput(2, "A")
 tq:lprint()
 
+tq = TCGQ.new(td, opts, 3, 4):act("B QB v"):addqpoints()
+tq:Lput(2, "A")
+tq:lprint()
+
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-loaddednat6()
 require "tcgs"
 td = TCGDims {h=6, v=3, q=4, crh=2, crv=1, qrh=1}
 opts = {meta="p s", def="foo"}
@@ -542,7 +541,6 @@ tq = TCGQ.new(td, opts, 3, 4)
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-loaddednat6()
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32,   15 26", "?..?", "..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
@@ -559,7 +557,6 @@ tq:print()
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
-loaddednat6()
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32, 15 26", "?..?","..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}

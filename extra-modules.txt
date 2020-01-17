@@ -46,6 +46,9 @@
   «.BoundingBox»	(to "BoundingBox")
   «.Cuts»		(to "Cuts")
   «.MixedPicture»	(to "MixedPicture")
+  «.J-operators»	(to "J-operators")
+  «.LPicture»		(to "LPicture")
+  «.AsciiRect»		(to "AsciiRect")
 
 
 
@@ -254,10 +257,17 @@ these coordinates as more cells are added. See:
 
 
 
+
+
   «MixedPicture»  (to ".MixedPicture")
 
 5. MixedPicture
 ===============
+
+  -- See:
+  -- (find-dednat6 "dednat6/zhas.lua" "MixedPicture")
+  -- (find-dednat6 "dednat6/zhas.lua" "MixedPicture-tests")
+  -- (find-dednat6 "dednat6/zhas.lua" "mpnew")
 
    (eepitch-lua51)
    (eepitch-kill)
@@ -268,23 +278,118 @@ these coordinates as more cells are added. See:
   = mp:addcontour()
   = mp:addlrs()
   PPV(mp)
-  = mp.ap
-  = mp.cuts
-  = mp.cuts.latex
-  = mp.lp
+  = mp.zha         -- a ZHA object
+  = mp.cuts        -- a Cuts object
+  = mp.ap          -- an AsciiPicture object
+  = mp.lp          -- an LPicture object (explained below)
+  = mp.cuts.latex  -- a string
   = mp:tolatex()
 
-# (find-dednat6 "dednat6/zhas.lua" "MixedPicture-tests")
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  kite  = ".1.\n" ..
+          "2.3\n" ..
+          ".4.\n" ..
+          ".5."
+  kite  = ".1.|2.3|.4.|.5."
+  mp = MixedPicture.new({def="dagKite"}):zfunction(kite)
+  = mp
+  = mp:tolatex()
 
 
 
 
 
+  «J-operators»  (to ".J-operators")
 
-2. LPicture
+6. J-operators
+==============
+
+  -- See:
+  -- (find-dednat6 "dednat6/zhas.lua" "mpnewJ")
+  -- (find-dednat6 "dednat6/zhas.lua" "MixedPicture-J-tests")
+  -- (find-dednat6 "dednat6/zhas.lua" "shortoperators")
+  -- (jopp 17 "polynomial-J-ops")
+  -- (joa     "polynomial-J-ops")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  = mpnewJ({},    "1234RR321", "P -> z:Or(P, v'12')")
+  = mpnewJ({},    "1234RR321", "P -> z:Imp(v'12', P)")
+  mp = mpnewJ({}, "1234RR321", "P -> z:Imp(v'12', P)")
+  = mp.zha:getcuts(mp.J)
+
+  shortoperators()
+  = mpnewJ({}, "123454321", Cloq(v"22")):zhaPs("22")
+  = mpnewJ({}, "1234567654321", Opnq(v"23"))       :zhaPs("23")
+  = mpnewJ({}, "1234567654321", Cloq(v"23"))       :zhaPs("23")
+  = mpnewJ({}, "1234567654321", Booq(v"23"))       :zhaPs("23")
+  = mpnewJ({}, "1234567654321", Forq(v"42", v"24")):zhaPs("42 24")
+  = mpnewJ({}, "1234567654321",
+                   Jand(Booq(v"21"), Booq(v"12")) ):zhaPs("21 12")
+  = mpnewJ({}, "1234567654321", Mixq (v"33"))      :zhaPs("33")
+  = mpnewJ({}, "1234567654321", Mixq2(v"33"))      :zhaPs("33")
+  = mpnewJ({}, "1234567654321", Truq())            :zhaPs("")
+  = mpnewJ({}, "1234567654321", Falq())            :zhaPs("")
+
+
+
+
+  «LPicture»  (to ".LPicture")
+
+6. LPicture
 ===========
 
+  -- See:
   -- (find-dednat6 "dednat6/picture.lua" "LPicture")
+  -- (find-dednat6 "dednat6/picture.lua" "LPicture" "__tostring =")
+  -- (find-dednat6 "dednat6/picture.lua" "LPicture" "tolatex =")
+  -- (find-dednat6 "dednat6/picture.lua" "makepicture-tests")
+  -- (find-dednat6 "dednat6/picture.lua" "copyopts")
+  -- (find-dednat6 "dednat6/picture.lua" "copyopts-tests")
+
+   (eepitch-lua51)
+   (eepitch-kill)
+   (eepitch-lua51)
+  loaddednat6()
+  lp = LPicture.new {scale="8pt"}
+  lp = LPicture.new {cellfont="\\scriptsize"}
+  lp = LPicture.new {}
+  for l=0,1 do
+    for r=0,1 do
+      local pos=lr(l, r)
+      lp:put(pos, pos:lr())
+    end
+  end
+  = lp
+  lp.scale    = "8pt"
+  lp.cellfont = "\\scriptsize"
+  lp.def      = "FOO"
+  = lp
+  PPV(lp)
+
+
+
+
+
+  «AsciiRect»  (to ".AsciiRect")
+
+7. AsciiRect
+============
+
+  -- (find-dednat6 "dednat6/luarects.lua")
+  -- (find-dednat6 "dednat6/luarects.lua" "AsciiRect")
+  -- (find-dednat6 "dednat6/luarects.lua" "LuaWithRects")
+  -- (find-dednat6 "dednat6/heads6.lua" "luarect-head")
+  -- (ph1p 12 "prop-calc-ZHA")
+  -- (ph1     "prop-calc-ZHA")
+  -- (ph1     "prop-calc-ZHA" "%R")
+
+
 
 
 

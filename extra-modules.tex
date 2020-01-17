@@ -11,6 +11,10 @@
 %           file:///tmp/pen/extra-modules.pdf
 % http://angg.twu.net/dednat6/extra-modules.pdf
 %
+% «.defs-co»			(to "defs-co")
+% «.defs-zha-tcg-ub»		(to "defs-zha-tcg-ub")
+% «.defs-squigbij»		(to "defs-squigbij")
+%
 % «.LPicture»			(to "LPicture")
 % «.zfunctions»			(to "zfunctions")
 % «.ZHAs»			(to "ZHAs")
@@ -20,11 +24,12 @@
 % «.luarects»			(to "luarects")
 %
 \documentclass[oneside]{article}
-\usepackage[colorlinks]{hyperref} % (find-es "tex" "hyperref")
+\usepackage[colorlinks,urlcolor=DarkRed,citecolor=DarkRed]{hyperref} % (find-es "tex" "hyperref")
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{pict2e}
+\usepackage{graphicx}
 \usepackage[x11names,svgnames]{xcolor} % (find-es "tex" "xcolor")
 %
 % (find-dn6 "preamble6.lua" "preamble0")
@@ -37,7 +42,11 @@
 \catcode`\^^J=10
 \directlua{dofile "dednat6load.lua"}  % (find-LATEX "dednat6load.lua")
 
-% \co: a low-level way to typeset code; a poor man's "\verb"
+
+
+
+% «defs-co»  (to ".defs-co")
+% \co: a low-level way to typeset code; a poor man's "\verb".
 \def\co#1{{%
   \def\%{\char37}%
   \def\\{\char92}%
@@ -52,7 +61,8 @@
 \def\msk{\medskip}
 \def\ssk{\smallskip}
 
-% (find-LATEX "2017planar-has-defs.tex" "defzha-and-deftcg")
+% «defs-zha-tcg-ub»  (to ".defs-zha-tcg-ub")
+% From: (find-LATEX "2017planar-has-defs.tex" "defzha-and-deftcg")
 \def\defzha#1#2{\expandafter\def\csname zha-#1\endcsname{#2}}
 \def\ifzhaundefined#1{\expandafter\ifx\csname zha-#1\endcsname\relax}
 \def\zha#1{\ifzhaundefined{#1}
@@ -79,15 +89,45 @@
 }
 \def\und#1#2{\underbrace{#1}_{#2}}
 
+% «defs-squigbij»  (to ".defs-squigbij")
+% \squigbij: a nice "<--/\/\/\/-->" arrow drawn with pict2e.
+% From: (find-LATEX "2017planar-has-defs.tex" "squigbij")
+%
+\def\squigbij{\newsquigbij}
+\def\newsquigbij{\;\; \squigbijbody \;\;}
+\def\squigbijy{-1.2}
+\def\squigbijbody{\squigbijbodywithparams{1.5pt}{0.3pt}{1.0}}
+\def\squigbijtriangle(#1,#2)#3{\polygon*(#1,0)(#2,#3)(#2,-#3)}
+\def\squigbijbodywithparams#1#2#3{{%
+  \unitlength=#1
+  \linethickness{#2}
+  \begin{picture}(22.4,2.4)(-5.2,\squigbijy)%
+    \polyline(-3,0)(0,0)(1,1)(3,-1)(5,1)(7,-1)(9,1)(11,-1)(12,0)(14,0)
+    \squigbijtriangle(-5,-2){#3}
+    \squigbijtriangle(17,14){#3}
+  \end{picture}%
+  }}
 
 
 
+
+%  _____ _ _   _      
+% |_   _(_) |_| | ___ 
+%   | | | | __| |/ _ \
+%   | | | | |_| |  __/
+%   |_| |_|\__|_|\___|
+%                     
 \title{Dednat6: extra modules}
 
 \author{Eduardo Ochs}
 
 \maketitle
 
+
+% See:
+% http://angg.twu.net/dednat6/extra-modules.txt.html
+% http://angg.twu.net/dednat6/extra-modules.txt
+%              (find-dednat6 "extra-modules.txt")
 
 
 
@@ -103,13 +143,44 @@ of several \co{.lua} files that are {\sl all} loaded by
 \co{dednat6.lua}; there is no provision yet for loading only the
 modules that are used in a given \co{.tex} file. This means that some
 modules that are only useful to the author of Dednat6 (Eduardo Ochs,
-a.k.a. ``me'') are always loaded.
+a.k.a. ``me'') are always loaded. Here is the part of the code of
+\co{dednat6/dednat6.lua} that loads them:
+
+\begin{verbatim}
+  -- Code for handling and drawing ZHAs:
+  require "picture"       -- (find-dn6 "picture.lua")
+  require "zhas"          -- (find-dn6 "zhas.lua")
+  require "zhaspecs"      -- (find-dn6 "zhaspecs.lua")
+  require "tcgs"          -- (find-dn6 "tcgs.lua")
+  require "luarects"      -- (find-dn6 "luarects.lua")
+\end{verbatim}
 
 Most of these extra modules were written to handle the objects
-described in my series of papers about ``Planar Heyting Algebras'',
-at:
+described in my series of papers about ``Planar Heyting Algebras for
+Children'', at:
+
+\msk
 
 \url{http://angg.twu.net/math-b.html#zhas-for-children-2}
+
+\msk
+
+Even though these modules are not useful to other people some ideas
+and techniques in them may be. I am preparing a video to explain them
+--- it will be based on the ``executable notes'' here:
+
+\msk
+
+\url{http://angg.twu.net/dednat6/extra-modules.txt}
+
+\msk
+
+I am preparing the ``script'' and rehearsing the video but I haven't
+started recording yet. This PDF {\sl complements} the notes and the
+video.
+
+
+
 
 \msk
 
@@ -178,44 +249,89 @@ at:
 % «TCGs»  (to ".TCGs")
 % (dnep 1 "TCGs")
 % (dne    "TCGs")
+% (find-dednat6 "dednat6/tcgs.lua")
 
 \section{TCGs}
 
-
-
-
-% (find-LATEXfile "2019ebl-five-appls.tex" "A strange J-operator")
+The file \co{tcgs.lua} defines classes for drawing the 2-column graphs
+of [PH1] and [PH2] with or without question marks, and for converting
+these 2CGs and 2CGQs into ZHAs and ZHAs with cuts. Here's an example
+of what they produce:
 %
-%L tdims = TCGDims {qrh=5, q=15, crh=12, h=60, v=25, crv=7}   -- with v arrows
+%L tdims = TCGDims {qrh=5, q=15, crh=12, h=60, v=25, crv=7}
 %L tspec_PA  = TCGSpec.new("46; 11 22 34 45, 25")
 %L tspec_PAQ = TCGSpec.new("46; 11 22 34 45, 25", ".???", "???.?.")
-%L tspec_PA :mp  ({zdef="O_A(P)"})  :addlrs():print()            :output()
-%L tspec_PAQ:mp  ({zdef="O_A(P),J"}):addlrs():print()            :output()
+%L
+%L -- Define $\tcg{(P,A)}$
+%L -- and    $\tcg{(P,A),Q}$.
+%L -- The :tcgq() method uses the global variable tdims.
+%L --
 %L tspec_PA :tcgq({tdef="(P,A)",   meta="1pt p"}, "lr q h v ap") :output()
 %L tspec_PAQ:tcgq({tdef="(P,A),Q", meta="1pt p"}, "lr q h v ap") :output()
 %L
-%L tspec_PAC = TCGSpec.new("46; 11 22 34 45, 25", "?...", "???...")
-%L tspec_PAC:mp  ({zdef="closed-op"}) :addlrs():print()            :output()
-%L tspec_PAC:tcgq({tdef="closed-op", meta="1pt p"}, "lr q h v ap") :output()
+%L -- Define $\zha{O_A(P)}$
+%L -- and    $\zha{O_A(P),J}$.
+%L -- The :mp() method returns a MixedPicture object.
+%L --
+%L tspec_PA :mp  ({zdef="O_A(P)"})  :addlrs():print()            :output()
+%L tspec_PAQ:mp  ({zdef="O_A(P),J"}):addlrs():print()            :output()
 %L 
 \pu
-
-\def\squigbij{\;\; \diagxyto/<~>/<300> \;\;}
-
-Here's an example of what they produce:
-
-$%\resizebox{!}{60pt}{$
+$$
  \begin{array}{ccc}
-   \tcg{(P,A)}   &\squigbij& \zha{O_A(P)}   \\
+   \tcg{(P,A)}   &\squigbij& \zha{O_A(P)}   \\ \\
    \tcg{(P,A),Q} &\squigbij& \zha{O_A(P),J} \\
  \end{array}
- % $}
-$
+$$
 
-\bsk
+Here's a figure showing how the dimension parameters in a TCGDims
+object work.
 
-Even though these modules are not useful to other people some {\sl
-  ideas} in them may be. (TO DO: give examples!)
+\newpage
+
+%L tspec = TCGSpec.new("23; 21, 13",    "?.","..?")
+%L
+%L f = function (dims, name, actions)
+%L     tdims = TCGDims(dims)
+%L     TCGQ.newdsoa(tdims, tspec, {tdef=name, meta="1pt p"}, actions):output()
+%L   end
+%L
+%L f({h=20, v=20, q=20,  crh=5,  crv=5,  qrh=5}, "A1", "B QB v h")
+%L f({h=40, v=20, q=20,  crh=5,  crv=5,  qrh=5}, "A2", "B QB v h")
+%L f({h=40, v=20, q=40,  crh=5,  crv=5,  qrh=5}, "A3", "B QB v h")
+%L f({h=40, v=20, q=40, crh=10,  crv=5,  qrh=5}, "A4", "B QB v h")
+%L f({h=40, v=20, q=40, crh=10,  crv=5, qrh=10}, "A5", "B QB v h")
+%L f({h=40, v=40, q=40, crh=10,  crv=5, qrh=10}, "A6", "B QB v h")
+%L f({h=40, v=40, q=40, crh=10, crv=10, qrh=10}, "A7", "B QB v h")
+%L
+%L tspec = TCGSpec.new("23; 21, 13")
+%L f({h=40, v=40, q=40, crh=10, crv=10, qrh=10}, "A8", "B    v h")
+\pu
+
+$$\def\T#1#2{
+    \begin{tabular}{l}
+      \{    #1,  \\
+      \;\;\;#2\} \\
+    \end{tabular}
+  }
+  \scalebox{0.8}{$
+  \begin{array}{ccc}
+  \T{h=20, v=20, q=20} { crh=5,  crv=5,  qrh=5} &⇒& \tcg{A1} \\ \\
+  \T{h=40, v=20, q=20} { crh=5,  crv=5,  qrh=5} &⇒& \tcg{A2} \\ \\
+  \T{h=40, v=20, q=40} { crh=5,  crv=5,  qrh=5} &⇒& \tcg{A3} \\ \\
+  \T{h=40, v=20, q=40} {crh=10,  crv=5,  qrh=5} &⇒& \tcg{A4} \\ \\
+  \T{h=40, v=20, q=40} {crh=10,  crv=5, qrh=10} &⇒& \tcg{A5} \\ \\
+  \T{h=40, v=40, q=40} {crh=10,  crv=5, qrh=10} &⇒& \tcg{A6} \\ \\
+  \T{h=40, v=40, q=40} {crh=10, crv=10, qrh=10} &⇒& \tcg{A7} \\ \\
+  \T{h=40, v=40, q=40} {crh=10, crv=10, qrh=10} &⇒& \tcg{A8} \\
+  \end{array}
+  $}
+$$
+
+
+
+
+
 
 
 
@@ -227,14 +343,14 @@ Even though these modules are not useful to other people some {\sl
 %                                                       
 % «underbrace2d»  (to ".underbrace2d")
 % (find-LATEX "2019seminario-hermann.tex" "values-of-subexpressions-S4")
+% Moved to: (find-dednat6 "demo-underbrace.tex")
 
 \section{Underbrace2d}
 
-
-%UB  P \lor Q \to P \lor Q
-%UB  -      -     -      -
-%UB  0      1     0      1
-%UB  --------     --------
+%UB  P \lor Q \to P \land Q
+%UB  -      -     -       -
+%UB  0      1     0       1
+%UB  --------     ---------
 %UB      1            0
 %UB  ---------------------
 %UB            0

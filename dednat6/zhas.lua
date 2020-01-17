@@ -796,6 +796,7 @@ MixedPicture = Class {
     addlcut = function (mp, ...) mp.cuts:addlcut(mp.zha, ...); return mp end,
     addrcut = function (mp, ...) mp.cuts:addrcut(mp.zha, ...); return mp end,
     addcuts = function (mp, ...) mp.cuts:addcuts(mp.zha, ...); return mp end,
+    --
     addcutssub = function (mp, newtop, ...)
         mp.cuts:addcuts(mp.zha:shrinktop(newtop), ...)
         return mp
