@@ -6,12 +6,12 @@
 --
 -- See: (find-dn6 "preamble.lua")
 
--- «.preamble0»		(to "preamble0")
--- «.preamble1»		(to "preamble1")
+-- Â«.preamble0Â»		(to "preamble0")
+-- Â«.preamble1Â»		(to "preamble1")
 
 
 
--- «preamble0» (to ".preamble0")
+-- Â«preamble0Â» (to ".preamble0")
 -- LaTeX needs to run these commands BEFORE the "\begin{document}".
 -- For some reason, doing "\directlua{output(preamble0)}" doesn't
 -- work; the obvious workaround is to include them in the .tex file
@@ -23,7 +23,7 @@ preamble0 = [==[
 ]==]
 
 
--- «preamble1» (to ".preamble1")
+-- Â«preamble1Â» (to ".preamble1")
 -- These commands can be run either before of after "\begin{document}".
 -- Usage: "\directlua{output(preamble1)}".
 -- See:   (find-LATEX "edrxdnt.tex" "diagxy")
@@ -88,6 +88,6 @@ print(preamble1)
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

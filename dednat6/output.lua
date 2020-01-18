@@ -14,16 +14,16 @@
 --   \directlua{output =  printboth}
 -- or: (...)
 
--- «.deletecomments»		(to "deletecomments")
--- «.output»			(to "output")
--- «.output_dnt»		(to "output_dnt")
--- «.write_dnt_file»		(to "write_dnt_file")
--- «.write_single_tex_file»	(to "write_single_tex_file")
--- «.formatt»			(to "formatt")
--- «.bprintt»			(to "bprintt")
+-- Â«.deletecommentsÂ»		(to "deletecomments")
+-- Â«.outputÂ»			(to "output")
+-- Â«.output_dntÂ»		(to "output_dnt")
+-- Â«.write_dnt_fileÂ»		(to "write_dnt_file")
+-- Â«.write_single_tex_fileÂ»	(to "write_single_tex_file")
+-- Â«.formattÂ»			(to "formatt")
+-- Â«.bprinttÂ»			(to "bprintt")
 
 
--- «deletecomments» (to ".deletecomments")
+-- Â«deletecommentsÂ» (to ".deletecomments")
 -- (find-es "luatex" "comments-in-tex.print")
 -- Old version:
 --   deletecomments = function (str)
@@ -65,7 +65,7 @@ dnt_log = ""
 --  \___/ \__,_|\__| .__/ \__,_|\__|
 --                 |_|              
 --
--- «output»  (to ".output")
+-- Â«outputÂ»  (to ".output")
 -- `output(str)' is the main way to send TeX code from dednat6 to TeX.
 -- The TUGBoat article explains this briefly in sec.3.1. See:
 --
@@ -105,7 +105,7 @@ dnt_log = ""
 -- dednat6 produces is shown in the output of `lualatex foo.tex'; I
 -- find that this helps debugging.
 
--- «output_dnt»  (to ".output_dnt")
+-- Â«output_dntÂ»  (to ".output_dnt")
 -- (find-es "dednat" "output_dnt")
 output_dnt = function (str)
     dnt_log = dnt_log..str.."\n"
@@ -134,7 +134,7 @@ verbose = function () output = output_verbose end
 --   \_/\_/ |_|  |_|\__\___|___\__,_|_| |_|\__|___|_| |_|_|\___|
 --                        |_____|            |_____|            
 --
--- «write_dnt_file» (to ".write_dnt_file")
+-- Â«write_dnt_fileÂ» (to ".write_dnt_file")
 -- Use this to _sort of_ emulate the behavior of dednat4.
 -- See: http://angg.twu.net/dednat6.html#no-lua
 --      (find-LATEX "dednat6load.lua")
@@ -158,7 +158,7 @@ write_dnt_file  = function (fname)
 --   \_/\_/ |_|  |_|\__\___|___|___/_|_| |_|\__, |_|\___|
 --                        |_____|           |___/        
 --
--- «write_single_tex_file»  (to ".write_single_tex_file")
+-- Â«write_single_tex_fileÂ»  (to ".write_single_tex_file")
 -- Experimental, 2019aug16
 write_single_tex_file__pat = "^(.-\n)(%s*)(\\input\\jobname.dnt[^\n]*\n)(.*)$"
 write_single_tex_file = function (fname_out)
@@ -179,7 +179,7 @@ write_single_tex_file = function (fname_out)
 -- I don't use the functions below this point much...
 -- I only use them to generate code for pict2e.
 
--- «formatt» (to ".formatt")
+-- Â«formattÂ» (to ".formatt")
 -- (find-es "lua5" "formatt-and-printt")
 formatt = function (...)
     local A = {...}
@@ -190,7 +190,7 @@ printt  = function (...) print(formatt(...)) end
 outputt = function (...) output(formatt(...)) end
 
 
--- «bprintt» (to ".bprintt")
+-- Â«bprinttÂ» (to ".bprintt")
 -- Usage in the REPL:
 --   bprint, out = makebprint("verbose")
 --   bprint("%s--%s", v(2,3), v(4,5))
@@ -215,16 +215,8 @@ makebprint = function (verbose)
 
 
 
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "output.lua"
-
---]]
-
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

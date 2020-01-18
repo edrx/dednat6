@@ -7,12 +7,12 @@
 -- Version: 2018oct11
 -- License: GPL3
 --
--- «.allsegments»	(to "allsegments")
--- «.segtotreenode»	(to "segtotreenode")
--- «.Segment»		(to "Segment")
--- «.Segments»		(to "Segments")
--- «.tosegments»	(to "tosegments")
--- «.allsegments-tests»	(to "allsegments-tests")
+-- Â«.allsegmentsÂ»	(to "allsegments")
+-- Â«.segtotreenodeÂ»	(to "segtotreenode")
+-- Â«.SegmentÂ»		(to "Segment")
+-- Â«.SegmentsÂ»		(to "Segments")
+-- Â«.tosegmentsÂ»	(to "tosegments")
+-- Â«.allsegments-testsÂ»	(to "allsegments-tests")
 
 
 require "eoo"      -- (find-dn6 "eoo.lua")
@@ -31,12 +31,12 @@ intersects = function (start1, end1, start2, end2)
 
 
 
--- «allsegments» (to ".allsegments")
+-- Â«allsegmentsÂ» (to ".allsegments")
 allsegments = VerticalTable {}
 -- For example, allsegment[5] is a Segments object containing the list
 -- of all Segment objects at line 5 of the current file.
 
--- «segtotreenode» (to ".segtotreenode")
+-- Â«segtotreenodeÂ» (to ".segtotreenode")
 -- (find-dn6 "treetex.lua" "TreeNode")
 segtotreenode = function (seg)
     local bar = seg:firstsegabove()
@@ -59,7 +59,7 @@ segtotreenode = function (seg)
     return TreeNode {[0]=seg.t}
   end
 
--- «Segment» (to ".Segment")
+-- Â«SegmentÂ» (to ".Segment")
 Segment = Class {
   type    = "Segment",
   -- __tostring = function (seg) return seg:torect():tostring() end,
@@ -86,7 +86,7 @@ Segment = Class {
   },
 }
 
--- «Segments» (to ".Segments")
+-- Â«SegmentsÂ» (to ".Segments")
 Segments = Class {
   type    = "Segments",
   __tostring = function (segs) return mytostring(segs) end,
@@ -111,7 +111,7 @@ Segments = Class {
 }
 
 
--- «tosegments» (to ".tosegments")
+-- Â«tosegmentsÂ» (to ".tosegments")
 -- Uses functions and variables from: (find-dn6 "parse.lua")
 tosegments = function (str, y)
     local T = {}
@@ -133,7 +133,7 @@ treesegtest = function (bigstr)
   end
 
 
--- «allsegments-tests»  (to ".allsegments-tests")
+-- Â«allsegments-testsÂ»  (to ".allsegments-tests")
 -- See: (find-dn6 "rect.lua" "dedtorect-tests")
 --[==[
  (eepitch-lua51)
@@ -191,6 +191,5 @@ print(allsegments[6][1]:totreenode():TeX_deftree("t"))  -- err
 
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding: utf-8-unix
 -- End:

@@ -10,16 +10,16 @@
 
 
 
--- «.Stack»		(to "Stack")
--- «.MetaStack»		(to "MetaStack")
--- «.nodes»		(to "nodes")
--- «.arrows»		(to "arrows")
+-- Â«.StackÂ»		(to "Stack")
+-- Â«.MetaStackÂ»		(to "MetaStack")
+-- Â«.nodesÂ»		(to "nodes")
+-- Â«.arrowsÂ»		(to "arrows")
 
 
 require "stacks"   -- (find-dn6 "stacks.lua")
 
 
--- «Stack»  (to ".Stack")
+-- Â«StackÂ»  (to ".Stack")
 -- TODO: unify with: (find-dn6 "stacks.lua" "Stack")
 --[==[
 push = function (stack, o) table.insert(stack, o) end
@@ -61,7 +61,7 @@ ds = Stack {}     -- (find-miniforthgempage 3  "DS={ 5 }")
 
 
 
--- «MetaStack»  (to ".MetaStack")
+-- Â«MetaStackÂ»  (to ".MetaStack")
 -- (find-dn6 "diagforth.lua" "metastack")
 MetaStack = ClassOver(Stack) {
   type    = "MetaStack",
@@ -81,7 +81,7 @@ depths = MetaStack {stack=ds, msg="Empty metastack"}
 
 
 
--- «nodes»  (to ".nodes")
+-- Â«nodesÂ»  (to ".nodes")
 nodes = VerticalTable {}        -- has numeric and string indices
 storenode = function (node)
     table.insert(nodes, node)
@@ -92,7 +92,7 @@ storenode = function (node)
     return node
   end
 
--- «arrows»  (to ".arrows")
+-- Â«arrowsÂ»  (to ".arrows")
 arrows = VerticalTable {}       -- has numeric and string indices
 storearrow = function (arrow)
     table.insert(arrows, arrow)
@@ -105,11 +105,6 @@ storearrow = function (arrow)
 
 
 
--- dump-to: tests
---[==[
---]==]
-
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

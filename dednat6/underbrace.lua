@@ -34,14 +34,14 @@
 --   (find-ist "all.lua" "Stack")
 
 
--- «.synttotex»		(to "synttotex")
--- «.ubs»		(to "ubs")
--- «.ubs-tests»		(to "ubs-tests")
+-- Â«.synttotexÂ»		(to "synttotex")
+-- Â«.ubsÂ»		(to "ubs")
+-- Â«.ubs-testsÂ»		(to "ubs-tests")
 
 require "stacks"   -- (find-dn6 "stacks.lua")
 require "rect"     -- (find-dn6 "rect.lua")
 
--- «synttotex» (to ".synttotex")
+-- Â«synttotexÂ» (to ".synttotex")
 -- This is used by ubstex to generate LaTeX from a tree object.
 synttotex = function (o)
     if type(o) == "string" then return o end
@@ -57,7 +57,7 @@ synttotex = function (o)
 -- | |_| | |_) \__ \
 --  \__,_|_.__/|___/
 --                  
--- «ubs» (to ".ubs")
+-- Â«ubsÂ» (to ".ubs")
 ubs_doword = function (s, word)
     local o = function ()    return s:pop() end
     local u = function (obj) return s:push(obj) end
@@ -90,7 +90,7 @@ ubs = function (bigstr)
 
 
 --[==[
--- «ubs-tests» (to ".ubs-tests")
+-- Â«ubs-testsÂ» (to ".ubs-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -122,8 +122,6 @@ PP(ubs("a () ()"))
 = ubstree  [[ P 0 u   Q 1 u   \& bin 0 u   P 0 u   -> bin 1 u ]] 
 = ubs      [[ P 0 u   Q 1 u   \& bin 0 u   P 0 u   -> bin 1 u ]] 
 
- (ex "ubs-1")
-
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -152,8 +150,6 @@ ubs_brute_force_imp
   \bij bin
 ]]
 
- (ex "ubs-2")
-
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -163,8 +159,6 @@ ubs0  [[ P 10 u   Q 01 u   \& bin 00 u   Foo def   output ]]
 ubs   [[ P 10 u   Q 01 u   \& bin 00 u   Foo def   output ]]
 = ubs [[ P 10 u   Q 01 u   \& bin 00 u   Foo def   output ]]
 
- (ex "ubs-def")
-
 --]==]
 
 
@@ -173,21 +167,11 @@ ubs   [[ P 10 u   Q 01 u   \& bin 00 u   Foo def   output ]]
 
 
 
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "underbrace.lua"
-
---]]
-
-
-
 
 
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

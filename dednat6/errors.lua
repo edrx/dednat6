@@ -32,11 +32,7 @@ FGetword2 = function () return getword() or FError("missing 2nd argument") end
 
 
 
--- dump-to: tests
---[==[
---]==]
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

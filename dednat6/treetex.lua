@@ -22,11 +22,11 @@
 --   (find-angg "dednat/dednat2.lua" "tatsuta_do_node")
 --   (find-angg "dednat/dednat.lua" "tatsuta_donode")
 
--- «.TreeNode»			(to "TreeNode")
--- «.TreeNode-tests»		(to "TreeNode-tests")
--- «.unabbrev_tatsuta»		(to "unabbrev_tatsuta")
--- «.TeX_subtree_tatsuta»	(to "TeX_subtree_tatsuta")
--- «.TeX_deftree_tatsuta»	(to "TeX_deftree_tatsuta")
+-- Â«.TreeNodeÂ»			(to "TreeNode")
+-- Â«.TreeNode-testsÂ»		(to "TreeNode-tests")
+-- Â«.unabbrev_tatsutaÂ»		(to "unabbrev_tatsuta")
+-- Â«.TeX_subtree_tatsutaÂ»	(to "TeX_subtree_tatsuta")
+-- Â«.TeX_deftree_tatsutaÂ»	(to "TeX_deftree_tatsuta")
 
 
 
@@ -36,7 +36,7 @@ require "rect"      -- (find-dn6 "rect.lua")
 
 
 
--- «TreeNode» (to ".TreeNode")
+-- Â«TreeNodeÂ» (to ".TreeNode")
 -- A TreeNode object "tn" has fields:
 --
 --   [0]: the tree root (a string)
@@ -78,7 +78,7 @@ TreeNode = Class {
   },
 }
 
--- «TreeNode-tests» (to ".TreeNode-tests")
+-- Â«TreeNode-testsÂ» (to ".TreeNode-tests")
 -- See: (find-dn6 "rect.lua" "dedtorect-tests")
 --[==[
  (eepitch-lua51)
@@ -100,14 +100,14 @@ PPV(tn)
 
 
 
--- «unabbrev_tatsuta» (to ".unabbrev_tatsuta")
+-- Â«unabbrev_tatsutaÂ» (to ".unabbrev_tatsuta")
 -- One easy way to change the way that tree nodes are converted from
 -- ascii to TeX is to change this function temporarily.
 unabbrev_tatsuta = unabbrev
 
 
 
--- «TeX_subtree_tatsuta» (to ".TeX_subtree_tatsuta")
+-- Â«TeX_subtree_tatsutaÂ» (to ".TeX_subtree_tatsuta")
 TeX_subtree_tatsuta = function (tn, i_)
     if not tn:hasbar() then
       return i_.."\\mathstrut "..unabbrev_tatsuta(tn:TeX_root())
@@ -131,7 +131,7 @@ TeX_subtree_tatsuta = function (tn, i_)
     end
   end
 
--- «TeX_deftree_tatsuta» (to ".TeX_deftree_tatsuta")
+-- Â«TeX_deftree_tatsutaÂ» (to ".TeX_deftree_tatsuta")
 TeX_deftree_tatsuta = function (tn, name, link)
     local comment = "   % "..(link or tf:hyperlink())
     return "\\defded{"..name.."}{"..comment.."\n"..
@@ -142,6 +142,5 @@ TeX_deftree_tatsuta = function (tn, name, link)
 
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding: utf-8-unix
 -- End:

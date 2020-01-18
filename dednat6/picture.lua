@@ -24,26 +24,26 @@
 -- Heyting Algebras, a.k.a. ZHAs, and is not independent from it. =(
 --
 --
--- «.V»				(to "V")
--- «.V-tests»			(to "V-tests")
--- «.BoundingBox»		(to "BoundingBox")
--- «.BoundingBox-tests»		(to "BoundingBox-tests")
--- «.AsciiPicture»		(to "AsciiPicture")
--- «.AsciiPicture-tests»	(to "AsciiPicture-tests")
--- «.metaopts»			(to "metaopts")
--- «.copyopts»			(to "copyopts")
--- «.copyopts-tests»		(to "copyopts-tests")
--- «.makepicture»		(to "makepicture")
--- «.makepicture-tests»		(to "makepicture-tests")
--- «.texarrow»			(to "texarrow")
--- «.pict2e»			(to "pict2e")
--- «.pict2e-test»		(to "pict2e-test")
--- «.LPicture»			(to "LPicture")
--- «.LPicture-tests»		(to "LPicture-tests")
+-- Â«.VÂ»				(to "V")
+-- Â«.V-testsÂ»			(to "V-tests")
+-- Â«.BoundingBoxÂ»		(to "BoundingBox")
+-- Â«.BoundingBox-testsÂ»		(to "BoundingBox-tests")
+-- Â«.AsciiPictureÂ»		(to "AsciiPicture")
+-- Â«.AsciiPicture-testsÂ»	(to "AsciiPicture-tests")
+-- Â«.metaoptsÂ»			(to "metaopts")
+-- Â«.copyoptsÂ»			(to "copyopts")
+-- Â«.copyopts-testsÂ»		(to "copyopts-tests")
+-- Â«.makepictureÂ»		(to "makepicture")
+-- Â«.makepicture-testsÂ»		(to "makepicture-tests")
+-- Â«.texarrowÂ»			(to "texarrow")
+-- Â«.pict2eÂ»			(to "pict2e")
+-- Â«.pict2e-testÂ»		(to "pict2e-test")
+-- Â«.LPictureÂ»			(to "LPicture")
+-- Â«.LPicture-testsÂ»		(to "LPicture-tests")
 --
 -- Obsolete (to be deleted):
--- «.Picture»			(to "Picture")
--- «.Picture-tests»		(to "Picture-tests")
+-- Â«.PictureÂ»			(to "Picture")
+-- Â«.Picture-testsÂ»		(to "Picture-tests")
 
 
 require "output"             -- (find-dn6 "output.lua" "formatt")
@@ -60,7 +60,7 @@ require "output"             -- (find-dn6 "output.lua" "formatt")
 -- This class supports the usual operations on 2D vectors and also the
 -- logical operations on elements of a ZHA - even the implication,
 -- IIRC...
--- «V» (to ".V")
+-- Â«VÂ» (to ".V")
 V = Class {
   type    = "V",
   -- __tostring = function (v) return "("..v[1]..","..v[2]..")" end,
@@ -198,7 +198,7 @@ lr = function (l, r) return V{l, r}:lrtoxy() end
 --     return V{l, r}:lrtoxy()
 --   end
 
--- «V-tests» (to ".V-tests")
+-- Â«V-testsÂ» (to ".V-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -266,7 +266,7 @@ dofile "picture.lua"
 --   a field "x0x0" with a V object (the lower left corner),
 --   a field "x1x1" with a V object (the upper right corner).
 --
--- «BoundingBox» (to ".BoundingBox")
+-- Â«BoundingBoxÂ» (to ".BoundingBox")
 
 BoundingBox = Class {
   type    = "BoundingBox",
@@ -309,7 +309,7 @@ BoundingBox = Class {
   },
 }
 
--- «BoundingBox-tests» (to ".BoundingBox-tests")
+-- Â«BoundingBox-testsÂ» (to ".BoundingBox-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -337,7 +337,7 @@ PP(bb)
 --  / ___ \\__ \ (__| | |  __/| | (__| |_| |_| | | |  __/
 -- /_/   \_\___/\___|_|_|_|   |_|\___|\__|\__,_|_|  \___|
 --                                                       
--- «AsciiPicture» (to ".AsciiPicture")
+-- Â«AsciiPictureÂ» (to ".AsciiPicture")
 -- This is a minimalistic, and V-based, reimplementation of the
 -- ascii side of the "Picture" class from:
 -- (find-dn6 "picture.lua" "Picture")
@@ -382,7 +382,7 @@ AsciiPicture = Class {
   },
 }
 
--- «AsciiPicture-tests» (to ".AsciiPicture-tests")
+-- Â«AsciiPicture-testsÂ» (to ".AsciiPicture-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -445,7 +445,7 @@ PP(ap)
 -- Used by: (find-dn6 "zhas.lua" "MixedPicture" "LPicture.new(options)")
 --          (find-dn6 "picture.lua" "LPicture" "new" "copyopts(opts, lp)")
 --
--- «copyopts» (to ".copyopts")
+-- Â«copyoptsÂ» (to ".copyopts")
 --          
 copyopts = function (A, B)
     if type(A) == "string" then
@@ -473,7 +473,7 @@ copyopts = function (A, B)
     return B
   end
 
--- «metaopts» (to ".metaopts")
+-- Â«metaoptsÂ» (to ".metaopts")
 --
 metaopts = {}
 metaopts["b"]   = {bhbox = 1}
@@ -490,7 +490,7 @@ metaopts["8pt"]  = {scale="8pt", meta="s"}
 -- metaopts that are mainly for TCGs:
 metaopts["1pt"]  = {scale="1pt"}
 
--- «copyopts-tests» (to ".copyopts-tests")
+-- Â«copyopts-testsÂ» (to ".copyopts-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -518,7 +518,7 @@ testcopyopts {foo=2, bar=3}
 -- |_| |_| |_|\__,_|_|\_\___| .__/|_|\___|\__|\__,_|_|  \___|
 --                          |_|                              
 --
--- «makepicture» (to ".makepicture")
+-- Â«makepictureÂ» (to ".makepicture")
 -- (find-LATEX "edrx15.sty" "picture-cells")
 --
 makepicture = function (options, bb, body)
@@ -559,7 +559,7 @@ makepicture = function (options, bb, body)
     return latex
   end
 
--- «makepicture-tests»  (to ".makepicture-tests")
+-- Â«makepicture-testsÂ»  (to ".makepicture-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -587,7 +587,7 @@ body = "  hello\n"
 -- | ||  __/>  < (_| | |  | | | (_) \ V  V / 
 --  \__\___/_/\_\__,_|_|  |_|  \___/ \_/\_/  
 --                                           
--- «texarrow» (to ".texarrow")
+-- Â«texarrowÂ» (to ".texarrow")
 -- Used in: (find-dn6 "zhas.lua" "MixedPicture")
 --          (find-dn6 "zhas.lua" "MixedPicture" "addarrows =")
 --          (find-dn6 "zhas.lua" "MixedPicture" "addarrowsexcept =")
@@ -623,7 +623,7 @@ texarrow_smart = function (usewhitemoves)
 -- | .__/|_|\___|\__|_____\___|
 -- |_|                         
 --
--- «pict2e» (to ".pict2e")
+-- Â«pict2eÂ» (to ".pict2e")
 -- In the old picture-mode a line segment and an arrow from (x0,y0)
 -- to (x1,y1) had to be written as:
 --
@@ -696,7 +696,7 @@ pict2evector = function (x0, y0, x1, y1)
   end
 
 
--- «pict2e-test» (to ".pict2e-test")
+-- Â«pict2e-testÂ» (to ".pict2e-test")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -728,7 +728,7 @@ lp:print()
 -- | |___|  __/| | (__| |_| |_| | | |  __/
 -- |_____|_|   |_|\___|\__|\__,_|_|  \___|
 --                                        
--- «LPicture» (to ".LPicture")
+-- Â«LPictureÂ» (to ".LPicture")
 -- This is a minimalistic, and V-based, reimplementation of the
 -- LaTeX side of the "Picture" class from:
 --   (find-dn6 "picture.lua" "Picture")
@@ -822,7 +822,7 @@ LPicture = Class {
   },
 }
 
--- «LPicture-tests» (to ".LPicture-tests")
+-- Â«LPicture-testsÂ» (to ".LPicture-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -884,7 +884,7 @@ lp:addLine(v(x0, 1/3), v(x0, 2/3))
 -- |  __/| | (__| |_| |_| | | |  __/ | (__| | (_| \__ \__ \
 -- |_|   |_|\___|\__|\__,_|_|  \___|  \___|_|\__,_|___/___/
 --
--- «Picture» (to ".Picture")
+-- Â«PictureÂ» (to ".Picture")
 -- We can ":put" things one by one into a Picture object, and ":totex"
 -- will generate a "\begin{picture}...\end{picture}" LaTeX block with
 -- the right size and offset. Also, ":toascii" generates an ascii
@@ -994,7 +994,7 @@ Picture = Class {
 
 
 
--- «Picture-tests» (to ".Picture-tests")
+-- Â«Picture-testsÂ» (to ".Picture-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1037,5 +1037,5 @@ p.scale = "10pt"
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:

@@ -37,13 +37,13 @@
 --
 
 
--- «.AsciiRect»			(to "AsciiRect")
--- «.AsciiRect-tests»		(to "AsciiRect-tests")
--- «.LuaWithRects»		(to "LuaWithRects")
--- «.luarecteval»		(to "luarecteval")
--- «.LuaWithRects-tests»	(to "LuaWithRects-tests")
--- «.ZHAFromPoints»		(to "ZHAFromPoints")
--- «.ZHAFromPoints-tests»	(to "ZHAFromPoints-tests")
+-- Â«.AsciiRectÂ»			(to "AsciiRect")
+-- Â«.AsciiRect-testsÂ»		(to "AsciiRect-tests")
+-- Â«.LuaWithRectsÂ»		(to "LuaWithRects")
+-- Â«.luarectevalÂ»		(to "luarecteval")
+-- Â«.LuaWithRects-testsÂ»	(to "LuaWithRects-tests")
+-- Â«.ZHAFromPointsÂ»		(to "ZHAFromPoints")
+-- Â«.ZHAFromPoints-testsÂ»	(to "ZHAFromPoints-tests")
 
 
 trim  = function (s) return s and (s:match"^(.-)[ \t]*$") end
@@ -73,7 +73,7 @@ linestomatrixbody = function (lines)
 --  / ___ \\__ \ (__| | |  _ <  __/ (__| |_ 
 -- /_/   \_\___/\___|_|_|_| \_\___|\___|\__|
 --                                          
--- «AsciiRect» (to ".AsciiRect")
+-- Â«AsciiRectÂ» (to ".AsciiRect")
 -- Note: this class is for rectangles from which we want to READ their
 -- cells. Compare with rect.lua,
 --   (find-dn6 "rect.lua")
@@ -211,7 +211,7 @@ AsciiRect = Class {
   },
 }
 
--- «AsciiRect-tests» (to ".AsciiRect-tests")
+-- Â«AsciiRect-testsÂ» (to ".AsciiRect-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -249,7 +249,7 @@ PPV(ar)
 -- | |__| |_| | (_| |\ V  V / | | |_| | | |  _ <  __/ (__| |_\__ \
 -- |_____\__,_|\__,_| \_/\_/  |_|\__|_| |_|_| \_\___|\___|\__|___/
 --                                                                
--- «LuaWithRects» (to ".LuaWithRects")
+-- Â«LuaWithRectsÂ» (to ".LuaWithRects")
 
 LuaWithRects = Class {
   type = "LuaWithRects",
@@ -322,7 +322,7 @@ LuaWithRects = Class {
   },
 }
 
--- «luarecteval» (to ".luarecteval")
+-- Â«luarectevalÂ» (to ".luarecteval")
 -- See: (find-dn6 "heads6.lua" "luarect-head")
 luarectexpand = function (bigstr)
     return LuaWithRects.new(bigstr):extractasciirects():tostring()
@@ -334,7 +334,7 @@ luarecteval = function (bigstr, verbose)
   end
 luarectexpr = function (bigstr) return luarecteval("return\n"..bigstr) end
 
--- «LuaWithRects-tests» (to ".LuaWithRects-tests")
+-- Â«LuaWithRects-testsÂ» (to ".LuaWithRects-tests")
 --[==[
 -- High-level tests:
  (eepitch-lua51)
@@ -419,7 +419,7 @@ ar = lwr:extractasciirect(w, y1, y2, pos1, pos2, "foo")
 --  / /_|  _  |/ ___ \|  _|| | | (_) | | | | | |  __/ (_) | | | | | |_\__ \
 -- /____|_| |_/_/   \_\_|  |_|  \___/|_| |_| |_|_|   \___/|_|_| |_|\__|___/
 --                                                                         
--- «ZHAFromPoints» (to ".ZHAFromPoints")
+-- Â«ZHAFromPointsÂ» (to ".ZHAFromPoints")
 -- The core was copied to: (find-dn6 "zhas.lua" "spec-tools")
 -- To be moved to: (find-dn6 "zhaspecs.lua" "spec-tools")
 
@@ -446,7 +446,7 @@ ZHAFromPoints = Class {
   },
 }
 
--- «ZHAFromPoints-tests» (to ".ZHAFromPoints-tests")
+-- Â«ZHAFromPoints-testsÂ» (to ".ZHAFromPoints-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -483,23 +483,13 @@ print(ra:spec(), rb:spec(), rc:spec())
 --> 12345RRRR4321	123RRR45R4321	123RRR43212R1
 ]]
 
- (ex "zhafrompoints")
-
 --]==]
 
 
 
 
 
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "luarects.lua"
-
---]]
-
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:

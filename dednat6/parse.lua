@@ -13,7 +13,7 @@
 -- http://angg.twu.net/miniforth-article.html
 -- http://angg.twu.net/miniforth/miniforth-article.pdf
 
--- «.getword»	(to "getword")
+-- Â«.getwordÂ»	(to "getword")
 
 
 
@@ -23,7 +23,7 @@ setsubj = function (subj_, pos_)
     startcol, endcol = 1, pos
   end
 
--- «getword» (to ".getword")
+-- Â«getwordÂ» (to ".getword")
 -- (find-dn5file "parse.lua" "getword =")
 -- (find-dn5 "dednat6.lua" "utf8")
 getword = function ()
@@ -56,7 +56,7 @@ getrestofline = function ()
 
 
 
---[==[
+--[[
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -67,11 +67,10 @@ run = function (str)
   end
 run "%Dfoo bar  plic"
 
- (ex "parse")
+--]]
 
---]==]
+
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

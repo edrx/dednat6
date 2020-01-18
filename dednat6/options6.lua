@@ -23,14 +23,14 @@
 --      (find-LATEXfile "2011ebl-slides.tex" "dednat5 -t")
 --      (find-dn6 "build.lua")
 
--- «.dooptions_help»	(to "dooptions_help")
--- «.dooptions_t»	(to "dooptions_t")
--- «.dooptions_4»	(to "dooptions_4")
--- «.dooptions»		(to "dooptions")
+-- Â«.dooptions_helpÂ»	(to "dooptions_help")
+-- Â«.dooptions_tÂ»	(to "dooptions_t")
+-- Â«.dooptions_4Â»	(to "dooptions_4")
+-- Â«.dooptionsÂ»		(to "dooptions")
 
 
 
--- «dooptions_help»  (to ".dooptions_help")
+-- Â«dooptions_helpÂ»  (to ".dooptions_help")
 dooptions_help = function ()
     print [[
 At this moment dednat6load.lua can be called in
@@ -50,7 +50,7 @@ tests and debugging. You don't want to use it.
   end
 
 
--- «dooptions_t»  (to ".dooptions_t")
+-- Â«dooptions_tÂ»  (to ".dooptions_t")
 -- Low-level. Doesn't output the preamble, doesn't run write_dnt_file().
 dooptions_t = function (fname)
     print("% Processing: "..fname)
@@ -66,7 +66,7 @@ dooptions_t = function (fname)
   end
 
 
--- «dooptions_4»  (to ".dooptions_4")
+-- Â«dooptions_4Â»  (to ".dooptions_4")
 dooptions_4 = function (fname)
     print("% Processing: "..fname)
     texfile0(fname)
@@ -83,7 +83,7 @@ dooptions_4 = function (fname)
   end
 
 
--- «dooptions»  (to ".dooptions")
+-- Â«dooptionsÂ»  (to ".dooptions")
 dooptions = function (arg1, arg2)
     if arg1 == "-t" then
       dooptions_t(arg2)
@@ -109,10 +109,9 @@ cd ~/LATEX/
 ./dednat6load.lua -t 
 ./dednat6load.lua -t 2019logicday.tex
 
-
 --]==]
 
+
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

@@ -13,17 +13,17 @@
 --   (find-LATEX "dednat6load.lua")
 
 
--- «.package.path»		(to "package.path")
--- «.luatex-require»		(to "luatex-require")
--- «.requires»			(to "requires")
--- «.utf8»			(to "utf8")
--- «.dooptions»			(to "dooptions")
--- «.run-tests-in-test-dir»	(to "run-tests-in-test-dir")
+-- Â«.package.pathÂ»		(to "package.path")
+-- Â«.luatex-requireÂ»		(to "luatex-require")
+-- Â«.requiresÂ»			(to "requires")
+-- Â«.utf8Â»			(to "utf8")
+-- Â«.dooptionsÂ»			(to "dooptions")
+-- Â«.run-tests-in-test-dirÂ»	(to "run-tests-in-test-dir")
 
 
 
 
--- «package.path» (to ".package.path")
+-- Â«package.pathÂ» (to ".package.path")
 -- Add dednat6dir to package.path.
 -- See: (find-es "lua5" "package.path")
 --      (find-es "lua5" "add-to-package.path")
@@ -33,7 +33,7 @@ dednat6dir        = dednat6dir or (arg and fnamedirectory(arg[0])) or ""
 if dednat6dir ~= "" then package.path = dednat6dir.."?.lua;"..package.path end
 
 
--- «luatex-require» (to ".luatex-require")
+-- Â«luatex-requireÂ» (to ".luatex-require")
 -- If we're in Lua(La)TeX then make sure that require behaves luaish-ly enough
 if tex then
   local require = function (stem)
@@ -46,7 +46,7 @@ if tex then
 end
 
 
--- «requires» (to ".requires")
+-- Â«requiresÂ» (to ".requires")
 -- (find-dn5file "build.lua" "stems = {")
 if true then require "edrxlib" end
 
@@ -99,7 +99,7 @@ require "luarepl"      -- (find-dn6 "luarepl.lua")
 -- require "underbrace" -- (find-dn6 "underbrace.lua")
 -- Problem: istanbul-handouts.tex uses zrect!!!
 
--- «utf8» (to ".utf8")
+-- Â«utf8Â» (to ".utf8")
 -- (find-es "lua5" "utf8")
 -- (find-angg "LUA/lua50init.lua" "strlen8")
 -- (find-dn6 "parse.lua" "getword =")
@@ -110,14 +110,14 @@ getword_utf8 = getword
 -- program - an undocumented hack! See:
 require "options6"     -- (find-dn6 "options6.lua")
 
--- «dooptions» (to ".dooptions")
+-- Â«dooptionsÂ» (to ".dooptions")
 -- dooptions(...)
 
 
 
 
 --[[
- «run-tests-in-test-dir» (to ".run-tests-in-test-dir")
+ Â«run-tests-in-test-dirÂ» (to ".run-tests-in-test-dir")
 
  Copy the essential files from dednat6 to a test dir (/tmp/d6/)
  (eepitch-shell)
@@ -233,6 +233,5 @@ PP(keys(package.loaded))
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
-

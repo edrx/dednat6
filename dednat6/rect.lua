@@ -13,13 +13,13 @@
 --   |  |  |  |
 --   2  3  4  5
 
--- «.Rect»			(to "Rect")
--- «.Rect-tests»		(to "Rect-tests")
--- «.Rect-ded-tests»		(to "Rect-ded-tests")
--- «.syntotorect»		(to "syntotorect")
--- «.synttorect-tests»		(to "synttorect-tests")
--- «.dedtorect»			(to "dedtorect")
--- «.dedtorect-tests»		(to "dedtorect-tests")
+-- Â«.RectÂ»			(to "Rect")
+-- Â«.Rect-testsÂ»		(to "Rect-tests")
+-- Â«.Rect-ded-testsÂ»		(to "Rect-ded-tests")
+-- Â«.syntotorectÂ»		(to "syntotorect")
+-- Â«.synttorect-testsÂ»		(to "synttorect-tests")
+-- Â«.dedtorectÂ»			(to "dedtorect")
+-- Â«.dedtorect-testsÂ»		(to "dedtorect-tests")
 
 
 
@@ -31,7 +31,7 @@
 --                     
 -- This is a total rewrite (different data structures, methods, etc) of:
 -- (find-dn6 "gab.lua" "Rect")
--- «Rect» (to ".Rect")
+-- Â«RectÂ» (to ".Rect")
 
 copy = function (A)
     local B = {}
@@ -106,7 +106,7 @@ Rect = Class {
   },
 }
 
--- «Rect-tests» (to ".Rect-tests")
+-- Â«Rect-testsÂ» (to ".Rect-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -126,7 +126,7 @@ PP(r)
 
  (ex "rect-0")
 
--- «Rect-ded-tests» (to ".Rect-ded-tests")
+-- Â«Rect-ded-testsÂ» (to ".Rect-ded-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -159,7 +159,7 @@ defgh = Rect.new("   d\n   -\ne  f  g\n-------\nh")
 -- |___/\__, |_| |_|\__|\__\___/|_|  \___|\___|\__|
 --      |___/                                      
 --
--- «syntotorect» (to ".syntotorect")
+-- Â«syntotorectÂ» (to ".syntotorect")
 
 synttorect = function (o)
     if type(o) == "string" then return torect(o) end
@@ -171,7 +171,7 @@ synttorect = function (o)
     error()
   end
 
--- «synttorect-tests» (to ".synttorect-tests")
+-- Â«synttorect-testsÂ» (to ".synttorect-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -193,7 +193,7 @@ tree = {[0]="+", {[0]="*", "2", "3"}, {[0]="*", "4", "5"}, bar="=", label="hi"}
 -- | (_| |  __/ (_| | || (_) | | |  __/ (__| |_ 
 --  \__,_|\___|\__,_|\__\___/|_|  \___|\___|\__|
 --                                              
--- «dedtorect» (to ".dedtorect")
+-- Â«dedtorectÂ» (to ".dedtorect")
 dedtorect = function (o)
     if type(o) == "string" then return torect(o) end
     if type(o) == "table" then
@@ -210,7 +210,7 @@ dedtorect = function (o)
     error()
   end
 
--- «dedtorect-tests» (to ".dedtorect-tests")
+-- Â«dedtorect-testsÂ» (to ".dedtorect-tests")
 -- See: (find-dn6 "treesegs.lua" "allsegments-tests")
 --[[
  (eepitch-lua51)
@@ -226,22 +226,12 @@ dofile "rect.lua"
 = dedtorect {[0]="a", "b", {[0]="c", label="foo"}}
 = dedtorect {[0]="a", "b", {[0]="c", "d", "e"}}
 
- (ex "rect-ded")
-
 --]]
 
 
-
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "rect.lua"
-
---]]
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

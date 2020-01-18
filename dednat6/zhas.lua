@@ -19,38 +19,38 @@
 
 
 
--- «.ZHA»			(to "ZHA")
--- «.ZHA-connectives»		(to "ZHA-connectives")
--- «.ZHA-getcuts»		(to "ZHA-getcuts")
--- «.ZHA-walls»			(to "ZHA-walls")
--- «.ZHA-shrinktop»		(to "ZHA-shrinktop")
--- «.ZHA-tests»			(to "ZHA-tests")
--- «.ZHA-tests-walls»		(to "ZHA-tests-walls")
--- «.ZHA-test-connectives»	(to "ZHA-test-connectives")
--- «.ZHA-test-generators»	(to "ZHA-test-generators")
--- «.ZHA-test-shrinktop»	(to "ZHA-test-shrinktop")
--- «.shortoperators»		(to "shortoperators")
--- «.shortoperators-tests»	(to "shortoperators-tests")
--- «.Cuts»			(to "Cuts")
--- «.Cuts-tests»		(to "Cuts-tests")
--- «.MixedPicture»		(to "MixedPicture")
--- «.mpnew»			(to "mpnew")
--- «.mpnewJ»			(to "mpnewJ")
--- «.MixedPicture-cuts»		(to "MixedPicture-cuts")
--- «.MixedPicture-zha»		(to "MixedPicture-zha")
--- «.MixedPicture-tests»	(to "MixedPicture-tests")
--- «.MixedPicture-zhalrf-tests»	(to "MixedPicture-zhalrf-tests")
--- «.MixedPicture-arch-tests»	(to "MixedPicture-arch-tests")
--- «.MixedPicture-zset-tests»	(to "MixedPicture-zset-tests")
--- «.MixedPicture-J-tests»	(to "MixedPicture-J-tests")
--- «.drawtwocolgraph»		(to "drawtwocolgraph")
--- «.drawtwocolgraph-tests»	(to "drawtwocolgraph-tests")
--- «.VCuts»			(to "VCuts")
--- «.VCuts-tests»		(to "VCuts-tests")
--- «.TCG»			(to "TCG")
--- «.TGC-tests»			(to "TGC-tests")
--- «.asciirectpoints»		(to "asciirectpoints")
--- «.asciirectpoints-tests»	(to "asciirectpoints-tests")
+-- Â«.ZHAÂ»			(to "ZHA")
+-- Â«.ZHA-connectivesÂ»		(to "ZHA-connectives")
+-- Â«.ZHA-getcutsÂ»		(to "ZHA-getcuts")
+-- Â«.ZHA-wallsÂ»			(to "ZHA-walls")
+-- Â«.ZHA-shrinktopÂ»		(to "ZHA-shrinktop")
+-- Â«.ZHA-testsÂ»			(to "ZHA-tests")
+-- Â«.ZHA-tests-wallsÂ»		(to "ZHA-tests-walls")
+-- Â«.ZHA-test-connectivesÂ»	(to "ZHA-test-connectives")
+-- Â«.ZHA-test-generatorsÂ»	(to "ZHA-test-generators")
+-- Â«.ZHA-test-shrinktopÂ»	(to "ZHA-test-shrinktop")
+-- Â«.shortoperatorsÂ»		(to "shortoperators")
+-- Â«.shortoperators-testsÂ»	(to "shortoperators-tests")
+-- Â«.CutsÂ»			(to "Cuts")
+-- Â«.Cuts-testsÂ»		(to "Cuts-tests")
+-- Â«.MixedPictureÂ»		(to "MixedPicture")
+-- Â«.mpnewÂ»			(to "mpnew")
+-- Â«.mpnewJÂ»			(to "mpnewJ")
+-- Â«.MixedPicture-cutsÂ»		(to "MixedPicture-cuts")
+-- Â«.MixedPicture-zhaÂ»		(to "MixedPicture-zha")
+-- Â«.MixedPicture-testsÂ»	(to "MixedPicture-tests")
+-- Â«.MixedPicture-zhalrf-testsÂ»	(to "MixedPicture-zhalrf-tests")
+-- Â«.MixedPicture-arch-testsÂ»	(to "MixedPicture-arch-tests")
+-- Â«.MixedPicture-zset-testsÂ»	(to "MixedPicture-zset-tests")
+-- Â«.MixedPicture-J-testsÂ»	(to "MixedPicture-J-tests")
+-- Â«.drawtwocolgraphÂ»		(to "drawtwocolgraph")
+-- Â«.drawtwocolgraph-testsÂ»	(to "drawtwocolgraph-tests")
+-- Â«.VCutsÂ»			(to "VCuts")
+-- Â«.VCuts-testsÂ»		(to "VCuts-tests")
+-- Â«.TCGÂ»			(to "TCG")
+-- Â«.TGC-testsÂ»			(to "TGC-tests")
+-- Â«.asciirectpointsÂ»		(to "asciirectpoints")
+-- Â«.asciirectpoints-testsÂ»	(to "asciirectpoints-tests")
 
 require "picture"      -- (find-dn6 "picture.lua")
 
@@ -70,7 +70,7 @@ isint = function (n) return math.floor(n) == n end
 --  / /_|  _  |/ ___ \
 -- /____|_| |_/_/   \_\
 --
--- «ZHA» (to ".ZHA")
+-- Â«ZHAÂ» (to ".ZHA")
 
 specwidths = function (spec)
     local copydigit = function (s) return s:sub(1, 1):rep(#s) end
@@ -215,7 +215,7 @@ ZHA = Class {
           end)
       end,
     --
-    -- «ZHA-connectives» (to ".ZHA-connectives")
+    -- Â«ZHA-connectivesÂ» (to ".ZHA-connectives")
     -- (to "ZHA-test-connectives")
     -- Logical operations: <=, T, F, &, v, ->, <->, not
     Le  = function (z, P, Q) return P:below(Q) end,
@@ -233,7 +233,7 @@ ZHA = Class {
     Bic = function (z, P, Q) return z:And(z:Imp(P, Q), z:Imp(Q, P)) end,
     Not = function (z, P)    return z:Imp(P, z:F()) end,
     --
-    -- «ZHA-getcuts» (to ".ZHA-getcuts")
+    -- Â«ZHA-getcutsÂ» (to ".ZHA-getcuts")
     -- See: (find-angg "LUA/lua50init.lua" "eval-and-L")
     -- For a J-operator J, test the points of the upper-left and
     -- upper-right walls to determine where are the cuts.
@@ -258,7 +258,7 @@ ZHA = Class {
         return cuts
       end,
     --
-    -- «ZHA-walls» (to ".ZHA-walls")
+    -- Â«ZHA-wallsÂ» (to ".ZHA-walls")
     -- (to "ZHA-tests-walls")
     rightwallgenerators = function (z, all)
         local A = {}
@@ -320,7 +320,7 @@ ZHA = Class {
         return A
       end,
     --
-    -- «ZHA-shrinktop» (to ".ZHA-shrinktop")
+    -- Â«ZHA-shrinktopÂ» (to ".ZHA-shrinktop")
     -- These methods use the class LR in zhaspecs.lua.
     -- See: (find-dn6 "zhaspecs.lua" "LR")
     toLR = function (z)
@@ -332,7 +332,7 @@ ZHA = Class {
   },
 }
 
--- «ZHA-tests» (to ".ZHA-tests")
+-- Â«ZHA-testsÂ» (to ".ZHA-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -379,7 +379,7 @@ PP(z:tostring())
 
 
 
--- «ZHA-tests-walls» (to ".ZHA-tests-walls")
+-- Â«ZHA-tests-wallsÂ» (to ".ZHA-tests-walls")
 -- (to "ZHA-walls")
  (eepitch-lua51)
  (eepitch-kill)
@@ -411,7 +411,7 @@ for _,P in ipairs(z:leftwallcorners())          do pris(P:lr()) end; print()
 
  (ex "zha-walls")
 
--- «ZHA-test-connectives» (to ".ZHA-test-connectives")
+-- Â«ZHA-test-connectivesÂ» (to ".ZHA-test-connectives")
 -- (to "ZHA-connectives")
  (eepitch-lua51)
  (eepitch-kill)
@@ -448,7 +448,7 @@ z = ZHA.fromspec("12RRL1LLRR"):print()
 
  (ex "zha-connectives")
 
--- «ZHA-test-generators» (to ".ZHA-test-generators")
+-- Â«ZHA-test-generatorsÂ» (to ".ZHA-test-generators")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -467,7 +467,7 @@ for P,dx,dy,tex in z:arrows() do print(P:lr().."->"..(P+v(dx,dy)):lr(), tex) end
 
  (ex "zha-generators")
 
--- «ZHA-test-shrinktop» (to ".ZHA-test-shrinktop")
+-- Â«ZHA-test-shrinktopÂ» (to ".ZHA-test-shrinktop")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -486,7 +486,7 @@ z = ZHA.fromtcgspec("4, 5; 32, 14 25"):shrinktop("34"):print()
 -- \__ \ | | | (_) | |  | || (_) | |_) |  __/ | | (_| | || (_) | |  \__ \
 -- |___/_| |_|\___/|_|   \__\___/| .__/ \___|_|  \__,_|\__\___/|_|  |___/
 --                               |_|
--- «shortoperators» (to ".shortoperators")
+-- Â«shortoperatorsÂ» (to ".shortoperators")
 function shortoperators ()
     True  = function () return z:T() end
     False = function () return z:F() end
@@ -508,7 +508,7 @@ function shortoperators ()
     Falq  = function ()     return function (P) return P end end
   end
 
--- «shortoperators-tests» (to ".shortoperators-tests")
+-- Â«shortoperators-testsÂ» (to ".shortoperators-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -538,7 +538,7 @@ shortoperators()
 -- | |__| |_| | |_\__ \
 --  \____\__,_|\__|___/
 --
--- «Cuts» (to ".Cuts")
+-- Â«CutsÂ» (to ".Cuts")
 
 Cuts = Class {
   type    = "Cuts",
@@ -663,7 +663,7 @@ Cuts = Class {
 
 
 --[[
--- «Cuts-tests» (to ".Cuts-tests")
+-- Â«Cuts-testsÂ» (to ".Cuts-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -721,7 +721,7 @@ c = Cuts.new()
 -- | |  | | |>  <  __/ (_| |  __/| | (__| |_| |_| | | |  __/
 -- |_|  |_|_/_/\_\___|\__,_|_|   |_|\___|\__|\__,_|_|  \___|
 --
--- «MixedPicture» (to ".MixedPicture")
+-- Â«MixedPictureÂ» (to ".MixedPicture")
 -- A MixedPicture object has both an ascii representation and a LaTeX
 -- representation. Most MixedPicture objects I use have a ZHA, and sometimes
 -- a Cuts.
@@ -791,7 +791,7 @@ MixedPicture = Class {
         return mp
       end,
     --
-    -- «MixedPicture-cuts» (to ".MixedPicture-cuts")
+    -- Â«MixedPicture-cutsÂ» (to ".MixedPicture-cuts")
     addcontour = function (mp) mp.cuts:addcontour(mp.zha); return mp end,
     addlcut = function (mp, ...) mp.cuts:addlcut(mp.zha, ...); return mp end,
     addrcut = function (mp, ...) mp.cuts:addrcut(mp.zha, ...); return mp end,
@@ -870,7 +870,7 @@ MixedPicture = Class {
         return mp
       end,
     --
-    -- «MixedPicture-zha» (to ".MixedPicture-zha")
+    -- Â«MixedPicture-zhaÂ» (to ".MixedPicture-zha")
     zhabullets = function (mp)
         for v in mp.zha:points() do mp:put(v, "**") end
         return mp
@@ -929,8 +929,8 @@ MixedPicture = Class {
 -- |_| |_| |_| .__/|_| |_|\___| \_/\_/  
 --           |_|                        
 --
--- «mpnew» (to ".mpnew")
--- «mpnewJ» (to ".mpnewJ")
+-- Â«mpnewÂ» (to ".mpnew")
+-- Â«mpnewJÂ» (to ".mpnewJ")
 -- (to "MixedPicture-J-tests")
 -- See: (find-dn6 "luarects.lua" "AsciiRect")
 --      (find-dn6 "luarects.lua" "AsciiRect-tests")
@@ -950,7 +950,7 @@ mpnewJ = function (opts, spec, J)
 
 
 
--- «MixedPicture-tests» (to ".MixedPicture-tests")
+-- Â«MixedPicture-testsÂ» (to ".MixedPicture-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1023,7 +1023,7 @@ writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
  (ex "mixedpic-3")
 
 
--- «MixedPicture-zhalrf-tests» (to ".MixedPicture-zhalrf-tests")
+-- Â«MixedPicture-zhalrf-testsÂ» (to ".MixedPicture-zhalrf-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -1047,7 +1047,7 @@ mp = mpnew({}, "123454321")
 
 
 
--- «MixedPicture-arch-tests» (to ".MixedPicture-arch-tests")
+-- Â«MixedPicture-arch-testsÂ» (to ".MixedPicture-arch-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -1083,7 +1083,7 @@ mp:put(v"03", "R"):put(v"14", "R*", "R^*"):print()
  (ex "mixedpic-cubes")
 
 
--- «MixedPicture-zset-tests» (to ".MixedPicture-zset-tests")
+-- Â«MixedPicture-zset-testsÂ» (to ".MixedPicture-zset-tests")
 -- (find-dn6file "zhas.lua" "zfunction =")
  (eepitch-lua51)
  (eepitch-kill)
@@ -1112,7 +1112,7 @@ MixedPicture.new({def="dagThreeFour", meta="s"}):zfunction(threefour):print():lp
  (ex "mixedpic-threefour")
 
 
--- «MixedPicture-J-tests» (to ".MixedPicture-J-tests")
+-- Â«MixedPicture-J-testsÂ» (to ".MixedPicture-J-tests")
 -- (to "mpnewJ")
  (eepitch-lua51)
  (eepitch-kill)
@@ -1143,7 +1143,7 @@ dofile "zhas.lua"
 --  \__,_|_|  \__,_| \_/\_/ |_____\___\___/|_|\__, |_|  \__,_| .__/|_| |_|
 --                                            |___/          |_|          
 --
--- «drawtwocolgraph» (to ".drawtwocolgraph")
+-- Â«drawtwocolgraphÂ» (to ".drawtwocolgraph")
 
 dxyrunf = function (...) print("%D "..format(...)); dxyrun(format(...)) end
 
@@ -1162,7 +1162,7 @@ drawtwocolgraph = function (dx, dy, maxl, maxr, leftgens, rightgens, ltexs, rtex
     D "))"
   end
 
--- «drawtwocolgraph-tests» (to ".drawtwocolgraph-tests")
+-- Â«drawtwocolgraph-testsÂ» (to ".drawtwocolgraph-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1184,7 +1184,7 @@ drawtwocolgraph(40, 20, 4, 6, "24", "24 35")
 --   \ V /| |__| |_| | |_\__ \
 --    \_/  \____\__,_|\__|___/
 --                            
--- «VCuts» (to ".VCuts")
+-- Â«VCutsÂ» (to ".VCuts")
 -- For drawing slashings as V-shaped diagrams.
 -- (phap 27 "piccs-and-slashings")
 -- (pha     "piccs-and-slashings")
@@ -1212,7 +1212,7 @@ VCuts = Class {
   },
 }
 
--- «VCuts-tests» (to ".VCuts-tests")
+-- Â«VCuts-testsÂ» (to ".VCuts-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1240,7 +1240,7 @@ vc:cutr(3):cutr(5)
 --   | || |__| |_| |
 --   |_| \____\____|
 --                  
--- «TCG» (to ".TCG")
+-- Â«TCGÂ» (to ".TCG")
 -- Draw two-column graphs.
 -- Code commented out! Too messy!
 -- Moved to:
@@ -1319,7 +1319,7 @@ TCG = Class {
   },
 }
 
--- «TGC-tests» (to ".TGC-tests")
+-- Â«TGC-testsÂ» (to ".TGC-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1355,7 +1355,7 @@ tcg = TCG.new(opts, "foo", 4, 6, "12", "23 34"):lrs():vs():hs():lprint()
 -- THIS IS OBSOLETE, and has been superseded by:
 --   (find-dn6 "luarects.lua" "AsciiRect")
 --
--- «asciirectpoints» (to ".asciirectpoints")
+-- Â«asciirectpointsÂ» (to ".asciirectpoints")
 asciirectpoints = function (lines)
     return cow(function ()
         if type(lines) == "string" then
@@ -1371,7 +1371,7 @@ asciirectpoints = function (lines)
       end)
   end
 
--- «asciirectpoints-tests» (to ".asciirectpoints-tests")
+-- Â«asciirectpoints-testsÂ» (to ".asciirectpoints-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -1471,8 +1471,6 @@ mp:put(v(0, 7), "aP", "a^P")
 = mp.lp
 = mp
 
- (ex "partitiongraph")
-
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -1482,24 +1480,11 @@ mp = MixedPicture.new({def="ZQ", scale="1pt", meta="b ss"}, z)
 mp:zhadots()
 mp:lprint()
 
- (ex "zha-very-small")
-
 --]]
 
 
 
 
-
-
-
-
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "zhas.lua"
-
---]]
 
 
 
@@ -1508,5 +1493,5 @@ dofile "zhas.lua"
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:

@@ -7,15 +7,15 @@
 -- Version: 2019aug12
 -- License: GPL3
 
--- «.coords»		(to "coords")
--- «.arrow_to_TeX»	(to "arrow_to_TeX")
--- «.arrow_to_TeX-test»	(to "arrow_to_TeX-test")
--- «.DxyArrow»		(to "DxyArrow")
--- «.DxyPlace»		(to "DxyPlace")
--- «.DxyLiteral»	(to "DxyLiteral")
--- «.DxyLoop»		(to "DxyLoop")
--- «.arrows_to_defdiag»	(to "arrows_to_defdiag")
--- «.arrows-tests»	(to "arrows-tests")
+-- Â«.coordsÂ»		(to "coords")
+-- Â«.arrow_to_TeXÂ»	(to "arrow_to_TeX")
+-- Â«.arrow_to_TeX-testÂ»	(to "arrow_to_TeX-test")
+-- Â«.DxyArrowÂ»		(to "DxyArrow")
+-- Â«.DxyPlaceÂ»		(to "DxyPlace")
+-- Â«.DxyLiteralÂ»	(to "DxyLiteral")
+-- Â«.DxyLoopÂ»		(to "DxyLoop")
+-- Â«.arrows_to_defdiagÂ»	(to "arrows_to_defdiag")
+-- Â«.arrows-testsÂ»	(to "arrows-tests")
 
 
 require "eoo"         -- (find-dn6 "eoo.lua" "over")
@@ -26,7 +26,7 @@ require "abbrevs"     -- (find-dn6 "abbrevs.lua")
 
 
 
--- «coords»  (to ".coords")
+-- Â«coordsÂ»  (to ".coords")
 -- (find-dn4 "dednat4.lua" "diag-out" "dxyorigx =")
 dxyorigx = 100
 dxyorigy = 100
@@ -35,7 +35,7 @@ realx = function (x) return  dxyscale * (x - dxyorigx) end
 realy = function (y) return -dxyscale * (y - dxyorigy) end
 realxy = function (x, y) return realx(x), realy(y) end
 
--- «arrow_to_TeX»  (to ".arrow_to_TeX")
+-- Â«arrow_to_TeXÂ»  (to ".arrow_to_TeX")
 -- (find-diagxypage  6 "2"   "  The basic syntax")
 -- (find-diagxytext    "2"   "  The basic syntax")
 -- (find-diagxypage  6         "\\morphism(x,y)|p|/{sh}/<dx,dy>[N`N;L]")
@@ -94,7 +94,7 @@ arrow_to_TeX_pshL = function (arrow)
   end
 
 
--- «arrow_to_TeX-test» (to ".arrow_to_TeX-test")
+-- Â«arrow_to_TeX-testÂ» (to ".arrow_to_TeX-test")
 -- (find-es "diagxy" "shape")
 --[==[
  (eepitch-lua51)
@@ -118,14 +118,14 @@ test {from="a", to="b", shape="|->", label="up", lplacement="_(0.42)"}  -- err?
 
 -- The kinds of things that we store in the array "arrows".
 -- (find-dn6 "diagstacks.lua" "arrows")
--- «DxyArrow»  (to ".DxyArrow")
+-- Â«DxyArrowÂ»  (to ".DxyArrow")
 DxyArrow = Class {
   type    = "DxyArrow",
   __index = {
     TeX = function (ar) return arrow_to_TeX(ar) end,
   },
 }
--- «DxyPlace»  (to ".DxyPlace")
+-- Â«DxyPlaceÂ»  (to ".DxyPlace")
 DxyPlace = Class {
   type    = "DxyPlace",
   __index = {
@@ -136,14 +136,14 @@ DxyPlace = Class {
       end,
   },
 }
--- «DxyLiteral»  (to ".DxyLiteral")
+-- Â«DxyLiteralÂ»  (to ".DxyLiteral")
 DxyLiteral = Class {
   type    = "DxyLiteral",
   __index = {
     TeX = function (pseudoar) return pseudoar[1] end,
   },
 }
--- «DxyLoop»  (to ".DxyLoop")
+-- Â«DxyLoopÂ»  (to ".DxyLoop")
 -- (find-es "diagxy" "loop")
 DxyLoop = Class {
   type    = "DxyLoop",
@@ -157,7 +157,7 @@ DxyLoop = Class {
 }
 
 
--- «arrows_to_defdiag»  (to ".arrows_to_defdiag")
+-- Â«arrows_to_defdiagÂ»  (to ".arrows_to_defdiag")
 arrows_to_TeX = function (prefix)
     local f = function (ar) return (prefix or "  ")..ar:TeX().."\n" end
     return mapconcat(f, arrows, "")
@@ -177,7 +177,7 @@ arrows_to_defdiagprep = function (name, prep, hyperlink)
 
 
 
--- «arrows-tests» (to ".arrows-tests")
+-- Â«arrows-testsÂ» (to ".arrows-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -206,6 +206,5 @@ print(arrows_to_defdiag("??", "  % foo"))
 
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

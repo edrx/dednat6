@@ -25,16 +25,16 @@
 
 
 
--- «.midpoint»		(to "midpoint")
--- «.midpoint-tests»	(to "midpoint-tests")
--- «.splitdist»		(to "splitdist")
--- «.splitdist-tests»	(to "splitdist-tests")
--- «.splitdists»	(to "splitdists")
--- «.splitdists-tests»	(to "splitdists-tests")
--- «.harrownodes»	(to "harrownodes")
--- «.varrownodes»	(to "varrownodes")
--- «.dharrownodes»	(to "dharrownodes")
--- «.dvarrownodes»	(to "dvarrownodes")
+-- Â«.midpointÂ»		(to "midpoint")
+-- Â«.midpoint-testsÂ»	(to "midpoint-tests")
+-- Â«.splitdistÂ»		(to "splitdist")
+-- Â«.splitdist-testsÂ»	(to "splitdist-tests")
+-- Â«.splitdistsÂ»	(to "splitdists")
+-- Â«.splitdists-testsÂ»	(to "splitdists-tests")
+-- Â«.harrownodesÂ»	(to "harrownodes")
+-- Â«.varrownodesÂ»	(to "varrownodes")
+-- Â«.dharrownodesÂ»	(to "dharrownodes")
+-- Â«.dvarrownodesÂ»	(to "dvarrownodes")
 
 
 
@@ -44,7 +44,7 @@ phantomnode = "\\phantom{O}"
 
 
 
--- «midpoint» (to ".midpoint")
+-- Â«midpointÂ» (to ".midpoint")
 forths["midpoint"] = function ()
     -- local node1, node2 = ds[2], ds[1]
     local node1, node2 = ds:pick(1), ds:pick(0)
@@ -53,7 +53,7 @@ forths["midpoint"] = function ()
     ds:pop()
   end
 
--- «midpoint-tests» (to ".midpoint-tests")
+-- Â«midpoint-testsÂ» (to ".midpoint-tests")
 -- (find-dn6 "diagforth.lua" "high-level-tests")
 --[==[
  (eepitch-lua51)
@@ -106,7 +106,7 @@ PP(nodes["a,b"])
 -- This needs more documentation. Sorry.
 -- Also, the "\phantom{O}" shouldn't be hardcoded.
 
--- «splitdist»  (to ".splitdist")
+-- Â«splitdistÂ»  (to ".splitdist")
 splitdist = function (x1, x2, dx0, dx1, dx2)
     local dx = x2-x1
     local rest = dx-(dx0 or 0)-(dx1 or 0)-(dx2 or 0)
@@ -125,7 +125,7 @@ splitdist = function (x1, x2, dx0, dx1, dx2)
     print("Bad splitdist pattern: "..p(dx0).." "..p(dx1).." "..p(dx2))
   end
 
--- «splitdist-tests»  (to ".splitdist-tests")
+-- Â«splitdist-testsÂ»  (to ".splitdist-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -142,7 +142,7 @@ dofile "diagmiddle.lua"
 
 
 
--- «splitdists» (to ".splitdists")
+-- Â«splitdistsÂ» (to ".splitdists")
 -- (find-dn4file "experimental.lua" "dharrownodes = ")
 proportional = function (w0, w1, w2, z0, z2)
     local way = (w1 - w0)/(w2 - w0)
@@ -180,7 +180,7 @@ dvarrownodes0 = function (x0, y0, x2, y2, dy0, dy1, dy2)
     return x1a, y1a, x1b, y1b
   end
 
--- «splitdists-tests»  (to ".splitdists-tests")
+-- Â«splitdists-testsÂ»  (to ".splitdists-tests")
 -- 
 --[[
  (eepitch-lua51)
@@ -200,8 +200,8 @@ dofile "diagmiddle.lua"
 --]]
 
 
--- «harrownodes»  (to ".harrownodes")
--- «varrownodes»  (to ".varrownodes")
+-- Â«harrownodesÂ»  (to ".harrownodes")
+-- Â«varrownodesÂ»  (to ".varrownodes")
 harrownodes = function (dx0, dx1, dx2, TeX1, TeX2)
     local node0, node2 = ds:pick(1), ds:pick(0)
     local x0, y0, x2, y2 = node0.x, node0.y, node2.x, node2.y
@@ -217,8 +217,8 @@ varrownodes = function (dy0, dy1, dy2, TeX1, TeX2)
     ds:push(storenode{x=x1b, y=y1b, TeX=(TeX2 or phantomnode)})
   end
 
--- «dharrownodes»  (to ".dharrownodes")
--- «dvarrownodes»  (to ".dvarrownodes")
+-- Â«dharrownodesÂ»  (to ".dharrownodes")
+-- Â«dvarrownodesÂ»  (to ".dvarrownodes")
 dharrownodes = function (dx0, dx1, dx2, TeX1, TeX2)
     local node0, node2 = ds:pick(1), ds:pick(0)
     local x0, y0, x2, y2 = node0.x, node0.y, node2.x, node2.y
@@ -284,19 +284,6 @@ forths["dvarrownodes"] = function ()
 
 
 
-
-
-
--- dump-to: tests
---[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "diagmiddle.lua"
-
---]==]
-
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

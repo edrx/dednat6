@@ -12,16 +12,16 @@
 -- old version can be loaded together (and the migration can be made
 -- gradually).
 
--- «.qmarks-cuts»	(to "qmarks-cuts")
--- «.qmarks-cuts-test»	(to "qmarks-cuts-test")
--- «.Line»		(to "Line")
--- «.Line-test»		(to "Line-test")
--- «.TCGSpec»		(to "TCGSpec")
--- «.TCGSpec-test»	(to "TCGSpec-test")
--- «.TCGDims»		(to "TCGDims")
--- «.TCGDims-test»	(to "TCGDims-test")
--- «.TCGQ»		(to "TCGQ")
--- «.TCGQ-tests»	(to "TCGQ-tests")
+-- Â«.qmarks-cutsÂ»	(to "qmarks-cuts")
+-- Â«.qmarks-cuts-testÂ»	(to "qmarks-cuts-test")
+-- Â«.LineÂ»		(to "Line")
+-- Â«.Line-testÂ»		(to "Line-test")
+-- Â«.TCGSpecÂ»		(to "TCGSpec")
+-- Â«.TCGSpec-testÂ»	(to "TCGSpec-test")
+-- Â«.TCGDimsÂ»		(to "TCGDims")
+-- Â«.TCGDims-testÂ»	(to "TCGDims-test")
+-- Â«.TCGQÂ»		(to "TCGQ")
+-- Â«.TCGQ-testsÂ»	(to "TCGQ-tests")
 
 
 -- (find-LATEX "edrxtikz.lua" "Line")
@@ -40,7 +40,7 @@ require "picture"           -- (find-dn6 "picture.lua")
 --  \__, |_| |_| |_|\__,_|_|  |_|\_\___/  \_\   /_/   \___|\__,_|\__|___/
 --     |_|                                                               
 --
--- «qmarks-cuts» (to ".qmarks-cuts")
+-- Â«qmarks-cutsÂ» (to ".qmarks-cuts")
 -- Convert between the formats "qmarks" and "cuts".
 -- For example: (".??", "..???") <-> "321/0 0|1|2345".
 -- See: (find-es "dednat" "qmarks-to-cuts")
@@ -72,7 +72,7 @@ cutstoqmarks = function (cuts)
     return lqmarks, rqmarks
   end
 
--- «qmarks-cuts-test» (to ".qmarks-cuts-test")
+-- Â«qmarks-cuts-testÂ» (to ".qmarks-cuts-test")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -91,7 +91,7 @@ PP(cutstoqmarks "321/0 0|1|2345")
 -- | |___| | | | |  __/
 -- |_____|_|_| |_|\___|
 --                     
--- «Line» (to ".Line")
+-- Â«LineÂ» (to ".Line")
 -- Parametrized lines.
 -- This is a copy of:
 --   (find-LATEX "edrxtikz.lua" "Line")
@@ -122,7 +122,7 @@ Line = Class {
   },
 }
 
--- «Line-test» (to ".Line-test")
+-- Â«Line-testÂ» (to ".Line-test")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -148,7 +148,7 @@ r = Line.new(v(0, 1), v(3, 2), -1, 2)
 --   |_| \____\____|____/| .__/ \___|\___|
 --                       |_|              
 --
--- «TCGSpec» (to ".TCGSpec")
+-- Â«TCGSpecÂ» (to ".TCGSpec")
 -- Based on:
 -- (find-dn6 "zhaspecs.lua" "LR-fromtcgspec-tests")
 -- (find-dn6 "zhaspecs.lua" "LR")
@@ -218,7 +218,7 @@ TCGSpec = Class {
   },
 }
 
--- «TCGSpec-test» (to ".TCGSpec-test")
+-- Â«TCGSpec-testÂ» (to ".TCGSpec-test")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -277,7 +277,7 @@ dofile "tcgs.lua"
 --   | || |__| |_| | |_| | | | | | | \__ \
 --   |_| \____\____|____/|_|_| |_| |_|___/
 --                                        
--- «TCGDims» (to ".TCGDims")
+-- Â«TCGDimsÂ» (to ".TCGDims")
 -- New! 2019apr28.
 -- A structure that holds the dimension parameters of a TCG.
 -- The functions L and R return the centers of the column cells.
@@ -315,7 +315,7 @@ TCGDims = Class {
   },
 }
 
--- «TCGDims-test» (to ".TCGDims-test")
+-- Â«TCGDims-testÂ» (to ".TCGDims-test")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -347,7 +347,7 @@ td = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
 --   | || |__| |_| | |_| |
 --   |_| \____\____|\__\_\
 --                        
--- «TCGQ» (to ".TCGQ")
+-- Â«TCGQÂ» (to ".TCGQ")
 -- A class for TCGs with optional question marks. This is a rewrite of
 -- the obsolete TCG class, but this uses a TCGDims object in a field
 -- ".td" to makes the dimensions much easier to adjust and to make the
@@ -507,7 +507,7 @@ TCGQ = Class {
   },
 }
 
--- «TCGQ-tests» (to ".TCGQ-tests")
+-- Â«TCGQ-testsÂ» (to ".TCGQ-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -579,6 +579,6 @@ tq:print()
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

@@ -10,8 +10,8 @@
 --       L[0]  = R[0]      (bottom point)
 --    L[maxy]  = R[maxy]   (top point)
 --       L[y] <= R[y]      (left wall <= right wall)
---     L[y+1]  = L[y]±1    (left wall changes in unit steps)
---     R[y+1]  = R[y]±1    (right wall changes in unit steps)
+--     L[y+1]  = L[y]Â±1    (left wall changes in unit steps)
+--     R[y+1]  = R[y]Â±1    (right wall changes in unit steps)
 --
 -- These L and R never change after the ZHA object is created.
 -- The ZHA conditions are explained in sec.4 ("ZHAs") of this:
@@ -37,12 +37,12 @@
 -- in a separate file.
 
 
--- «.LR»			(to "LR")
--- «.LR-tests»			(to "LR-tests")
--- «.LR-putxy-tests»		(to "LR-putxy-tests")
--- «.LR-twocolgraph-tests»	(to "LR-twocolgraph-tests")
--- «.LR-fromtcgspec-tests»	(to "LR-fromtcgspec-tests")
--- «.LR-shrinktop-tests»	(to "LR-shrinktop-tests")
+-- Â«.LRÂ»			(to "LR")
+-- Â«.LR-testsÂ»			(to "LR-tests")
+-- Â«.LR-putxy-testsÂ»		(to "LR-putxy-tests")
+-- Â«.LR-twocolgraph-testsÂ»	(to "LR-twocolgraph-tests")
+-- Â«.LR-fromtcgspec-testsÂ»	(to "LR-fromtcgspec-tests")
+-- Â«.LR-shrinktop-testsÂ»	(to "LR-shrinktop-tests")
 
 require "zhas"               -- (find-dn6 "zhas.lua")
 
@@ -55,7 +55,7 @@ require "zhas"               -- (find-dn6 "zhas.lua")
 -- | |___|  _ < 
 -- |_____|_| \_\
 --              
--- «LR» (to ".LR")
+-- Â«LRÂ» (to ".LR")
 
 LR = Class {
   type = "LR",
@@ -192,7 +192,7 @@ LR = Class {
   },
 }
 
--- «LR-tests» (to ".LR-tests")
+-- Â«LR-testsÂ» (to ".LR-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
@@ -226,7 +226,7 @@ PPV(LR.fromspec("123RR21RL", 2, -4):triples())
  (ex "lr-0")
 
 
--- «LR-putxy-tests» (to ".LR-putxy-tests")
+-- Â«LR-putxy-testsÂ» (to ".LR-putxy-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -250,7 +250,7 @@ o = LR.from({}, {}, 5, -2)
  (ex "lr-putxy")
 
 
--- «LR-twocolgraph-tests» (to ".LR-twocolgraph-tests")
+-- Â«LR-twocolgraph-testsÂ» (to ".LR-twocolgraph-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -278,7 +278,7 @@ require "zhas"
 
  (ex "lr-2col")
 
--- «LR-fromtcgspec-tests» (to ".LR-fromtcgspec-tests")
+-- Â«LR-fromtcgspec-testsÂ» (to ".LR-fromtcgspec-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -292,7 +292,7 @@ require "zhas"
 = LR.fromtcgspec("4, 6; 11 22 34 45, 25 06"):zha():totcgspec()
 
 
--- «LR-shrinktop-tests» (to ".LR-shrinktop-tests")
+-- Â«LR-shrinktop-testsÂ» (to ".LR-shrinktop-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -315,16 +315,9 @@ o = LR.fromtcgspec("4, 6; 11 22 34 45, 25 06")
 -- (find-LATEX "edrxpict.lua" "TCG")
 -- (find-LATEX "edrxpict.lua" "TCG" "new  =")
 
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "zhaspecs.lua"
-
---]]
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

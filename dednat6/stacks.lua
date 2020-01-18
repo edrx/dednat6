@@ -4,8 +4,8 @@
 -- http://angg.twu.net/dednat6/dednat6/stacks.lua.html
 --         (find-angg "dednat6/dednat6/stacks.lua")
 --
--- «.Stack»		(to "Stack")
--- «.Stack-tests»	(to "Stack-tests")
+-- Â«.StackÂ»		(to "Stack")
+-- Â«.Stack-testsÂ»	(to "Stack-tests")
 
 -- (find-angg "LUA/lua50init.lua" "Tos")
 -- (find-angg "LUA/lua50init.lua" "Tos" "mytabletostring =")
@@ -24,7 +24,7 @@ mystacktostring = function (stack)
 --  ___) | || (_| | (__|   < 
 -- |____/ \__\__,_|\___|_|\_\
 --                           
--- «Stack» (to ".Stack")
+-- Â«StackÂ» (to ".Stack")
 -- TODO: unify with: (find-dn6 "diagstacks.lua" "Stack")
 
 push     = function (stack, o)         return stack:push(o)          end
@@ -67,7 +67,7 @@ Stack = Class {
 }
 
 --[==[
--- «Stack-tests» (to ".Stack-tests")
+-- Â«Stack-testsÂ» (to ".Stack-tests")
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
@@ -78,22 +78,13 @@ s:push(22):push(33):PP()
 = s:clear():push(22):push(33):PP():push(44):PP():dropn(2):PP():pop()
 = Stack.new():push(11):push(22):push(33)
 
- (ex "stacks")
-
 --]==]
 
 
 
---[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
-dofile "stacks.lua"
-
---]]
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

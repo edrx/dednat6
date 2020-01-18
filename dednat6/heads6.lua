@@ -10,20 +10,20 @@
 -- heads = heads or {}
 -- heads["%"] = nil
 
--- «.registerhead»	(to "registerhead")
--- «.abbrev-head»	(to "abbrev-head")
--- «.lua-head»		(to "lua-head")
--- «.luarect-head»	(to "luarect-head")
--- «.tree-head»		(to "tree-head")
--- «.diag-head»		(to "diag-head")
--- «.zrect-head»	(to "zrect-head")
--- «.heads-test»	(to "heads-test")
+-- Â«.registerheadÂ»	(to "registerhead")
+-- Â«.abbrev-headÂ»	(to "abbrev-head")
+-- Â«.lua-headÂ»		(to "lua-head")
+-- Â«.luarect-headÂ»	(to "luarect-head")
+-- Â«.tree-headÂ»		(to "tree-head")
+-- Â«.diag-headÂ»		(to "diag-head")
+-- Â«.zrect-headÂ»	(to "zrect-head")
+-- Â«.heads-testÂ»	(to "heads-test")
 
 
 
 heads = {}
 
--- «registerhead» (to ".registerhead")
+-- Â«registerheadÂ» (to ".registerhead")
 -- (find-dn6grep "grep -nH -e registerhead *.lua")
 -- (find-dn6 "texfile.lua" "Texfile")
 -- (find-dn6 "texfile.lua" "Texfile" "process1 =")
@@ -37,7 +37,7 @@ registerhead = function (headstr)
 
 
 
--- «abbrev-head» (to ".abbrev-head")
+-- Â«abbrev-headÂ» (to ".abbrev-head")
 -- (find-dn6 "process6.lua" "abbrev-head")
 -- (find-dn6 "block.lua")
 registerhead "%:" {
@@ -54,7 +54,7 @@ registerhead "%:" {
 }
 
 
--- «lua-head» (to ".lua-head")
+-- Â«lua-headÂ» (to ".lua-head")
 -- (find-dn6 "process.lua" "lua-head")
 registerhead "%L" {
   name   = "lua",
@@ -66,13 +66,13 @@ registerhead "%L" {
     end,
 }
 
--- «zrect-head» (to ".zrect-head")
+-- Â«zrect-headÂ» (to ".zrect-head")
 -- Old, obsolete, deleted! See:
 -- (find-angg "dednat6/zrect.lua" "zrectdefs_get")
 -- (find-angg "dednat6/zrect.lua" "zrectdefs_get" "zrectdefs_get =")
 
 
--- «luarect-head» (to ".luarect-head")
+-- Â«luarect-headÂ» (to ".luarect-head")
 -- See: (find-dn6 "luarects.lua" "luarecteval")
 registerhead "%R" {
   name   = "luarect",
@@ -86,7 +86,7 @@ registerhead "%R" {
     end,
 }
 
--- «tree-head» (to ".tree-head")
+-- Â«tree-headÂ» (to ".tree-head")
 -- (find-dn6 "treesegs.lua" "tosegments")
 registerhead "%:" {
   name   = "tree",
@@ -105,7 +105,7 @@ registerhead "%:" {
     end,
 }
 
--- «diag-head» (to ".diag-head")
+-- Â«diag-headÂ» (to ".diag-head")
 -- (find-dn6 "diagforth.lua" "diag-head")
 registerhead "%D" {
   name = "diag",
@@ -118,7 +118,7 @@ registerhead "%D" {
 
 
 
--- «heads-test» (to ".heads-test")
+-- Â«heads-testÂ» (to ".heads-test")
 -- See: (find-dn6 "texfile.lua" "texfiletest")
 --[==[
  (eepitch-lua51)
@@ -155,6 +155,6 @@ dofile "heads6.lua"
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

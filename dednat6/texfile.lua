@@ -13,11 +13,11 @@
 -- Newer version: (find-dn6 "block.lua")
 --                (find-dn6 "block.lua" "texfile0" "tf = ")
 --
--- «.TexFile»		(to "TexFile")
--- «.texfile0»		(to "texfile0")
--- «.processbigstr»	(to "processbigstr")
--- «.texfiletest»	(to "texfiletest")
--- «.TexFile-tests»	(to "TexFile-tests")
+-- Â«.TexFileÂ»		(to "TexFile")
+-- Â«.texfile0Â»		(to "texfile0")
+-- Â«.processbigstrÂ»	(to "processbigstr")
+-- Â«.texfiletestÂ»	(to "texfiletest")
+-- Â«.TexFile-testsÂ»	(to "TexFile-tests")
 
 
 require "heads6"       -- (find-dn6 "heads6.lua")
@@ -29,7 +29,7 @@ require "heads6"       -- (find-dn6 "heads6.lua")
 --   | |  __/>  <|  _| | |  __/ | (__| | (_| \__ \__ \
 --   |_|\___/_/\_\_| |_|_|\___|  \___|_|\__,_|___/___/
 --
--- «TexFile» (to ".TexFile")
+-- Â«TexFileÂ» (to ".TexFile")
 
 TexFile = Class {
   type = "TexFile",
@@ -114,12 +114,12 @@ TexFile = Class {
   },
 }
 
--- «texfile0» (to ".texfile0")
+-- Â«texfile0Â» (to ".texfile0")
 texfile0 = function (fname) tf = TexFile.read(fname) end
 texfile = function (fname) texfile0(fname..".tex") end
 pu = function () tf:processuntil() end
 
--- «processbigstr» (to ".processbigstr")
+-- Â«processbigstrÂ» (to ".processbigstr")
 -- (find-es "dednat" "processbigstr")
 processbigstr = function (bigstr)
     output = print
@@ -127,7 +127,7 @@ processbigstr = function (bigstr)
     tf:processuntilend()
   end
 
--- «texfiletest» (to ".texfiletest")
+-- Â«texfiletestÂ» (to ".texfiletest")
 -- See: (find-dn6 "heads6.lua" "heads-test")
 texfiletest = function ()
     tf  = TexFile.new("test", "")
@@ -136,7 +136,7 @@ texfiletest = function ()
     output = print
   end
 
--- «Texfile-tests» (to ".Texfile-tests")
+-- Â«Texfile-testsÂ» (to ".Texfile-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -187,5 +187,5 @@ end
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:

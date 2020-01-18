@@ -32,10 +32,10 @@
 --     publ   = Block {i=201, j=299}
 --     headbl = Block {i=210, j=215, head="%D"}
 --
--- «.TexLines»			(to "TexLines")
--- «.Block»			(to "Block")
--- «.texfile0»			(to "texfile0")
--- «.tf_push_and_tf_pop»	(to "tf_push_and_tf_pop")
+-- Â«.TexLinesÂ»			(to "TexLines")
+-- Â«.BlockÂ»			(to "Block")
+-- Â«.texfile0Â»			(to "texfile0")
+-- Â«.tf_push_and_tf_popÂ»	(to "tf_push_and_tf_pop")
 
 
 -- (find-LATEXfile "dednat6load.lua" "texfile0(status.filename)")
@@ -54,7 +54,7 @@
 --   | |  __/>  <| |___| | | | |  __/\__ \ | (__| | (_| \__ \__ \
 --   |_|\___/_/\_\_____|_|_| |_|\___||___/  \___|_|\__,_|___/___/
 --                                                               
--- «TexLines» (to ".TexLines")
+-- Â«TexLinesÂ» (to ".TexLines")
 -- The TexLines class.
 -- The contents of the current .tex file are stored in a TexLines object,
 -- in the global variable "texlines".
@@ -137,7 +137,7 @@ tl = TexLines.test "p DD::: DD DD LLL:::p::p "
 -- | |_) | | (_) | (__|   <  | (__| | (_| \__ \__ \
 -- |____/|_|\___/ \___|_|\_\  \___|_|\__,_|___/___/
 --                                                 
--- «Block» (to ".Block")
+-- Â«BlockÂ» (to ".Block")
 -- The Block class, that is used to represent texfile blocks, head
 -- blocks, pu blocks and arbitrary (non-bad) blocks, as described in
 -- the section "Heads and blocks" of the article about Dednat6 on
@@ -272,7 +272,7 @@ tf:process()    -- process the whole file
 -- | ||  __/>  <|  _| | |  __/ |_| |
 --  \__\___/_/\_\_| |_|_|\___|\___/ 
 --                                  
--- «texfile0» (to ".texfile0")
+-- Â«texfile0Â» (to ".texfile0")
 -- texfile0 and texfile: high-level words to read a .tex file.
 -- Replaces this:
 --   (find-dn6 "texfile.lua" "texfile0")
@@ -316,7 +316,7 @@ tf:processuntil(110)
 --  \__|_|____| .__/ \__,_|___/_| |_|
 --      |_____|_|                    
 --
--- «tf_push_and_tf_pop»  (to ".tf_push_and_tf_pop")
+-- Â«tf_push_and_tf_popÂ»  (to ".tf_push_and_tf_pop")
 -- Use this if want to run dednat6 on a subfile.
 -- If your main .tex file is foo.tex and it runs "\input bar.tex"
 -- then you should put this before the first "\pu" in bar.tex,
@@ -348,6 +348,5 @@ tf_pop = function ()
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
-

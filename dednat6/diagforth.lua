@@ -15,23 +15,23 @@
 
 
 
--- «.metastack»		(to "metastack")
--- «.diag-head»		(to "diag-head")
--- «.diagram»		(to "diagram")
--- «.enddiagram»	(to "enddiagram")
--- «.BOX»		(to "BOX")
--- «.nodes»		(to "nodes")
--- «.dxyren»		(to "dxyren")
--- «.arrows»		(to "arrows")
--- «.2D-and-2Dx»	(to "2D-and-2Dx")
+-- Â«.metastackÂ»		(to "metastack")
+-- Â«.diag-headÂ»		(to "diag-head")
+-- Â«.diagramÂ»		(to "diagram")
+-- Â«.enddiagramÂ»	(to "enddiagram")
+-- Â«.BOXÂ»		(to "BOX")
+-- Â«.nodesÂ»		(to "nodes")
+-- Â«.dxyrenÂ»		(to "dxyren")
+-- Â«.arrowsÂ»		(to "arrows")
+-- Â«.2D-and-2DxÂ»	(to "2D-and-2Dx")
 
--- «.run»		(to "run")
--- «.forths»		(to "forths")
+-- Â«.runÂ»		(to "run")
+-- Â«.forthsÂ»		(to "forths")
 
--- «.relplace»		(to "relplace")
+-- Â«.relplaceÂ»		(to "relplace")
 
--- «.high-level-tests»	(to "high-level-tests")
--- «.low-level-tests»	(to "low-level-tests")
+-- Â«.high-level-testsÂ»	(to "high-level-tests")
+-- Â«.low-level-testsÂ»	(to "low-level-tests")
 
 require "diagtex"    -- (find-dn6 "diagtex.lua")
 require "parse"      -- (find-dn6 "parse.lua")
@@ -42,7 +42,7 @@ require "errors"     -- (find-dn6 "errors.lua")
 forths = {}
 
 
--- «metastack»  (to ".metastack")
+-- Â«metastackÂ»  (to ".metastack")
 -- (find-dn6 "diagstacks.lua" "MetaStack")
 forths["(("] = function () depths:ppush() end
 forths["))"] = function () depths:ppop() end
@@ -50,9 +50,9 @@ forths["@"] = function () ds:push(depths:metapick(1 + getwordasluaexpr())) end
 
 
 
--- «run»  (to ".run")
+-- Â«runÂ»  (to ".run")
 
--- «diag-head»  (to ".diag-head")
+-- Â«diag-headÂ»  (to ".diag-head")
 -- (find-dn6file "segments.lua" "tosegments =")
 dxyrun = function (str, pos)
     setsubj(str, pos or 1)
@@ -75,8 +75,8 @@ dxyrun = function (str, pos)
 
 
 
--- «diagram»  (to ".diagram")
--- «enddiagram»  (to ".enddiagram")
+-- Â«diagramÂ»  (to ".diagram")
+-- Â«enddiagramÂ»  (to ".enddiagram")
 forths["diagram"] = function ()
     diagramname = getword() or derror("No diagram name")
     xys = {}
@@ -91,7 +91,7 @@ forths["enddiagram"] = function ()
 
 
 
--- «BOX»  (to ".BOX")
+-- Â«BOXÂ»  (to ".BOX")
 -- (find-es "dednat" "BOX-dednat6")
 -- Note: THIS IS A HACK!!! We even redefine "enddiagram"!
 --
@@ -127,7 +127,7 @@ forths["BOX"] = function ()
 
 
 
--- «2D-and-2Dx»  (to ".2D-and-2Dx")
+-- Â«2D-and-2DxÂ»  (to ".2D-and-2Dx")
 -- (find-dn4file "dednat4.lua" "dxy2Dx =")
 torelativenumber = function (prevn, str)
     local sign, strn = str:match("^([-+]?)([0-9.]+)$")
@@ -170,10 +170,10 @@ forths["2D"]  = dxy2D
 
 
 
--- «forths»  (to ".forths")
+-- Â«forthsÂ»  (to ".forths")
 forths["#"] = function () getrestofline() end
 
--- «nodes»  (to ".nodes")
+-- Â«nodesÂ»  (to ".nodes")
 forths["node:"] = function ()
     local x,y = getwordasluaexpr()
     local tag = getword()
@@ -197,7 +197,7 @@ forths[".PLABEL="] = function ()
     ds:pick(0).label      = getword() or error()
   end
 
--- «dxyren» (to ".dxyren")
+-- Â«dxyrenÂ» (to ".dxyren")
 dxyren = function (li)
     local a, b = li:match("^(.*) =+> (.*)$")
     if not a then error("No '==>': "..li) end
@@ -211,7 +211,7 @@ dxyren = function (li)
   end
 forths["ren"] = function () dxyren(getrestofline()) end
 
--- «arrows» (to ".arrows")
+-- Â«arrowsÂ» (to ".arrows")
 pusharrow = function (shape)
     local from, to = ds:pick(1), ds:pick(0)
     ds:push(storearrow(DxyArrow {from=from.noden, to=to.noden, shape=shape}))
@@ -270,7 +270,7 @@ forths["loop"] = function ()
 forths["x+="] = function () ds:pick(0).x = ds:pick(0).x + getwordasluaexpr() end
 forths["y+="] = function () ds:pick(0).y = ds:pick(0).y + getwordasluaexpr() end
 
--- «relplace»  (to ".relplace")
+-- Â«relplaceÂ»  (to ".relplace")
 -- (find-LATEXfile "2017elephant.tex" "relplace")
 forths["relplace"] = function ()
     local x, y = ds:pick(0).x, ds:pick(0).y
@@ -282,7 +282,7 @@ forths["relplace"] = function ()
 
 
 
--- «high-level-tests» (to ".high-level-tests")
+-- Â«high-level-testsÂ» (to ".high-level-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -337,7 +337,7 @@ run [[ )) ]]
 
 
 
--- «low-level-tests» (to ".low-level-tests")
+-- Â«low-level-testsÂ» (to ".low-level-tests")
 --[==[
  (eepitch-lua51)
  (eepitch-kill)
@@ -371,6 +371,5 @@ print(arrows_to_TeX())
 --]==]
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:

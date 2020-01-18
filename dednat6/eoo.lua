@@ -21,21 +21,21 @@
 -- Originally from: (find-angg "LUA/canvas2.lua"  "Class")
 -- A tool:          (find-angg ".emacs.templates" "class")
 
--- «.Class»		(to "Class")
--- «.otype»		(to "otype")
+-- Â«.ClassÂ»		(to "Class")
+-- Â«.otypeÂ»		(to "otype")
 
--- «.__mt»		(to "__mt")
--- «.__mt-box»		(to "__mt-box")
--- «.lambda»		(to "lambda")
--- «.Class-short»	(to "Class-short")
--- «.Vector»		(to "Vector")
--- «.Vector-box»	(to "Vector-box")
--- «.Vector-reductions»	(to "Vector-reductions")
--- «.Class-boxes»	(to "Class-boxes")
+-- Â«.__mtÂ»		(to "__mt")
+-- Â«.__mt-boxÂ»		(to "__mt-box")
+-- Â«.lambdaÂ»		(to "lambda")
+-- Â«.Class-shortÂ»	(to "Class-short")
+-- Â«.VectorÂ»		(to "Vector")
+-- Â«.Vector-boxÂ»	(to "Vector-box")
+-- Â«.Vector-reductionsÂ»	(to "Vector-reductions")
+-- Â«.Class-boxesÂ»	(to "Class-boxes")
 
 
 
--- «Class» (to ".Class")
+-- Â«ClassÂ» (to ".Class")
 -- The code for "Class" is just these five lines.
 Class = {
     type   = "Class",
@@ -44,7 +44,7 @@ Class = {
 setmetatable(Class, Class)
 
 
--- «otype» (to ".otype")
+-- Â«otypeÂ» (to ".otype")
 -- This is useful sometimes.
 -- "otype(o)" works like "type(o)", except on my "objects".
 otype = function (o)
@@ -53,7 +53,7 @@ otype = function (o)
   end
 
 
--- «over» (to ".over")
+-- Â«overÂ» (to ".over")
 -- Code for inheritance.
 -- Note: I have used this only a handful of times!
 -- See: (find-dn6 "diagstacks.lua" "MetaStack")
@@ -81,7 +81,7 @@ ClassOver = function (upperclassmt)
 --[[
 
 
-  «__mt» (to ".__mt")
+  Â«__mtÂ» (to ".__mt")
 
 1. The __mt notation
 ====================
@@ -142,7 +142,7 @@ and we follow the order in which these cases are listed in the manual.
 
 
 
- «__mt-box» (to ".__mt-box")
+ Â«__mt-boxÂ» (to ".__mt-box")
 
 2. The __mt notation in box diagrams
 ====================================
@@ -202,7 +202,7 @@ reductions. Without metatables we would have a[4] = nil, so:
 
 
 
- «lambda» (to ".lambda")
+ Â«lambdaÂ» (to ".lambda")
 
 3. A lambda notation for Lua functions
 ======================================
@@ -230,7 +230,7 @@ steps:
 
 
 
- «Class-short» (to ".Class-short")
+ Â«Class-shortÂ» (to ".Class-short")
 
 4. "Class" with shorthands
 ==========================
@@ -258,7 +258,7 @@ With the shorthands for __mt and lambda we can rewrite these as:
 
 
 
- «Vector» (to ".Vector")
+ Â«VectorÂ» (to ".Vector")
 
 5. A class "Vector"
 ===================
@@ -317,7 +317,7 @@ After running the line "w = ..." we will have this:
 
 
 
- «Vector-box» (to ".Vector-box")
+ Â«Vector-boxÂ» (to ".Vector-box")
 
 6. The "Vector" demo in box diagrams
 ====================================
@@ -352,7 +352,7 @@ After running the line "w = ..." we will have this:
 
 
 
- «Vector-reductions» (to ".Vector-reductions")
+ Â«Vector-reductionsÂ» (to ".Vector-reductions")
 
 7. The "Vector" demo: reductions
 ================================
@@ -386,7 +386,7 @@ and:
  
 
 
- «Class-boxes» (to ".Class-boxes")
+ Â«Class-boxesÂ» (to ".Class-boxes")
 
 6. Class boxes
 ==============
@@ -419,6 +419,5 @@ implicit in the Class box. We get:
 
 
 -- Local Variables:
--- coding:             raw-text-unix
--- ee-anchor-format:   "«%s»"
+-- coding:             utf-8-unix
 -- End:
