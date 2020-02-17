@@ -1,0 +1,79 @@
+% A test file for the module "diagtikz.lua" of dednat6.
+% This file: http://angg.twu.net/dednat6/demo-tikz.tex.html
+%            http://angg.twu.net/dednat6/demo-tikz.tex
+%                         (find-dednat6 "demo-tikz.tex")
+%    Output: http://angg.twu.net/dednat6/demo-tikz.pdf
+%
+% (defun c () (interactive) (find-dednat6sh "lualatex -record demo-tikz.tex"))
+% (defun d () (interactive) (find-pdf-page "~/dednat6/demo-tikz.pdf"))
+% (defun e () (interactive) (find-dednat6 "demo-tikz.tex"))
+% (defun u () (interactive) (find-latex-upload-links "demo-tikz"))
+%   (find-pdf-page "~/dednat6/demo-tikz.pdf")
+% http://angg.twu.net/dednat6/demo-tikz.pdf
+%
+\documentclass[oneside]{article}
+%
+%\usepackage{proof}  % For derivation trees ("%:" lines)
+\input diagxy        % For 2D diagrams ("%D" lines)
+\xyoption{curve}     % For the ".curve=" feature in 2D diagrams
+%
+\usepackage{tikz}
+%
+\begin{document}
+  \catcode`\^^J=10                      % (find-es "luatex" "spurious-omega")
+  \directlua{dofile "dednat6load.lua"}  % (find-dednat6 "dednat6load.lua")
+
+\title{Dednat6: a demo for diagtikz.lua}
+\author{Eduardo Ochs}
+\maketitle
+
+\def\defdiagtikz#1#2{\expandafter\def\csname diagtikz-#1\endcsname{#2}}
+\def\ifdiagtikzundefined#1{\expandafter\ifx\csname diagtikz-#1\endcsname\relax}
+\def\diagtikz#1{\ifdiagtikzundefined{#1}
+    \errmessage{UNDEFINED DIAGTIKZ: #1}
+  \else
+    \csname diagtikz-#1\endcsname
+  \fi
+}
+
+%L require "diagtikz"
+%
+%D diagram test-diagxy
+%D 2Dx     100   +40
+%D 2D  100 A --> B
+%D 2D            |
+%D 2D  +30       C
+%D 2D
+%D (( A B ->  .plabel= a foo
+%D    B C =>  .plabel= r bar
+%D    A C |-> .plabel= m plic
+%D ))
+%D enddiagram
+%D
+%D tikzdiagram test-tikz
+%D 2Dx     100   +40
+%D 2D  100 A --> B
+%D 2D            |
+%D 2D  +30       C
+%D 2D
+%D (( A B ->  .plabel= a foo
+%D    B C =>  .plabel= r bar
+%D    A C |-> .plabel= m plic
+%D ))
+%D endtikzdiagram
+
+\pu
+
+$$\diag{test-diagxy}
+  \quad
+  \diagtikz{test-tikz}
+$$
+
+
+
+
+\end{document}
+
+% Local Variables:
+% coding: utf-8-unix
+% End:
