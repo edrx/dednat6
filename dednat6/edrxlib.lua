@@ -1,14 +1,15 @@
--- -*- coding: raw-text-unix; backup-by-copying: t -*-
+-- -*- coding: utf-8-unix; backup-by-copying: t -*-
 -- This file: http://angg.twu.net/LUA/lua50init.lua.html
 --            http://angg.twu.net/LATEX/dednat6/edrxlib.lua.html
 --            http://angg.twu.net/dednat4/edrxlib.lua.html
 --            http://angg.twu.net/blogme3/edrxlib.lua.html
 --
 -- 2017ago05: see: (find-es "emacs" "merge")
--- (find-sh "tkdiff ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua ~/LATEX/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua       ~/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua       ~/blogme3/edrxlib.lua")
+-- (find-sh "tkdiff ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
+-- (find-sh "tkdiff ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
+-- (find-sh0 "cp -v ~/LUA/lua50init.lua         ~/blogme3/edrxlib.lua")
 --
 -- On my system ~/LUA/lua50init.lua the two "edrxlib.lua"s
 -- USED TO BE hard linked:
@@ -52,135 +53,136 @@
 -- cruft, some 5.0-isms, some obsolete loaders, etc.
 
 
--- «.escripts»		(to "escripts")
--- «.build-lua»		(to "build-lua")
--- «.compat»		(to "compat")
--- «.dformat»		(to "dformat")
--- «.string-methods»	(to "string-methods")
--- «.otherfunctions»	(to "otherfunctions")
--- «.printf»		(to "printf")
--- «.pack-and-unpack»	(to "pack-and-unpack")
--- «.0-based»		(to "0-based")
--- «.P»			(to "P")
--- «.PP»		(to "PP")
--- «.PPP»		(to "PPP")
--- «.tests»		(to "tests")
--- «.over0»		(to "over0")
--- «.eoo»		(to "eoo")
--- «.over»		(to "over")
--- «.follow»		(to "follow")
--- «.NamedFunction»	(to "NamedFunction")
--- «.Tos»		(to "Tos")
--- «.VerticalTable»	(to "VerticalTable")
--- «.envsubst»		(to "envsubst")
--- «.readfile»		(to "readfile")
--- «.writefile»		(to "writefile")
--- «.fileexists»	(to "fileexists")
--- «.mytostring»	(to "mytostring")
--- «.mysortedpairs»	(to "mysortedpairs")
--- «.mytostringk2»	(to "mytostringk2")
--- «.trim»		(to "trim")
--- «.split»		(to "split")
--- «.ee_expand»		(to "ee_expand")
--- «.ee_dofile»		(to "ee_dofile")
--- «.ee_loadlib»	(to "ee_loadlib")
--- «.ee_ls»		(to "ee_ls")
--- «.strlen8»		(to "strlen8")
--- «.untabify»		(to "untabify")
--- «.untabify8»		(to "untabify8")
--- «.utf8tohtml»	(to "utf8tohtml")
--- «.u8c_to_l1»		(to "u8c_to_l1")
--- «.u8_to_l1»		(to "u8_to_l1")
--- «.toslashhex»	(to "toslashhex")
--- «.divmod»		(to "divmod")
--- «.min-and-max»	(to "min-and-max")
--- «.load_dednat4»	(to "load_dednat4")
--- «.load_rex»		(to "load_rex")
--- «.load_posix»	(to "load_posix")
--- «.load_PP»		(to "load_PP")
--- «.PPeval»		(to "PPeval")
--- «.loadswigso»	(to "loadswigso")
--- «.loadcinvoke»	(to "loadcinvoke")
--- «.loadlpeg»		(to "loadlpeg")
--- «.loadbitlib»	(to "loadbitlib")
--- «.autoload»		(to "autoload")
--- «.loadtcl»		(to "loadtcl")
--- «.loadldb»		(to "loadldb")
--- «.loadpeek»		(to "loadpeek")
--- «.loadalarm»		(to "loadalarm")
--- «.loadposix»		(to "loadposix")
--- «.getoutput»		(to "getoutput")
--- «.curl»		(to "curl")
--- «.preparef2n»	(to "preparef2n")
--- «.map»		(to "map")
--- «.fold»		(to "fold")
--- «.gformat»		(to "gformat")
--- «.each2»		(to "each2")
--- «.splitlines»	(to "splitlines")
--- «.splitlines-5.3»	(to "splitlines-5.3")
--- «.translatechars»	(to "translatechars")
--- «.sbeconcat»		(to "sbeconcat")
--- «.concatbestrings»	(to "concatbestrings")
--- «.lpeg_togsub»	(to "lpeg_togsub")
--- «.lpeg_gsub»		(to "lpeg_gsub")
--- «.lpeg_gsub_»	(to "lpeg_gsub_")
--- «.lpeg_balanced»	(to "lpeg_balanced")
--- «.mytraceback»	(to "mytraceback")
--- «.errorfb_line»	(to "errorfb_line")
--- «.ee_template»	(to "ee_template")
--- «.ee_into»		(to "ee_into")
--- «.chdir»		(to "chdir")
--- «.package.require»	(to "package.require")
--- «.userocks»		(to "userocks")
--- «.loadblogme3»	(to "loadblogme3")
--- «.hms_to_s»		(to "hms_to_s")
--- «.s_to_hms»		(to "s_to_hms")
--- «.icollect»		(to "icollect")
--- «.interactor»	(to "interactor")
--- «.Repl»		(to "Repl")
--- «.loadluarepl»	(to "loadluarepl")
--- «.replaceranges»	(to "replaceranges")
--- «.string.replace»	(to "string.replace")
--- «.Rect»		(to "Rect")
--- «.syntree»		(to "syntree")
--- «.re_expand_INFIX»	(to "re_expand_INFIX")
--- «.math-grammar»	(to "math-grammar")
--- «.cow-and-coy»	(to "cow-and-coy")
--- «.eval-and-L»	(to "eval-and-L")
+-- Â«.escriptsÂ»		(to "escripts")
+-- Â«.build-luaÂ»		(to "build-lua")
+-- Â«.compatÂ»		(to "compat")
+-- Â«.dformatÂ»		(to "dformat")
+-- Â«.string-methodsÂ»	(to "string-methods")
+-- Â«.otherfunctionsÂ»	(to "otherfunctions")
+-- Â«.printfÂ»		(to "printf")
+-- Â«.pack-and-unpackÂ»	(to "pack-and-unpack")
+-- Â«.0-basedÂ»		(to "0-based")
+-- Â«.PÂ»			(to "P")
+-- Â«.PPÂ»		(to "PP")
+-- Â«.PPPÂ»		(to "PPP")
+-- Â«.testsÂ»		(to "tests")
+-- Â«.over0Â»		(to "over0")
+-- Â«.eooÂ»		(to "eoo")
+-- Â«.overÂ»		(to "over")
+-- Â«.followÂ»		(to "follow")
+-- Â«.NamedFunctionÂ»	(to "NamedFunction")
+-- Â«.TosÂ»		(to "Tos")
+-- Â«.VerticalTableÂ»	(to "VerticalTable")
+-- Â«.envsubstÂ»		(to "envsubst")
+-- Â«.readfileÂ»		(to "readfile")
+-- Â«.writefileÂ»		(to "writefile")
+-- Â«.fileexistsÂ»	(to "fileexists")
+-- Â«.mytostringÂ»	(to "mytostring")
+-- Â«.mysortedpairsÂ»	(to "mysortedpairs")
+-- Â«.mytostringk2Â»	(to "mytostringk2")
+-- Â«.trimÂ»		(to "trim")
+-- Â«.splitÂ»		(to "split")
+-- Â«.ee_expandÂ»		(to "ee_expand")
+-- Â«.ee_dofileÂ»		(to "ee_dofile")
+-- Â«.ee_loadlibÂ»	(to "ee_loadlib")
+-- Â«.ee_lsÂ»		(to "ee_ls")
+-- Â«.strlen8Â»		(to "strlen8")
+-- Â«.untabifyÂ»		(to "untabify")
+-- Â«.untabify8Â»		(to "untabify8")
+-- Â«.utf8tohtmlÂ»	(to "utf8tohtml")
+-- Â«.u8c_to_l1Â»		(to "u8c_to_l1")
+-- Â«.u8_to_l1Â»		(to "u8_to_l1")
+-- Â«.toslashhexÂ»	(to "toslashhex")
+-- Â«.divmodÂ»		(to "divmod")
+-- Â«.min-and-maxÂ»	(to "min-and-max")
+-- Â«.load_dednat4Â»	(to "load_dednat4")
+-- Â«.load_rexÂ»		(to "load_rex")
+-- Â«.load_posixÂ»	(to "load_posix")
+-- Â«.load_PPÂ»		(to "load_PP")
+-- Â«.PPevalÂ»		(to "PPeval")
+-- Â«.loadswigsoÂ»	(to "loadswigso")
+-- Â«.loadcinvokeÂ»	(to "loadcinvoke")
+-- Â«.loadlpegÂ»		(to "loadlpeg")
+-- Â«.loadbitlibÂ»	(to "loadbitlib")
+-- Â«.autoloadÂ»		(to "autoload")
+-- Â«.loadtclÂ»		(to "loadtcl")
+-- Â«.loadldbÂ»		(to "loadldb")
+-- Â«.loadpeekÂ»		(to "loadpeek")
+-- Â«.loadalarmÂ»		(to "loadalarm")
+-- Â«.loadposixÂ»		(to "loadposix")
+-- Â«.getoutputÂ»		(to "getoutput")
+-- Â«.curlÂ»		(to "curl")
+-- Â«.preparef2nÂ»	(to "preparef2n")
+-- Â«.mapÂ»		(to "map")
+-- Â«.foldÂ»		(to "fold")
+-- Â«.gformatÂ»		(to "gformat")
+-- Â«.each2Â»		(to "each2")
+-- Â«.splitlinesÂ»	(to "splitlines")
+-- Â«.splitlines-5.3Â»	(to "splitlines-5.3")
+-- Â«.translatecharsÂ»	(to "translatechars")
+-- Â«.sbeconcatÂ»		(to "sbeconcat")
+-- Â«.concatbestringsÂ»	(to "concatbestrings")
+-- Â«.lpeg_togsubÂ»	(to "lpeg_togsub")
+-- Â«.lpeg_gsubÂ»		(to "lpeg_gsub")
+-- Â«.lpeg_gsub_Â»	(to "lpeg_gsub_")
+-- Â«.lpeg_balancedÂ»	(to "lpeg_balanced")
+-- Â«.mytracebackÂ»	(to "mytraceback")
+-- Â«.errorfb_lineÂ»	(to "errorfb_line")
+-- Â«.ee_templateÂ»	(to "ee_template")
+-- Â«.ee_intoÂ»		(to "ee_into")
+-- Â«.chdirÂ»		(to "chdir")
+-- Â«.package.requireÂ»	(to "package.require")
+-- Â«.userocksÂ»		(to "userocks")
+-- Â«.loadblogme3Â»	(to "loadblogme3")
+-- Â«.hms_to_sÂ»		(to "hms_to_s")
+-- Â«.s_to_hmsÂ»		(to "s_to_hms")
+-- Â«.icollectÂ»		(to "icollect")
+-- Â«.interactorÂ»	(to "interactor")
+-- Â«.ReplÂ»		(to "Repl")
+-- Â«.loadluareplÂ»	(to "loadluarepl")
+-- Â«.replacerangesÂ»	(to "replaceranges")
+-- Â«.string.replaceÂ»	(to "string.replace")
+-- Â«.RectÂ»		(to "Rect")
+-- Â«.syntreeÂ»		(to "syntree")
+-- Â«.re_expand_INFIXÂ»	(to "re_expand_INFIX")
+-- Â«.math-grammarÂ»	(to "math-grammar")
+-- Â«.cow-and-coyÂ»	(to "cow-and-coy")
+-- Â«.eval-and-LÂ»	(to "eval-and-L")
 --
--- «.Sexp»		(to "Sexp")
--- «.youtube_split»	(to "youtube_split")
--- «.url_split»		(to "url_split")
--- «.Blogme»		(to "Blogme")
+-- Â«.SexpÂ»		(to "Sexp")
+-- Â«.youtube_make_urlÂ»	(to "youtube_make_url")
+-- Â«.youtube_splitÂ»	(to "youtube_split")
+-- Â«.url_splitÂ»		(to "url_split")
+-- Â«.BlogmeÂ»		(to "Blogme")
 --
--- «.EevIntro»		(to "EevIntro")
--- «.ELispH»		(to "ELispH")
--- «.ELispHF»		(to "ELispHF")
--- «.getsexp»		(to "getsexp")
--- «.SexpSkel»		(to "SexpSkel")
--- «.ELispInfo»		(to "ELispInfo")
+-- Â«.EevIntroÂ»		(to "EevIntro")
+-- Â«.ELispHÂ»		(to "ELispH")
+-- Â«.ELispHFÂ»		(to "ELispHF")
+-- Â«.getsexpÂ»		(to "getsexp")
+-- Â«.SexpSkelÂ»		(to "SexpSkel")
+-- Â«.ELispInfoÂ»		(to "ELispInfo")
 --
--- «.getsexpskel»	(to "getsexpskel")
--- «.SexpLine»		(to "SexpLine")
+-- Â«.getsexpskelÂ»	(to "getsexpskel")
+-- Â«.SexpLineÂ»		(to "SexpLine")
 --
--- «.Set»		(to "Set")
--- «.SetL»		(to "SetL")
--- «.fsize»		(to "fsize")
--- «.loaddednat6»	(to "loaddednat6")
--- «.loadfbcache2»	(to "loadfbcache2")
--- «.loadluarocks»	(to "loadluarocks")
--- «.capitalize»	(to "capitalize")
--- «.getinscritos»	(to "getinscritos")
--- «.trailing-zeroes»	(to "trailing-zeroes")
--- «.pformat»		(to "pformat")
--- «.findxxxpdf_parse»	(to "findxxxpdf_parse")
+-- Â«.SetÂ»		(to "Set")
+-- Â«.SetLÂ»		(to "SetL")
+-- Â«.fsizeÂ»		(to "fsize")
+-- Â«.loaddednat6Â»	(to "loaddednat6")
+-- Â«.loadfbcache2Â»	(to "loadfbcache2")
+-- Â«.loadluarocksÂ»	(to "loadluarocks")
+-- Â«.capitalizeÂ»	(to "capitalize")
+-- Â«.getinscritosÂ»	(to "getinscritos")
+-- Â«.trailing-zeroesÂ»	(to "trailing-zeroes")
+-- Â«.pformatÂ»		(to "pformat")
+-- Â«.findxxxpdf_parseÂ»	(to "findxxxpdf_parse")
 
 
--- «escripts»  (to ".escripts")
--- «build-lua»  (to ".build-lua")
+-- Â«escriptsÂ»  (to ".escripts")
+-- Â«build-luaÂ»  (to ".build-lua")
 -- (find-es "lua5" "install-5.1.2")
 
--- «compat»  (to ".compat")
+-- Â«compatÂ»  (to ".compat")
 -- On Lua 4.x these functions had the short names on the left;
 -- on Lua-5.0.x a file etc/compat.lua could be used to make the short
 -- names work, but on Lua-5.1.x this compat.lua has been dropped...
@@ -188,23 +190,23 @@
 
 -- (find-lua51file "src/lstrlib.c" "{\"find\", str_find},")
 -- (find-lua50file "etc/compat.lua" "strfind = str.find")
-write    = io.write        -- (find-luamanualw3m "#pdf-io.write")
-format   = string.format   -- (find-luamanualw3m "#pdf-string.format")
-gsub     = string.gsub     -- (find-luamanualw3m "#pdf-string.gsub")
-strfind  = string.find     -- (find-luamanualw3m "#pdf-string.find")
-strlen   = string.len      -- (find-luamanualw3m "#pdf-string.len")
-strsub   = string.sub      -- (find-luamanualw3m "#pdf-string.sub")
-concat   = table.concat    -- (find-luamanualw3m "#pdf-table.concat")
-tinsert  = table.insert    -- (find-luamanualw3m "#pdf-table.insert")
-tremove  = table.remove    -- (find-luamanualw3m "#pdf-table.remove")
+write    = io.write        -- (find-lua51manual "#pdf-io.write")
+format   = string.format   -- (find-lua51manual "#pdf-string.format")
+gsub     = string.gsub     -- (find-lua51manual "#pdf-string.gsub")
+strfind  = string.find     -- (find-lua51manual "#pdf-string.find")
+strlen   = string.len      -- (find-lua51manual "#pdf-string.len")
+strsub   = string.sub      -- (find-lua51manual "#pdf-string.sub")
+concat   = table.concat    -- (find-lua51manual "#pdf-table.concat")
+tinsert  = table.insert    -- (find-lua51manual "#pdf-table.insert")
+tremove  = table.remove    -- (find-lua51manual "#pdf-table.remove")
 
--- foreachi = table.foreachi -- (find-luamanualw3m "#7.2" "table.foreachi")
-getn     = table.getn        -- (find-luamanualw3m "#7.2" "table.getn")
+-- foreachi = table.foreachi -- (find-lua51manual "#7.2" "table.foreachi")
+getn     = table.getn        -- (find-lua51manual "#7.2" "table.getn")
 
 toint    = math.floor      -- for 5.3
 
 
--- «dformat»  (to ".dformat")
+-- Â«dformatÂ»  (to ".dformat")
 -- (find-es "lua5" "dformat")
 if _VERSION:sub(5) < "5.3" then
   dformat_fmt = function (fmt) return fmt end
@@ -220,7 +222,7 @@ end
 
 
 
--- «string-methods»  (to ".string-methods")
+-- Â«string-methodsÂ»  (to ".string-methods")
 -- A note about "string methods": if s is a string, then a piece of
 -- code like "s:rep(2)" works like "string.rep(s, 2)"; this is a
 -- Lua-5.1-ism that is not described in the first edition of PiL - the
@@ -251,18 +253,18 @@ end
 
 
 
--- «otherfunctions»  (to ".otherfunctions")
+-- Â«otherfunctionsÂ»  (to ".otherfunctions")
 
--- «printf»  (to ".printf")
+-- Â«printfÂ»  (to ".printf")
 -- printf = function (...) write(format(unpack(arg))) end
 printf = function (...) write(format(...)) end
 
 
--- «pack-and-unpack»  (to ".pack-and-unpack")
+-- Â«pack-and-unpackÂ»  (to ".pack-and-unpack")
 -- (find-es "lua5" "pack-and-unpack")
 -- (find-es "lua5" "LUA_COMPAT_VARARG")
--- (find-luamanualw3m "#pdf-unpack")
--- (find-luamanualw3m "#7.1" "pseudo-argument arg")
+-- (find-lua51manual "#pdf-unpack")
+-- (find-lua51manual "#7.1" "pseudo-argument arg")
 -- (find-lua51manual "#pdf-unpack")
 -- (find-lua52manual "#pdf-table.unpack")
 -- (find-lua52manualw3m "#pdf-table.pack")
@@ -289,7 +291,7 @@ myunpack = function (arg) return unpack(arg, 1, arg.n) end
 
 
 
--- «0-based»  (to ".0-based")
+-- Â«0-basedÂ»  (to ".0-based")
 -- (find-es "lua5" "0-based")
 -- 0-based string functions.
 -- (To do: remove this! I think I only use 0-based string functions at
@@ -302,9 +304,9 @@ substr0 = function (str, start0, len)
 
 
 
--- «P»  (to ".P")
+-- Â«PÂ»  (to ".P")
 -- Like "print", but distinguishing strings from numbers, and using "<>"s.
--- See: (find-luamanualw3m "#pdf-type")
+-- See: (find-lua51manual "#pdf-type")
 -- Examples:
 --  print(nil, 22, "33", {}, false, print)
 -->  nil   22   33   table: 0x806da60   false   function: 0x806b388
@@ -328,7 +330,7 @@ P = function (...)
 --      http://lua-users.org/lists/lua-l/2008-02/msg00944.html
 
 
--- «PP»  (to ".PP")
+-- Â«PPÂ»  (to ".PP")
 -- 2015aug20: oveeriden by: (to "Tos")
 -- (to "mytostring")
 -- My favourite function for inspecting data!
@@ -353,7 +355,7 @@ PP = function (...)
     return myunpack(arg)    -- todo: change to "..." (a 5.1-ism)
   end
 
--- «PPP»  (to ".PPP")
+-- Â«PPPÂ»  (to ".PPP")
 -- Useful for debugging sometimes.
 -- I don't use this much.
 -- PP(string.rep("ab", 4))
@@ -369,11 +371,11 @@ PPP = function (idstr)
       end
   end
 
--- «tests»  (to ".tests")
+-- Â«testsÂ»  (to ".tests")
 -- P(string.find("0123456789", "3(45)(67)", 4))  --> 4 8 "45" "67"
 -- P(string.find("0123456789", "3(45)(67)", 5))  --> <nil>
 
--- «over0»  (to ".over0")
+-- Â«over0Â»  (to ".over0")
 -- Example:
 -- A = {a=22}
 -- B = over(A, {b=33})
@@ -385,7 +387,7 @@ over = function (bottomtable, toptable)
   end
 --]]
 
--- «eoo» (to ".eoo")
+-- Â«eooÂ» (to ".eoo")
 -- For a documented version, see:
 --   (find-dn6 "eoo.lua")
 --   (find-dn6 "eoo.lua" "Vector")
@@ -400,7 +402,7 @@ otype = function (o)  -- works like type, except on my "objects"
     return mt and mt.type or type(o)
   end
 
--- «over» (to ".over")
+-- Â«overÂ» (to ".over")
 -- (find-es "lua5" "over")
 over = function (B)
     return function (A)
@@ -411,7 +413,7 @@ Over = function (class)
     return over(class.__index)
   end
 
--- «follow» (to ".follow")
+-- Â«followÂ» (to ".follow")
 follow = function (o, str)
     local w, rest = str:match("(%S+)%s*(.*)")
     if not w then return o end
@@ -421,7 +423,7 @@ follow = function (o, str)
     return follow(o[w], rest)
   end
 
--- «NamedFunction» (to ".NamedFunction")
+-- Â«NamedFunctionÂ» (to ".NamedFunction")
 -- (find-es "lua5" "NamedFunction")
 NamedFunction = Class {
   type    = "NamedFunction",
@@ -441,7 +443,7 @@ lambda = function (str)
   end
 
 
--- «Tos» (to ".Tos")
+-- Â«TosÂ» (to ".Tos")
 -- Tests: (find-es "lua5" "Tos")
 Tos = Class {
   type    = "Tos",
@@ -517,7 +519,7 @@ mytostring      = function (o)   return (Tos{}):o(o)                end
 mytabletostring = function (o)   return (Tos{}):t(o, "{ ", ",\n  ", "\n}") end
 PPV             = function (o)   print(mytabletostring(o)); return o end
 
--- «VerticalTable» (to ".VerticalTable")
+-- Â«VerticalTableÂ» (to ".VerticalTable")
 -- Tests: (find-es "lua5" "VerticalTable")
 VerticalTable = Class {
   type    = "VertTable",
@@ -529,7 +531,7 @@ VerticalTable = Class {
 
 
 
--- «envsubst»  (to ".envsubst")
+-- Â«envsubstÂ»  (to ".envsubst")
 -- (find-es "lua5" "envsubst")
 setenv_ = {}
 setenv = function (varname, value) setenv_[varname] = value end
@@ -540,12 +542,12 @@ envsubst = function (str)
        end)
    end
 
--- «readfile»  (to ".readfile")
--- «writefile»  (to ".writefile")
+-- Â«readfileÂ»  (to ".readfile")
+-- Â«writefileÂ»  (to ".writefile")
 -- (find-es "lua5" "readfile")
--- (find-luamanualw3m "#pdf-io.open")
--- (find-luamanualw3m "#pdf-file:read")
--- (find-luamanualw3m "#pdf-file:write")
+-- (find-lua51manual "#pdf-io.open")
+-- (find-lua51manual "#pdf-file:read")
+-- (find-lua51manual "#pdf-file:write")
 readfile = function (fname)
     local f = assert(io.open(fname, "r"))
     local bigstr = f:read("*a")
@@ -558,7 +560,7 @@ writefile = function (fname, bigstr)
     f:close()
   end
 
--- «fileexists» (to ".fileexists")
+-- Â«fileexistsÂ» (to ".fileexists")
 fileexists = function (fname)
     local f, err = (io.open(fname, "r"))
     if f then io.close(f); return true end
@@ -578,7 +580,7 @@ filecontents0 = function (fname)
 fnamedirectory    = function (fname) return fname:match"^(.*/)[^/]*$"  end
 fnamenondirectory = function (fname) return fname:match     "([^/]*)$" end
 
--- «mytostring»  (to ".mytostring")
+-- Â«mytostringÂ»  (to ".mytostring")
 -- 2015aug12: new version: (to "Tos")
 -- 2011apr10: Rewrote all this in a hurry.
 -- These functions are used by: (to "PP")
@@ -677,7 +679,7 @@ tos_has_eootype = function (o)
 -- mytostring_arg({n=4, nil, 22, 33, nil})
 -->                   "<nil> 22 33 <nil>"
 
--- «mysortedpairs»  (to ".mysortedpairs")
+-- Â«mysortedpairsÂ»  (to ".mysortedpairs")
 -- This is useful in iteractive scripts. The name is bad, I know.
 -- (find-pilw3m "7.1.html" "simple iterator")
 mysortedpairs = function (T)
@@ -689,7 +691,7 @@ mysortedpairs = function (T)
       end
   end
 
--- «mytostringk2»  (to ".mytostringk2")
+-- Â«mytostringk2Â»  (to ".mytostringk2")
 -- Experimental. Usage:
 --   mytostringk = mytostringk2
 mytostringk2 = function (o)
@@ -701,7 +703,7 @@ mytostringk2 = function (o)
   end
 
 
--- «trim» (to ".trim")
+-- Â«trimÂ» (to ".trim")
 -- (to "string-methods")
 -- (find-lua51manual "#5.4.1" "Patterns")
 ltrim = function (str) return str:match"^%S*(.*)$" end
@@ -712,7 +714,7 @@ string.rtrim = rtrim
 string.bitrim = bitrim
 
 
--- «split»  (to ".split")
+-- Â«splitÂ»  (to ".split")
 -- (find-es "lua5" "split")
 split = function (str, pat)
     local arr = {}
@@ -722,7 +724,7 @@ split = function (str, pat)
     return arr
   end
 
--- «ee_expand»  (to ".ee_expand")
+-- Â«ee_expandÂ»  (to ".ee_expand")
 -- (find-eev "eev.el" "ee-expand")
 ee_expand = function (path)
     path = string.gsub(path, "^~$", "$HOME/", 1)
@@ -731,14 +733,14 @@ ee_expand = function (path)
     return path
   end
 
--- «ee_dofile»  (to ".ee_dofile")
--- «ee_loadlib»  (to ".ee_loadlib")
+-- Â«ee_dofileÂ»  (to ".ee_dofile")
+-- Â«ee_loadlibÂ»  (to ".ee_loadlib")
 ee_dofile  = function (path) return dofile(ee_expand(path)) end
 ee_loadlib = function (libname, funcname)
     return assert(package.loadlib(ee_expand(libname), funcname))()
   end
 
--- «ee_ls» (to ".ee_ls")
+-- Â«ee_lsÂ» (to ".ee_ls")
 -- (find-es "lua5" "posix-ls")
 ee_ls = function (dir)
     userocks()
@@ -748,12 +750,12 @@ ee_ls = function (dir)
 
 
 
--- «strlen8» (to ".strlen8")
+-- Â«strlen8Â» (to ".strlen8")
 -- (find-es "lua5" "utf8")
 string.len8 = function (str) return str:gsub("[\128-\191]+", ""):len() end
 strlen8 = string.len8
 
--- «untabify»  (to ".untabify")
+-- Â«untabifyÂ»  (to ".untabify")
 -- Note: to untabify strings in encodings where chars can be more than
 -- 1-byte long, change the "strlen" below... (I never had to do that,
 -- though).
@@ -768,7 +770,7 @@ untabify = function (str)
     return (gsub(str, "([^\t\r\n]*)\t", untabify_strtab))
   end
 
--- «untabify8» (to ".untabify8")
+-- Â«untabify8Â» (to ".untabify8")
 untabify8_strtab = function (strbeforetab)
     return strbeforetab ..
       untabify_table[math.fmod(strlen(strbeforetab), 8) + 1]
@@ -778,7 +780,7 @@ untabify8 = function (str)
   end
 
 
--- «utf8tohtml» (to ".utf8tohtml")
+-- Â«utf8tohtmlÂ» (to ".utf8tohtml")
 -- (find-es "lua5" "utf8-to-html")
 utf8pat   = "[\192-\253][\128-\191]+"
 utf8ctohtml = function (u)
@@ -794,7 +796,7 @@ utf8tohtml = function (str)
     return utf8tohtml0(str2)
   end
 
--- «u8c_to_l1» (to ".u8c_to_l1")
+-- Â«u8c_to_l1Â» (to ".u8c_to_l1")
 -- (find-es "charsets" "l1_to_u8")
 u8c_l1_pat = "[\194-\195][\128-\191]"
 u8c_to_code = function (u)
@@ -810,7 +812,7 @@ measure_utf8_ness = function (bigstr)
     return n_u8_l1_pairs, n_other_l1s
   end
 
--- «u8_to_l1» (to ".u8_to_l1")
+-- Â«u8_to_l1Â» (to ".u8_to_l1")
 -- (find-es "charsets" "u8_to_l1")
 -- (ee-insert '(128 255))
 -- (find-einsert '((128 255)))
@@ -830,19 +832,19 @@ u8_to_l1_maybe = function (bigstr)
   end
 
 
--- «toslashhex» (to ".toslashhex")
+-- Â«toslashhexÂ» (to ".toslashhex")
 toslashhex1 = function (c) return format("\\%d", string.byte(c)) end
 toslashhex  = function (str) return (str:gsub("[\128-\255]", toslashhex1)) end
 
--- «divmod» (to ".divmod")
+-- Â«divmodÂ» (to ".divmod")
 -- http://lars.nocrew.org/forth2012/core/DivMOD.html
 divmod = function (a, b) return (a-(a%b))/b, a%b end
 
 
 
--- «min-and-max» (to ".min-and-max")
--- (find-luamanualw3m "#pdf-math.min")
--- (find-luamanualw3m "#pdf-math.max")
+-- Â«min-and-maxÂ» (to ".min-and-max")
+-- (find-lua51manual "#pdf-math.min")
+-- (find-lua51manual "#pdf-math.max")
 -- PP(math.min("22", "200"))  --> 22
 --      PP(min("22", "200"))  --> "200"
 min = function (a, b)
@@ -860,7 +862,7 @@ minmax = function (a, b, c) return Min(a, b), Max(b, c) end
 
 
 
--- «load_dednat4»  (to ".load_dednat4")
+-- Â«load_dednat4Â»  (to ".load_dednat4")
 -- (find-angg ".emacs" "eepitch-dednat4")
 -- (find-es    "xypic" "eepitch-dednat4")
 -- (find-dn4 "dednat4.lua" "diag-head")
@@ -881,7 +883,7 @@ load_dednat4 = function ()
   end
 
 
--- «load_rex»  (to ".load_rex")
+-- Â«load_rexÂ»  (to ".load_rex")
 -- (find-es "lua5" "rexlib")
 -- Usage: if not rex then load_rex() end
 -- Note (2007): I haven't used this in ages!
@@ -895,7 +897,7 @@ load_rex = function ()
     function rex.gsub(s, p, f, n) return rex(p):gmatch(s, f, n) end
   end
 
--- «load_posix»  (to ".load_posix")
+-- Â«load_posixÂ»  (to ".load_posix")
 -- This is for lua-5.0, for 5.1 see: (to "loadposix")
 -- (find-es "lua5" "load_posix")
 -- (find-es "lua5" "posix-install")
@@ -904,7 +906,7 @@ load_posix = function ()
     -- assert(loadlib(getenv("HOME").."/.lua50/lposix.so", "luaopen_posix"))()
   end
 
--- «load_PP»  (to ".load_PP")
+-- Â«load_PPÂ»  (to ".load_PP")
 -- Load PP.so, that defines a C function called PP for inspecting the stack.
 -- Old version, for lua-5.0:
 -- -- (find-angg ".lua50/PP.c")
@@ -922,7 +924,7 @@ load_PP = function ()
 -- See: (find-angg ".lua51/PP.c")
 --      (find-angg ".lua51/PP.gdb")
 
--- «PPeval»  (to ".PPeval")
+-- Â«PPevalÂ»  (to ".PPeval")
 -- (find-angg ".lua51/PP.gdb" "PPeval")
 -- (find-lua51file "src/lua.c" "first line starts with `=' ?")
 PPeval = function (str)
@@ -934,7 +936,7 @@ PPeval = function (str)
     end
   end
 
--- «loadswigso»  (to ".loadswigso")
+-- Â«loadswigsoÂ»  (to ".loadswigso")
 -- (find-es "swig" "myswiglua")
 -- Example: loadswigso("C", "./myparser.so", "parser", "countwords")
 loadswigso = function (modulename, fname_so, ...)
@@ -945,7 +947,7 @@ loadswigso = function (modulename, fname_so, ...)
     end
   end
 
--- «loadcinvoke»  (to ".loadcinvoke")
+-- Â«loadcinvokeÂ»  (to ".loadcinvoke")
 -- (find-es "lua5" "cinvoke")
 loadcinvoke = function ()
     local oldcpath = package.cpath
@@ -954,7 +956,7 @@ loadcinvoke = function ()
     package.cpath = oldcpath
   end
 
--- «loadlpeg»  (to ".loadlpeg")
+-- Â«loadlpegÂ»  (to ".loadlpeg")
 -- (find-es "lua5" "lpeg-0.7")
 -- (find-es "lua5" "lpeg-0.8.1")
 -- (find-es "lua5" "lpeg-0.9")
@@ -964,7 +966,7 @@ loadlpeg = function ()
     -- package.cpath = ee_expand("~/usrc/lpeg-0.4/?.so")
     -- package.cpath = ee_expand("~/usrc/lpeg-0.5/?.so")
     -- package.cpath = ee_expand("~/usrc/lpeg-0.7/?.so")..";"..oldcpath
-    -- (find-luamanualw3m "#pdf-package.cpath")
+    -- (find-lua51manual "#pdf-package.cpath")
     -- (find-sh0 "lua51 -e 'print(package.path)'")
     -- (find-sh0 "lua51 -e 'print(package.cpath)'")
     -- package.cpath = ee_expand("~/usrc/lpeg-0.8.1/?.so")..";"..oldcpath
@@ -979,7 +981,7 @@ loadlpeg = function ()
     lpeg.Balanced = lpeg_balanced   -- (to "lpeg_balanced")
   end
 
--- «loadbitlib»  (to ".loadbitlib")
+-- Â«loadbitlibÂ»  (to ".loadbitlib")
 -- (find-es "lua5" "bitlib-51")
 loadbitlib = function (fname)
     if bit then return "bitlib already loaded" end
@@ -987,9 +989,9 @@ loadbitlib = function (fname)
     assert(package.loadlib(ee_expand(fname), "luaopen_bit"))()
   end
 
--- «autoload»  (to ".autoload")
+-- Â«autoloadÂ»  (to ".autoload")
 -- Like in elisp. For global functions only.
--- (find-luamanualw3m "#pdf-require")
+-- (find-lua51manual "#pdf-require")
 --
 autoload = function (funname, loader)
     _G[funname] = function (...)
@@ -1005,7 +1007,7 @@ tcl = function (...)   -- <-- this is a kind of autoload
     return tcl(unpack(arg))             -- todo: change to "..." (a 5.1-ism)
   end
 
--- «loadtcl»  (to ".loadtcl")
+-- Â«loadtclÂ»  (to ".loadtcl")
 -- (find-es "lua5" "luatclbridge")
 -- (find-angg "LUA/luatclbridge.c")
 -- loadtcl = function ()
@@ -1028,7 +1030,7 @@ loadsnack  = function () loadtcl(); return tcl("package require sound") end
 -- (find-es "tcl" "snack")
 -- (find-anggfile "TCL/piano.tcl")
 
--- «loadldb»  (to ".loadldb")
+-- Â«loadldbÂ»  (to ".loadldb")
 -- (find-es "lua5" "ldb-from-tgz")
 -- (find-es "lua5" "ldb")
 loadldb = function ()
@@ -1040,7 +1042,7 @@ loadldb = function ()
     package.path = oldpath
   end
 
--- «loadpeek»  (to ".loadpeek")
+-- Â«loadpeekÂ»  (to ".loadpeek")
 -- (find-angg "DAVINCI/peek.c")
 -- (find-angg "DAVINCI/peek.lua")
 loadpeek = function ()
@@ -1052,7 +1054,7 @@ getaddr = function (obj)
     return tonumber(string.match(tostring(obj), " 0x([0-9A-Za-z]+)"), 16)
   end
 
--- «loadalarm»  (to ".loadalarm")
+-- Â«loadalarmÂ»  (to ".loadalarm")
 -- (find-es "lua5" "signal")
 loadalarm = function ()
     if not alarm then
@@ -1060,7 +1062,7 @@ loadalarm = function ()
     end
   end
 
--- «loadposix»  (to ".loadposix")
+-- Â«loadposixÂ»  (to ".loadposix")
 -- New way (active below):  (find-es "lua5" "luaposix")
 -- old way (commented out): (find-es "lua5" "posix-lua51")
 loadposix = function ()
@@ -1071,7 +1073,7 @@ loadposix = function ()
     -- end
   end
 
--- «getoutput»  (to ".getoutput")
+-- Â«getoutputÂ»  (to ".getoutput")
 -- (find-es "lua5" "getoutput")
 getoutput = function (command)
     local pipe = assert(io.popen(command))
@@ -1080,7 +1082,7 @@ getoutput = function (command)
     return output
   end
 
--- «curl» (to ".curl")
+-- Â«curlÂ» (to ".curl")
 -- (find-man "1 curl" "-s, --silent")
 curl = function (url)
     local cmd = format("curl -s '%s'", url)
@@ -1088,7 +1090,7 @@ curl = function (url)
   end
 
 
--- «preparef2n»  (to ".preparef2n")
+-- Â«preparef2nÂ»  (to ".preparef2n")
 -- (find-es "lua5" "functionnames")
 -- preparef2n: create a table with names of functions.
 -- Example:
@@ -1128,7 +1130,7 @@ preparef2n = function (otherdictnames)
   end
 
 
--- «map»  (to ".map")
+-- Â«mapÂ»  (to ".map")
 --------[ keys, map, seq, nop, each2, splitlines, chartranslator ]--------
 
 keys = function (tbl)
@@ -1164,7 +1166,7 @@ uniq = function (A)
     return B
   end
 
--- (find-luamanualw3m "#pdf-table.sort")
+-- (find-lua51manual "#pdf-table.sort")
 -- http://lua-users.org/lists/lua-l/2011-04/msg00406.html
 sorted = function (tbl, lt) table.sort(tbl, lt); return tbl end
 
@@ -1179,7 +1181,7 @@ maplines = function (f, bigstr)
     return mapconcat(f, splitlines(bigstr), "\n")
   end
 
--- «fold»  (to ".fold")
+-- Â«foldÂ»  (to ".fold")
 -- (find-hugsbasefile "Prelude.hs" "\nfoldl ")
 -- foldl :: (a -> b -> a) -> a -> [b] -> a
 foldl = function (f, a, B, i, j)
@@ -1189,7 +1191,7 @@ foldl = function (f, a, B, i, j)
 
 
 
--- «gformat»  (to ".gformat")
+-- Â«gformatÂ»  (to ".gformat")
 -- A variant of "format" that uses "string.gsub".
 -- This is surprisingly useful. 8-)
 --           gformat "<%1_%1>" "foo"                   --> <foo_foo>
@@ -1203,7 +1205,7 @@ gformat = function (fmt, pat)
 
 
 
--- «each2»  (to ".each2")
+-- Â«each2Â»  (to ".each2")
 -- (find-es "lua5" "each2")
 -- (find-pilw3m "7.1.html" "Iterators and Closures")
 each2 = function (tbl)
@@ -1216,7 +1218,7 @@ each2 = function (tbl)
       end
   end
 
--- «splitlines»  (to ".splitlines")
+-- Â«splitlinesÂ»  (to ".splitlines")
 splitlines = function (bigstr)
     local arr = split(bigstr, "([^\n]*)\n?")
     table.remove(arr)
@@ -1226,7 +1228,7 @@ isplitlines = function (bigstr)
     return ipairs(splitlines(bigstr))
   end
 
--- «splitlines-5.3»  (to ".splitlines-5.3")
+-- Â«splitlines-5.3Â»  (to ".splitlines-5.3")
 -- (find-es "lua5" "splitlines-5.3")
 splitlines = function (bigstr)
     local arr = split(bigstr, "([^\n]*)\n?")
@@ -1236,7 +1238,7 @@ splitlines = function (bigstr)
     return arr
   end
 
--- «translatechars»  (to ".translatechars")
+-- Â«translatecharsÂ»  (to ".translatechars")
 -- (find-node "(coreutils)Translating")
 translatechars = function (str, re, tbl)
     return (gsub(str, re, function (c) return tbl[c] or c end))
@@ -1250,7 +1252,7 @@ translatechars = function (str, re, tbl)
 --
 -- sgmlify = chartranslator(sgmlify_re, sgmlify_table)
 
--- «sbeconcat»  (to ".sbeconcat")
+-- Â«sbeconcatÂ»  (to ".sbeconcat")
 -- Concatenate a table with strings and with begin/end pairs
 -- Example:
 --   sbeconcat("abfoocd"){1, 3, "FOO", 6, 8}   --> "abFOOcd"
@@ -1277,7 +1279,7 @@ sbeconcat = function (subj, f)
 
 
 
--- «concatbestrings»  (to ".concatbestrings")
+-- Â«concatbestringsÂ»  (to ".concatbestrings")
 -- A "table of bestrings" is a table containing pairs of numbers
 -- (begin/end pairs) and strings. Example:
 --   concatbestrings("abfoocd", nil, {1, 3, "FOO", 6, 8})   --> "abFOOcd"
@@ -1307,8 +1309,8 @@ curriedconcatbestrings = function (subj, f)
   end
 
 
--- «lpeg_togsub»  (to ".lpeg_togsub")
--- «lpeg_gsub»    (to ".lpeg_gsub")
+-- Â«lpeg_togsubÂ»  (to ".lpeg_togsub")
+-- Â«lpeg_gsubÂ»    (to ".lpeg_gsub")
 -- A pattern that returns a string can be "Kleene-starred with
 -- the least possible filling" to create a pattern that works
 -- somewhat like a gsub, but that returns a table of bestrings...
@@ -1353,7 +1355,7 @@ lpeg_gsub = function (Word, subj, f)
 --         --> "_ab_<FOO>_cd_<BAR>__"
 
 
--- «lpeg_gsub_»  (to ".lpeg_gsub_")
+-- Â«lpeg_gsub_Â»  (to ".lpeg_gsub_")
 -- An alternative (faster but more complex):
 -- With gsub_ we can reuse a prebuilt :togsub():Ct() pattern,
 -- without having to build it anew each time.
@@ -1369,7 +1371,7 @@ lpeg_gsub_ = function (WordTogsubCt, subj, f)
 
 
 
--- «lpeg_balanced»  (to ".lpeg_balanced")
+-- Â«lpeg_balancedÂ»  (to ".lpeg_balanced")
 -- (find-angg "LUA/preproc.lua")
 lpeg_balanced = function (Open, MidChars, Close)
     local Middle
@@ -1383,11 +1385,11 @@ lpeg_balanced = function (Open, MidChars, Close)
 
 
 
--- «mytraceback»  (to ".mytraceback")
+-- Â«mytracebackÂ»  (to ".mytraceback")
 -- (find-es "lua5" "xpcall" "mytraceback =")
--- (find-luamanualw3m "#pdf-xpcall")
--- (find-luamanualw3m "#pdf-debug.traceback")
--- (find-luamanualw3m "#pdf-error")
+-- (find-lua51manual "#pdf-xpcall")
+-- (find-lua51manual "#pdf-debug.traceback")
+-- (find-lua51manual "#pdf-error")
 mytraceback = function (errmsg)
     io.output():flush()
     print(debug.traceback(errmsg, 2))
@@ -1397,7 +1399,7 @@ xxcall = function (f)
   end
 
 
--- «errorfb_line»  (to ".errorfb_line")
+-- Â«errorfb_lineÂ»  (to ".errorfb_line")
 -- (find-es "lua5" "traceback")
 -- (find-lua51file "src/ldblib.c" "{\"traceback\", db_errorfb},")
 -- (find-lua51file "src/ldblib.c" "static int db_errorfb")
@@ -1431,7 +1433,7 @@ errorfb_lines = function (a, b, step, f)
 
 
 
--- «ee_template»  (to ".ee_template")
+-- Â«ee_templateÂ»  (to ".ee_template")
 -- (find-eev "eev-insert.el" "ee-template")
 -- ee_template({a="<AA>", b="<BB>"}, "foo{a}bar{c}plic")
 --   --> "foo<AA>bar{c}plic"
@@ -1439,7 +1441,7 @@ ee_template = function (pairs, templatestr)
     return (string.gsub(templatestr, "{([^{}]+)}", pairs))
   end
 
--- «ee_into»  (to ".ee_into")
+-- Â«ee_intoÂ»  (to ".ee_into")
 -- ee_into("a b c", "<AA> <BB>")
 --   --> {"a"="<AA>", "b"="<BB>"}
 ee_into = function (fieldnames, data)
@@ -1450,16 +1452,21 @@ ee_into = function (fieldnames, data)
     return o
   end
 
--- «chdir»  (to ".chdir")
--- 2008may23
-chdir = function (dir) loadposix(); return assert(posix.chdir(ee_expand(dir))) end
+-- Â«chdirÂ»  (to ".chdir")
+-- 2008may23 / 2020jan17
+-- See: (find-es "lua5" "luaposix-git")
+chdir = function (dir)
+    loadposix()
+    if not posix.chdir then posix.chdir = posix.unistd.chdir end
+    return assert(posix.chdir(ee_expand(dir)))
+  end
 
--- «package.require»  (to ".package.require")
+-- Â«package.requireÂ»  (to ".package.require")
 -- Make package.require consider that this file has been loaded when
 -- it was loaded by LUA_INIT=@.../LUA/lua50init.lua (see the comments
 -- at the top of this file) so that we can do 'require "lua50init"' or
 -- 'require "edrxlib"'...
---   (find-luamanualw3m "#pdf-require")
+--   (find-lua51manual "#pdf-require")
 --   (find-lua51file "")
 --   (find-lua51file "src/loadlib.c" "static int ll_require ")
 package.loaded.lua50init =
@@ -1468,11 +1475,11 @@ package.loaded.edrxlib =
   package.loaded.edrxlib or "(loaded by LUA_INIT=@...)"
 
 
--- «userocks»  (to ".userocks")
+-- Â«userocksÂ»  (to ".userocks")
 -- (find-angg ".emacs" "luarocks")
--- (find-luamanualw3m "#pdf-require")
--- (find-luamanualw3m "#pdf-package.path")
--- (find-luamanualw3m "#pdf-package.cpath")
+-- (find-lua51manual "#pdf-require")
+-- (find-lua51manual "#pdf-package.path")
+-- (find-lua51manual "#pdf-package.cpath")
 -- (find-fline "~/usrc/luarocks/share/lua/5.1/")
 -- (find-fline "~/usrc/luarocks/lib/lua/5.1/")
 userocks = function ()
@@ -1484,7 +1491,7 @@ userocks = function ()
     load_posix = req "posix"
   end
 
--- «loadblogme3» (to ".loadblogme3")
+-- Â«loadblogme3Â» (to ".loadblogme3")
 -- (find-es "blogme" "interactive")
 -- (find-angg ".emacs" "blogme3")
 loadblogme3 = function (msg)
@@ -1506,8 +1513,8 @@ loadblogme3all = function (msg)
     loadblogme3rest()
   end
 
--- «hms_to_s» (to ".hms_to_s")
--- «s_to_hms» (to ".s_to_hms")
+-- Â«hms_to_sÂ» (to ".hms_to_s")
+-- Â«s_to_hmsÂ» (to ".s_to_hms")
 hms_to_s = function (hms)
     local zeros = "00:00:00"
     hms = zeros:sub(1, #zeros-#hms)..hms
@@ -1523,7 +1530,7 @@ s_to_hms = function (s)
     end
   end
 
--- «icollect» (to ".icollect")
+-- Â«icollectÂ» (to ".icollect")
 -- (find-es "lua5" "icollect")
 -- http://lua-users.org/lists/lua-l/2012-12/msg00661.html
 -- http://lua-users.org/lists/lua-l/2012-12/msg00713.html
@@ -1541,7 +1548,7 @@ icollect = function (n, f, s, var)
 
 
 
--- «interactor»  (to ".interactor")
+-- Â«interactorÂ»  (to ".interactor")
 -- This is obsolete.
 -- The new version is at: (find-angg "LUA/reader.lua")
 -- (find-es "lua5" "interactor")
@@ -1598,7 +1605,7 @@ interactor_metatable = {
 interactor = function () return over(interactor_metatable) end
 --]]
 
--- «Repl» (to ".Repl")
+-- Â«ReplÂ» (to ".Repl")
 -- (find-es "lua5" "Repl")
 -- This is obsolete.
 Repl = Class {
@@ -1643,12 +1650,13 @@ Repl = Class {
   },
 }
 
--- «loadluarepl» (to ".loadluarepl")
+-- Â«loadluareplÂ» (to ".loadluarepl")
 -- (find-es "lua5" "lua-repl-0.8")
+-- (find-dednat6 "dednat6/luarepl.lua")
 loadluarepl = function (dir)
     if repl then return "lua-repl-0.8 already loaded (it seems)" end
-    -- repldir   = ee_expand "~/usrc/lua-repl-0.8/"
-    repldir      = ee_expand(dir or "~/usrc/lua-repl-0.8/")
+    -- repldir   = ee_expand(dir or "~/usrc/lua-repl-0.8/")
+    repldir      = ee_expand(dir or "~/dednat6/dednat6/lua-repl/")
     package.path = repldir.."?/init.lua;"..package.path
     package.path = repldir.."?.lua;"     ..package.path
     repl         = require "repl"
@@ -1663,11 +1671,13 @@ loadluarepl = function (dir)
         if results.n == 0 then return end
         print(unpack(results, 1, results.n))
       end
+    -- luarepl = function () print(); print(); sync:run() end
+    luarepl = function () sync:run() end
     return "Loaded lua-repl-0.8"
   end
 
 
--- «replaceranges» (to ".replaceranges")
+-- Â«replacerangesÂ» (to ".replaceranges")
 -- str = "(foo bar)"
 -- ranges = {{6,9,"BAR"}, {2,5, string.upper}}
 -- = replaceranges(str, ranges)
@@ -1687,7 +1697,7 @@ replaceranges = function (str, ranges, f)
   end
 
 
--- «string.replace» (to ".string.replace")
+-- Â«string.replaceÂ» (to ".string.replace")
 -- a = "abcdefg"
 -- a:replace(2, "CDE")     --> "abCDEfg"
 -- a:replace(2, "CDE", 4)  --> "abCDE g"
@@ -1710,7 +1720,7 @@ string.replace = function (s, x, r, w)
   end
 
 
--- «Rect» (to ".Rect")
+-- Â«RectÂ» (to ".Rect")
 -- See: (find-es "lua5" "Rect")
 Rect = Class {
   type    = "Rect",
@@ -1758,7 +1768,7 @@ Rect = Class {
     end,
 }
 
--- «syntree» (to ".syntree")
+-- Â«syntreeÂ» (to ".syntree")
 -- (find-es "lua5" "syntax-trees")
 -- (find-es "lua-intro" "lpeg-re-1")
 syntree0 = function (op, rects)
@@ -1787,7 +1797,7 @@ syntreeg = function (...)
     return r
   end
 
--- «re_expand_INFIX» (to ".re_expand_INFIX")
+-- Â«re_expand_INFIXÂ» (to ".re_expand_INFIX")
 -- (find-es "lua-intro" "lpeg-re-infix-2")
 re_expand_INFIX_0 = function (parenstr)
     local components = split(parenstr:sub(2, -2))
@@ -1804,7 +1814,7 @@ re_expand_INFIX = function (gram)
     return (string.gsub(gram, "INFIX(%b())", re_expand_INFIX_0))
   end
 
--- «math-grammar» (to ".math-grammar")
+-- Â«math-grammarÂ» (to ".math-grammar")
 -- (find-gab "gab.lua" "lpeg-parser")
 -- (find-gabfile "gab.lua" "Expr.__index.infix =")
 -- Missing: _, __, (), {|,,}, {,,}, Fa/Ex/Lambda, :, not, unary-
@@ -1825,12 +1835,12 @@ math_grammar_0 = [[
 
 
 
--- «cow-and-coy» (to ".cow-and-coy")
+-- Â«cow-and-coyÂ» (to ".cow-and-coy")
 -- (find-es "lua5" "cow-and-coy")
 coy = coroutine.yield
 cow = coroutine.wrap
 
--- «eval-and-L» (to ".eval-and-L")
+-- Â«eval-and-LÂ» (to ".eval-and-L")
 -- (find-LATEX "2014-1-GA-P2-gab.lua")
 eval = function (str) return assert(loadstring(str))() end
 expr = function (str) return eval("return "..str) end
@@ -1878,7 +1888,7 @@ meta_find_angg = function (anggdir, suffix, intro_stem)
 
 
 
--- «Sexp» (to ".Sexp")
+-- Â«SexpÂ» (to ".Sexp")
 -- Used here: (find-blogme3 "anggdefs.lua" "Sexp")
 elisp = {}
 elisp["find-angg"] = meta_find_angg("")
@@ -1968,13 +1978,23 @@ Sexp = Class {
   },
 }
 
--- «youtube_split» (to ".youtube_split")
+-- Â«youtube_make_urlÂ»  (to ".youtube_make_url")
+-- (find-es "youtube" "time-syntax")
+youtube_make_url = function (hash, time)
+    return "http://www.youtube.com/watch?v=" .. hash .. youtube_time(time)
+  end
+youtube_time = function (time)
+    if type(time) ~= "string" then return "" end
+    local mm,ss = time:match("^(%d?%d):(%d%d)$")
+    if ss then return "&t="..(mm*60+ss) end
+    return ""
+  end
+
+-- Â«youtube_splitÂ» (to ".youtube_split")
 -- I was using this at too many places - including one-shot programs...
 -- (find-angg "LUA/youtube-tags.lua")
 -- (find-angg "LUA/youtube.lua")
-youtube_make_url = function (hash, time)
-    return "http://www.youtube.com/watch?v=" .. hash
-  end
+-- (find-blogme3 "youtube.lua")
 youtube_split_url0 = function (li)
     local a, url, b, title, c = li:match "^(.-)(https?://%S*)(%s*)(.-)(%s*)$"
     if not url then return end
@@ -1992,7 +2012,7 @@ youtube_split_url = function (li)
   end
 
 
--- «url_split» (to ".url_split")
+-- Â«url_splitÂ» (to ".url_split")
 -- Used here: (find-angg "LUA/redirect.lua")
 url_percent_decode  = function (str)
     local f = function (hh) return string.char(tonumber(hh, 16)) end
@@ -2027,7 +2047,7 @@ url_split = function (url)
   end
 
 
--- «Blogme» (to ".Blogme")
+-- Â«BlogmeÂ» (to ".Blogme")
 -- An attempto to reimplement this: (find-blogme3 "brackets.lua")
 -- as a class.
 Blogme = Class {
@@ -2068,7 +2088,7 @@ Blogme = Class {
 HREF  = function (url, str) return format('<a href="%s">%s</a>', url, str) end
 HREF1 = function (url, str) return url and HREF(url, str) or str end
 
--- «EevIntro» (to ".EevIntro")
+-- Â«EevIntroÂ» (to ".EevIntro")
 -- (find-es "lua5" "EevIntro")
 EevIntro = Class {
   type = "EevIntro",
@@ -2109,7 +2129,7 @@ introhtml = function (stem, sec)
 
 
 
--- «ELispH» (to ".ELispH")
+-- Â«ELispHÂ» (to ".ELispH")
 -- See: (find-es "lua5" "ELispH")
 --      (find-es "lua5" "ELispH-tests")
 --
@@ -2153,7 +2173,7 @@ ELispH = Class {
 }
 
 
--- «ELispHF» (to ".ELispHF")
+-- Â«ELispHFÂ» (to ".ELispHF")
 -- (find-es "lua5" "ELispHF")
 -- (find-es "lua5" "ELispHF-tests")
 -- An ELispHF object holds an "elisp hyperlink function", that when
@@ -2213,7 +2233,7 @@ code_c_m_b = function (c, manual, basedir)
 
 
 
--- «getsexp» (to ".getsexp")
+-- Â«getsexpÂ» (to ".getsexp")
 -- (find-es "lua5" "getsexp")
 -- (find-blogme3 "sexp.lua" "getsexp")
 -- Version: 2019jan08.
@@ -2238,7 +2258,7 @@ getsexp = function (str)
     return sexp, head, skel, left
   end
 
--- «SexpSkel» (to ".SexpSkel")
+-- Â«SexpSkelÂ» (to ".SexpSkel")
 -- (find-es "lua5" "SexpSkel")
 -- (find-es "lua5" "SexpSkel-test")
 -- A user-friendly class based on getsexp with a nice printing function.
@@ -2313,7 +2333,7 @@ SexpSkel = Class {
 
 
 
--- «ELispInfo» (to ".ELispInfo")
+-- Â«ELispInfoÂ» (to ".ELispInfo")
 -- (find-es "lua5"  "ELispInfo")
 -- (find-blogme3 "sexp.lua" "find-xxxnodes")
 ELispInfo = Class {
@@ -2368,7 +2388,7 @@ ELispInfo = Class {
 -- _E["to"] = ElispHF {intro="anchors", calctarget=calctarget_to}
 -- _E["find-angg"] = ElispHF {intro="anchors", d=""}
 
--- «getsexpskel» (to ".getsexpskel")
+-- Â«getsexpskelÂ» (to ".getsexpskel")
 -- Olbsolete.
 -- Algorithm and tests: (find-es "lua5" "getsexpskel")
 --
@@ -2385,7 +2405,7 @@ ELispInfo = Class {
 --     return skel3
 --   end
 
--- «SexpLine» (to ".SexpLine")
+-- Â«SexpLineÂ» (to ".SexpLine")
 -- Obsolete.
 -- Tests: (find-es "lua5" "SexpLine")
 -- This was intended to replace some parts of: (find-blogme3 "escripts.lua")
@@ -2466,7 +2486,7 @@ ELispInfo = Class {
 
 
 
--- «Set» (to ".Set")
+-- Â«SetÂ» (to ".Set")
 Set = Class {
   type    = "Set",
   new = function () return Set {_={}} end,
@@ -2522,7 +2542,7 @@ Set = Class {
 }
 
 
--- «SetL» (to ".SetL")
+-- Â«SetLÂ» (to ".SetL")
 -- For the new version of ydb. Work in progress.
 -- Some tests: (find-fline "~/lakhesys/TODO" "SetL =")
 --             (find-es "lua5" "SetL")
@@ -2580,7 +2600,7 @@ SetL = Class {
 
 
 
--- «fsize» (to ".fsize")
+-- Â«fsizeÂ» (to ".fsize")
 -- (find-es "lua5" "lua-posix-wheezy")
 -- require "posix"
 readlink = function (fname)
@@ -2613,7 +2633,7 @@ ydb_sort1 = function () print(ydb_sort(io.read("*a"))) end
 --]]
 
 
--- «loaddednat6» (to ".loaddednat6")
+-- Â«loaddednat6Â» (to ".loaddednat6")
 -- loaddednat6 = function ()
 --     -- dednat6dir = "/home/edrx/dednat6/"     -- (find-dn6 "")
 --     dednat6dir = os.getenv"HOME".."/dednat6/" -- (find-dn6 "")
@@ -2624,13 +2644,13 @@ loaddednat6 = function (dir)
     dofile(dednat6dir.."dednat6.lua")                 -- (find-dn6 "dednat6.lua")
   end
 
--- «loadfbcache2» (to ".loadfbcache2")
+-- Â«loadfbcache2Â» (to ".loadfbcache2")
 loadfbcache2 = function ()
     chdir "~/fbcache/"      -- (find-fbcache "")
     dofile "fbcache2.lua"   -- (find-fbcache "fbcache2.lua")
   end
 
--- «loadluarocks» (to ".loadluarocks")
+-- Â«loadluarocksÂ» (to ".loadluarocks")
 -- (find-es "lua5" "luarocks.loader")
 -- (find-es "lua5" "luarocks-interactively")
 -- (find-fline "/usr/bin/luarocks")
@@ -2656,7 +2676,7 @@ loadluarocks = function ()
   end
 
 
--- «capitalize» (to ".capitalize")
+-- Â«capitalizeÂ» (to ".capitalize")
 -- Capitalize Brazilian names.
 capitalize = function (text, smallwords)
     smallwords = smallwords or Set.fromarray(split("de da do das dos e"))
@@ -2668,7 +2688,7 @@ capitalize = function (text, smallwords)
     return (text:gsub("%a+", capitalize1))
   end
 
--- «getinscritos» (to ".getinscritos")
+-- Â«getinscritosÂ» (to ".getinscritos")
 -- (find-angg ".emacs" "getinscritos")
 getinscrito = function (li)
     local mat,cpf,nome,email = li:match("^%s*(%d+)%s+(%d+)%s+(.-)%s%s+(%S+)")
@@ -2686,8 +2706,8 @@ getinscritos = function ()
   end
 
 
--- «trailing-zeroes» (to ".trailing-zeroes")
--- «pformat» (to ".pformat")
+-- Â«trailing-zeroesÂ» (to ".trailing-zeroes")
+-- Â«pformatÂ» (to ".pformat")
 -- (find-es "lua5" "string.format")
 -- (find-es "lua5" "pformat")
 trunc0 = function (str) return str:reverse():gsub("^0*%.?", ""):reverse() end
@@ -2711,7 +2731,10 @@ pformatexpr = function (exprstr)
 
 
 
--- «findxxxpdf_parse» (to ".findxxxpdf_parse")
+-- Â«findxxxpdf_parseÂ» (to ".findxxxpdf_parse")
+-- (find-angg "LUA/book-index.lua")
+-- (find-angg ".emacs" "book-index")
+--
 findxxxpdf_parse = function (li, stem, adj)
     li = untabify(li)
     li = li:gsub(" [ .]* ", " ")
@@ -2731,51 +2754,11 @@ findxxxpdf_parse_file = function (fname, stem, adj)
       findxxxpdf_parse(li, stem, adj)
     end
   end
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'hindleyseldin2', 14)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'pil3', 19)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'connectives', 19)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'stewart7', 32)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'barrwellsctcs', 18)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'bctcs', 12)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'jamnikdri', 8)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'riehlcc', 18)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'reyeszolf', 0)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'zalamea', 8)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'progit', 24)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'rosen', 21)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'epp', 28)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'luatexref', 4)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'luatexabout', 2)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'texworksmanual', 5)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'lshort', 14)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'faif', 16)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'progit2', 5)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'marsdenw2', -319)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'apexcalculus', 10)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'mpott', 16)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'hott', 12)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'damasphd', 6)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'mancosupmp', 14)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'fongspivak', 12)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'agdausermanual', 4)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'awodeyct', 10)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'simmonsi', 12)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'asy', 5)\"")
--- (find-sh "lua51-e \"findxxxpdf_parse_file('/tmp/o', 'downeytp', 22)\"")
---
--- bigstr = ee_readfile "/tmp/o"
--- lines = splitlines(bigstr)
--- for _,li in ipairs(lines) do
---   findxxxpdf_parse(li, "hookup", 9)
--- end
-
-
 
 
 
 
 
 -- Local Variables:
--- coding:               raw-text-unix
--- ee-anchor-format:     "«%s»"
+-- coding:               utf-8-unix
 -- End:
