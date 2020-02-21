@@ -19,6 +19,7 @@
 -- «.tikzshape»		(to "tikzshape")
 -- «.tikzshapes-test»	(to "tikzshapes-test")
 -- «.tikzcoords»	(to "tikzcoords")
+-- «.tikzdiagram-test»	(to "tikzdiagram-test")
 
 
 
@@ -147,6 +148,7 @@ defdiagtikz = function ()
 
 
 
+-- «tikzdiagram-test»  (to ".tikzdiagram-test")
 -- (find-dednat6 "dednat6/diagforth.lua" "high-level-tests")
 
 --[==[
