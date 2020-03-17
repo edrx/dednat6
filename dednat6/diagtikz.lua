@@ -16,9 +16,11 @@
 -- See: (find-angg "dednat6/dednat6/diagtex.lua")
 
 -- «.tikzdiagram»	(to "tikzdiagram")
+-- «.endtikzdiagram»	(to "endtikzdiagram")
 -- «.tikzshape»		(to "tikzshape")
 -- «.tikzshapes-test»	(to "tikzshapes-test")
 -- «.tikzcoords»	(to "tikzcoords")
+-- «.defdiagtikz»	(to "defdiagtikz")
 -- «.tikzdiagram-test»	(to "tikzdiagram-test")
 
 
@@ -33,8 +35,10 @@ require "diagforth"     -- (find-dn6 "diagforth.lua")
 
 
 -- «tikzdiagram»  (to ".tikzdiagram")
+-- «endtikzdiagram»  (to ".endtikzdiagram")
 -- See: (find-dednat6 "dednat6/diagforth.lua" "diagram")
 --      (find-dednat6 "dednat6/diagforth.lua" "enddiagram")
+--      (to "defdiagtikz")
 --
 forths["tikzdiagram"] = function ()
     diagramname = getword() or derror("No diagram name")
@@ -136,6 +140,9 @@ tikzdiagram = function ()
       "  \\end{tikzpicture}"
   end
 
+
+
+-- «defdiagtikz»  (to ".defdiagtikz")
 -- (find-dn6 "diagtex.lua" "arrows_to_defdiag")
 defdiagtikz0 = function (name, hyperlink)
     return format("\\defdiagtikz{%s}{   %% %s\n%s}",
