@@ -189,6 +189,19 @@ formatt = function (...)
 printt  = function (...) print(formatt(...)) end
 outputt = function (...) output(formatt(...)) end
 
+--[[
+ (eepitch-lua51)
+ (eepitch-kill)
+ (eepitch-lua51)
+dofile "output.lua"
+dofile "picture.lua"
+p, q = v(3,4), v(5,6)
+= formatt("%s--%s", p, q)  --> (3,4)--(5,6)
+
+--]]
+
+
+
 
 -- «bprintt» (to ".bprintt")
 -- Usage in the REPL:

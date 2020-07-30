@@ -32,7 +32,7 @@
 --      http://www.lua.org/manual/5.1/lua.html
 --      http://linux.die.net/man/1/lua
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2019feb11   <- don't trust this date
+-- Version: 2020jun06   <- don't trust this date
 -- Public domain.
 --
 -- Note: "dednat4.lua" and "dednat6.lua" try to load this at startup,
@@ -2710,6 +2710,15 @@ getinscritos = function ()
 -- «pformat» (to ".pformat")
 -- (find-es "lua5" "string.format")
 -- (find-es "lua5" "pformat")
+--
+-- pformat is a variant of "format" that truncates numbers.
+-- format("(%s,%s)", 1/3, 2/3)
+--   -> (0.33333333333333,0.66666666666667)
+-- pformat("(%s,%s)", 1/3, 2/3)
+--   -> (0.333,0.667)
+-- pformat("(%s,%s)", 0.0001, 0.9999)
+--   ->(0,1)
+--
 trunc0 = function (str) return str:reverse():gsub("^0*%.?", ""):reverse() end
 truncn = function (n) return trunc0(string.format("%.3f", n)) end
 myntos = function (n) return trunc0(string.format("%.3f", n)) end

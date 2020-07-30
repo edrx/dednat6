@@ -281,9 +281,8 @@ print(arrows[4]:TeX())
 print(arrows_to_TeX())
 print(arrows_to_defdiag("??", "  % foo"))
 
- (ex "diagtex-1")
-
 --]==]
+
 
 
 

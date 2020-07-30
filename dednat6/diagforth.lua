@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/dednat6/diagforth.lua
 --           (find-angg "dednat6/dednat6/diagforth.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2019oct01
+-- Version: 2020apr03
 -- License: GPL3
 --
 
@@ -134,7 +134,7 @@ torelativenumber = function (prevn, str)
     if not sign then return end           -- fail
     local n = tonumber(strn)
     if sign == "" then return n end
-    if sign == "+" then return prevn + n else return prev - n end
+    if sign == "+" then return prevn + n else return prevn - n end
   end
 
 dxy2Dx = function ()
@@ -269,6 +269,12 @@ forths["loop"] = function ()
 -- (find-LATEXgrep "grep -nH -e forths *.tex")
 forths["x+="] = function () ds:pick(0).x = ds:pick(0).x + getwordasluaexpr() end
 forths["y+="] = function () ds:pick(0).y = ds:pick(0).y + getwordasluaexpr() end
+
+forths["xy+="] = function ()
+    local dx,dy = getwordasluaexpr(), getwordasluaexpr()
+    ds:pick(0).x = ds:pick(0).x + dx
+    ds:pick(0).y = ds:pick(0).y + dy
+  end
 
 -- «relplace»  (to ".relplace")
 -- (find-LATEXfile "2017elephant.tex" "relplace")

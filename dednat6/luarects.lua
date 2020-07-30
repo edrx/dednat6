@@ -236,8 +236,6 @@ for v,dx,dy,tex in ar:arrows() do printf("%s,%d,%d,%s\n", v:xy(), dx, dy, tex) e
 for x,y,str in ar:gen() do printf("(%d,%d):%s\n", x, y, str) end
 PPV(ar)
 
- (ex "asciirect")
-
 --]]
 
 
