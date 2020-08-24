@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/dednat6/treesegs.lua
 --           (find-angg "dednat6/dednat6/treesegs.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2018oct11
+-- Version: 2020aug24
 -- License: GPL3
 --
 -- «.allsegments»	(to "allsegments")
@@ -34,7 +34,15 @@ intersects = function (start1, end1, start2, end2)
 -- «allsegments» (to ".allsegments")
 allsegments = VerticalTable {}
 -- For example, allsegment[5] is a Segments object containing the list
--- of all Segment objects at line 5 of the current file.
+-- of all Segment objects at line 5 of the current file (or nil).
+
+-- An expression like allsegments[5][1] returns either a Segment
+-- object or nil; an expression like allsegments[5][1]:segsabove()
+-- returns a list of Segment objects. Note that Segment and Segments
+-- are different classes!
+
+
+
 
 -- «segtotreenode» (to ".segtotreenode")
 -- (find-dn6 "treetex.lua" "TreeNode")

@@ -87,7 +87,14 @@ registerhead "%R" {
 }
 
 -- «tree-head» (to ".tree-head")
+-- (find-dn6 "treesegs.lua" "allsegments")
 -- (find-dn6 "treesegs.lua" "tosegments")
+-- (find-dn6 "treesegs.lua" "Segment")
+-- (find-dn6 "treesegs.lua" "Segment" "rootnode =")
+-- (find-dn6 "treesegs.lua" "Segment" "totreenode =")
+-- (find-dn6 "treetex.lua" "TreeNode")
+-- (find-dn6 "treetex.lua" "TreeNode" "TeX_deftree =")
+--
 registerhead "%:" {
   name   = "tree",
   action = function ()
@@ -111,7 +118,7 @@ registerhead "%D" {
   name = "diag",
   action = function ()
       local i,j,diaglines = tf:getblock()
-      for n=i,j do dxyrun(untabify(texlines:line(n)), 3) end
+      for n=i,j do dxyrun(untabify(texlines:line(n)), 3, n) end
     end,
 }
 

@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/dednat6/diagforth.lua
 --           (find-angg "dednat6/dednat6/diagforth.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020apr03
+-- Version: 2020jul30
 -- License: GPL3
 --
 
@@ -21,6 +21,7 @@
 -- «.enddiagram»	(to "enddiagram")
 -- «.BOX»		(to "BOX")
 -- «.nodes»		(to "nodes")
+-- «.arrow-modifiers»	(to "arrow-modifiers")
 -- «.dxyren»		(to "dxyren")
 -- «.arrows»		(to "arrows")
 -- «.2D-and-2Dx»	(to "2D-and-2Dx")
@@ -182,6 +183,7 @@ forths["node:"] = function ()
 forths[".tex="] = function () ds:pick(0).tex = getword() or werror() end
 forths[".TeX="] = function () ds:pick(0).TeX = getword() or werror() end
 
+-- «arrow-modifiers»  (to ".arrow-modifiers")
 -- (find-dn4 "dednat4.lua" "diag-arrows")
 forths[".p="] = function () ds:pick(0).placement = getword() or werror() end
 forths[".slide="] = function () ds:pick(0).slide = getword() or werror() end
