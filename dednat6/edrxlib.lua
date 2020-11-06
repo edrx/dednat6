@@ -1,38 +1,28 @@
 -- -*- coding: utf-8-unix; backup-by-copying: t -*-
 -- This file: http://angg.twu.net/LUA/lua50init.lua.html
 --            http://angg.twu.net/LATEX/dednat6/edrxlib.lua.html
---            http://angg.twu.net/dednat4/edrxlib.lua.html
+--            http://angg.twu.net/dednat6/dednat6/edrxlib.lua.html
 --            http://angg.twu.net/blogme3/edrxlib.lua.html
---
--- 2017ago05: see: (find-es "emacs" "merge")
--- (find-sh "tkdiff ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
--- (find-sh "tkdiff ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
--- (find-sh0 "cp -v ~/LUA/lua50init.lua         ~/blogme3/edrxlib.lua")
---
--- On my system ~/LUA/lua50init.lua the two "edrxlib.lua"s
--- USED TO BE hard linked:
---   (find-sh0 "cp -flv ~/LUA/lua50init.lua ~/dednat4/edrxlib.lua")
---   (find-sh0 "cp -flv ~/LUA/lua50init.lua ~/blogme3/edrxlib.lua")
---   (find-sh0 "ls -li  ~/LUA/lua50init.lua ~/{dednat4,blogme3}/edrxlib.lua")
---   (find-tkdiff "~/LUA/lua50init.lua" "~/dednat4/edrxlib.lua")
---   (find-tkdiff "~/LUA/lua50init.lua" "~/dednat4/blogme3.lua")
---   (find-elnode "Rename or Copy" "hard links")
---   (find-elnode "Rename or Copy" "backup-by-copying")
 --
 -- This is my "init file" for Lua. As I have LUA_INIT set
 -- to "@$HOME/LUA/lua50init.lua", the Lua interpreter loads
 -- this on start-up.
 -- See: (find-angg ".zshrc" "lua" "LUA_INIT")
---      (find-luamanualw3m "#6" "LUA_INIT" "@filename")
---      (find-man "1 lua50" "LUA_INIT")
---      (find-man "1 lua51" "LUA_INIT")
---      (find-lua51w3m "doc/lua.html" "LUA_INIT")
---      http://www.lua.org/manual/5.1/lua.html
---      http://linux.die.net/man/1/lua
+--      (find-lua51manual "#6" "LUA_INIT" "@filename")
+--      (find-es "lua5" "LUA_INIT")
+--
+-- This is _also_ the module "edrxlib.lua" in dednat6 and blogme3!
+-- I use these sexps to keep them in sync:
+--   (find-sh "tkdiff ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
+--   (find-sh "tkdiff ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua         ~/blogme3/edrxlib.lua")
+-- Old way: (find-es "emacs" "hard-links")
+-- See also: (to "edrxlib")
+--
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020jun06   <- don't trust this date
+-- Version: 2020nov03   <- don't trust this date
 -- Public domain.
 --
 -- Note: "dednat4.lua" and "dednat6.lua" try to load this at startup,
@@ -51,6 +41,8 @@
 -- but now I have stopped using lua-5.0, and I'm trying
 -- (slowly!) to make this more readable, remove the
 -- cruft, some 5.0-isms, some obsolete loaders, etc.
+-- It works on 5.1, 5.2, and 5.3.
+
 
 
 -- «.escripts»		(to "escripts")
@@ -132,12 +124,14 @@
 -- «.ee_into»		(to "ee_into")
 -- «.chdir»		(to "chdir")
 -- «.package.require»	(to "package.require")
+-- «.edrxlib»		(to "edrxlib")
 -- «.userocks»		(to "userocks")
 -- «.loadblogme3»	(to "loadblogme3")
 -- «.hms_to_s»		(to "hms_to_s")
 -- «.s_to_hms»		(to "s_to_hms")
 -- «.icollect»		(to "icollect")
 -- «.interactor»	(to "interactor")
+-- «.MyXpcall»		(to "MyXpcall")
 -- «.Repl»		(to "Repl")
 -- «.loadluarepl»	(to "loadluarepl")
 -- «.replaceranges»	(to "replaceranges")
@@ -152,12 +146,14 @@
 -- «.Sexp»		(to "Sexp")
 -- «.youtube_make_url»	(to "youtube_make_url")
 -- «.youtube_split»	(to "youtube_split")
+-- «.to_youtube_hash»	(to "to_youtube_hash")
 -- «.url_split»		(to "url_split")
 -- «.Blogme»		(to "Blogme")
 --
 -- «.EevIntro»		(to "EevIntro")
 -- «.ELispH»		(to "ELispH")
 -- «.ELispHF»		(to "ELispHF")
+-- «.code_video»	(to "code_video")
 -- «.getsexp»		(to "getsexp")
 -- «.SexpSkel»		(to "SexpSkel")
 -- «.ELispInfo»		(to "ELispInfo")
@@ -1462,6 +1458,7 @@ chdir = function (dir)
   end
 
 -- «package.require»  (to ".package.require")
+-- «edrxlib»          (to ".edrxlib")
 -- Make package.require consider that this file has been loaded when
 -- it was loaded by LUA_INIT=@.../LUA/lua50init.lua (see the comments
 -- at the top of this file) so that we can do 'require "lua50init"' or
@@ -1476,6 +1473,7 @@ package.loaded.edrxlib =
 
 
 -- «userocks»  (to ".userocks")
+-- (find-es "luarocks" "path")
 -- (find-angg ".emacs" "luarocks")
 -- (find-lua51manual "#pdf-require")
 -- (find-lua51manual "#pdf-package.path")
@@ -1484,8 +1482,10 @@ package.loaded.edrxlib =
 -- (find-fline "~/usrc/luarocks/lib/lua/5.1/")
 userocks = function ()
     local luarocksdir = ee_expand "~/usrc/luarocks"
+    local HOME = ee_expand "~/"
     package.path  = package.path ..";"..luarocksdir.."/share/lua/5.1/?.lua"
     package.cpath = package.cpath..";"..luarocksdir.."/lib/lua/5.1/?.so"
+    package.path  = package.path ..";"..HOME..".luarocks/share/lua/5.1/?.lua"
     req = function (pkgname) return function () require(pkgname) end end
     loadposix  = req "posix"
     load_posix = req "posix"
@@ -1547,112 +1547,96 @@ icollect = function (n, f, s, var)
   end
 
 
-
 -- «interactor»  (to ".interactor")
--- This is obsolete.
--- The new version is at: (find-angg "LUA/reader.lua")
+-- Obsolete (from 2007). Deleted.
 -- (find-es "lua5" "interactor")
 -- (find-TH "repl")
--- Example:
---   compiled, errmsg = interactor():read(".>"):complete()
--- Some explanations:
---   interactor() returns a table that is "over" interactor_metatable,
---   I:read(".>") reads the first line with prompt ".>",
---   I:complete() tries to run loadstring(I:body()); while that is
---                not a complete Lua chunk, keep reading. When either
---                the input becomes complete or another error besides
---                "incomplete" occurs, return I.compiled and I.errmsg.
--- Notes:
---   On "abort" (i.e., either reading a line with just ".", or getting
---     an eof), I:complete() returns two nils. In all the other cases
---     exactly one of I.compiled, I.errmsg will be non-nil, and
---     assert(I.compiled, I.errmsg)() would do what's expected.
---   I'm planning the treat an abort at the first line specially -
---     meaning "return from the interactor loop".
---   This doesn't do much at this moment - I'm experimenting with loops
---     around interactor():read(".>"):complete(), but the code for
---     these experiments is elsewhere...
+
+
+-- «MyXpcall»  (to ".MyXpcall")
+-- Commented version: (find-angg "edrxrepl/edrxrepl.lua" "MyXpcall-class")
 --
---[[
-interactor_metatable = {
-  concat = function (self) return table.concat(self, "\n") end,
-  body   = function (self) return self:concat() end,  -- overriddable
-  prompt = function (self) return ">> " end,          -- overriddable
-  abort = function (self) end,                        -- overriddable; message
-  load = function (self)
-      if self.line then
-        self.compiled, self.errmsg = loadstring(self:body())
-        self.incomplete = self.errmsg and
-          string.find(self.errmsg, ": unexpected symbol near '<eof>'$")
-      else
-        self.compiled, self.errmsg, self.incomplete = nil, nil, nil
-      end
-      return self
-    end,
-  read = function (self, prompt)
-      io.write(prompt or self:prompt())
-      self.line = io.read()
-      if self.line == "." then self:abort(); self.line = nil end
-      if self.line then table.insert(self, self.line) end
-      return self
-    end,
-  complete = function (self)
-      while self.line and self.incomplete do self:read(); self:load() end
-      return self
-    end,
+MyXpcall = Class {
+  type = "MyXpcall",
+  new  = function (T) return MyXpcall(T or {lvl = 3}) end;
+  __index = {
+    call = function (myx, f, ...)
+        return myx:call0(f, ...):ret()
+      end,
+    call0 = function (myx, f, ...)
+        local f_args = pack(...)
+        local g = function () myx.f_results = pack(f(unpack(f_args))) end
+        myx.xp_results = pack(xpcall(g, myx:errhandler()))
+        return myx
+      end,
+    success = function (myx) return myx.xp_results[1] end,
+    ret = function (myx)
+        if myx:success() then return unpack(myx.f_results) end
+      end,
+    errhandler = function (myx)
+        return function (...)
+            myx.eh_args = pack(...)
+	    myx.tb = debug.traceback(myx:tbargs())
+	    print(myx:shortertraceback())
+            return "eh22", "eh33", "eh44"   -- only the first is used
+          end
+      end,
+    tbargs = function (myx)
+        return myx.eh_args[1], myx.lvl
+      end,
+    shortertraceback = function (myx)
+        local lines = splitlines(myx.tb)
+	return table.concat(lines, "\n", 1, #lines - 6)
+      end,
+  },
 }
 
-interactor = function () return over(interactor_metatable) end
---]]
 
 -- «Repl» (to ".Repl")
+-- Commented version: (find-angg "edrxrepl/edrxrepl.lua" "Repl")
 -- (find-es "lua5" "Repl")
--- This is obsolete.
 Repl = Class {
-  type    = "Repl",
+  type = "Repl",
+  new  = function () return Repl({}) end,
   __index = {
-    incompletep0 = function (r, str)
-        return str:find(": unexpected symbol near '<eof>'$")
+    bigstr = function (r)
+        return table.concat(r.lines, "\n")
       end,
-    incompletep = function (r, str)
-        local f, err = loadstring(str)
-        return f == nil and r:incompletep0(err)
+    errincomplete = function (r, err)
+        return err:find(" near '?<eof>'?$")
       end,
-    read0 = function (r, prompt) io.write(prompt); return io.read() end,
+    incompletep0 = function (r, bigstr)
+        local f, err = loadstring(bigstr)
+        return (f == nil) and r:errincomplete(err)
+      end,
+    code = function (r) return r:bigstr():gsub("^=", "return ") end,
+    incompletep = function (r) return r:incompletep0(r:code()) end,
+    read00 = function (r, prompt) io.write(prompt); return io.read() end,
+    read0 = function (r, prompt) table.insert(r.lines, r:read00(prompt)) end,
     read1 = function (r) return r:read0 ">>> "  end,
     read2 = function (r) return r:read0 "... " end,
-    complete = function (r, str)
-	while r:incompletep(str) do str = str.."\n"..r:read2() end
-	return str
+    read = function (r)
+        r.lines = {}
+        r:read1()
+        while r:incompletep() do r:read2() end
+        return r
       end,
-    split = function (r, str) return str:match "^(=?=?)(.*)$" end,
-    printers = {[""]=id, ["="]=print, ["=="]=PP},
-    prepends = {[""]="", ["="]="return ", ["=="]="return "},
-    read_ = function (r) return r:complete(r:read1()) end,
-    read = function (r, str00)
-        local prefix, str0 = r:split(str00 or r:read1())
-        local printer, prepend = r.printers[prefix], r.prepends[prefix]
-        local str = r:complete(prepend..str0)
-        return printer, str
+    evalprint = function (r)
+        r.f, r.err = loadstring(r:code())
+        if not r.f then print(r.err); return r end
+        r.myx = MyXpcall.new():call0(r.f)
+        if r.myx:success() and r:bigstr():match("^=") then r:print() end
+        return r
       end,
-    evalprint = function (r, printer, str)
-        local f, err = loadstring(str)
-        return printer(f())
-      end,
-    rep = function (r, str00) return r:evalprint(r:read(str00)) end,
-    repp = function (r)
-        local str00 = r:read1()
-        if str00 == "!" then return false end
-        r:rep(str00)
-        return true
-      end,
-    repl = function (r) while r:repp() do end end,
+    print = function (r) print(unpack(r.myx.f_results)) end,
+    repl = function (r) while not r.stop do r:read():evalprint() end end,
   },
 }
 
 -- «loadluarepl» (to ".loadluarepl")
 -- (find-es "lua5" "lua-repl-0.8")
 -- (find-dednat6 "dednat6/luarepl.lua")
+-- TODO: stop using this, use instead the Repl class defined above.
 loadluarepl = function (dir)
     if repl then return "lua-repl-0.8 already loaded (it seems)" end
     -- repldir   = ee_expand(dir or "~/usrc/lua-repl-0.8/")
@@ -2011,6 +1995,13 @@ youtube_split_url = function (li)
     if a then return hash, youtube_make_url(hash), title end
   end
 
+-- «to_youtube_hash»  (to ".to_youtube_hash")
+to_youtube_hash = function (str)
+    str = str:gsub("%.%w%w%w$", "")
+    str = str:sub(-11)
+    return str
+  end
+
 
 -- «url_split» (to ".url_split")
 -- Used here: (find-angg "LUA/redirect.lua")
@@ -2131,7 +2122,6 @@ introhtml = function (stem, sec)
 
 -- «ELispH» (to ".ELispH")
 -- See: (find-es "lua5" "ELispH")
---      (find-es "lua5" "ELispH-tests")
 --
 -- An ELispH object holds data that can generate a "help url" and
 -- a "target url". For example:
@@ -2190,6 +2180,9 @@ ELispHF = Class {
   newnode = function (head, c, manual)
       return ELispHF {head=head, c=c, manual=manual, f="node"}
     end,
+  newyoutube = function (head, hash)
+      return ELispHF {head=head, hash=hash, f="youtube"}
+    end,
   __tostring = function (ehf) return mytabletostring(ehf) end,
   __call = function (ehf, ...) return ehf[ehf.f](ehf, ...) end,
   __index = {
@@ -2206,6 +2199,15 @@ ELispHF = Class {
         local manual, section = ehf.manual, a
         local target = ELispInfo{}:mstohtml(manual, section)
         return ELispH {intro="eev-quick#9.2", target=target}
+      end,
+    youtube = function (ehf, a)
+        local hash, time = ehf.hash, a
+        local target = youtube_make_url(hash, time)
+        return ELispH {intro="audiovideo#4.3", target=target}
+      end,
+    codevideo = function (ehf, c, urlorfnameorhash)
+        if c and urlorfnameorhash then code_video(c, urlorfnameorhash) end
+        return ELispH {intro="audiovideo#4.3"}
       end,
   },
 }
@@ -2229,6 +2231,18 @@ code_c_m_b = function (c, manual, basedir)
     local find_cnode = "find-"..c.."node"
     _EHF[find_cnode] = ELispHF.newnode(find_cnode, c, manual)
   end
+
+-- «code_video»  (to ".code_video")
+-- Run this to make blogme3 process `(code-video "c" "fname")' sexps:
+--   _EHF["code-video"] = ELispHF {f="codevideo"}
+--
+code_video = function (c, urlorfnameorhash)
+    local find_c = "find-"..c
+    local hash = to_youtube_hash(urlorfnameorhash)
+    _EHF[find_c] = ELispHF.newyoutube(find_c, hash)
+  end
+
+
 
 
 
@@ -2710,15 +2724,6 @@ getinscritos = function ()
 -- «pformat» (to ".pformat")
 -- (find-es "lua5" "string.format")
 -- (find-es "lua5" "pformat")
---
--- pformat is a variant of "format" that truncates numbers.
--- format("(%s,%s)", 1/3, 2/3)
---   -> (0.33333333333333,0.66666666666667)
--- pformat("(%s,%s)", 1/3, 2/3)
---   -> (0.333,0.667)
--- pformat("(%s,%s)", 0.0001, 0.9999)
---   ->(0,1)
---
 trunc0 = function (str) return str:reverse():gsub("^0*%.?", ""):reverse() end
 truncn = function (n) return trunc0(string.format("%.3f", n)) end
 myntos = function (n) return trunc0(string.format("%.3f", n)) end

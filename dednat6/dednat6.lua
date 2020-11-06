@@ -4,7 +4,7 @@
 -- http://angg.twu.net/dednat6/dednat6/dednat6.lua.html
 --         (find-angg "dednat6/dednat6/dednat6.lua")
 -- By Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2019jul06
+-- Version: 2020nov06
 --
 -- This file adds "dednat6/" to the load path and loads all the
 -- default modules of dednat6. See:
@@ -48,7 +48,13 @@ end
 
 -- «requires» (to ".requires")
 -- (find-dn5file "build.lua" "stems = {")
-if true then require "edrxlib" end
+--
+-- Temporary, until I fix the package.searchers bug (2020nov06)
+-- if true then require "edrxlib" end
+if true then dofile "dednat6/edrxlib.lua" end
+-- print(); REPL = Repl:new(); REPL:repl()
+
+
 
 -- The four lowest-level modules (all independent):
 require "eoo"          -- (find-dn6 "eoo.lua")
@@ -88,7 +94,7 @@ require "tcgs"          -- (find-dn6 "tcgs.lua")
 require "luarects"      -- (find-dn6 "luarects.lua")
 
 -- The REPL, for interaction (experimental):
-require "luarepl"      -- (find-dn6 "luarepl.lua")
+-- require "luarepl"      -- (find-dn6 "luarepl.lua")
 
 -- Obsolete modules:
 -- require "wrap"       -- (find-dn5 "wrap.lua")

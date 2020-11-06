@@ -50,10 +50,10 @@ segtotreenode = function (seg)
     local bar = seg:firstsegabove()
     if bar then
       local bart = bar.t
-      local barchars = bart:match("-+") or
-                       bart:match("=+") or
-                       bart:match(":+") or
-                       bart:match(".+")
+      local barchars = bart:match("^-+") or
+                       bart:match("^=+") or
+                       bart:match("^:+") or
+                       bart:match("^.+")
       if not barchars then Error("Bad bar: "..bart) end
       local barchar = bart:sub(1, 1)
       local label = bart:sub(1 + #barchars)
