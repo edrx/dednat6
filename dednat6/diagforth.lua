@@ -27,6 +27,7 @@
 -- «.2D-and-2Dx»	(to "2D-and-2Dx")
 
 -- «.run»		(to "run")
+-- «.dxyrun»		(to "dxyrun")
 -- «.forths»		(to "forths")
 
 -- «.relplace»		(to "relplace")
@@ -51,10 +52,10 @@ forths["@"] = function () ds:push(depths:metapick(1 + getwordasluaexpr())) end
 
 
 
--- «run»  (to ".run")
-
--- «diag-head»  (to ".diag-head")
--- (find-dn6file "segments.lua" "tosegments =")
+-- «run»     (to ".run")
+-- «dxyrun»  (to ".dxyrun")
+-- Used mainly by: (find-dn6 "heads6.lua" "diag-head")
+--
 dxyrun = function (str, pos)
     setsubj(str, pos or 1)
     while getword() do
@@ -66,13 +67,6 @@ dxyrun = function (str, pos)
     end
   end
 
--- Moved to: (find-dn6 "heads6.lua" "diag-head")
--- registerhead "%D" {
---   name = "diag",
---   action = function ()
---       dxyrun(untabify(linestr), 3)
---     end,
--- }
 
 
 

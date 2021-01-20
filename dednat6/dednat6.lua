@@ -4,7 +4,7 @@
 -- http://angg.twu.net/dednat6/dednat6/dednat6.lua.html
 --         (find-angg "dednat6/dednat6/dednat6.lua")
 -- By Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020nov06
+-- Version: 2020nov17
 --
 -- This file adds "dednat6/" to the load path and loads all the
 -- default modules of dednat6. See:
@@ -41,8 +41,9 @@ if tex then
       package.loaded[stem] = package.loaded[stem] or dofile(fname) or fname
     end
   --
-  require "lualoader"  -- (find-dn6 "lualoader.lua")
-  require "binloader"  -- (find-dn6 "binloader.lua")
+  require "lualoader"   -- (find-dn6 "lualoader.lua")
+  require "binloader"   -- (find-dn6 "binloader.lua")
+  require "edrxlib"     -- (find-dn6 "edrxlib.lua")
 end
 
 
@@ -51,7 +52,7 @@ end
 --
 -- Temporary, until I fix the package.searchers bug (2020nov06)
 -- if true then require "edrxlib" end
-if true then dofile "dednat6/edrxlib.lua" end
+-- if true then dofile "dednat6/edrxlib.lua" end
 -- print(); REPL = Repl:new(); REPL:repl()
 
 
@@ -64,11 +65,10 @@ require "rect"         -- (find-dn6 "rect.lua")
 require "stacks"       -- (find-dn6 "stacks.lua")
 
 -- General functions to read and process ".tex" files:
--- require "process"   -- (find-dn6 "process.lua")
 require "output"       -- (find-dn6 "output.lua")
 require "preamble6"    -- (find-dn6 "preamble6.lua")
 require   "heads6"     -- (find-dn6 "heads6.lua")
-require "texfile"      -- (find-dn6 "texfile.lua")
+-- require "texfile"   -- (find-dn6 "texfile.lua")
 -- "texfile" was superseded by: (find-dn6 "block.lua")
 -- See: (find-LATEXfile "dednat6load.lua" "block.lua")
 
@@ -95,6 +95,7 @@ require "luarects"      -- (find-dn6 "luarects.lua")
 
 -- The REPL, for interaction (experimental):
 -- require "luarepl"      -- (find-dn6 "luarepl.lua")
+-- Superseded by:         -- (find-dn6 "edrxlib.lua" "Repl")
 
 -- Obsolete modules:
 -- require "wrap"       -- (find-dn5 "wrap.lua")
@@ -112,8 +113,9 @@ require "luarects"      -- (find-dn6 "luarects.lua")
 getword_utf8 = getword
 
 -- Support for command-line options.
--- This is only used when dednat6load.lua is called as a standalone
--- program - an undocumented hack! See:
+-- This is only used when dednat6load.lua
+-- is called as a standalone program.
+-- See: (find-dednat6 "demo-preproc.tex")
 require "options6"     -- (find-dn6 "options6.lua")
 
 -- «dooptions» (to ".dooptions")

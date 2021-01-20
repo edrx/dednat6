@@ -113,7 +113,7 @@ registerhead "%:" {
 }
 
 -- «diag-head» (to ".diag-head")
--- (find-dn6 "diagforth.lua" "diag-head")
+-- (find-dn6 "diagforth.lua" "dxyrun")
 registerhead "%D" {
   name = "diag",
   action = function ()
