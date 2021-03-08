@@ -325,8 +325,6 @@ PP(bb)
 = bb:x0x1y0y1()
 PP(bb)
 
--- (ex "boundingbox")
-
 --]]
 
 
@@ -546,7 +544,10 @@ makepicture = function (options, bb, body)
                 "!body"..
                 "\\end{picture}"
     local latex = (fmt:gsub("!([a-z]+)", a))
-    latex = "\\vcenter{\\hbox{"..latex.."}}"
+    --
+    -- 2021mar02:
+    if not options.novcenter then latex = "\\vcenter{\\hbox{"..latex.."}}" end
+    --
     if options.bhbox then latex = "\\bhbox{$"..latex.."$}" end
     if options.paren then latex = "\\left("..latex.."\\right)" end
     if options.curly then latex = "\\left\\{"..latex.."\\right\\}" end

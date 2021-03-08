@@ -90,6 +90,16 @@ Rect = Class {
   type = "Rect",
   new  = function (str) return Rect(splitlines(str)) end,
   rep  = function (str, n) local r=Rect{}; for i=1,n do r[i]=str end; return r end,
+  from = function (o) return type(o) == "string" and Rect.new(o) or o end,
+  --
+  -- A hack to let us build syntax trees very quickly:
+  syntree = function (op, a1, ...)
+      if not a1 then return Rect.from(op) end
+      local r = Rect.from(a1):syn1(op)
+      for _,an in ipairs({...}) do r = r:synconcat(Rect.from(an)) end
+      return r
+    end,
+  --
   __tostring = function (rect) return rect:tostring() end,
   __concat = function (r1, r2) return torect(r1):concat(torect(r2)) end,
   __index = {
@@ -163,6 +173,22 @@ PP(r)
 = r:copy():push2("op", "|"):pad0(1, r:width()+1, "_")
 = r:copy():push2("op", "|"):pad0(1, r:width()+1, "_")..r:copy():push2(".", "|")
 = "This => "..r.." <="
+
+abc = Rect.new "a\nbb\nccc"
+= abc
+PP(abc)
+= abc:syn1("op")
+= abc:syn1("op"):synconcat(abc)
+= abc:syn1("op"):synconcat(Rect.from "d")
+= abc:syn1("op"):synconcat(Rect.from(abc))
+
+syntree = Rect.syntree
+= syntree "a"
+= syntree("a", "b")
+= syntree(abc)
+= syntree("a", abc)
+= syntree("a", abc, "d")
+= syntree("a", abc, "d", abc)
 
 -- «Rect-ded-tests» (to ".Rect-ded-tests")
  (eepitch-lua51)

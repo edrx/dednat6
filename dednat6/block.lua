@@ -69,7 +69,7 @@ TexLines = Class {
       return TexLines({name=name}):setlines(lines)
     end,
   read = function (fname)
-      return TexLines.new(fnamenondirectory(fname), ee_readfile(fname))
+      return TexLines.new(fnamenondirectory(fname), unixnewlines(ee_readfile(fname)))
     end,
   test = function (str)
       local tr = {["L"]="%L", ["D"]="%D", [":"]="%:", ["p"]="\\pu"}

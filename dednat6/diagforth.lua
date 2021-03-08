@@ -4,7 +4,7 @@
 --   http://angg.twu.net/dednat6/dednat6/diagforth.lua
 --           (find-angg "dednat6/dednat6/diagforth.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020jul30
+-- Version: 2021feb26
 -- License: GPL3
 --
 
@@ -31,6 +31,7 @@
 -- «.forths»		(to "forths")
 
 -- «.relplace»		(to "relplace")
+-- «.newnode:at:»	(to "newnode:at:")
 
 -- «.high-level-tests»	(to "high-level-tests")
 -- «.low-level-tests»	(to "low-level-tests")
@@ -280,6 +281,51 @@ forths["relplace"] = function ()
     local TeX = getword()
     ds:push(storearrow(DxyPlace {{x=x+dx, y=y+dy, tex=TeX}}))
   end
+
+
+
+
+-- «newnode:at:»  (to ".newnode:at:")
+-- See: (find-es "dednat" "at:")
+-- New, 2021feb26.
+-- To do: move Node and storenode to the right places.
+
+Node = Class {
+  type       = "Node",
+  __tostring = function (node) return mytostring(node) end,
+  __index    = {
+    v    = function (node) return v(node.x,node.y) end,
+    setv = function (node,v) node.x=v[1]; node.y=v[2]; return node end,
+  },
+}
+storenode = function (node)
+    node = Node(node)
+    table.insert(nodes, node)
+    node.noden = #nodes         -- nodes[node.noden] == node
+    if node.tag then            -- was: "and not nodes[node.tag]"...
+      nodes[node.tag] = node    -- nodes[node.tag] == node
+    end
+    return node
+  end
+
+tow = function (vv, ww, a, b)
+    local diff = ww-vv
+    local diffrot90 = v(diff[2], -diff[1])
+    return vv + (a or 0.5)*diff + (b or 0)*diffrot90
+  end
+ats_to_vs = function (str)
+    return (str:gsub("@(%w+)", "nodes[\"%1\"]:v()"))
+  end
+forths["newnode:"] = function ()
+    local tag = getword()
+    ds:push(storenode({tag=tag, TeX=phantomnode}))
+  end
+forths["at:"] = function ()
+    local node = ds:pick(0)
+    local vexpr = getword()
+    node:setv(expr(ats_to_vs(vexpr)))
+  end
+
 
 
 

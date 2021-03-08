@@ -13,16 +13,16 @@
 --
 -- This is _also_ the module "edrxlib.lua" in dednat6 and blogme3!
 -- I use these sexps to keep them in sync:
---   (find-sh "tkdiff ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
---   (find-sh "tkdiff ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
---   (find-sh0 "cp -v ~/LUA/lua50init.lua   ~/LATEX/dednat6/edrxlib.lua")
---   (find-sh0 "cp -v ~/LUA/lua50init.lua ~/dednat6/dednat6/edrxlib.lua")
---   (find-sh0 "cp -v ~/LUA/lua50init.lua         ~/blogme3/edrxlib.lua")
+--   (find-tkdiff    "~/LUA/lua50init.lua"   "~/LATEX/dednat6/edrxlib.lua")
+--   (find-tkdiff    "~/LUA/lua50init.lua" "~/dednat6/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua     ~/LATEX/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua   ~/dednat6/dednat6/edrxlib.lua")
+--   (find-sh0 "cp -v ~/LUA/lua50init.lua           ~/blogme3/edrxlib.lua")
 -- Old way: (find-es "emacs" "hard-links")
 -- See also: (to "edrxlib")
 --
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020nov03   <- don't trust this date
+-- Version: 2021jan24   <- don't trust this date
 -- Public domain.
 --
 -- Note: "dednat4.lua" and "dednat6.lua" try to load this at startup,
@@ -172,6 +172,9 @@
 -- «.trailing-zeroes»	(to "trailing-zeroes")
 -- «.pformat»		(to "pformat")
 -- «.findxxxpdf_parse»	(to "findxxxpdf_parse")
+-- «.savevars»		(to "savevars")
+--
+-- «.repltexthis»	(to "repltexthis")
 
 
 -- «escripts»  (to ".escripts")
@@ -518,7 +521,7 @@ PPV             = function (o)   print(mytabletostring(o)); return o end
 -- «VerticalTable» (to ".VerticalTable")
 -- Tests: (find-es "lua5" "VerticalTable")
 VerticalTable = Class {
-  type    = "VertTable",
+  type    = "VerticalTable",
   __tostring = function (vt) return mytabletostring(vt) end,
   __index = {
   },
@@ -702,7 +705,7 @@ mytostringk2 = function (o)
 -- «trim» (to ".trim")
 -- (to "string-methods")
 -- (find-lua51manual "#5.4.1" "Patterns")
-ltrim = function (str) return str:match"^%S*(.*)$" end
+ltrim = function (str) return str:match"^%s*(.*)$" end
 rtrim = function (str) return str:reverse():ltrim():reverse() end
 bitrim = function (str) return str:ltrim():rtrim() end
 string.ltrim = ltrim
@@ -1569,10 +1572,7 @@ MyXpcall = Class {
         myx.xp_results = pack(xpcall(g, myx:errhandler()))
         return myx
       end,
-    success = function (myx) return myx.xp_results[1] end,
-    ret = function (myx)
-        if myx:success() then return unpack(myx.f_results) end
-      end,
+    --
     errhandler = function (myx)
         return function (...)
             myx.eh_args = pack(...)
@@ -1581,12 +1581,16 @@ MyXpcall = Class {
             return "eh22", "eh33", "eh44"   -- only the first is used
           end
       end,
-    tbargs = function (myx)
-        return myx.eh_args[1], myx.lvl
-      end,
     shortertraceback = function (myx)
         local lines = splitlines(myx.tb)
 	return table.concat(lines, "\n", 1, #lines - 6)
+      end,
+    --
+    success = function (myx) return myx.xp_results[1] end,
+    errmsg = function (myx) return myx.eh_args[1] end,
+    tbargs = function (myx) return myx:errmsg(), myx.lvl end,
+    ret = function (myx)
+        if myx:success() then return unpack(myx.f_results) end
       end,
   },
 }
@@ -1599,37 +1603,54 @@ Repl = Class {
   type = "Repl",
   new  = function () return Repl({}) end,
   __index = {
-    bigstr = function (r)
-        return table.concat(r.lines, "\n")
-      end,
-    errincomplete = function (r, err)
-        return err:find(" near '?<eof>'?$")
-      end,
+    code = function (r) return r:bigstr():gsub("^=", "return ") end,
+    bigstr = function (r) return table.concat(r.lines, "\n") end,
+    --
+    incompletep = function (r) return r:incompletep0(r:code()) end,
     incompletep0 = function (r, bigstr)
         local f, err = loadstring(bigstr)
         return (f == nil) and r:errincomplete(err)
       end,
-    code = function (r) return r:bigstr():gsub("^=", "return ") end,
-    incompletep = function (r) return r:incompletep0(r:code()) end,
+    errincomplete = function (r, err)
+        return err:find(" near '?<eof>'?$")
+      end,
+    --
     read00 = function (r, prompt) io.write(prompt); return io.read() end,
     read0 = function (r, prompt) table.insert(r.lines, r:read00(prompt)) end,
     read1 = function (r) return r:read0 ">>> "  end,
     read2 = function (r) return r:read0 "... " end,
-    read = function (r)
-        r.lines = {}
-        r:read1()
-        while r:incompletep() do r:read2() end
-        return r
-      end,
-    evalprint = function (r)
-        r.f, r.err = loadstring(r:code())
-        if not r.f then print(r.err); return r end
-        r.myx = MyXpcall.new():call0(r.f)
-        if r.myx:success() and r:bigstr():match("^=") then r:print() end
-        return r
+    --
+    -- readevalprint = function (r) return r:read():evalprint() end,
+    -- read = function (r)
+    --     r.lines = {}
+    --     r:read1()
+    --     while r:incompletep() do r:read2() end
+    --     return r
+    --   end,
+    -- evalprint = function (r)
+    --     r.f, r.err = loadstring(r:code())
+    --     if not r.f then print(r.err); return r end
+    --     r.myx = MyXpcall.new():call0(r.f)
+    --     if r.myx:success() and r:bigstr():match("^=") then r:print() end
+    --     return r
+    --   end,
+    specialprefix = function (r) return false end,
+    readevalprint = function (r)
+         r.lines = {}
+         r:read1()
+	 --
+	 if r:specialprefix() then return r end
+	 --
+         while r:incompletep() do r:read2() end
+         r.f, r.err = loadstring(r:code())
+         if not r.f then print(r.err); return r end
+         r.myx = MyXpcall.new():call0(r.f)
+         if r.myx:success() and r:bigstr():match("^=") then r:print() end
+         return r
       end,
     print = function (r) print(unpack(r.myx.f_results)) end,
-    repl = function (r) while not r.stop do r:read():evalprint() end end,
+    --
+    repl = function (r) while not r.stop do r:readevalprint() end end,
   },
 }
 
@@ -1637,28 +1658,30 @@ Repl = Class {
 -- (find-es "lua5" "lua-repl-0.8")
 -- (find-dednat6 "dednat6/luarepl.lua")
 -- TODO: stop using this, use instead the Repl class defined above.
-loadluarepl = function (dir)
-    if repl then return "lua-repl-0.8 already loaded (it seems)" end
-    -- repldir   = ee_expand(dir or "~/usrc/lua-repl-0.8/")
-    repldir      = ee_expand(dir or "~/dednat6/dednat6/lua-repl/")
-    package.path = repldir.."?/init.lua;"..package.path
-    package.path = repldir.."?.lua;"     ..package.path
-    repl         = require "repl"
-    sync         = require "repl.sync"
-    function sync:showprompt() print ">>>" end
-    function sync:showprompt() io.write ">>> " end
-    function sync:showprompt(n) print(n); io.write ">>> " end
-    function sync:showprompt(p) io.write(p == ">" and ">>> " or ">>>> ") end
-    function sync:lines() return io.stdin:lines() end
-    function sync:displayerror(err) print(err) end
-    function sync:displayresults(results)
-        if results.n == 0 then return end
-        print(unpack(results, 1, results.n))
-      end
-    -- luarepl = function () print(); print(); sync:run() end
-    luarepl = function () sync:run() end
-    return "Loaded lua-repl-0.8"
-  end
+--
+-- loadluarepl = function (dir)
+--     if repl then return "lua-repl-0.8 already loaded (it seems)" end
+--     -- repldir   = ee_expand(dir or "~/usrc/lua-repl-0.8/")
+--     repldir      = ee_expand(dir or "~/dednat6/dednat6/lua-repl/")
+--     package.path = repldir.."?/init.lua;"..package.path
+--     package.path = repldir.."?.lua;"     ..package.path
+--     repl         = require "repl"
+--     sync         = require "repl.sync"
+--     function sync:showprompt() print ">>>" end
+--     function sync:showprompt() io.write ">>> " end
+--     function sync:showprompt(n) print(n); io.write ">>> " end
+--     function sync:showprompt(p) io.write(p == ">" and ">>> " or ">>>> ") end
+--     function sync:lines() return io.stdin:lines() end
+--     function sync:displayerror(err) print(err) end
+--     function sync:displayresults(results)
+--         if results.n == 0 then return end
+--         print(unpack(results, 1, results.n))
+--       end
+--     -- luarepl = function () print(); print(); sync:run() end
+--     luarepl = function () sync:run() end
+--     return "Loaded lua-repl-0.8"
+--   end
+
 
 
 -- «replaceranges» (to ".replaceranges")
@@ -1705,7 +1728,8 @@ string.replace = function (s, x, r, w)
 
 
 -- «Rect» (to ".Rect")
--- See: (find-es "lua5" "Rect")
+-- There is a better version here: (find-es "lua5" "Rect")
+-- The definition below is outdated.
 Rect = Class {
   type    = "Rect",
   new     = function (A) return Rect(A or {""}) end,
@@ -1973,6 +1997,14 @@ youtube_time = function (time)
     if ss then return "&t="..(mm*60+ss) end
     return ""
   end
+youtube_time_hhmmss = function (time)
+    if type(time) ~= "string" then return "" end
+    local mm,ss = time:match("^(%d?%d):(%d%d)$")
+    if ss then return format("&t=%sm%ss", mm, ss) end
+    local hh,mm,ss = time:match("^(%d?%d):(%d%d):(%d%d)$")
+    if ss then return format("&t=%sh%sm%ss", hh, mm, ss) end
+    return ""
+  end
 
 -- «youtube_split» (to ".youtube_split")
 -- I was using this at too many places - including one-shot programs...
@@ -2122,6 +2154,7 @@ introhtml = function (stem, sec)
 
 -- «ELispH» (to ".ELispH")
 -- See: (find-es "lua5" "ELispH")
+--      (find-es "lua5" "ELispH-tests")
 --
 -- An ELispH object holds data that can generate a "help url" and
 -- a "target url". For example:
@@ -2769,6 +2802,30 @@ findxxxpdf_parse_file = function (fname, stem, adj)
     end
   end
 
+
+
+-- «savevars»  (to ".savevars")
+-- (find-es "lua5" "savevars")
+savevars = function (restorefromargs, ...)
+    local values = pack(...)
+    local restorevars = function () restorefromargs(unpack(values)) end
+    return restorevars
+  end
+
+
+-- «repltexthis»  (to ".repltexthis")
+-- This function has been put here temporarily.
+-- It will change.
+repltexthis = function (mathmodetexstuff)
+    ee_writefile("~/LATEX/o.tex", "$"..mathmodetexstuff.."$")
+    print("Wrote ~/LATEX/o.tex.")
+    print('See: (find-LATEX "2021repl-pict.tex")')
+  end
+
+
+unixnewlines = function (bigstr)
+    return (bigstr:gsub("\r\n", "\n"):gsub("\r", "\n"))
+  end
 
 
 

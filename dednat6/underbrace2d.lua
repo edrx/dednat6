@@ -10,6 +10,9 @@
 --   http://angg.twu.net/dednat6/demo-underbrace.tex
 --   http://angg.twu.net/dednat6/demo-underbrace.tex.html
 --
+-- This is a hack that I wrote VERY quickly. It is badly written and
+-- hard to debug when it yield errors! TODO: rewrite it cleanly.
+--
 -- Author and version: Eduardo Ochs <eduardoochs@gmail.com>, 2019dec08
 -- License: GPL3
 
