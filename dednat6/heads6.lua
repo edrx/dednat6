@@ -59,7 +59,7 @@ registerhead "%:" {
 registerhead "%L" {
   name   = "lua",
   action = function ()
-      local i,j,luacode = tf:getblockstr()
+      local i,j,luacode = tf:getblockstr(3)
       local chunkname = tf.name..":%L:"..i.."-"..j
       -- local luacode = table.concat(lualines, "\n")
       assert(loadstring(luacode, chunkname))()

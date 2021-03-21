@@ -218,16 +218,16 @@ Block = Class {
         return bl
       end,
     --
-    getblock = function (bl)
+    getblock = function (bl, headwidth)
         local i,j,head = lastheadblock.i, lastheadblock.j, lastheadblock.head
         local A = {}
         for k=i,j do
-            table.insert(A, texlines:line(k):sub(#head+1))
+            table.insert(A, texlines:line(k):sub((headwidth or #head)+1))
           end
         return i,j,A
       end,
-    getblockstr = function (bl)
-        local i,j,A = tf:getblock()
+    getblockstr = function (bl, headwidth)
+        local i,j,A = tf:getblock(headwidth)
         return i,j,table.concat(A, "\n")
       end,
     -- hyperlink = function (bl)
