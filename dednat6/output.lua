@@ -2,6 +2,8 @@
 -- http://angg.twu.net/dednat6/dednat6/output.lua
 -- http://angg.twu.net/dednat6/dednat6/output.lua.html
 --         (find-angg "dednat6/dednat6/output.lua")
+-- By Eduardo Ochs <eduardoochs@gmail.com>
+-- Version: 2021jun06
 --
 -- Sending (Lua-produced) TeX code back to the TeX interpreter requires
 -- some preprocessing... see:
@@ -14,9 +16,13 @@
 --   \directlua{output =  printboth}
 -- or: (...)
 
--- «.deletecomments»		(to "deletecomments")
+-- «.deletecomments_2015»	(to "deletecomments_2015")
+-- «.deletecomments_2019»	(to "deletecomments_2019")
+-- «.deletecomments_2019-tests»	(to "deletecomments_2019-tests")
 -- «.Deletecomments-class»	(to "Deletecomments-class")
 -- «.DeleteComments-tests»	(to "DeleteComments-tests")
+-- «.deletecomments_2021»	(to "deletecomments_2021")
+-- «.deletecomments»		(to "deletecomments")
 -- «.output»			(to "output")
 -- «.output_dnt»		(to "output_dnt")
 -- «.write_dnt_file»		(to "write_dnt_file")
@@ -25,50 +31,65 @@
 -- «.bprintt»			(to "bprintt")
 
 
--- «deletecomments» (to ".deletecomments")
--- (find-es "luatex" "comments-in-tex.print")
--- Old version:
---   deletecomments = function (str)
---       return (str:gsub("%%[^%%\n]*\n[ \t]*", ""))
---     end
--- The version below (from 2019apr29) is a bit better but still not
--- super-smart. It treats a "%" after a backslash as a comment sign!
 
+--      _      _      _                                                _       
+--   __| | ___| | ___| |_ ___  ___ ___  _ __ ___  _ __ ___   ___ _ __ | |_ ___ 
+--  / _` |/ _ \ |/ _ \ __/ _ \/ __/ _ \| '_ ` _ \| '_ ` _ \ / _ \ '_ \| __/ __|
+-- | (_| |  __/ |  __/ ||  __/ (_| (_) | | | | | | | | | | |  __/ | | | |_\__ \
+--  \__,_|\___|_|\___|\__\___|\___\___/|_| |_| |_|_| |_| |_|\___|_| |_|\__|___/
+--                                                                             
+-- «deletecomments_2015»  (to ".deletecomments_2015")
+-- See: (find-es "luatex" "comments-in-tex.print")
+deletecomments_2015 = function (str)
+    return (str:gsub("%%[^%%\n]*\n[ \t]*", ""))
+  end
+
+-- «deletecomments_2019»  (to ".deletecomments_2019")
+-- The version below (from 2019apr29) is a bit better than
+-- deletecomments_2015 but still not very smart. It converts each
+-- line made of blank spaces followed by something like "%this" to a
+-- line made of just the blank spaces, and it treats the "%bar" in a
+-- line like "foo\%bar" as comment, and converts that to "foo\".
+--
 deletecomments1 = function (line)
     return line:match"^([^%%]*)"
   end
-deletecomments = function (bigstr)
+deletecomments_2019 = function (bigstr)
     return (bigstr:gsub("([^\n]+)", deletecomments1))
   end
 
+-- «deletecomments_2019-tests»  (to ".deletecomments_2019-tests")
 --[[
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)
 dofile "output.lua"
-= deletecomments "a % b % c"
-= deletecomments "a % b % c\nd \\% e % f"
+-- Good:
+= deletecomments_2019 "a % b % c"
+= deletecomments_2019 "a % b % c\nd \\% e % f"
+-- Bad:
+= deletecomments_2019 "foo\\%bar"
+= deletecomments_2019 "foo\n %bar\n %plic\n bletch"
 
 --]]
+
 
 
 
 -- «Deletecomments-class»  (to ".Deletecomments-class")
 -- New (2021jun05): the class Deletecomments implements a way to
 -- delete comments that TRIES to simulate what TeX does. The TeXBook
--- explains in its pages 46--47 that the "eyes" and "mouth" of TeX
+-- explains in its pages 46-47 that the "eyes" and "mouth" of TeX
 -- enter the "State S" (for "skipping blanks") after a "%"; we
 -- simulate that by splitting bigstr in a certain way, and then after
 -- each "%" we delete the "%..." part of that line plus the
 -- whitespaces and newlines in (hopefully) the right places.
 --
--- The default for "deletecomments" is still the simpler definition
--- above. To use version based on the DeleteComments class put this in
--- your .tex file:
---
---   %L deletecomments = function (bigstr) return DeleteComments.from(bigstr) end
+-- This version doesn't treat backslashes followed by "%"s in the
+-- right way. This is still to be done.
 --
 -- See: (find-es "tex" "comments")
+--      (find-es "tex" "comments" "Skipping blanks")
 --
 DeleteComments = Class {
   type  = "DeleteComments",
@@ -115,7 +136,6 @@ DeleteComments = Class {
   },
 }
 
-
 -- «DeleteComments-tests»  (to ".DeleteComments-tests")
 -- (find-es "dednat" "deletecomments-2021")
 --[==[
@@ -134,19 +154,27 @@ foo%12
   woo
 ]]
 
-= deletecomments(bigstr)
-
 dc = DeleteComments.split(bigstr)
 = dc
 = dc:delcomments()
 = dc:concat()
 
 = bigstr
-= deletecomments(bigstr)
-deletecomments = function (bigstr) return DeleteComments.from(bigstr) end
-= deletecomments(bigstr)
+= deletecomments_2019(bigstr)
+= deletecomments_2021(bigstr)
 
 --]==]
+
+-- «deletecomments_2021»  (to ".deletecomments_2021")
+deletecomments_2021 = function (bigstr)
+    return DeleteComments.from(bigstr)
+  end
+
+
+-- «deletecomments» (to ".deletecomments")
+-- The default is to use deletecomments_2021.
+deletecomments = deletecomments_2021
+
 
 
 
