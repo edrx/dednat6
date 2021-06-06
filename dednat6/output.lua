@@ -15,6 +15,8 @@
 -- or: (...)
 
 -- «.deletecomments»		(to "deletecomments")
+-- «.Deletecomments-class»	(to "Deletecomments-class")
+-- «.DeleteComments-tests»	(to "DeleteComments-tests")
 -- «.output»			(to "output")
 -- «.output_dnt»		(to "output_dnt")
 -- «.write_dnt_file»		(to "write_dnt_file")
@@ -48,6 +50,104 @@ dofile "output.lua"
 = deletecomments "a % b % c\nd \\% e % f"
 
 --]]
+
+
+
+-- «Deletecomments-class»  (to ".Deletecomments-class")
+-- New (2021jun05): the class Deletecomments implements a way to
+-- delete comments that TRIES to simulate what TeX does. The TeXBook
+-- explains in its pages 46--47 that the "eyes" and "mouth" of TeX
+-- enter the "State S" (for "skipping blanks") after a "%"; we
+-- simulate that by splitting bigstr in a certain way, and then after
+-- each "%" we delete the "%..." part of that line plus the
+-- whitespaces and newlines in (hopefully) the right places.
+--
+-- The default for "deletecomments" is still the simpler definition
+-- above. To use version based on the DeleteComments class put this in
+-- your .tex file:
+--
+--   %L deletecomments = function (bigstr) return DeleteComments.from(bigstr) end
+--
+-- See: (find-es "tex" "comments")
+--
+DeleteComments = Class {
+  type  = "DeleteComments",
+  split = function (bigstr)
+      local A = {}
+      for _,li in ipairs(splitlines(bigstr)) do
+        local a,b = li:match("^([^%%]*)(.*)")
+        table.insert(A, {a, b, "\n"})
+      end
+      return DeleteComments(A)
+    end,
+  from = function (bigstr)
+      return DeleteComments.split(bigstr):delcomments():concat()
+    end,
+  __tostring = function (dc) return mytabletostring(dc) end,
+  __index = {
+      hascomment = function (dc, k) return dc[k][2] ~= "" end,
+      endswithcmd = function (dc, k)
+          return dc[k][1]:reverse():match("^[A-Za-z]+\\")
+        end,
+      addspaceaftercmd = function (dc, k)
+          dc[k][1] = dc[k][1].." "
+        end,
+      valid = function (dc, k) return 1 <= k and k <= #dc end,
+      ltrim = function (dc, k)
+          dc[k][1] = dc[k][1]:match("^[ \t]*(.*)")
+        end,
+      delcomment = function (dc, k)
+          if dc:endswithcmd(k) then dc:addspaceaftercmd(k) end
+          dc[k][2] = ""		-- delete the "%..."
+          dc[k][3] = ""		-- delete the newline
+          if dc:valid(k+1) then dc:ltrim(k+1) end
+        end,
+      delcomments = function (dc)
+          for k=1,#dc do if dc:hascomment(k) then dc:delcomment(k) end end
+	  return dc
+        end,
+      concat = function (dc)
+          local bigstr = ""
+          for k=1,#dc-1 do bigstr = bigstr..dc[k][1]..dc[k][2]..dc[k][3] end
+          if #dc > 0 then bigstr = bigstr..dc[#dc][1]..dc[#dc][2] end
+          return bigstr
+        end,
+  },
+}
+
+
+-- «DeleteComments-tests»  (to ".DeleteComments-tests")
+-- (find-es "dednat" "deletecomments-2021")
+--[==[
+ (eepitch-lua51)
+ (eepitch-kill)
+ (eepitch-lua51)
+dofile "output.lua"
+
+bigstr = [[
+foo%12
+  bar\plic%34
+  qoo%56
+  blep
+  bletch
+  %
+  woo
+]]
+
+= deletecomments(bigstr)
+
+dc = DeleteComments.split(bigstr)
+= dc
+= dc:delcomments()
+= dc:concat()
+
+= bigstr
+= deletecomments(bigstr)
+deletecomments = function (bigstr) return DeleteComments.from(bigstr) end
+= deletecomments(bigstr)
+
+--]==]
+
 
 
 

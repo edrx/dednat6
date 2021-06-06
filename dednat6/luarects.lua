@@ -353,8 +353,6 @@ lwr = LuaWithRects.new(bigstr)
 = mytabletostring(lwr.ars)
 = lwr.ars[1][2]
 
- (ex "luawithrects-1")
-
  (eepitch-lua51)
  (eepitch-kill)
  (eepitch-lua51)

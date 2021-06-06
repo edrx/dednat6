@@ -207,6 +207,21 @@ TCGSpec = Class {
         return mp
       end,
     --
+    -- See: (find-es "dednat" "lawvere-tierney")
+    mpunder = function (ts, utop, opts, ubot)
+        local zhaspec = ts:zhaspec()
+        local mp      = mpnew(opts, zhaspec)
+        local cond    = format("lr:below(v'%s') and lr:above(v'%s')", utop, ubot or "00")
+        local ulrf    = format("lr -> (%s) and lr:lr() or '..'", cond)
+        mp:zhalrf0(ulrf)
+        if ts:hasqmarks() then
+          local uzha  = ts:zha():shrinktop(v(utop))
+          local ucuts = "c "..ts:cuts()
+          mp.cuts:addcuts(uzha, ucuts)
+        end
+        return mp
+      end,
+    --
     ap = function (ts)
         local tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1} -- dummy
         return TCGQ.newdsoa(tdims, ts, {}, "lr q").ap
@@ -443,6 +458,13 @@ TCGQ = Class {
         for y=1,tq.l do tq:Lput(y, y.."\\_") end
         for y=1,tq.r do tq:Rput(y, "\\_"..y) end
         return tq
+      end,
+    LRputs = function (tq, left, right)
+        left  = left:gsub("!", "\\")
+	right = right:gsub("!", "\\")
+	for y,str in ipairs(split(left))  do tq:Lput(y, str) end
+	for y,str in ipairs(split(right)) do tq:Rput(y, str) end
+	return tq
       end,
     --
     -- Low-level functions to put "?"s and "!"s in qmark cells
