@@ -1,4 +1,3 @@
--- -*- coding: utf-8-unix; backup-by-copying: t -*-
 -- This file: http://angg.twu.net/LUA/lua50init.lua.html
 --            http://angg.twu.net/LATEX/dednat6/edrxlib.lua.html
 --            http://angg.twu.net/dednat6/dednat6/edrxlib.lua.html
@@ -22,7 +21,7 @@
 -- See also: (to "edrxlib")
 --
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2021jan24   <- don't trust this date
+-- Version: 2021sep11  <- don't trust this date
 -- Public domain.
 --
 -- Note: "dednat4.lua" and "dednat6.lua" try to load this at startup,
@@ -37,144 +36,149 @@
 -- Blogme3 does the same trick:
 --      (find-blogme3 "blogme3.lua" "edrxlib")
 --
--- This file used to work both on lua-5.0 and lua-5.1 -
--- but now I have stopped using lua-5.0, and I'm trying
--- (slowly!) to make this more readable, remove the
--- cruft, some 5.0-isms, some obsolete loaders, etc.
--- It works on 5.1, 5.2, and 5.3.
+-- This init file used to work both on lua-5.0 and lua-5.1...
+-- I have stopped using lua-5.0, but I kept the name of this file.
+-- This works on Lua 5.1, 5.2, 5.3, and 5.4.
+-- Beware: this file has A LOT of cruft!...
 
 
 
--- «.escripts»		(to "escripts")
--- «.build-lua»		(to "build-lua")
--- «.compat»		(to "compat")
--- «.dformat»		(to "dformat")
--- «.string-methods»	(to "string-methods")
--- «.otherfunctions»	(to "otherfunctions")
--- «.printf»		(to "printf")
--- «.pack-and-unpack»	(to "pack-and-unpack")
--- «.0-based»		(to "0-based")
--- «.P»			(to "P")
--- «.PP»		(to "PP")
--- «.PPP»		(to "PPP")
--- «.tests»		(to "tests")
--- «.over0»		(to "over0")
--- «.eoo»		(to "eoo")
--- «.over»		(to "over")
--- «.follow»		(to "follow")
--- «.NamedFunction»	(to "NamedFunction")
--- «.Tos»		(to "Tos")
--- «.VerticalTable»	(to "VerticalTable")
--- «.envsubst»		(to "envsubst")
--- «.readfile»		(to "readfile")
--- «.writefile»		(to "writefile")
--- «.fileexists»	(to "fileexists")
--- «.mytostring»	(to "mytostring")
--- «.mysortedpairs»	(to "mysortedpairs")
--- «.mytostringk2»	(to "mytostringk2")
--- «.trim»		(to "trim")
--- «.split»		(to "split")
--- «.ee_expand»		(to "ee_expand")
--- «.ee_dofile»		(to "ee_dofile")
--- «.ee_loadlib»	(to "ee_loadlib")
--- «.ee_ls»		(to "ee_ls")
--- «.strlen8»		(to "strlen8")
--- «.untabify»		(to "untabify")
--- «.untabify8»		(to "untabify8")
--- «.utf8tohtml»	(to "utf8tohtml")
--- «.u8c_to_l1»		(to "u8c_to_l1")
--- «.u8_to_l1»		(to "u8_to_l1")
--- «.toslashhex»	(to "toslashhex")
--- «.divmod»		(to "divmod")
--- «.min-and-max»	(to "min-and-max")
--- «.load_dednat4»	(to "load_dednat4")
--- «.load_rex»		(to "load_rex")
--- «.load_posix»	(to "load_posix")
--- «.load_PP»		(to "load_PP")
--- «.PPeval»		(to "PPeval")
--- «.loadswigso»	(to "loadswigso")
--- «.loadcinvoke»	(to "loadcinvoke")
--- «.loadlpeg»		(to "loadlpeg")
--- «.loadbitlib»	(to "loadbitlib")
--- «.autoload»		(to "autoload")
--- «.loadtcl»		(to "loadtcl")
--- «.loadldb»		(to "loadldb")
--- «.loadpeek»		(to "loadpeek")
--- «.loadalarm»		(to "loadalarm")
--- «.loadposix»		(to "loadposix")
--- «.getoutput»		(to "getoutput")
--- «.curl»		(to "curl")
--- «.preparef2n»	(to "preparef2n")
--- «.map»		(to "map")
--- «.fold»		(to "fold")
--- «.gformat»		(to "gformat")
--- «.each2»		(to "each2")
--- «.splitlines»	(to "splitlines")
--- «.splitlines-5.3»	(to "splitlines-5.3")
--- «.translatechars»	(to "translatechars")
--- «.sbeconcat»		(to "sbeconcat")
--- «.concatbestrings»	(to "concatbestrings")
--- «.lpeg_togsub»	(to "lpeg_togsub")
--- «.lpeg_gsub»		(to "lpeg_gsub")
--- «.lpeg_gsub_»	(to "lpeg_gsub_")
--- «.lpeg_balanced»	(to "lpeg_balanced")
--- «.mytraceback»	(to "mytraceback")
--- «.errorfb_line»	(to "errorfb_line")
--- «.ee_template»	(to "ee_template")
--- «.ee_into»		(to "ee_into")
--- «.chdir»		(to "chdir")
--- «.package.require»	(to "package.require")
--- «.edrxlib»		(to "edrxlib")
--- «.userocks»		(to "userocks")
--- «.loadblogme3»	(to "loadblogme3")
--- «.hms_to_s»		(to "hms_to_s")
--- «.s_to_hms»		(to "s_to_hms")
--- «.icollect»		(to "icollect")
--- «.interactor»	(to "interactor")
--- «.MyXpcall»		(to "MyXpcall")
--- «.Repl»		(to "Repl")
--- «.loadluarepl»	(to "loadluarepl")
--- «.replaceranges»	(to "replaceranges")
--- «.string.replace»	(to "string.replace")
--- «.Rect»		(to "Rect")
--- «.syntree»		(to "syntree")
--- «.re_expand_INFIX»	(to "re_expand_INFIX")
--- «.math-grammar»	(to "math-grammar")
--- «.cow-and-coy»	(to "cow-and-coy")
--- «.eval-and-L»	(to "eval-and-L")
+-- «.escripts»			(to "escripts")
+-- «.build-lua»			(to "build-lua")
+-- «.compat»			(to "compat")
+-- «.string-methods»		(to "string-methods")
+-- «.otherfunctions»		(to "otherfunctions")
+-- «.printf»			(to "printf")
+-- «.pack-and-unpack»		(to "pack-and-unpack")
+-- «.0-based»			(to "0-based")
+-- «.P-old»			(to "P-old")
+-- «.P-old-tests»		(to "P-old-tests")
+-- «.PP-old»			(to "PP-old")
+-- «.PPP-old»			(to "PPP-old")
+-- «.eoo»			(to "eoo")
+--   «.over0»			(to "over0")
+--   «.over»			(to "over")
+-- «.follow»			(to "follow")
+-- «.NamedFunction»		(to "NamedFunction")
+-- «.Tos»			(to "Tos")
+--   «.mytostring»		(to "mytostring")
+--   «.PP»			(to "PP")
+--   «.VerticalTable»		(to "VerticalTable")
+--   «.HTable-and-VTable»	(to "HTable-and-VTable")
+-- «.envsubst»			(to "envsubst")
+-- «.readfile»			(to "readfile")
+-- «.writefile»			(to "writefile")
+-- «.fileexists»		(to "fileexists")
+-- «.mytostring-old»		(to "mytostring-old")
+-- «.mysortedpairs»		(to "mysortedpairs")
+-- «.mytostringk2»		(to "mytostringk2")
+-- «.trim»			(to "trim")
+-- «.split»			(to "split")
+-- «.ee_expand»			(to "ee_expand")
+-- «.ee_dofile»			(to "ee_dofile")
+-- «.ee_loadlib»		(to "ee_loadlib")
+-- «.ee_ls»			(to "ee_ls")
+-- «.strlen8»			(to "strlen8")
+-- «.untabify»			(to "untabify")
+-- «.untabify8»			(to "untabify8")
+-- «.utf8tohtml»		(to "utf8tohtml")
+-- «.u8c_to_l1»			(to "u8c_to_l1")
+-- «.u8_to_l1»			(to "u8_to_l1")
+-- «.toslashhex»		(to "toslashhex")
+-- «.divmod»			(to "divmod")
+-- «.min-and-max»		(to "min-and-max")
+-- «.load_dednat4»		(to "load_dednat4")
+-- «.load_rex»			(to "load_rex")
+-- «.load_posix»		(to "load_posix")
+-- «.load_PP»			(to "load_PP")
+-- «.PPeval»			(to "PPeval")
+-- «.loadswigso»		(to "loadswigso")
+-- «.loadcinvoke»		(to "loadcinvoke")
+-- «.loadlpeg»			(to "loadlpeg")
+-- «.loadbitlib»		(to "loadbitlib")
+-- «.autoload»			(to "autoload")
+-- «.loadtcl»			(to "loadtcl")
+-- «.loadldb»			(to "loadldb")
+-- «.loadpeek»			(to "loadpeek")
+-- «.loadalarm»			(to "loadalarm")
+-- «.loadposix»			(to "loadposix")
+-- «.getoutput»			(to "getoutput")
+-- «.curl»			(to "curl")
+-- «.preparef2n»		(to "preparef2n")
+-- «.map»			(to "map")
+-- «.sorted»			(to "sorted")
+-- «.fold»			(to "fold")
+-- «.gformat»			(to "gformat")
+-- «.each2»			(to "each2")
+-- «.splitlines»		(to "splitlines")
+-- «.splitlines-5.3»		(to "splitlines-5.3")
+-- «.translatechars»		(to "translatechars")
+-- «.sbeconcat»			(to "sbeconcat")
+-- «.concatbestrings»		(to "concatbestrings")
+-- «.lpeg_togsub»		(to "lpeg_togsub")
+-- «.lpeg_gsub»			(to "lpeg_gsub")
+-- «.lpeg_gsub_»		(to "lpeg_gsub_")
+-- «.lpeg_balanced»		(to "lpeg_balanced")
+-- «.mytraceback»		(to "mytraceback")
+-- «.errorfb_line»		(to "errorfb_line")
+-- «.ee_template»		(to "ee_template")
+-- «.ee_into»			(to "ee_into")
+-- «.chdir»			(to "chdir")
+-- «.package.require»		(to "package.require")
+-- «.edrxlib»			(to "edrxlib")
+-- «.userocks»			(to "userocks")
+-- «.loadblogme3»		(to "loadblogme3")
+-- «.hms_to_s»			(to "hms_to_s")
+-- «.s_to_hms»			(to "s_to_hms")
+-- «.icollect»			(to "icollect")
+-- «.interactor»		(to "interactor")
+-- «.MyXpcall»			(to "MyXpcall")
+-- «.Repl»			(to "Repl")
+-- «.loadluarepl»		(to "loadluarepl")
+-- «.replaceranges»		(to "replaceranges")
+-- «.string.replace»		(to "string.replace")
+-- «.Rect»			(to "Rect")
+-- «.syntree»			(to "syntree")
+-- «.re_expand_INFIX»		(to "re_expand_INFIX")
+-- «.math-grammar»		(to "math-grammar")
+-- «.cow-and-coy»		(to "cow-and-coy")
+-- «.eval-and-L»		(to "eval-and-L")
 --
--- «.Sexp»		(to "Sexp")
--- «.youtube_make_url»	(to "youtube_make_url")
--- «.youtube_split»	(to "youtube_split")
--- «.to_youtube_hash»	(to "to_youtube_hash")
--- «.url_split»		(to "url_split")
--- «.Blogme»		(to "Blogme")
+-- «.Sexp»			(to "Sexp")
+-- «.youtube_make_url»		(to "youtube_make_url")
+-- «.youtube_split»		(to "youtube_split")
+-- «.to_youtube_hash»		(to "to_youtube_hash")
+-- «.url_split»			(to "url_split")
+-- «.Blogme»			(to "Blogme")
 --
--- «.EevIntro»		(to "EevIntro")
--- «.ELispH»		(to "ELispH")
--- «.ELispHF»		(to "ELispHF")
--- «.code_video»	(to "code_video")
--- «.getsexp»		(to "getsexp")
--- «.SexpSkel»		(to "SexpSkel")
--- «.ELispInfo»		(to "ELispInfo")
+-- «.EevIntro»			(to "EevIntro")
+-- «.ELispH»			(to "ELispH")
+-- «.ELispHF»			(to "ELispHF")
+-- «.code_video»		(to "code_video")
+-- «.getsexp»			(to "getsexp")
+-- «.SexpSkel»			(to "SexpSkel")
+-- «.ELispInfo»			(to "ELispInfo")
 --
--- «.getsexpskel»	(to "getsexpskel")
--- «.SexpLine»		(to "SexpLine")
+-- «.getsexpskel»		(to "getsexpskel")
+-- «.SexpLine»			(to "SexpLine")
 --
--- «.Set»		(to "Set")
--- «.SetL»		(to "SetL")
--- «.fsize»		(to "fsize")
--- «.loaddednat6»	(to "loaddednat6")
--- «.loadfbcache2»	(to "loadfbcache2")
--- «.loadluarocks»	(to "loadluarocks")
--- «.capitalize»	(to "capitalize")
--- «.getinscritos»	(to "getinscritos")
--- «.trailing-zeroes»	(to "trailing-zeroes")
--- «.pformat»		(to "pformat")
--- «.findxxxpdf_parse»	(to "findxxxpdf_parse")
--- «.savevars»		(to "savevars")
+-- «.Set»			(to "Set")
+-- «.SetL»			(to "SetL")
+-- «.fsize»			(to "fsize")
+-- «.loaddednat6»		(to "loaddednat6")
+-- «.loadfbcache2»		(to "loadfbcache2")
+-- «.loadluarocks»		(to "loadluarocks")
+-- «.capitalize»		(to "capitalize")
+-- «.getinscritos»		(to "getinscritos")
 --
--- «.repltexthis»	(to "repltexthis")
+-- «.trailing-zeroes»		(to "trailing-zeroes")
+-- «.pformat»			(to "pformat")
+-- «.dformat»			(to "dformat")
+--
+-- «.findxxxpdf_parse»		(to "findxxxpdf_parse")
+-- «.savevars»			(to "savevars")
+--
+-- «.repltexthis»		(to "repltexthis")
 
 
 -- «escripts»  (to ".escripts")
@@ -202,23 +206,7 @@ tremove  = table.remove    -- (find-lua51manual "#pdf-table.remove")
 -- foreachi = table.foreachi -- (find-lua51manual "#7.2" "table.foreachi")
 getn     = table.getn        -- (find-lua51manual "#7.2" "table.getn")
 
-toint    = math.floor      -- for 5.3
-
-
--- «dformat»  (to ".dformat")
--- (find-es "lua5" "dformat")
-if _VERSION:sub(5) < "5.3" then
-  dformat_fmt = function (fmt) return fmt end
-  string.dformat = string.format
-  dformat        = string.format
-else
-  dformat_fmt = function (fmt) return (fmt:gsub("%%d", "%%.0f")) end
-  string.dformat = function (fmt, ...)
-      return string.format(dformat_fmt(fmt), ...)
-    end
-  dformat = string.dformat
-end
-
+toint    = math.floor        -- for 5.3
 
 
 -- «string-methods»  (to ".string-methods")
@@ -303,7 +291,7 @@ substr0 = function (str, start0, len)
 
 
 
--- «P»  (to ".P")
+-- «P-old»  (to ".P-old")
 -- Like "print", but distinguishing strings from numbers, and using "<>"s.
 -- See: (find-lua51manual "#pdf-type")
 -- Examples:
@@ -324,12 +312,15 @@ P = function (...)
     print()
   end
 
--- Note: "table.foreach(t, print)" is often enough for inspecting tables.
+-- «P-old-tests»  (to ".P-old-tests")
+-- P(string.find("0123456789", "3(45)(67)", 4))  --> 4 8 "45" "67"
+-- P(string.find("0123456789", "3(45)(67)", 5))  --> <nil>
+
+-- Note: in Lua5.0 "table.foreach(t, print)" could be used to inspect tables.
 -- Ref: http://lua-users.org/lists/lua-l/2008-02/msg00932.html
 --      http://lua-users.org/lists/lua-l/2008-02/msg00944.html
 
-
--- «PP»  (to ".PP")
+-- «PP-old»  (to ".PP-old")
 -- 2015aug20: oveeriden by: (to "Tos")
 -- (to "mytostring")
 -- My favourite function for inspecting data!
@@ -354,7 +345,7 @@ PP = function (...)
     return myunpack(arg)    -- todo: change to "..." (a 5.1-ism)
   end
 
--- «PPP»  (to ".PPP")
+-- «PPP-old»  (to ".PPP-old")
 -- Useful for debugging sometimes.
 -- I don't use this much.
 -- PP(string.rep("ab", 4))
@@ -370,9 +361,20 @@ PPP = function (idstr)
       end
   end
 
--- «tests»  (to ".tests")
--- P(string.find("0123456789", "3(45)(67)", 4))  --> 4 8 "45" "67"
--- P(string.find("0123456789", "3(45)(67)", 5))  --> <nil>
+-- «eoo» (to ".eoo")
+-- For a documented version, see:
+--   (find-angg "LUA/eoo.lua")
+--
+Class = {
+    type   = "Class",
+    __call = function (class, o) return setmetatable(o, class) end,
+  }
+setmetatable(Class, Class)
+
+otype = function (o)  -- works like type, except on my "objects"
+    local  mt = getmetatable(o)
+    return mt and mt.type or type(o)
+  end
 
 -- «over0»  (to ".over0")
 -- Example:
@@ -385,21 +387,6 @@ over = function (bottomtable, toptable)
     return setmetatable(toptable or {}, {__index = bottomtable})
   end
 --]]
-
--- «eoo» (to ".eoo")
--- For a documented version, see:
---   (find-dn6 "eoo.lua")
---   (find-dn6 "eoo.lua" "Vector")
-Class = {
-    type   = "Class",
-    __call = function (class, o) return setmetatable(o, class) end,
-  }
-setmetatable(Class, Class)
-
-otype = function (o)  -- works like type, except on my "objects"
-    local  mt = getmetatable(o)
-    return mt and mt.type or type(o)
-  end
 
 -- «over» (to ".over")
 -- (find-es "lua5" "over")
@@ -442,81 +429,125 @@ lambda = function (str)
   end
 
 
+-- (find-es "lua5" "rawtostring")
+rawtostring = function (o)
+    if type(o) == "table" then
+      local mt = getmetatable(o); setmetatable(o, nil)
+      local rawtos = tostring(o); setmetatable(o, mt)
+      return rawtos
+    end
+    return tostring(o)
+  end
+
+
+
 -- «Tos» (to ".Tos")
 -- Tests: (find-es "lua5" "Tos")
+--        (find-es "lua5" "Tos-2021")
+--
 Tos = Class {
   type    = "Tos",
   __index = {
     --
-    -- object->string:
-    o = function (tos, o, sep)
+    -- Basic methods:
+    --   o: object (of any type) to string
+    --   ov: like o, but vertical in a simplistic way
+    --   t: table to string
+    --    t0: table to string, low level
+    --   kvs: listofkeyvaluepairs to string
+    --   kv: keyvaluepair to string
+    --   k: key to string
+    --
+    o = function (tos, o, a,sep,b,emp)
         local ty = type(o)
         if ty=="number" then return tostring(o) end
         if ty=="string" then return format("%q", o) end
-        if ty=="table"  then return tos:t(o, sep) end
+        if ty=="table"  then return tos:t(o, a,sep,b,emp) end
         return "<"..tostring(o)..">"
       end,
-    --
-    -- table->string:
-    -- (subfunctions: pairs/pair/key->string, getsortedpairs)
-    t = function (tos, T, a, sep, b)
-        local body = tos:ps(tos:getsortedpairs(T), sep)
+    ov = function (tos, o, a,sep,b,emp)
+        return tos:o(o, "{ ", ",\n  ", "\n}", "{}")
+      end,
+    t = function (tos, T, a,sep,b,emp)
+        return tos:t0(T, a,sep,b,emp)
+      end,
+    t0 = function (tos, T, a,sep,b,emp)
+        local tableisempty = (next(T) == nil)
+        if tableisempty and emp then return emp end
+        local body = tos:kvs(tos:getsortedkvs(T), sep)
         return (a or "{")..body..(b or "}")
       end,
-    ps = function (tos, ps, sep)
-        local tos_p = function (p) return tos:p(p) end
+    --
+    kvs = function (tos, ps, sep)
+        local tos_p = function (p) return tos:kv(p) end
         return mapconcat(tos_p, ps, sep or ", ")
       end,
-    p = function (tos, p) return tos:k(p.key).."="..tos:o(p.val) end,
+    kv = function (tos, p) return tos:k(p.key).."="..tos:o(p.val) end,
     k = function (tos, k) return tos:o(k) end,
     --
-    -- See: (find-es "lua5" "Tos-indented")
-    indented = function (tos, o, ind)
-        ind = ind or ""
-        local ty = type(o)
-        if ty=="number" then return tostring(o) end
-        if ty=="string" then return format("%q", o) end
-        if ty=="table"  then
-          local ps = tos:getsortedpairs(o)
-          local p_tos = function (p)
-              return tos:k(p.key).."="..tos:indented(p.val, ind.."  ")
-            end
-          return "{\n  "..ind..mapconcat(p_tos, ps, ",\n  "..ind).."\n"..ind.."}"
-        end
-        return "<"..tostring(o)..">"
+    -- t0 uses this to sort the key-value pairs of a table.
+    getsortedkvs = function (tos, T)
+        return sorted(tos:getkvs(T), tos.comparekvs)
       end,
-    --
-    getsortedpairs = function (tos, T)
-        local ps = {}
-        for k,v in pairs(T) do table.insert(ps, {key=k, val=v}) end
-        -- return ps
-        return sorted(ps, tos.comparepairs)
+    getkvs = function (tos, T)
+        local kvs = {}
+        for k,v in pairs(T) do table.insert(kvs, {key=k, val=v}) end
+	return kvs
       end,
-    comparepairs = function (pair1, pair2)
-        local key1,  key2  = pair1.key,  pair2.key
-        local type1, type2 = type(key1), type(key2)
-        if type1 == type2 then
-          if type1 == "number" then return key1 < key2 end
-          if type1 == "string" then return key1 < key2 end
-          return tostring(key1) < tostring(key2)  -- fast
+    comparekvs = function (kv1, kv2)  -- not a method!
+        local k1, k2 = kv1.key,  kv2.key
+        local t1, t2 = type(k1), type(k2)
+        if t1 == t2 then
+          if t1 == "number" then return k1 < k2 end
+          if t1 == "string" then return k1 < k2 end
+          return rawtostring(k1) < rawtostring(k2)  -- fast
         else
-          return type1 < type2   -- numbers before strings before tables, etc
+          return t1 < t2   -- numbers before strings before tables, etc
         end
       end,
     --
-    PP = function (tos, ...)
-        local T = pack(...)
-        for i=1,T.n do printf(" %s", tos:o(T[i])) end
-        print()
-        return ...
-      end
+    -- return a tostring-like function
+    f = function (tos, a,sep,b,emp)
+        return function (o) return tos:o(o, a,sep,b,emp) end
+      end,
+    --
+    -- An alternative to t. See the object "tosp" below.
+    tp = function (tos, T, a,sep,b,emp)  -- experimental
+        local mt = getmetatable(T)
+        local typename = mt and mt.type
+	local prefix = typename and (typename..":") or "" 
+        return prefix..tos:t0(T, a,sep,b,emp)
+      end,
   },
 }
 
-PP              = function (...) return (Tos{}):PP(...)             end
-mytostring      = function (o)   return (Tos{}):o(o)                end
-mytabletostring = function (o)   return (Tos{}):t(o, "{ ", ",\n  ", "\n}") end
-PPV             = function (o)   print(mytabletostring(o)); return o end
+-- Two objects of the class Tos.
+tos0 = Tos({})
+tosp = Tos({t = Tos.__index.tp})
+
+-- «mytostring»  (to ".mytostring")
+-- Basic tostring-ish functions.
+-- To override them, redefine these functions.
+mytostring      = function (o) return tos0:o(o) end
+mytostringv     = function (o) return tos0:ov(o) end
+mytabletostring = function (o) return tos0:ov(o) end -- old name
+--
+mytostringp     = function (o) return tosp:o(o)  end
+mytostringvp    = function (o) return tosp:ov(o) end
+mytostringpv    = function (o) return tosp:ov(o) end
+
+-- «PP»  (to ".PP")
+-- Basic pretty-printing functions.
+PPV = function (o) print(mytabletostring(o)); return o end
+PP  = function (...) return PP_(mytostring, ...) end
+PP_ = function (tos, ...)
+    local args = pack(...)
+    for i=1,args.n do printf(" %s", tos(args[i])) end
+    print()
+    return ...
+  end
+
+
 
 -- «VerticalTable» (to ".VerticalTable")
 -- Tests: (find-es "lua5" "VerticalTable")
@@ -527,11 +558,29 @@ VerticalTable = Class {
   },
 }
 
+-- «HTable-and-VTable»  (to ".HTable-and-VTable")
+-- (find-es "lua5" "Tos-2021")
+-- tos_HTable = Tos({}):f()
+-- tos_VTable = Tos({}):f("{ ", ",\n  ", "\n}", "{}")
+HTable = Class {
+  type = "HTable",
+  __tostring = mytostring,
+  __index = {
+  },
+}
+VTable = Class {
+  type = "VTable",
+  __tostring = mytostringv,
+  __index = {
+  },
+}
+
 
 
 
 -- «envsubst»  (to ".envsubst")
 -- (find-es "lua5" "envsubst")
+-- Obsolete?
 setenv_ = {}
 setenv = function (varname, value) setenv_[varname] = value end
 getenv = function (varname) return setenv_[varname] or os.getenv(varname) end
@@ -579,93 +628,66 @@ filecontents0 = function (fname)
 fnamedirectory    = function (fname) return fname:match"^(.*/)[^/]*$"  end
 fnamenondirectory = function (fname) return fname:match     "([^/]*)$" end
 
--- «mytostring»  (to ".mytostring")
--- 2015aug12: new version: (to "Tos")
--- 2011apr10: Rewrote all this in a hurry.
--- These functions are used by: (to "PP")
--- (find-es "lua5" "mytostring")
--- Possible replacements:
+-- «mytostring-old»  (to ".mytostring-old")
+-- My old versions of "mystotring", that didn't use metatables, are here:
 --   (find-angg "LUA/tos.lua")
 --   (find-angg "LUA/tos2.lua")
+-- The current version of mystotring is implemented using the class Tos.
+
+-- These functions are used by: (to "PP")
+-- Possible replacements:
 --   (find-dn5 "tos.lua")
-tos_compare_pairs = function (pair1, pair2)
-    local key1,  key2  = pair1.key,  pair2.key
-    local type1, type2 = type(key1), type(key2)
-    if type1 == type2 then
-      if type1 == "number" then return key1 < key2 end
-      if type1 == "string" then return key1 < key2 end
-      return tostring(key1) < tostring(key2)  -- fast
-    else
-      return type1 < type2   -- numbers before strings before tables, etc
-    end
-  end
-tos_sorted_pairs = function (T)
-    local Tpairs = {}
-    for key,val in pairs(T) do
-      table.insert(Tpairs, {key=key, val=val})
-    end
-    return sorted(Tpairs, tos_compare_pairs)
-  end
-tos_table_orig = function (T, sep)
-    return "{"..mapconcat(tos_pair, tos_sorted_pairs(T), sep or ", ").."}"
-  end
-tos_table = tos_table_orig
-tos = function (o)
-    local t = type(o)
-    if t=="number" then return tostring(o) end
-    if t=="string" then return format("%q", o) end
-    if t=="table"  then return tos_table(o) end
-    return "<"..tostring(o)..">"
-  end
-tos_key = tos              -- change this to print string keys differently
-tos_pair = function (pair)
-    return tos_key(pair.key).."="..tos(pair.val)
-  end
 
-mysort = tos_sorted_pairs   -- compatibility
-mytostring = tos            -- compatibility
-mytostring_arg = function (T, sep)
-    return mapconcat(tos, T, sep or " ", T.n)
-  end
-
--- Tools for building extensions
-tos_good_string_key = function (key)
-    return type(key) == "string" and key:match("^[A-Za-z_][A-Za-z_0-9]*$")
-  end
-tos_has_tostring = function (o)
-    return getmetatable(T) and getmetatable(T).__tostring
-  end
-tos_has_eootype = function (o)
-    return type(o) == "table" and getmetatable(o) and getmetatable(o).type
-  end
-
-
-
--- mysort = function (T)
+-- tos_compare_pairs = function (pair1, pair2)
+--     local key1,  key2  = pair1.key,  pair2.key
+--     local type1, type2 = type(key1), type(key2)
+--     if type1 == type2 then
+--       if type1 == "number" then return key1 < key2 end
+--       if type1 == "string" then return key1 < key2 end
+--       return tostring(key1) < tostring(key2)  -- fast
+--     else
+--       return type1 < type2   -- numbers before strings before tables, etc
+--     end
+--   end
+-- tos_sorted_pairs = function (T)
 --     local Tpairs = {}
 --     for key,val in pairs(T) do
 --       table.insert(Tpairs, {key=key, val=val})
 --     end
---     return sorted(Tpairs, mysort_lt)
+--     return sorted(Tpairs, tos_compare_pairs)
 --   end
-
--- mytostring_table_orig = function (T, sep)
---     return "{"..mapconcat(mytostring_pair, mysort(T), sep or ", ").."}"
+-- tos_table_orig = function (T, sep)
+--     return "{"..mapconcat(tos_pair, tos_sorted_pairs(T), sep or ", ").."}"
 --   end
--- mytostring_table_new = function (T, sep)
---     if getmetatable(T) and getmetatable(T).__tostring then return tostring(T) end
---     return mytostring_table_orig(T, sep)
---   end
--- mytostring_table = mytostring_table_new
---
--- mytostring = function (o)
+-- tos_table = tos_table_orig
+-- tos = function (o)
 --     local t = type(o)
 --     if t=="number" then return tostring(o) end
 --     if t=="string" then return format("%q", o) end
---     if t=="table"  then return mytostring_table(o) end
+--     if t=="table"  then return tos_table(o) end
 --     return "<"..tostring(o)..">"
 --   end
-
+-- tos_key = tos              -- change this to print string keys differently
+-- tos_pair = function (pair)
+--     return tos_key(pair.key).."="..tos(pair.val)
+--   end
+-- 
+-- mysort = tos_sorted_pairs   -- compatibility
+-- mytostring = tos            -- compatibility
+-- mytostring_arg = function (T, sep)
+--     return mapconcat(tos, T, sep or " ", T.n)
+--   end
+-- 
+-- -- Tools for building extensions
+-- tos_good_string_key = function (key)
+--     return type(key) == "string" and key:match("^[A-Za-z_][A-Za-z_0-9]*$")
+--   end
+-- tos_has_tostring = function (o)
+--     return getmetatable(T) and getmetatable(T).__tostring
+--   end
+-- tos_has_eootype = function (o)
+--     return type(o) == "table" and getmetatable(o) and getmetatable(o).type
+--   end
 
 -- mytostringk = mytostring   -- change this to print string keys differently
 --
@@ -678,28 +700,28 @@ tos_has_eootype = function (o)
 -- mytostring_arg({n=4, nil, 22, 33, nil})
 -->                   "<nil> 22 33 <nil>"
 
--- «mysortedpairs»  (to ".mysortedpairs")
--- This is useful in iteractive scripts. The name is bad, I know.
--- (find-pilw3m "7.1.html" "simple iterator")
-mysortedpairs = function (T)
-    local T = mysort(T)
-    local i,n = 0,#T
-    return function ()
-        i = i + 1
-        if i <= n then return T[i].key,T[i].val end
-      end
-  end
-
--- «mytostringk2»  (to ".mytostringk2")
--- Experimental. Usage:
---   mytostringk = mytostringk2
-mytostringk2 = function (o)
-    if type(o) == "string" and o:match("^[A-Za-z_][A-Za-z_0-9]*$") then
-      return o
-    else
-      return mytostring(o)
-    end
-  end
+-- -- «mysortedpairs»  (to ".mysortedpairs")
+-- -- This is useful in iteractive scripts. The name is bad, I know.
+-- -- (find-pilw3m "7.1.html" "simple iterator")
+-- mysortedpairs = function (T)
+--     local T = mysort(T)
+--     local i,n = 0,#T
+--     return function ()
+--         i = i + 1
+--         if i <= n then return T[i].key,T[i].val end
+--       end
+--   end
+-- 
+-- -- «mytostringk2»  (to ".mytostringk2")
+-- -- Experimental. Usage:
+-- --   mytostringk = mytostringk2
+-- mytostringk2 = function (o)
+--     if type(o) == "string" and o:match("^[A-Za-z_][A-Za-z_0-9]*$") then
+--       return o
+--     else
+--       return mytostring(o)
+--     end
+--   end
 
 
 -- «trim» (to ".trim")
@@ -935,25 +957,25 @@ PPeval = function (str)
     end
   end
 
--- «loadswigso»  (to ".loadswigso")
--- (find-es "swig" "myswiglua")
--- Example: loadswigso("C", "./myparser.so", "parser", "countwords")
-loadswigso = function (modulename, fname_so, ...)
-    assert(loadlib(fname_so, modulename.."_Init"))()
-    local module = _G[modulename]
-    for i=1,arg.n do
-      _G[arg[i]] = module[arg[i]]  -- export to the table of globals
-    end
-  end
-
--- «loadcinvoke»  (to ".loadcinvoke")
--- (find-es "lua5" "cinvoke")
-loadcinvoke = function ()
-    local oldcpath = package.cpath
-    package.cpath = ee_expand("~/usrc/cinvoke-1.0/bindings/lua/?.so")
-    require "cinvoke_lua"
-    package.cpath = oldcpath
-  end
+-- -- «loadswigso»  (to ".loadswigso")
+-- -- (find-es "swig" "myswiglua")
+-- -- Example: loadswigso("C", "./myparser.so", "parser", "countwords")
+-- loadswigso = function (modulename, fname_so, ...)
+--     assert(loadlib(fname_so, modulename.."_Init"))()
+--     local module = _G[modulename]
+--     for i=1,arg.n do
+--       _G[arg[i]] = module[arg[i]]  -- export to the table of globals
+--     end
+--   end
+-- 
+-- -- «loadcinvoke»  (to ".loadcinvoke")
+-- -- (find-es "lua5" "cinvoke")
+-- loadcinvoke = function ()
+--     local oldcpath = package.cpath
+--     package.cpath = ee_expand("~/usrc/cinvoke-1.0/bindings/lua/?.so")
+--     require "cinvoke_lua"
+--     package.cpath = oldcpath
+--   end
 
 -- «loadlpeg»  (to ".loadlpeg")
 -- (find-es "lua5" "lpeg-0.7")
@@ -1134,19 +1156,19 @@ preparef2n = function (otherdictnames)
 
 keys = function (tbl)
     local ks = {}
-    for k,_ in pairs(tbl) do tinsert(ks,k) end
+    for k,_ in pairs(tbl) do table.insert(ks,k) end
     return ks
   end
 
 map = function (f, arr, n)
     local brr = {}
-    for i=1,(n or #arr) do tinsert(brr, (f(arr[i]))) end
+    for i=1,(n or #arr) do table.insert(brr, (f(arr[i]))) end
     return brr
   end
 
 seq = function (a, b, c)
     local arr = {}
-    for i=a,b,(c or 1) do tinsert(arr, i) end
+    for i=a,b,(c or 1) do table.insert(arr, i) end
     return arr
   end
 
@@ -1165,10 +1187,6 @@ uniq = function (A)
     return B
   end
 
--- (find-lua51manual "#pdf-table.sort")
--- http://lua-users.org/lists/lua-l/2011-04/msg00406.html
-sorted = function (tbl, lt) table.sort(tbl, lt); return tbl end
-
 -- (find-efunctiondescr   'mapconcat)
 -- (find-elnode "Index" "* mapconcat:")
 -- (find-es "lua5" "table.concat")
@@ -1179,6 +1197,12 @@ mapconcat = function (f, tbl, sep, n)
 maplines = function (f, bigstr)
     return mapconcat(f, splitlines(bigstr), "\n")
   end
+
+-- «sorted»  (to ".sorted")
+-- (find-es "lua5" "sorted")
+-- (find-lua51manual "#pdf-table.sort")
+-- http://lua-users.org/lists/lua-l/2011-04/msg00406.html
+sorted = function (tbl, lt) table.sort(tbl, lt); return tbl end
 
 -- «fold»  (to ".fold")
 -- (find-hugsbasefile "Prelude.hs" "\nfoldl ")
@@ -1557,7 +1581,7 @@ icollect = function (n, f, s, var)
 
 
 -- «MyXpcall»  (to ".MyXpcall")
--- Commented version: (find-angg "edrxrepl/edrxrepl.lua" "MyXpcall-class")
+-- Superseded by: (find-angg "edrxrepl/edrxpcall.lua")
 --
 MyXpcall = Class {
   type = "MyXpcall",
@@ -2775,6 +2799,30 @@ pformatexpr = function (exprstr)
     return table.concat(map(pformat1, {expr(exprstr)}))
   end
 
+-- «dformat»  (to ".dformat")
+-- (find-es "lua5" "dformat")
+-- In Lua5.3 this yields an error instead of truncating the 2.3 to an integer:
+--   string.format("foo %d bar", 2.3)
+-- This quick hack lets my use
+--   string.dformat("foo %d bar", 2.3)   -- or:
+--          dformat("foo %d bar", 2.3)
+-- to get the old behavior in any (?) version of Lua.
+--
+if _VERSION:sub(5) < "5.3" then
+  dformat_fmt = function (fmt) return fmt end
+  string.dformat = string.format
+  dformat        = string.format
+else
+  dformat_fmt = function (fmt) return (fmt:gsub("%%d", "%%.0f")) end
+  string.dformat = function (fmt, ...)
+      return string.format(dformat_fmt(fmt), ...)
+    end
+  dformat = string.dformat
+end
+
+
+
+
 
 
 
@@ -2831,5 +2879,5 @@ unixnewlines = function (bigstr)
 
 
 -- Local Variables:
--- coding:               utf-8-unix
+-- coding: utf-8-unix
 -- End:
