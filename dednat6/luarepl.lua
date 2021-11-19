@@ -4,6 +4,13 @@
 -- http://angg.twu.net/dednat6/dednat6/luarepl.lua.html
 --         (find-angg "dednat6/dednat6/luarepl.lua")
 --
+-- Note (2021): this is obsolete... I stopped using Rob Hoelz's
+-- lua-repl, that I didn't understand well, and I wrote my own repl,
+-- that is here:
+--
+--   https://github.com/edrx/edrxrepl/
+--   http://angg.twu.net/edrxrepl/edrxrepl.lua.html
+
 -- The e-script that downloads lua-repl and copies some of its files in the
 -- dednat6 tree is here:
 --   (find-es "lua5" "luarepl-2017")
@@ -26,25 +33,25 @@ return loadluarepl(dednat6dir.."lua-repl/")
 
 
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6("~/LATEX/dednat6/")
 = dednat6dir
 loadluarepl(dednat6dir.."lua-repl/")
 = repl
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6("~/LATEX/dednat6/")
 = require "luarepl"
 = require "luarepl"
 sync:run()
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6("~/LATEX/dednat6/")
 luarepl()
 

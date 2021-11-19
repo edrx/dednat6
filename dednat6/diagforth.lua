@@ -332,9 +332,9 @@ forths["at:"] = function ()
 
 -- «high-level-tests» (to ".high-level-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "diagforth"
 forths["PP"] = function () PP(getwordasluaexpr()) end
 run = dxyrun
@@ -362,9 +362,9 @@ run [[    @ 1 @ 0 =>       ]]
 print(arrows_to_defdiag("foo"))
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "diagforth"
 forths["PP"] = function () PP(getwordasluaexpr()) end
 run = dxyrun
@@ -387,9 +387,9 @@ run [[ )) ]]
 
 -- «low-level-tests» (to ".low-level-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "diagforth"
 storenode {TeX="a", tag="a", x=100, y=100}
 storenode {TeX="b", tag="b", x=140, y=100}

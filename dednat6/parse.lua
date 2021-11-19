@@ -56,9 +56,9 @@ getrestofline = function ()
   end
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "parse.lua"
 run = function (str)
     setsubj(str)

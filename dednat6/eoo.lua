@@ -266,9 +266,9 @@ Consider this demo code:
 
 --[=[
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "eoo.lua"   -- this file
 Vector = Class {
   type       = "Vector",

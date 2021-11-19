@@ -78,9 +78,9 @@ preamble1 = [==[
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "preamble6.lua"
 print(preamble1)
 

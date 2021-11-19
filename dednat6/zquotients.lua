@@ -76,9 +76,9 @@ ZQuotient = Class {
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zquotients.lua"
 PPV(Picc.from "01|234|56")
 
@@ -96,6 +96,6 @@ PPV(zq.L)
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

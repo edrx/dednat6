@@ -138,9 +138,9 @@ texfiletest = function ()
 
 -- «Texfile-tests» (to ".Texfile-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "texfile.lua"
 
 -- (find-LATEX "2008dclosed.tex")
@@ -156,9 +156,9 @@ end
 = #tf.lines
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "texfile.lua"
 tf = TexFile.new("1", [[
 One

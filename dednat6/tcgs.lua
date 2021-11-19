@@ -74,9 +74,9 @@ cutstoqmarks = function (cuts)
 
 -- «qmarks-cuts-test» (to ".qmarks-cuts-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "tcgs"
 PP(qmarkstocuts(".??", "..???"))
 PP(cutstoqmarks "321/0 0|1|2345")
@@ -124,9 +124,9 @@ Line = Class {
 
 -- «Line-test» (to ".Line-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 r = Line.new(v(0, 1), v(3, 2), -1, 2)
 = r
@@ -241,9 +241,9 @@ TCGSpec = Class {
 
 -- «TCGSpec-test» (to ".TCGSpec-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 spec = "46; 32, 15 26"
 
@@ -257,9 +257,9 @@ for lr,l,r in ts:generaterightgens() do PP(lr,l,r) end
 for i,c in ("abcde"):gmatch("()(.)") do PP(i, c) end
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 ts = TCGSpec.new("46; 22 34 45, 25", ".???", "???.?.")
 = ts
@@ -276,9 +276,9 @@ ts = TCGSpec.new("46; 22 34 45, 25", ".???", "???.?.")
 -- (ph2p 24 "Q-partitions-are-slash-partitions" "side of each")
 -- (ph2     "Q-partitions-are-slash-partitions" "side of each")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 = TCGSpec.new("46; 32, 15 26", "?..?","..??.."):ap()
 = TCGSpec.new("46; 32, 15 26"                 ):ap()
@@ -338,9 +338,9 @@ TCGDims = Class {
 
 -- «TCGDims-test» (to ".TCGDims-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 td = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
 = td
@@ -539,9 +539,9 @@ TCGQ = Class {
 
 -- «TCGQ-tests» (to ".TCGQ-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "tcgs"
 td = TCGDims {h=6, v=3, q=4, crh=2, crv=1, qrh=1}
 opts = {meta="p s", def="foo"}
@@ -554,9 +554,9 @@ tq = TCGQ.new(td, opts, 3, 4):act("B QB v"):addqpoints()
 tq:Lput(2, "A")
 tq:lprint()
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "tcgs"
 td = TCGDims {h=6, v=3, q=4, crh=2, crv=1, qrh=1}
 opts = {meta="p s", def="foo"}
@@ -568,9 +568,9 @@ tq = TCGQ.new(td, opts, 3, 4)
 = tq.ap
 = tq:lrs().ap
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32,   15 26", "?..?", "..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}
@@ -584,9 +584,9 @@ tq:drawboxes()
 tq:drawqboxes()
 tq:print()
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "tcgs.lua"
 tspec = TCGSpec.new("46; 32, 15 26", "?..?","..??..")
 tdims = TCGDims {h=6, v=3, q=2, crh=2, crv=1, qrh=1}

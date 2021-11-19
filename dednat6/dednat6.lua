@@ -125,12 +125,12 @@ require "options6"     -- (find-dn6 "options6.lua")
 
 
 --[[
- «run-tests-in-test-dir» (to ".run-tests-in-test-dir")
+•• «run-tests-in-test-dir» (to ".run-tests-in-test-dir")
 
- Copy the essential files from dednat6 to a test dir (/tmp/d6/)
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+•• Copy the essential files from dednat6 to a test dir (/tmp/d6/)
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 cd ~/dednat6/
 (TZ=GMT date; date) | tee VERSION
 cat dednat6.lua | grep "^ *require" | tr -d '"()'
@@ -147,10 +147,10 @@ cp -v tests/{0,2,3,4}.tex              /tmp/d6/tests/
 # (find-dn6 "tests/")
 # (find-fline "/tmp/d6/")
 
- Make /tmp/dednat6.zip
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+•• Make /tmp/dednat6.zip
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 # (find-sh "cd /tmp/d6/; find * | sort")
 # (find-sh "cd /tmp/d6/; ls *.lua; ls tests/*")
 DD="dednat6-$(date +%Y%m%d)"; echo $DD
@@ -164,10 +164,10 @@ tar -cvzf /tmp/$DD.tgz     VERSION *.lua tests/*
 
 # (find-fline "/tmp/dednat6.zip")
 
- Run dednat6 in the test dir, check if everything works
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+•• Run dednat6 in the test dir, check if everything works
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 cd    /tmp/d6/tests/
 lualatex 0.tex
 lualatex 2.tex
@@ -175,10 +175,10 @@ lualatex 3.tex
 lualatex 4.tex
 # (find-fline "/tmp/d6/tests/")
 
- Upload
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+•• Upload
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 DD="dednat6-$(date +%Y%m%d)"; echo $DD
 cd /tmp/
 laf       {dednat6,$DD}.{tgz,zip}
@@ -192,10 +192,10 @@ Scp-np -v {0,2,3,4}.pdf           edrx@angg.twu.net:/home/edrx/public_html/dedna
 
 
 
- Old & obsolete
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+•• Old & obsolete
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 cd ~/dednat6/
 cat dednat6.lua | grep "^ *require" | tr -d '"()' | awk '{print $5}' | tee /tmp/o
 rm -Rv   /tmp/d6/
@@ -226,9 +226,9 @@ Scp-np -v dednat6-test.tgz dednat6-test.zip edrx@angg.twu.net:/home/edrx/public_
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "dednat6.lua"
 PP(keys(package))
 PP(keys(package.loaded))

@@ -179,9 +179,9 @@ arrow_to_TeX_pshL = function (arrow)
 -- «arrow_to_TeX-test» (to ".arrow_to_TeX-test")
 -- (find-es "diagxy" "shape")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "diagtex"
 test = function (A) print(arrow_to_TeX(A)) end
 storenode {TeX="a", tag="a", x=100, y=100}
@@ -190,8 +190,6 @@ test {from="a", to="b", shape="|->"}
 test {from="a", to="b", shape="|->", label="up", placement="a"}
 test {from="a", to="b", shape="|->", label="up", placement="a", slide="5pt"}
 test {from="a", to="b", shape="|->", label="up", lplacement="_(0.42)"}  -- err?
-
- (ex "diagtex-0")
 
 --]==]
 
@@ -261,9 +259,9 @@ arrows_to_defdiagprep = function (name, prep, hyperlink)
 
 -- «arrows-tests» (to ".arrows-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "diagtex"
 storenode {TeX="a", tag="a", x=100, y=100}
 storenode {TeX="b", tag="b", x=140, y=100}

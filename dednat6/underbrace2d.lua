@@ -131,9 +131,9 @@ defub = function (name) ublast:defub(name) end
 
 -- «UB-tests»  (to ".UB-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6()
 dofile "underbrace2d.lua"
 teststr = [[

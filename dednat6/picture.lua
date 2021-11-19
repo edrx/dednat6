@@ -200,9 +200,9 @@ lr = function (l, r) return V{l, r}:lrtoxy() end
 
 -- «V-tests» (to ".V-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 = V{3,4}             --> (3,4)    
 = V{3,4} - V{2,1}    --> (1,3)    
@@ -224,21 +224,21 @@ dofile "zhas.lua"
 = V{0,3}:torowcol(4, 2, 6)   --> 3 5
 = V{0,4}:torowcol(4, 2, 6)   --> (nothing)
 
--- (ex "v-1")
+--• (ex "v-1")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 = v{2, 3}
 = v(2, 3)
 = v(2, 3):to12()
 
--- (ex "v-2")
+--• (ex "v-2")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 = v"20"
 = v"02"
@@ -250,7 +250,7 @@ dofile "picture.lua"
 = lr"03"      -- err?
 = lr"03":s()  -- err?
 
---  (ex "v-3")
+-- • (ex "v-3")
 
 --]]
 
@@ -311,9 +311,9 @@ BoundingBox = Class {
 
 -- «BoundingBox-tests» (to ".BoundingBox-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 bb = BoundingBox.new()
 PP(bb)
@@ -382,9 +382,9 @@ AsciiPicture = Class {
 
 -- «AsciiPicture-tests» (to ".AsciiPicture-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 ap = AsciiPicture.new("  ")
 ap = AsciiPicture.new("     ")
@@ -400,9 +400,9 @@ end
 = ap
 PPV(ap)
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 ap = AsciiPicture.new("  ")
 PP(ap)
@@ -490,9 +490,9 @@ metaopts["1pt"]  = {scale="1pt"}
 
 -- «copyopts-tests» (to ".copyopts-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 testcopyopts = function (A) PP(copyopts(A, {})) end
 testcopyopts  "8pt"
@@ -562,9 +562,9 @@ makepicture = function (options, bb, body)
 
 -- «makepicture-tests»  (to ".makepicture-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 bb = BoundingBox.new()
 bb:addpoint(v(2,5))
@@ -699,16 +699,16 @@ pict2evector = function (x0, y0, x1, y1)
 
 -- «pict2e-test» (to ".pict2e-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 = pict2eline  (1.2, 3.4, 5.6, 7.2)
 = pict2evector(1.2, 3.4, 5.6, 7.2)
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6()
 lp = LPicture.new({def="foo"})
 for theta=0.1,2*math.pi,0.1 do
@@ -825,9 +825,9 @@ LPicture = Class {
 
 -- «LPicture-tests» (to ".LPicture-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 lp = LPicture.new {cellfont="\\scriptsize"}
 for l=0,2 do
@@ -838,9 +838,9 @@ for l=0,2 do
 end
 = lp
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 -- (find-angg "LUA/lua50init.lua" "pformat")
 V.__tostring = function (v) return format("(%.3f,%.3f)", v[1], v[2]) end
@@ -997,9 +997,9 @@ Picture = Class {
 
 -- «Picture-tests» (to ".Picture-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "picture.lua"
 p = Picture.new()
 p:put(2, 3, "23")

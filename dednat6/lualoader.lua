@@ -10,14 +10,14 @@
 --   (find-dn6 "dednat6.lua" "luatex-require")
 --   (find-dn6 "dednat6.lua" "luatex-require" "lualoader")
 
--- «.compatibility»		(to "compatibility")
--- «.dednatlualoader»		(to "dednatlualoader")
--- «.adddednatlualoader»	(to "adddednatlualoader")
--- «.temporary-fix»		(to "temporary-fix")
+-- Â«.compatibilityÂ»		(to "compatibility")
+-- Â«.dednatlualoaderÂ»		(to "dednatlualoader")
+-- Â«.adddednatlualoaderÂ»	(to "adddednatlualoader")
+-- Â«.temporary-fixÂ»		(to "temporary-fix")
 
 
 
--- «compatibility»  (to ".compatibility")
+-- Â«compatibilityÂ»  (to ".compatibility")
 -- Compatibility stuff.
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-package.loaders
 --      http://www.lua.org/manual/5.2/manual.html#pdf-package.searchers
@@ -29,7 +29,7 @@ loadstring = loadstring or load
 
 
 
--- «dednatlualoader»  (to ".dednatlualoader")
+-- Â«dednatlualoaderÂ»  (to ".dednatlualoader")
 -- Based on: http://lua-users.org/wiki/LuaModulesLoader
 -- See: http://tug.org/pipermail/luatex/2015-February/005071.html (problem)
 --      http://tug.org/pipermail/luatex/2015-February/005073.html (solution)
@@ -60,7 +60,7 @@ dednatlualoader = function (modulename)
 
 
 
--- «adddednatlualoader»  (to ".adddednatlualoader")
+-- Â«adddednatlualoaderÂ»  (to ".adddednatlualoader")
 -- The default action is to add dednatlualoader to package.searchers,
 -- but the "if" below lets me hack that while I don't I find a solution
 -- to this problem:
@@ -74,7 +74,7 @@ end
 
 
 
--- «temporary-fix»  (to ".temporary-fix")
+-- Â«temporary-fixÂ»  (to ".temporary-fix")
 -- % If you are using TeXLive/MikTeX/whateverTeX 2020
 -- % and dednat6 doesn't work there, a ___TEMPORARY SOLUTION___
 -- % is to install a new dednat6 from
@@ -100,5 +100,5 @@ end
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:

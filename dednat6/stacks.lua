@@ -68,9 +68,9 @@ Stack = Class {
 
 --[==[
 -- «Stack-tests» (to ".Stack-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "stacks.lua"
 s = Stack.new()
 s:push(22):push(33):PP()

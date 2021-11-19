@@ -78,9 +78,9 @@ tikzshapedef("`->",  "^{ (}->", "{}-{>},double")
 
 -- «tikzshapes-test»  (to ".tikzshapes-test")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "diagtikz.lua"
 = tikzshapes
 = tikzshape  "^{ (}->"
@@ -159,9 +159,9 @@ defdiagtikz = function ()
 -- (find-dednat6 "dednat6/diagforth.lua" "high-level-tests")
 
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "diagtikz.lua"
 forths["endtikzdiagram"] = function () print(arrows) end
 

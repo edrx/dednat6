@@ -213,9 +213,9 @@ AsciiRect = Class {
 
 -- «AsciiRect-tests» (to ".AsciiRect-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 ar = AsciiRect.new(1, " a  |b c | d e|  f ")
 = ar
@@ -224,9 +224,9 @@ for x,y,str in ar:gen() do printf("(%d,%d):%s\n", x, y, str) end
 for x,y,str in ar:gen() do printf("(%d,%d):%s\n", x, y, str) end
 PPV(ar)
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 dofile "picture.lua"
 ar = AsciiRect.new(1, " a  |b c | d e|  f ")
@@ -335,9 +335,9 @@ luarectexpr = function (bigstr) return luarecteval("return\n"..bigstr) end
 -- «LuaWithRects-tests» (to ".LuaWithRects-tests")
 --[==[
 -- High-level tests:
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 bigstr = [[
 A = 1/ a \;  B = 2/abcd\;
@@ -353,9 +353,9 @@ lwr = LuaWithRects.new(bigstr)
 = mytabletostring(lwr.ars)
 = lwr.ars[1][2]
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 bigstr = [[
 for x,y,str in 2/  ..      \:setx0():gen() do print(x,y,str) end
@@ -373,12 +373,12 @@ luarecteval(bigstr)
 eval(LuaWithRects.new(bigstr):extractasciirects():tostring())
 luarecteval(bigstr)
 
- (ex "luawithrects-2")
+• (ex "luawithrects-2")
 
 -- Low-level tests:
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 bigstr = [[
 1/ a \
@@ -402,7 +402,7 @@ ar = lwr:extractasciirect(w, y1, y2, pos1, pos2, "foo")
 = ar
 = lwr
 
- (ex "luawithrects-3")
+• (ex "luawithrects-3")
 
 --]==]
 
@@ -444,9 +444,9 @@ ZHAFromPoints = Class {
 
 -- «ZHAFromPoints-tests» (to ".ZHAFromPoints-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "luarects.lua"
 
 luarecteval [[

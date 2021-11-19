@@ -91,9 +91,9 @@ ubs = function (bigstr)
 
 --[==[
 -- «ubs-tests» (to ".ubs-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "underbrace.lua"
 --
 -- (find-istfile "1.org" "Some non-tautologies: DeMorgan")
@@ -122,9 +122,9 @@ PP(ubs("a () ()"))
 = ubstree  [[ P 0 u   Q 1 u   \& bin 0 u   P 0 u   -> bin 1 u ]] 
 = ubs      [[ P 0 u   Q 1 u   \& bin 0 u   P 0 u   -> bin 1 u ]] 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "underbrace.lua"
 -- (P <= Q & R) <-> (P <= Q) & (P <= R)
 --       21 12           21         12
@@ -150,9 +150,9 @@ ubs_brute_force_imp
   \bij bin
 ]]
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "underbrace.lua"
 output = function (str) print("<<"..str..">>") end
 ubs0  [[ P 10 u   Q 01 u   \& bin 00 u   Foo def   output ]]

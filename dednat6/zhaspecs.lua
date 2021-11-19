@@ -194,9 +194,9 @@ LR = Class {
 
 -- «LR-tests» (to ".LR-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhaspecs.lua"
 require "picture"
 require "zhas"
@@ -223,13 +223,13 @@ o = LR.fromtriples(A, nil, -2)
 = LR.fromspec("123RR21RL",   2, -4)
 PPV(LR.fromspec("123RR21RL", 2, -4):triples())
 
- (ex "lr-0")
+• (ex "lr-0")
 
 
 -- «LR-putxy-tests» (to ".LR-putxy-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhaspecs.lua"
 require "picture"
 require "zhas"
@@ -247,13 +247,13 @@ o = LR.from({}, {}, 5, -2)
 = f(0, "  o  ")
 = o:zha()
 
- (ex "lr-putxy")
+• (ex "lr-putxy")
 
 
 -- «LR-twocolgraph-tests» (to ".LR-twocolgraph-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhaspecs.lua"
 require "picture"
 require "zhas"
@@ -276,12 +276,12 @@ require "zhas"
 = LR.fromtcgspec("   4, 6;  32,   15 26"):zha():totcgspec()
 = LR.fromtcgspec(     "46;  32,   15 26"):zha():totcgspec()
 
- (ex "lr-2col")
+• (ex "lr-2col")
 
 -- «LR-fromtcgspec-tests» (to ".LR-fromtcgspec-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhaspecs.lua"
 require "picture"
 require "zhas"
@@ -293,9 +293,9 @@ require "zhas"
 
 
 -- «LR-shrinktop-tests» (to ".LR-shrinktop-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhaspecs.lua"
 require "picture"
 require "zhas"

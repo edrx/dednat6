@@ -87,9 +87,9 @@ standardabbrevs = function ()
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "abbrevs.lua"
 abbrevs = Abbrevs.new()
 addabbrevs("->", "\\to ", "<->", "\\bij ")
@@ -107,12 +107,10 @@ PP(abbrevs:unabbrev("a->b<->c", 1))
 PP(abbrevs:unabbrev("a->b<->c"))
 = unabbrev("a->b<->c")
 
- (ex "abbrevs")
-
 --]]
 
 
 -- Local Variables:
--- coding: raw-text-unix
+-- coding: utf-8-unix
 -- End:
 

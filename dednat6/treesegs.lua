@@ -158,9 +158,9 @@ treesegtest = function (bigstr)
 -- «allsegments-tests»  (to ".allsegments-tests")
 -- See: (find-dn6 "rect.lua" "dedtorect-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "treesegs"
 = tosegments(" a    bb ccc ")
 = tosegments("  a   bb ccc ")
@@ -178,9 +178,9 @@ PP(r:totreenode())
 tn = r:totreenode()
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "treesegs"
 foo = function (str)
     allsegments[y] = tosegments(str, y)

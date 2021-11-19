@@ -158,9 +158,9 @@ Rect = Class {
 
 -- «Rect-tests» (to ".Rect-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "rect.lua"
 
 r = Rect.new "a\nbb\nccc"
@@ -191,9 +191,9 @@ syntree = Rect.syntree
 = syntree("a", abc, "d", abc)
 
 -- «Rect-ded-tests» (to ".Rect-ded-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "rect.lua"
 abc   = Rect.new("a  b\n----\nc")
 defgh = Rect.new("   d\n   -\ne  f  g\n-------\nh")
@@ -235,9 +235,9 @@ synttorect = function (o)
 
 -- «synttorect-tests» (to ".synttorect-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "rect.lua"
 tree = {[0]="+", {[0]="*", "2", "3"}, {[0]="*", "4", "5"}}
 tree = {[0]="+", {[0]="*", "2", "3"}, {[0]="*", "4", "5"}, bar="=", label="hi"}
@@ -273,9 +273,9 @@ dedtorect = function (o)
 -- «dedtorect-tests» (to ".dedtorect-tests")
 -- See: (find-dn6 "treesegs.lua" "allsegments-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "rect.lua"
 = dedtorect "a"
 = dedtorect {[0]="a"}

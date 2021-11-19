@@ -128,9 +128,9 @@ registerhead "%D" {
 -- «heads-test» (to ".heads-test")
 -- See: (find-dn6 "texfile.lua" "texfiletest")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "texfile.lua"
 dofile "luarects.lua"
 texfiletest()
@@ -142,8 +142,6 @@ add [[%R      \ c d/ ]]
 pu()
 = a
 
- (ex "heads-0")
-
 --]==]
 
 
@@ -151,9 +149,9 @@ pu()
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "heads6.lua"
 = mytabletostring(heads)
 

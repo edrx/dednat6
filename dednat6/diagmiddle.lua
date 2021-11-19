@@ -56,9 +56,9 @@ forths["midpoint"] = function ()
 -- «midpoint-tests» (to ".midpoint-tests")
 -- (find-dn6 "diagforth.lua" "high-level-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "diagmiddle.lua"
 
 na = function (nodeid)
@@ -127,9 +127,9 @@ splitdist = function (x1, x2, dx0, dx1, dx2)
 
 -- «splitdist-tests»  (to ".splitdist-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "diagmiddle.lua"
 = splitdist(100, 200,  nil,  10, nil)   --> 145 155
 = splitdist(100, 200,   20,  10, nil)   --> 155 165
@@ -183,9 +183,9 @@ dvarrownodes0 = function (x0, y0, x2, y2, dy0, dy1, dy2)
 -- «splitdists-tests»  (to ".splitdists-tests")
 -- 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "diagmiddle.lua"
 = proportional (10,   15,   20,        100, 200)   --> 150
 = proportionals(10, 14, 16, 20,        100, 200)   --> 140 160

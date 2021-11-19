@@ -116,9 +116,9 @@ TexLines = Class {
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "block.lua"
 heads = {["%L"]={}, ["%D"]={}, ["%:"]={}}
 
@@ -242,9 +242,9 @@ Block = Class {
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "block.lua"
 heads = {["%L"]="%L", ["%D"]="%D", ["%:"]="%:"}
 Block.__index.processheadblock = function (bl) print(mytostring(bl)) end
@@ -288,9 +288,9 @@ texfile = function (fname)
 pu = function (puline) tf:processuntil(puline or tex.inputlineno) end
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "block.lua"
 texfile0("../2018tugboat.tex")
 = tf

@@ -92,9 +92,9 @@ TreeNode = Class {
 -- «TreeNode-tests» (to ".TreeNode-tests")
 -- See: (find-dn6 "rect.lua" "dedtorect-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 require "treetex"
 ded = {[0]="a", "b", {[0]="c", "d",      "e",           bar="=", label="foo"}}
 ded = {[0]="a", "b", {[0]="c", "d", {[0]="e", bar="-"}, bar="=", label="foo"}}
@@ -249,9 +249,9 @@ proofsty = ProofSty.new()
 
 -- «ProofSty-test»  (to ".ProofSty-test")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6()
 require "block"
 bigstr = [[
@@ -358,9 +358,9 @@ bussproofs = BussProofs.new()
 
 -- «BussProofs-test»  (to ".BussProofs-test")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 loaddednat6()
 require "block"
 bigstr = [[

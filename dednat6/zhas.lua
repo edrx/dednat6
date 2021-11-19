@@ -334,28 +334,28 @@ ZHA = Class {
 
 -- «ZHA-tests» (to ".ZHA-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 ZHA.fromspec("12L1RRR2RL1"):PP():print()
 ZHA.fromspec("123LLR432L1"):PP():print()
 ZHA.fromspec("123RRL432R1"):PP():print()
 
- (ex "zha-fromspec")
+• (ex "zha-fromspec")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 dofile "zhaspecs.lua"
 = ZHA.fromspec("123RRL432R1")
 = ZHA.fromspec("123RRL432R1"):totcgspec()
 = ZHA.fromtcgspec("4, 6; 32, 15 36")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("123RRL432R1"):PP()
 = z
@@ -375,15 +375,15 @@ PP(z:tostring())
 = z:hasxy(0,0)
 = z
 
- (ex "zha-tostring")
+• (ex "zha-tostring")
 
 
 
 -- «ZHA-tests-walls» (to ".ZHA-tests-walls")
 -- (to "ZHA-walls")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 -- (find-dn6 "zha.lua" "ZHA")
 dofile "zhas.lua"
 pris = function (o) printf("%s ", tostring(o)) end
@@ -409,13 +409,13 @@ for _,P in ipairs(z:leftwallcorners())          do pris(P:lr()) end; print()
 --  10  01
 --    00
 
- (ex "zha-walls")
+• (ex "zha-walls")
 
 -- «ZHA-test-connectives» (to ".ZHA-test-connectives")
 -- (to "ZHA-connectives")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 -- (find-dn6 "zha.lua" "ZHA")
 dofile "zhas.lua"
 z = ZHA.fromspec("12RRL1LLRR"):print()
@@ -446,12 +446,12 @@ z = ZHA.fromspec("12RRL1LLRR"):print()
 --  10  01
 --    00
 
- (ex "zha-connectives")
+• (ex "zha-connectives")
 
 -- «ZHA-test-generators» (to ".ZHA-test-generators")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("123RRL432R1"):print()
 for v in z:points() do printf("%s ", v:lr()) end; print()
@@ -465,12 +465,12 @@ for P in z:points() do ap:put(P, P:And(v"23"):lr()) end
 z = ZHA.fromspec("121L"):print()
 for P,dx,dy,tex in z:arrows() do print(P:lr().."->"..(P+v(dx,dy)):lr(), tex) end
 
- (ex "zha-generators")
+• (ex "zha-generators")
 
 -- «ZHA-test-shrinktop» (to ".ZHA-test-shrinktop")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 dofile "zhaspecs.lua"
 z = ZHA.fromtcgspec("4, 5; 32, 14 25"):print()
@@ -510,9 +510,9 @@ function shortoperators ()
 
 -- «shortoperators-tests» (to ".shortoperators-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 shortoperators()
 = mpnewJ({}, "1234567654321", Opnq(v"23")):zhaPs("23")
@@ -525,7 +525,7 @@ shortoperators()
 = mpnewJ({}, "1234567654321", Truq()):zhaPs("")
 = mpnewJ({}, "1234567654321", Falq()):zhaPs("")
 
- (ex "zha-shortoperators")
+• (ex "zha-shortoperators")
 --]]
 
 
@@ -664,9 +664,9 @@ Cuts = Class {
 
 --[[
 -- «Cuts-tests» (to ".Cuts-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 c = Cuts.new()
 z = ZHA.fromspec("12RRL1LLRR")
@@ -676,11 +676,11 @@ z = ZHA.fromspec("12RRL1LLRR")
 = c:addcontour(z)
 = c.latex
 
- (ex "zha-cuts-1")
+• (ex "zha-cuts-1")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 c = Cuts.new()
 z = ZHA.fromspec("12RRL1LLRR")
@@ -693,11 +693,11 @@ z = ZHA.fromspec("12RRL1LLRR")
 = c:addrcut(z, 1)
 = c:addrcut(z, 2)
 
- (ex "zha-cuts-2")
+• (ex "zha-cuts-2")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 c = Cuts.new()
 z = ZHA.fromspec("12RRL1LLRR"):print()
@@ -707,7 +707,7 @@ z = ZHA.fromspec("1234567654321"):print()
 c = Cuts.new()
 = c:addcuts(z, "c 01e-41n 40w-44n 14n-64n 11n-16n")
 
- (ex "zha-cuts-3")
+• (ex "zha-cuts-3")
 
 --]]
 
@@ -952,9 +952,9 @@ mpnewJ = function (opts, spec, J)
 
 -- «MixedPicture-tests» (to ".MixedPicture-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("12RRL1LLRR"):print()
 mp = MixedPicture.new({}, z)
@@ -969,13 +969,13 @@ latex = mp:tolatex()
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
 
- (ex "mixedpic-1")
+• (ex "mixedpic-1")
 
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("1234R3L21L"):print()
 mp = MixedPicture.new({bhbox=1, paren=1, scale="10pt", def="foo"}, z)
@@ -995,12 +995,12 @@ latex = mp:tolatex()
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
 
- (ex "mixedpic-2")
+• (ex "mixedpic-2")
 
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("121L"):print()
 mp = MixedPicture.new({bhbox=1, paren=1, scale="20pt", def="foo"}, z)
@@ -1020,13 +1020,13 @@ latex = "\\def\\foo{"..latex.."}"
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
 
- (ex "mixedpic-3")
+• (ex "mixedpic-3")
 
 
 -- «MixedPicture-zhalrf-tests» (to ".MixedPicture-zhalrf-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("123454321"):print()
 mp = MixedPicture.new({}, z)
@@ -1048,9 +1048,9 @@ mp = mpnew({}, "123454321")
 
 
 -- «MixedPicture-arch-tests» (to ".MixedPicture-arch-tests")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 
 -- The (v*) cube
@@ -1080,14 +1080,14 @@ mp:put(v"20", "P"):put(v"30", "P*", "P^*")
 mp:put(v"11", "Q"):put(v"12", "Q*", "Q^*")
 mp:put(v"03", "R"):put(v"14", "R*", "R^*"):print()
 
- (ex "mixedpic-cubes")
+• (ex "mixedpic-cubes")
 
 
 -- «MixedPicture-zset-tests» (to ".MixedPicture-zset-tests")
 -- (find-dn6file "zhas.lua" "zfunction =")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("12321L"):print()
 house = ".1.|2.3|4.5"
@@ -1100,23 +1100,23 @@ mp = MixedPicture.new({def="Ten"}, z):zhalr():print()
 
 mp = mpnew({scale="15pt"}, "121L"):zhapiledefs():print():lprint()
 
- (ex "mixedpic-zsets-1")
+• (ex "mixedpic-zsets-1")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 threefour = "..1|2.3|4.5|6.7"
 MixedPicture.new({def="dagThreeFour", meta="s"}):zfunction(threefour):print():lprint()
 
- (ex "mixedpic-threefour")
+• (ex "mixedpic-threefour")
 
 
 -- «MixedPicture-J-tests» (to ".MixedPicture-J-tests")
 -- (to "mpnewJ")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 = mpnewJ({}, "1234RR321", "P -> z:Or(P, v'12')")
 = mpnewJ({}, "1234RR321", "P -> z:Imp(v'12', P)")
@@ -1124,11 +1124,11 @@ dofile "zhas.lua"
 mp = mpnewJ({}, "1234RR321", "P -> z:Imp(v'12', P)")
 = mp.zha:getcuts(mp.J)
 
- (ex "mixedpic-J-1")
+• (ex "mixedpic-J-1")
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 
 --]]
@@ -1164,9 +1164,9 @@ drawtwocolgraph = function (dx, dy, maxl, maxr, leftgens, rightgens, ltexs, rtex
 
 -- «drawtwocolgraph-tests» (to ".drawtwocolgraph-tests")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 dxyrunf = function (...) print("%D "..format(...)) end
 drawtwocolgraph(40, 20, 4, 6, "24", "24 35")
@@ -1214,9 +1214,9 @@ VCuts = Class {
 
 -- «VCuts-tests» (to ".VCuts-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 
 vc = VCuts.new({scale="7pt", def="foo"}, 4, 6)
@@ -1321,9 +1321,9 @@ TCG = Class {
 
 -- «TGC-tests» (to ".TGC-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 -- dims = {dv=2, dh=3, ev=0.32, eh=0.2}
 opts = {scale="10pt", dims={dv=2, dh=3, ev=0.32, eh=0.2}}
@@ -1373,9 +1373,9 @@ asciirectpoints = function (lines)
 
 -- «asciirectpoints-tests» (to ".asciirectpoints-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 str = ".1.|2.3|4.5"
 for x,y,c in asciirectpoints(str) do print(x, y, c) end
@@ -1433,9 +1433,9 @@ z = ZHA.fromspec("12RR1234321L"):print()
 --    00                   ..
 
 -- (find-istfile "1.org" "* ZQuotients")
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("12345RR4321"):print()
 z = ZHA.fromspec("1234543RR21"):print()
@@ -1451,9 +1451,9 @@ mp:addcuts("c 4321/0 0123|45|6"):print()
 
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 -- See: (find-LATEX "istanbul-july.tex" "partitiongraph")
 dofile "zhas.lua"
 opts = {def="graphid", scale="6pt", meta="p b s"}
@@ -1471,9 +1471,9 @@ mp:put(v(0, 7), "aP", "a^P")
 = mp.lp
 = mp
 
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "zhas.lua"
 z = ZHA.fromspec("1R2R3212RL1"):print()
 mp = MixedPicture.new({def="ZQ", scale="1pt", meta="b ss"}, z)

@@ -100,9 +100,9 @@ dooptions = function (arg1, arg2)
 
 
 --[==[
- (eepitch-shell)
- (eepitch-kill)
- (eepitch-shell)
+• (eepitch-shell)
+• (eepitch-kill)
+• (eepitch-shell)
 cd ~/LATEX/
 ./dednat6load.lua
 ./dednat6load.lua foo

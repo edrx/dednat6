@@ -19,6 +19,7 @@
 -- «.deletecomments_2015»	(to "deletecomments_2015")
 -- «.deletecomments_2019»	(to "deletecomments_2019")
 -- «.deletecomments_2019-tests»	(to "deletecomments_2019-tests")
+-- «.DeleteComments»		(to "DeleteComments")
 -- «.Deletecomments-class»	(to "Deletecomments-class")
 -- «.DeleteComments-tests»	(to "DeleteComments-tests")
 -- «.deletecomments_2021»	(to "deletecomments_2021")
@@ -60,9 +61,9 @@ deletecomments_2019 = function (bigstr)
 
 -- «deletecomments_2019-tests»  (to ".deletecomments_2019-tests")
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "output.lua"
 -- Good:
 = deletecomments_2019 "a % b % c"
@@ -75,9 +76,9 @@ dofile "output.lua"
 
 
 
-
+-- «DeleteComments»  (to ".DeleteComments")
 -- «Deletecomments-class»  (to ".Deletecomments-class")
--- New (2021jun05): the class Deletecomments implements a way to
+-- New (2021jun05): the class DeleteComments implements a way to
 -- delete comments that TRIES to simulate what TeX does. The TeXBook
 -- explains in its pages 46-47 that the "eyes" and "mouth" of TeX
 -- enter the "State S" (for "skipping blanks") after a "%"; we
@@ -139,9 +140,9 @@ DeleteComments = Class {
 -- «DeleteComments-tests»  (to ".DeleteComments-tests")
 -- (find-es "dednat" "deletecomments-2021")
 --[==[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "output.lua"
 
 bigstr = [[
@@ -318,9 +319,9 @@ printt  = function (...) print(formatt(...)) end
 outputt = function (...) output(formatt(...)) end
 
 --[[
- (eepitch-lua51)
- (eepitch-kill)
- (eepitch-lua51)
+• (eepitch-lua51)
+• (eepitch-kill)
+• (eepitch-lua51)
 dofile "output.lua"
 dofile "picture.lua"
 p, q = v(3,4), v(5,6)
