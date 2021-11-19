@@ -186,6 +186,12 @@ TCGSpec = Class {
   --
   __tostring = function (ts) return mytabletostring(ts) end,
   __index = {
+    LRcolstrs = function (ts, Lcolstr, Rcolstr)
+        ts.Lcolstr = Lcolstr
+        ts.Rcolstr = Rcolstr
+        return ts
+      end,
+    --
     zha = function (ts)
         return LR.fromtcgspec(ts.tcgspec):zha()
       end,
@@ -459,9 +465,10 @@ TCGQ = Class {
         for y=1,tq.r do tq:Rput(y, "\\_"..y) end
         return tq
       end,
+    --
     LRputs = function (tq, left, right)
-        left  = left:gsub("!", "\\")
-	right = right:gsub("!", "\\")
+        left  = (left  or tq.ts.Lcolstr):gsub("!", "\\")
+	right = (right or tq.ts.Rcolstr):gsub("!", "\\")
 	for y,str in ipairs(split(left))  do tq:Lput(y, str) end
 	for y,str in ipairs(split(right)) do tq:Rput(y, str) end
 	return tq
@@ -520,6 +527,7 @@ TCGQ = Class {
           elseif action == "QB" then tq:drawqboxes()
           elseif action == "p"  then tq:print()
           elseif action == "ap" then tq.ap:print()
+          elseif action == "LR" then tq:LRputs()
           elseif action == "o"  then tq:output()
           else error("Bad action: "..action)
           end

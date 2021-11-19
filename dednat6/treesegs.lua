@@ -4,9 +4,10 @@
 --   http://angg.twu.net/dednat6/dednat6/treesegs.lua
 --           (find-angg "dednat6/dednat6/treesegs.lua")
 -- Author: Eduardo Ochs <eduardoochs@gmail.com>
--- Version: 2020aug24
+-- Version: 2021oct13
 -- License: GPL3
 --
+-- «.AllSegments»	(to "AllSegments")
 -- «.allsegments»	(to "allsegments")
 -- «.segtotreenode»	(to "segtotreenode")
 -- «.Segment»		(to "Segment")
@@ -31,8 +32,21 @@ intersects = function (start1, end1, start2, end2)
 
 
 
--- «allsegments» (to ".allsegments")
-allsegments = VerticalTable {}
+-- «AllSegments»  (to ".AllSegments")
+-- «allsegments»  (to ".allsegments")
+AllSegments = Class {
+  type      = "AllSegments",
+  __tostring = mytostringv,
+  __index = {
+    last = function (allsegs, linenow)
+        for i=linenow,1,-1 do
+          if allsegs[i] and allsegs[i][1] then return allsegs[i][1] end
+        end
+      end,
+  },
+}
+allsegments = AllSegments {}
+
 -- For example, allsegment[5] is a Segments object containing the list
 -- of all Segment objects at line 5 of the current file (or nil).
 
