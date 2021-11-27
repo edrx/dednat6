@@ -373,8 +373,6 @@ luarecteval(bigstr)
 eval(LuaWithRects.new(bigstr):extractasciirects():tostring())
 luarecteval(bigstr)
 
-• (ex "luawithrects-2")
-
 -- Low-level tests:
 • (eepitch-lua51)
 • (eepitch-kill)
@@ -401,8 +399,6 @@ w, y1, y2, pos1, pos2 = lwr:matchasciirect(1)
 ar = lwr:extractasciirect(w, y1, y2, pos1, pos2, "foo")
 = ar
 = lwr
-
-• (ex "luawithrects-3")
 
 --]==]
 

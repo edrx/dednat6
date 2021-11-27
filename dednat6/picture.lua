@@ -224,8 +224,6 @@ dofile "zhas.lua"
 = V{0,3}:torowcol(4, 2, 6)   --> 3 5
 = V{0,4}:torowcol(4, 2, 6)   --> (nothing)
 
---• (ex "v-1")
-
 • (eepitch-lua51)
 • (eepitch-kill)
 • (eepitch-lua51)
@@ -233,8 +231,6 @@ dofile "picture.lua"
 = v{2, 3}
 = v(2, 3)
 = v(2, 3):to12()
-
---• (ex "v-2")
 
 • (eepitch-lua51)
 • (eepitch-kill)
@@ -249,8 +245,6 @@ dofile "picture.lua"
 = lr"10"      -- err?
 = lr"03"      -- err?
 = lr"03":s()  -- err?
-
--- • (ex "v-3")
 
 --]]
 

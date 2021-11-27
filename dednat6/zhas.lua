@@ -342,8 +342,6 @@ ZHA.fromspec("12L1RRR2RL1"):PP():print()
 ZHA.fromspec("123LLR432L1"):PP():print()
 ZHA.fromspec("123RRL432R1"):PP():print()
 
-• (ex "zha-fromspec")
-
 • (eepitch-lua51)
 • (eepitch-kill)
 • (eepitch-lua51)
@@ -374,8 +372,6 @@ PP(z:tostring())
 
 = z:hasxy(0,0)
 = z
-
-• (ex "zha-tostring")
 
 
 
@@ -408,8 +404,6 @@ for _,P in ipairs(z:leftwallcorners())          do pris(P:lr()) end; print()
 --    11  02
 --  10  01
 --    00
-
-• (ex "zha-walls")
 
 -- «ZHA-test-connectives» (to ".ZHA-test-connectives")
 -- (to "ZHA-connectives")
@@ -446,8 +440,6 @@ z = ZHA.fromspec("12RRL1LLRR"):print()
 --  10  01
 --    00
 
-• (ex "zha-connectives")
-
 -- «ZHA-test-generators» (to ".ZHA-test-generators")
 • (eepitch-lua51)
 • (eepitch-kill)
@@ -464,8 +456,6 @@ for P in z:points() do ap:put(P, P:And(v"23"):lr()) end
 
 z = ZHA.fromspec("121L"):print()
 for P,dx,dy,tex in z:arrows() do print(P:lr().."->"..(P+v(dx,dy)):lr(), tex) end
-
-• (ex "zha-generators")
 
 -- «ZHA-test-shrinktop» (to ".ZHA-test-shrinktop")
 • (eepitch-lua51)
@@ -525,7 +515,6 @@ shortoperators()
 = mpnewJ({}, "1234567654321", Truq()):zhaPs("")
 = mpnewJ({}, "1234567654321", Falq()):zhaPs("")
 
-• (ex "zha-shortoperators")
 --]]
 
 
@@ -676,8 +665,6 @@ z = ZHA.fromspec("12RRL1LLRR")
 = c:addcontour(z)
 = c.latex
 
-• (ex "zha-cuts-1")
-
 • (eepitch-lua51)
 • (eepitch-kill)
 • (eepitch-lua51)
@@ -693,8 +680,6 @@ z = ZHA.fromspec("12RRL1LLRR")
 = c:addrcut(z, 1)
 = c:addrcut(z, 2)
 
-• (ex "zha-cuts-2")
-
 • (eepitch-lua51)
 • (eepitch-kill)
 • (eepitch-lua51)
@@ -706,8 +691,6 @@ z = ZHA.fromspec("12RRL1LLRR"):print()
 z = ZHA.fromspec("1234567654321"):print()
 c = Cuts.new()
 = c:addcuts(z, "c 01e-41n 40w-44n 14n-64n 11n-16n")
-
-• (ex "zha-cuts-3")
 
 --]]
 
@@ -969,8 +952,6 @@ latex = mp:tolatex()
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
 
-• (ex "mixedpic-1")
-
 
 
 • (eepitch-lua51)
@@ -995,8 +976,6 @@ latex = mp:tolatex()
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
 
-• (ex "mixedpic-2")
-
 
 • (eepitch-lua51)
 • (eepitch-kill)
@@ -1019,8 +998,6 @@ latex = "\\def\\foo{"..latex.."}"
 = latex
 writefile("/tmp/o.tex", latex)  -- (find-fline "/tmp/o.tex")
 -- (find-ist "-handouts.tex" "mixedpicture-tests")
-
-• (ex "mixedpic-3")
 
 
 -- «MixedPicture-zhalrf-tests» (to ".MixedPicture-zhalrf-tests")
@@ -1080,7 +1057,6 @@ mp:put(v"20", "P"):put(v"30", "P*", "P^*")
 mp:put(v"11", "Q"):put(v"12", "Q*", "Q^*")
 mp:put(v"03", "R"):put(v"14", "R*", "R^*"):print()
 
-• (ex "mixedpic-cubes")
 
 
 -- «MixedPicture-zset-tests» (to ".MixedPicture-zset-tests")
@@ -1100,16 +1076,12 @@ mp = MixedPicture.new({def="Ten"}, z):zhalr():print()
 
 mp = mpnew({scale="15pt"}, "121L"):zhapiledefs():print():lprint()
 
-• (ex "mixedpic-zsets-1")
-
 • (eepitch-lua51)
 • (eepitch-kill)
 • (eepitch-lua51)
 dofile "zhas.lua"
 threefour = "..1|2.3|4.5|6.7"
 MixedPicture.new({def="dagThreeFour", meta="s"}):zfunction(threefour):print():lprint()
-
-• (ex "mixedpic-threefour")
 
 
 -- «MixedPicture-J-tests» (to ".MixedPicture-J-tests")
@@ -1123,8 +1095,6 @@ dofile "zhas.lua"
 
 mp = mpnewJ({}, "1234RR321", "P -> z:Imp(v'12', P)")
 = mp.zha:getcuts(mp.J)
-
-• (ex "mixedpic-J-1")
 
 • (eepitch-lua51)
 • (eepitch-kill)

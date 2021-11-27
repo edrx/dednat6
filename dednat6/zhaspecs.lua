@@ -223,7 +223,6 @@ o = LR.fromtriples(A, nil, -2)
 = LR.fromspec("123RR21RL",   2, -4)
 PPV(LR.fromspec("123RR21RL", 2, -4):triples())
 
-• (ex "lr-0")
 
 
 -- «LR-putxy-tests» (to ".LR-putxy-tests")
@@ -246,8 +245,6 @@ o = LR.from({}, {}, 5, -2)
 = f(1, " o o ")
 = f(0, "  o  ")
 = o:zha()
-
-• (ex "lr-putxy")
 
 
 -- «LR-twocolgraph-tests» (to ".LR-twocolgraph-tests")
@@ -275,8 +272,6 @@ require "zhas"
 = LR.fromtcgspec("   4, 6;  32,   15 26"):zha().spec
 = LR.fromtcgspec("   4, 6;  32,   15 26"):zha():totcgspec()
 = LR.fromtcgspec(     "46;  32,   15 26"):zha():totcgspec()
-
-• (ex "lr-2col")
 
 -- «LR-fromtcgspec-tests» (to ".LR-fromtcgspec-tests")
 • (eepitch-lua51)
